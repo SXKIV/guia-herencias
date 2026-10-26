@@ -1678,6 +1678,19 @@ body[data-pantalla="inicio"] .flotante-calc{display:none}
         return;
       }
 
+      if(S.rel === "ascendiente" && S.comp.hijos0 === 1){
+        veredicto("revision", "En este caso no heredas",
+          "Si la persona que falleció dejó hijos, sus padres y abuelos no heredan: la herencia se reparte entre los hijos y, si lo hay, el cónyuge o conviviente civil. Los padres y abuelos solo heredan cuando no hay hijos (art. 989 del Código Civil). Por eso no hay una parte tuya sobre la cual calcular el impuesto.<br><br>Si marcaste “Sí” por error, puedes cambiar la respuesta.");
+        document.getElementById("calcPasos").hidden = true;
+        return;
+      }
+      if((S.rel === "hermano" || S.rel === "medio") && S.comp.previos0 === 1){
+        veredicto("revision", "En este caso no heredas",
+          "Si la persona que falleció dejó hijos, cónyuge o conviviente civil, o padres o abuelos vivos, ellos heredan antes que los hermanos y medio hermanos. Los hermanos solo heredan cuando no queda ninguno de ellos (art. 990 del Código Civil). Por eso no hay una parte tuya sobre la cual calcular el impuesto.<br><br>Si marcaste “Sí” por error, puedes cambiar la respuesta.");
+        document.getElementById("calcPasos").hidden = true;
+        return;
+      }
+
       var ex = EXENCION_C[S.rel];
       if(!listo2){
         veredicto("revision", "Falta saber cómo se reparte",
