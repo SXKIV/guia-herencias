@@ -1457,7 +1457,6 @@ body[data-pantalla="inicio"] .flotante-calc{display:none}
   "use strict";
 
   var pantallas = Array.prototype.slice.call(document.querySelectorAll(".pantalla"));
-  var pila = [];
   var topbar = document.getElementById("topbar");
   var rutaActual = document.getElementById("rutaActual");
   var rutaElegida = null;
@@ -1481,13 +1480,12 @@ body[data-pantalla="inicio"] .flotante-calc{display:none}
   fTodo.addEventListener("click", function(){ aplicarFiltro("todo"); });
 
   var navItems = Array.prototype.slice.call(document.querySelectorAll("[data-nav]"));
-  function mostrar(id, apilar){
+  function mostrar(id){
     pantallas.forEach(function(p){ p.hidden = (p.id !== id); });
-    if(id === "inicio" && apilar !== false){
-      pila = []; rutaElegida = null;
+    if(id === "inicio"){
+      rutaElegida = null;
       document.documentElement.style.setProperty("--ruta","var(--verde)");
     }
-    if(apilar !== false) pila.push(id);
     document.body.setAttribute("data-pantalla", id);
     navItems.forEach(function(n){
       if(n.getAttribute("data-nav") === id) n.setAttribute("aria-current","page");
@@ -1501,17 +1499,45 @@ body[data-pantalla="inicio"] .flotante-calc{display:none}
     window.scrollTo(0,0);
   }
 
+  // Cada sección tiene su propia dirección (index.html#calculadora).
+  // Cambiar de sección cambia la dirección, y el navegador lo anota en su
+  // historial: así el botón atrás del navegador y "Volver" hacen lo mismo.
+  // En cada paso del historial se guarda su posición dentro de la guía
+  // (0, 1, 2...), para que "Volver" nunca saque a la persona del sitio.
+  var posicion = 0;
+
+  function pantallaDeLaDireccion(){
+    var id = decodeURIComponent(location.hash.slice(1));
+    var existe = pantallas.some(function(p){ return p.id === id; });
+    return existe ? id : "inicio";
+  }
+
+  function anotarPosicion(nueva){
+    var estado = history.state;
+    if(estado && typeof estado.posicion === "number"){ posicion = estado.posicion; return; }
+    posicion = nueva;
+    try { history.replaceState({posicion: posicion}, ""); } catch(err){}
+  }
+
+  function ir(id){
+    if(location.hash === "#" + id) mostrar(id);
+    else location.hash = id;
+  }
+
+  window.addEventListener("hashchange", function(){
+    anotarPosicion(posicion + 1);
+    mostrar(pantallaDeLaDireccion());
+  });
+
   document.addEventListener("click", function(e){
     var b = e.target.closest("[data-ir]");
     if(!b) return;
-    mostrar(b.getAttribute("data-ir"));
+    ir(b.getAttribute("data-ir"));
   });
 
   document.getElementById("btnVolver").addEventListener("click", function(){
-    pila.pop();
-    var previa = pila.length ? pila[pila.length-1] : "inicio";
-    if(!pila.length) rutaElegida = null;
-    mostrar(previa, false);
+    if(posicion > 0) history.back();
+    else ir("inicio");
   });
 
   function aNumero(txt){
@@ -1945,7 +1971,8 @@ body[data-pantalla="inicio"] .flotante-calc{display:none}
   }
 
   aplicarFiltro("basico");
-  mostrar("inicio");
+  anotarPosicion(0);
+  mostrar(pantallaDeLaDireccion());
 })();
 </script>
 
