@@ -599,17 +599,17 @@ body[data-pantalla="inicio"] .flotante-calc{display:none}
   <div class="tabla-scroll">
     <table>
       <tbody><tr><th>Heredero</th><th class="num">Exención</th><th class="num">Aproximado en pesos</th></tr>
-      <tr><td>Hijo</td><td class="num">600 UTM</td><td class="num">$43.032.600</td></tr>
-      <tr><td>Cónyuge o conviviente civil</td><td class="num">600 UTM</td><td class="num">$43.032.600</td></tr>
-      <tr><td>Ascendiente</td><td class="num">600 UTM</td><td class="num">$43.032.600</td></tr>
-      <tr><td>Hermano</td><td class="num">60 UTM</td><td class="num">$4.303.260</td></tr>
-      <tr><td>Medio hermano</td><td class="num">60 UTM</td><td class="num">$4.303.260</td></tr>
-      <tr><td>Colateral 3.º o 4.º grado</td><td class="num">60 UTM</td><td class="num">$4.303.260</td></tr>
+      <tr><td>Hijo</td><td class="num">600 UTM</td><td class="num" data-utm-por="600">$43.032.600</td></tr>
+      <tr><td>Cónyuge o conviviente civil</td><td class="num">600 UTM</td><td class="num" data-utm-por="600">$43.032.600</td></tr>
+      <tr><td>Ascendiente</td><td class="num">600 UTM</td><td class="num" data-utm-por="600">$43.032.600</td></tr>
+      <tr><td>Hermano</td><td class="num">60 UTM</td><td class="num" data-utm-por="60">$4.303.260</td></tr>
+      <tr><td>Medio hermano</td><td class="num">60 UTM</td><td class="num" data-utm-por="60">$4.303.260</td></tr>
+      <tr><td>Colateral 3.º o 4.º grado</td><td class="num">60 UTM</td><td class="num" data-utm-por="60">$4.303.260</td></tr>
       <tr><td>Colateral 5.º o 6.º grado</td><td class="num">0</td><td class="num">$0</td></tr>
     </tbody></table>
   </div>
   <div class="nota">
-    Los montos en pesos son aproximados y están calculados con la UTM de <strong>septiembre de 2026 ($71.721)</strong>. La UTM cambia el primer día de cada mes: revisa el valor vigente en la <a href="https://www.sii.cl/valores_y_fechas/utm/utm2026.htm" target="_blank" rel="noopener">tabla oficial del SII</a>.
+    Los montos en pesos son aproximados y están calculados con la UTM de <strong><span data-utm="mes">septiembre de 2026</span> (<span data-utm="valor">$71.721</span>)</strong>. La UTM cambia el primer día de cada mes: revisa el valor vigente en la <a href="https://www.sii.cl/valores_y_fechas/utm/utm2026.htm" data-utm="link" target="_blank" rel="noopener">tabla oficial del SII</a>.
   </div>
 
   <h2>Tercero: qué se descuenta antes</h2>
@@ -680,7 +680,7 @@ body[data-pantalla="inicio"] .flotante-calc{display:none}
       </div>
       <div class="campo">
         <label for="calcUtm">Valor de la UTM del mes del fallecimiento</label>
-        <span class="ayuda">Viene puesto el valor de septiembre de 2026. Si el fallecimiento fue antes, cámbialo por el del mes correspondiente.</span>
+        <span class="ayuda">Viene puesto el valor de <span data-utm="mes">septiembre de 2026</span>. Si el fallecimiento fue antes, cámbialo por el del mes correspondiente.</span>
         <input type="text" id="calcUtm" inputmode="numeric" value="71.721">
       </div>
       <div class="nota">
@@ -730,14 +730,14 @@ body[data-pantalla="inicio"] .flotante-calc{display:none}
   <div class="tabla-scroll">
     <table>
       <tbody><tr><th>Concepto</th><th>Quién lo cobra</th><th class="num">Referencia de costo</th></tr>
-      <tr><td>Arancel de tramitación de la posesión efectiva</td><td>Registro Civil</td><td class="num">Sin costo hasta 15 UTA (~$12.900.000) de inventario; 1,6 UTM (~$114.750) hasta 45 UTA; 2,5 UTM (~$179.300) sobre ese monto</td></tr>
+      <tr><td>Arancel de tramitación de la posesión efectiva</td><td>Registro Civil</td><td class="num">Sin costo hasta 15 UTA (~<span data-utm-por="180" data-redondeo="100000">$12.900.000</span>) de inventario; 1,6 UTM (~<span data-utm-por="1.6" data-redondeo="10">$114.750</span>) hasta 45 UTA; 2,5 UTM (~<span data-utm-por="2.5" data-redondeo="10">$179.300</span>) sobre ese monto</td></tr>
       <tr><td>Certificados de defunción, nacimiento y matrimonio</td><td>Registro Civil</td><td class="num">Gratis, descargados en línea con ClaveÚnica</td></tr>
       <tr><td>Certificado de avalúo fiscal</td><td>SII</td><td class="num">Gratis, en el sitio del SII</td></tr>
       <tr><td>Impuesto a la herencia</td><td>SII</td><td class="num">$0 si la parte de cada heredero no supera su exención; variable si la supera</td></tr>
       <tr><td>Inscripción especial de herencia y copias de inscripción</td><td>Conservador de Bienes Raíces</td><td class="num">Un porcentaje del avalúo de cada propiedad, fijado en un arancel oficial; consulta el valor exacto en el Conservador correspondiente</td></tr>
     </tbody></table>
   </div>
-  <div class="nota">El arancel del Registro Civil está calculado con la UTM de septiembre de 2026 ($71.721) y con la UTA (12 UTM). El del Conservador no tiene un monto único: se calcula sobre el avalúo de cada inmueble según una escala fijada por decreto, así que conviene preguntar el monto exacto antes de inscribir.</div>
+  <div class="nota">El arancel del Registro Civil está calculado con la UTM de <span data-utm="mes">septiembre de 2026</span> (<span data-utm="valor">$71.721</span>) y con la UTA (12 UTM). El del Conservador no tiene un monto único: se calcula sobre el avalúo de cada inmueble según una escala fijada por decreto, así que conviene preguntar el monto exacto antes de inscribir.</div>
   <div class="aviso">
     <p><b>El privilegio de pobreza no cubre todos los cobros.</b> En particular, no cubre el arancel de tramitación del Registro Civil ni el impuesto a la herencia, que deben pagarse igual.</p>
   </div>
@@ -823,10 +823,10 @@ body[data-pantalla="inicio"] .flotante-calc{display:none}
   <div class="norma">La unidad tributaria aplicable a las exenciones y tramos es la que rija al momento de la delación de la herencia (art. 2 de la Ley 16.271). El instructivo del F4423 en papel ordena expresamente registrar el monto de la UTM a la fecha de la declaración para convertir el impuesto total a pesos.</div>
   <h3>Dónde se consultan los valores</h3>
   <ul>
-    <li><a href="https://www.sii.cl/valores_y_fechas/utm/utm2026.htm" target="_blank" rel="noopener">Tabla UTM del año en curso (sii.cl)</a></li>
+    <li><a href="https://www.sii.cl/valores_y_fechas/utm/utm2026.htm" data-utm="link" target="_blank" rel="noopener">Tabla UTM del año en curso (sii.cl)</a></li>
     <li><a href="https://www.sii.cl/valores_y_fechas/index_valores_y_fechas.html" target="_blank" rel="noopener">Índice de valores y fechas del SII</a>, para años anteriores</li>
   </ul>
-  <div class="nota">Valor usado en esta guía: <strong class="dato">1 UTM = $71.721</strong> (septiembre de 2026). Se reajusta el primer día de cada mes.</div>
+  <div class="nota">Valor usado en esta guía: <strong class="dato">1 UTM = <span data-utm="valor">$71.721</span></strong> (<span data-utm="mes">septiembre de 2026</span>). Se reajusta el primer día de cada mes.</div>
 </section>
 
 <section class="pantalla" id="tablas" hidden="">
@@ -851,16 +851,16 @@ body[data-pantalla="inicio"] .flotante-calc{display:none}
   <div class="tabla-scroll">
     <table>
       <tbody><tr><th>Heredero</th><th class="num">Exención (UTM)</th><th class="num">Aproximado en pesos</th></tr>
-      <tr><td>Hijo</td><td class="num">600</td><td class="num">$43.032.600</td></tr>
-      <tr><td>Cónyuge o conviviente civil</td><td class="num">600</td><td class="num">$43.032.600</td></tr>
-      <tr><td>Ascendiente</td><td class="num">600</td><td class="num">$43.032.600</td></tr>
-      <tr><td>Hermano</td><td class="num">60</td><td class="num">$4.303.260</td></tr>
-      <tr><td>Medio hermano</td><td class="num">60</td><td class="num">$4.303.260</td></tr>
-      <tr><td>Colateral 3.º o 4.º grado</td><td class="num">60</td><td class="num">$4.303.260</td></tr>
+      <tr><td>Hijo</td><td class="num">600</td><td class="num" data-utm-por="600">$43.032.600</td></tr>
+      <tr><td>Cónyuge o conviviente civil</td><td class="num">600</td><td class="num" data-utm-por="600">$43.032.600</td></tr>
+      <tr><td>Ascendiente</td><td class="num">600</td><td class="num" data-utm-por="600">$43.032.600</td></tr>
+      <tr><td>Hermano</td><td class="num">60</td><td class="num" data-utm-por="60">$4.303.260</td></tr>
+      <tr><td>Medio hermano</td><td class="num">60</td><td class="num" data-utm-por="60">$4.303.260</td></tr>
+      <tr><td>Colateral 3.º o 4.º grado</td><td class="num">60</td><td class="num" data-utm-por="60">$4.303.260</td></tr>
       <tr><td>Colateral 5.º o 6.º grado</td><td class="num">0</td><td class="num">$0</td></tr>
     </tbody></table>
   </div>
-  <div class="nota">Montos en pesos aproximados, calculados con la UTM de septiembre de 2026 ($71.721). Verifica siempre el valor vigente en la <a href="https://www.sii.cl/valores_y_fechas/utm/utm2026.htm" target="_blank" rel="noopener">tabla del SII</a>.</div>
+  <div class="nota">Montos en pesos aproximados, calculados con la UTM de <span data-utm="mes">septiembre de 2026</span> (<span data-utm="valor">$71.721</span>). Verifica siempre el valor vigente en la <a href="https://www.sii.cl/valores_y_fechas/utm/utm2026.htm" data-utm="link" target="_blank" rel="noopener">tabla del SII</a>.</div>
   <p>La ley expresa estas exenciones en unidades tributarias anuales: 50 UTA para hijo, cónyuge y ascendiente, y 5 UTA para los colaterales de segundo a cuarto grado. Como una UTA equivale a doce UTM, resultan las 600 y las 60 UTM de la tabla.</p>
 
   <h2>Tabla 2. Tramos: de dónde sale la deducción</h2>
@@ -1175,8 +1175,8 @@ body[data-pantalla="inicio"] .flotante-calc{display:none}
 
   <details data-nivel="basico"><summary>UTM</summary>
   <p>Unidad Tributaria Mensual: unidad de cuenta que se reajusta el primer día de cada mes según la variación del IPC. Se usa para expresar exenciones, tramos y montos tributarios sin que la inflación los desactualice.</p>
-  <p><em>Ejemplo:</em> en septiembre de 2026 una UTM equivale a $71.721, de modo que 600 UTM son aproximadamente $43.032.600.</p>
-  <p><em>En el formulario:</em> se usan dos valores distintos, el del mes del fallecimiento y el del mes de la declaración. Los valores oficiales están en la <a href="https://www.sii.cl/valores_y_fechas/utm/utm2026.htm" target="_blank" rel="noopener">tabla del SII</a>.</p></details>
+  <p><em>Ejemplo:</em> en <span data-utm="mes">septiembre de 2026</span> una UTM equivale a <span data-utm="valor">$71.721</span>, de modo que 600 UTM son aproximadamente <span data-utm-por="600">$43.032.600</span>.</p>
+  <p><em>En el formulario:</em> se usan dos valores distintos, el del mes del fallecimiento y el del mes de la declaración. Los valores oficiales están en la <a href="https://www.sii.cl/valores_y_fechas/utm/utm2026.htm" data-utm="link" target="_blank" rel="noopener">tabla del SII</a>.</p></details>
 
   <details data-nivel="basico"><summary>Comprobante o certificado de exención</summary>
   <p>Documento que acredita que la declaración del impuesto se presentó y que las asignaciones quedaron exentas. Cumple la misma función que el comprobante de pago cuando sí hubo impuesto.</p>
@@ -1407,7 +1407,7 @@ body[data-pantalla="inicio"] .flotante-calc{display:none}
       <div>
         <h3>Valores y fechas</h3>
         <ul>
-          <li><a href="https://www.sii.cl/valores_y_fechas/utm/utm2026.htm" target="_blank" rel="noopener">UTM-UTA-IPC</a></li>
+          <li><a href="https://www.sii.cl/valores_y_fechas/utm/utm2026.htm" data-utm="link" target="_blank" rel="noopener">UTM-UTA-IPC</a></li>
           <li><a href="https://www.sii.cl/valores_y_fechas/uf/uf2026.htm" target="_blank" rel="noopener">UF</a></li>
           <li><a href="https://www.sii.cl/valores_y_fechas/index_valores_y_fechas.html" target="_blank" rel="noopener">Valores de años anteriores</a></li>
         </ul>
@@ -1444,7 +1444,7 @@ body[data-pantalla="inicio"] .flotante-calc{display:none}
         <span class="logo-texto" hidden><span>Pontificia Universidad</span><b>Católica de Chile</b></span>
       </a>
       <div class="legal">
-        <p>Guía de orientación sobre la declaración del impuesto a las herencias intestadas. Versión 2.1, contenido en revisión. Los valores en pesos usan la UTM de septiembre de 2026 ($71.721) y deben actualizarse según la <a href="https://www.sii.cl/valores_y_fechas/utm/utm2026.htm" target="_blank" rel="noopener">tabla oficial del SII</a>.</p>
+        <p>Guía de orientación sobre la declaración del impuesto a las herencias intestadas. Versión 2.1, contenido en revisión. Los valores en pesos usan la UTM de <span data-utm="mes">septiembre de 2026</span> (<span data-utm="valor">$71.721</span>) y deben actualizarse según la <a href="https://www.sii.cl/valores_y_fechas/utm/utm2026.htm" data-utm="link" target="_blank" rel="noopener">tabla oficial del SII</a>.</p>
         <p>No constituye asesoría legal ni tributaria. Ante cualquier duda, consulta al SII, al Registro Civil o a quien esté asistiendo tu caso. Este sitio es elaborado por la Clínica Jurídica Derecho UC y no pertenece al Servicio de Impuestos Internos.</p>
       </div>
     </div>
@@ -1455,6 +1455,29 @@ body[data-pantalla="inicio"] .flotante-calc{display:none}
 <script>
 (function(){
   "use strict";
+
+  // ===== UTM: este es el único lugar que hay que cambiar cada mes =====
+  // valor: en pesos, sin puntos. mes: en minúscula. anio: también arma los links del SII.
+  var UTM = {valor: 71721, mes: "septiembre", anio: 2026};
+
+  // Escribe la UTM, su mes, los montos en pesos y los links del SII en todo el sitio.
+  // Los montos se marcan en el HTML con data-utm-por="cuántas UTM" y, si van redondeados,
+  // data-redondeo="a qué múltiplo".
+  function escribirUTM(){
+    var mesTexto = UTM.mes + " de " + UTM.anio;
+    var link = "https://www.sii.cl/valores_y_fechas/utm/utm" + UTM.anio + ".htm";
+    Array.prototype.forEach.call(document.querySelectorAll('[data-utm="mes"]'), function(el){ el.textContent = mesTexto; });
+    Array.prototype.forEach.call(document.querySelectorAll('[data-utm="valor"]'), function(el){ el.textContent = pesos(UTM.valor); });
+    Array.prototype.forEach.call(document.querySelectorAll('[data-utm="link"]'), function(el){ el.href = link; });
+    Array.prototype.forEach.call(document.querySelectorAll("[data-utm-por]"), function(el){
+      var monto = parseFloat(el.getAttribute("data-utm-por")) * UTM.valor;
+      var redondeo = parseFloat(el.getAttribute("data-redondeo")) || 1;
+      el.textContent = pesos(Math.round(monto / redondeo) * redondeo);
+    });
+    var campoUtm = document.getElementById("calcUtm");
+    if(campoUtm) campoUtm.value = UTM.valor.toLocaleString("es-CL");
+  }
+  escribirUTM();
 
   var pantallas = Array.prototype.slice.call(document.querySelectorAll(".pantalla"));
   var topbar = document.getElementById("topbar");
@@ -1567,7 +1590,7 @@ body[data-pantalla="inicio"] .flotante-calc{display:none}
     var elRel = document.getElementById("calcRel");
     if(!elRel) return; // esta sección no está en la página actual
 
-    var S = {rel:null, comp:{}, act:null, pas:0, utm:71721};
+    var S = {rel:null, comp:{}, act:null, pas:0, utm:UTM.valor};
 
     function campo(id,label,sub,val){
       return '<div class="campo"><label for="'+id+'">'+label+'</label>'+
@@ -1809,7 +1832,7 @@ body[data-pantalla="inicio"] .flotante-calc{display:none}
     dinero("calcPasivo","pas");
     document.getElementById("calcUtm").addEventListener("input", function(){
       var v = aNumero(this.value);
-      S.utm = (!v || v<1) ? 71721 : v;
+      S.utm = (!v || v<1) ? UTM.valor : v;
       render();
     });
 

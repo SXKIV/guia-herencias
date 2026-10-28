@@ -41,8 +41,19 @@ Somos estudiantes de Derecho y no programamos. Por eso:
 
 ## Datos que cambian
 - Valor de la UTM usado: $71.721 (septiembre de 2026). Cambia cada mes.
-- Los montos en pesos derivados de la UTM aparecen en varias secciones.
-  Al actualizar la UTM, revisa que todos queden coherentes.
+- La UTM, su mes y su año se definen en un solo lugar: la línea
+  `var UTM = {valor: ..., mes: ..., anio: ...};` al comienzo del <script>
+  de index.html. Al actualizarla, cambia solo esa línea (y el valor de arriba).
+- Desde ahí se escriben solos en todo el sitio el mes, el valor, los montos
+  en pesos, los links a la tabla UTM del SII y la calculadora.
+- Marcas en el HTML:
+  - data-utm="mes": el mes y el año.
+  - data-utm="valor": el valor de la UTM.
+  - data-utm="link": link a la tabla UTM del SII.
+  - data-utm-por="N": N UTM convertidas a pesos.
+  - data-redondeo="M": redondea ese monto al múltiplo de M.
+- El texto escrito en el HTML es solo un respaldo. Todo monto nuevo en pesos
+  que dependa de la UTM debe llevar data-utm-por, o no se actualizará.
 
 ## Estilo
 - Español de Chile, tono claro y cercano en la ruta del usuario,
@@ -51,7 +62,6 @@ Somos estudiantes de Derecho y no programamos. Por eso:
 - Cuida la accesibilidad: contraste, textos alternativos y navegación con teclado.
 
 ## Pendientes conocidos
-- Centralizar la UTM y los montos derivados en un solo lugar.
 - Navegación con direcciones propias por sección (#calculadora) y botón atrás del navegador.
 - Calculadora: indicar cuando el parentesco elegido no hereda en ese orden.
 - Definir identidad visual propia (hoy se parece al portal del SII).
