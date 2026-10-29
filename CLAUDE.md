@@ -23,8 +23,12 @@ Somos estudiantes de Derecho y no programamos. Por eso:
 - No agregues librerías, frameworks ni herramientas nuevas sin consultarlo.
 
 ## Estructura
-- index.html: todo el sitio. Cada sección es un <section class="pantalla">
+- index.html: el contenido del sitio. Cada sección es un <section class="pantalla">
   y se navega con atributos data-ir.
+- estilos.css: los estilos (colores, tipografía, diseño). index.html lo carga
+  en el <head>.
+- codigo.js: el código (navegación, calculadora, valor de la UTM). index.html lo
+  carga al final del <body>.
 - img/: logos.
 - Secciones principales: inicio, menu-usuario, menu-estudiante, viaje, cadena,
   parentesco, calculadora, cero, costos, descuentos, dudas-usuario, dos-utm,
