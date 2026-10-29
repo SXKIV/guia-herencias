@@ -538,6 +538,29 @@
     actualizar();
   }
 
+  // ===== Tamaño del texto: botones − y + de la lupa en la franja superior =====
+  // Cambia el tamaño base de la página; todos los textos se ajustan en proporción.
+  // Se recuerda en este navegador para la próxima visita.
+  var tamanos = [90, 100, 115, 130, 150];
+  var tamanoActual = 1;
+  var btnMenos = document.getElementById("textoMenos");
+  var btnMas = document.getElementById("textoMas");
+
+  function aplicarTamano(i){
+    tamanoActual = Math.max(0, Math.min(tamanos.length - 1, i));
+    document.documentElement.style.fontSize = tamanos[tamanoActual] + "%";
+    btnMenos.disabled = tamanoActual === 0;
+    btnMas.disabled = tamanoActual === tamanos.length - 1;
+    try{ localStorage.setItem("tamanoTexto", tamanoActual); }catch(e){}
+  }
+  btnMenos.addEventListener("click", function(){ aplicarTamano(tamanoActual - 1); });
+  btnMas.addEventListener("click", function(){ aplicarTamano(tamanoActual + 1); });
+  document.getElementById("textoNormal").addEventListener("click", function(){ aplicarTamano(1); });
+  try{
+    var guardado = parseInt(localStorage.getItem("tamanoTexto"), 10);
+    aplicarTamano(isNaN(guardado) ? 1 : guardado);
+  }catch(e){ aplicarTamano(1); }
+
   aplicarFiltro("basico");
   anotarPosicion(0);
   mostrar(pantallaDeLaDireccion());
