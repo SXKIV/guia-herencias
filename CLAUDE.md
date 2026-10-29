@@ -46,8 +46,8 @@ Somos estudiantes de Derecho y no programamos. Por eso:
 ## Datos que cambian
 - Valor de la UTM usado: $71.721 (septiembre de 2026). Cambia cada mes.
 - La UTM, su mes y su año se definen en un solo lugar: la línea
-  `var UTM = {valor: ..., mes: ..., anio: ...};` al comienzo del <script>
-  de index.html. Al actualizarla, cambia solo esa línea (y el valor de arriba).
+  `var UTM = {valor: ..., mes: ..., anio: ...};` al comienzo
+  de codigo.js. Al actualizarla, cambia solo esa línea (y el valor de arriba).
 - Desde ahí se escriben solos en todo el sitio el mes, el valor, los montos
   en pesos, los links a la tabla UTM del SII y la calculadora.
 - Marcas en el HTML:
