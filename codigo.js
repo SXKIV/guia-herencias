@@ -3,7 +3,7 @@
 
   // ===== UTM: este es el único lugar que hay que cambiar cada mes =====
   // valor: en pesos, sin puntos. mes: en minúscula. anio: también arma los links del SII.
-  var UTM = {valor: 71721, mes: "septiembre", anio: 2026};
+  var UTM = {valor: 72440, mes: "noviembre", anio: 2026};
   window.UTM_GUIA = UTM; // el asistente (asistente.js) usa este mismo valor
 
   // Escribe la UTM, su mes, los montos en pesos y los links del SII en todo el sitio.

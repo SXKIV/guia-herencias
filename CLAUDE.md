@@ -65,7 +65,7 @@ Después de cambiar el asistente, abrir la burbuja y probar:
 |---|---|
 | hola | Saludo con botones |
 | Botón "Revisar mi caso" | 5 preguntas y resumen Qué tienes listo / Qué te falta / Próximo paso |
-| Soy hijo y me tocan 50 millones, ¿cuánto pago? | Exención de 600 UTM, tramo de 1%, ≈ $69.700 |
+| Soy hijo y me tocan 50 millones, ¿cuánto pago? | Exención de 600 UTM, tramo de 1%, ≈ $65.400 (con la UTM de noviembre de 2026) |
 | herencia de 80 millones, cónyuge y 3 hijos | $16.000.000 por hijo y $32.000.000 al cónyuge, exentos |
 | ¿dónde declaro el auto? | Categoría Vehículos, código SII y tasación |
 | ¿qué es la nuda propiedad? | Cita del diccionario |
@@ -85,7 +85,7 @@ Revisar también que en el celular la ventana ocupe toda la pantalla.
   y de que no es un sitio oficial del SII.
 
 ## Datos que cambian
-- Valor de la UTM usado: $71.721 (septiembre de 2026). Cambia cada mes.
+- Valor de la UTM usado: $72.440 (noviembre de 2026). Cambia cada mes.
 - La UTM, su mes y su año se definen en un solo lugar: la línea
   `var UTM = {valor: ..., mes: ..., anio: ...};` al comienzo
   de codigo.js. Al actualizarla, cambia solo esa línea (y el valor de arriba).
