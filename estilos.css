@@ -436,6 +436,7 @@ details.mas{margin-top:8px}
 .leyenda-ilus .n.naranjo{background:#C2410A}
 .leyenda-ilus b{display:block;color:var(--primario-osc)}
 .leyenda-ilus .reg{display:block;font-size:14px;color:var(--tinta-suave)}
+.leyenda-ilus li.ojo{display:block}
 .ilus .ojo{grid-column:1 / -1;font-size:14px;margin:0;color:var(--tinta-suave);border-top:1px dotted var(--linea);padding-top:10px}
 @media (max-width:760px){ .ilus,.ilus.vertical{grid-template-columns:1fr} .ilus.vertical figure{max-width:300px;margin:0 auto} }
 

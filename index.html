@@ -111,10 +111,12 @@
       <ul>
         <li><button type="button" data-ir="viaje">Etapas del trámite</button></li>
         <li><button type="button" data-ir="cero">Por qué declarar aunque no pagues</button></li>
+        <li><button type="button" data-ir="que-entra">Qué entra a la herencia</button></li>
         <li><button type="button" data-ir="descuentos">Gastos que se descuentan</button></li>
         <li><button type="button" data-ir="parentesco">Parentesco y exenciones</button></li>
         <li><button type="button" data-ir="bienes">¿Dónde declaro cada bien?</button></li>
         <li><button type="button" data-ir="documentos">Documentos a reunir</button></li>
+        <li><button type="button" data-ir="guias">Guías en PDF</button></li>
       </ul>
     </div>
     <button class="puerta usuario" type="button" data-ir="menu-usuario">
@@ -154,9 +156,11 @@
     <button class="item" type="button" data-ir="descuentos"><b>Gastos que se pueden descontar</b></button>
     <button class="item" type="button" data-ir="parentesco"><b>Parentesco y exenciones</b></button>
     <button class="item" type="button" data-ir="cero"><b>Por qué hay que declarar aunque no se pague</b></button>
+    <button class="item" type="button" data-ir="que-entra"><b>Qué entra a la herencia, con ilustraciones</b></button>
     <button class="item" type="button" data-ir="costos"><b>Cuánto me va a costar todo esto</b></button>
     <button class="item" type="button" data-ir="documentos"><b>Documentos a reunir</b></button>
     <button class="item" type="button" data-ir="dudas-usuario"><b>Dudas frecuentes</b></button>
+    <button class="item" type="button" data-ir="guias"><b>Guías en PDF para descargar</b></button>
     <button class="item" type="button" data-ir="conceptos"><b>Diccionario</b></button>
   </div>
 </section>
@@ -173,11 +177,13 @@
     <button class="item" type="button" data-ir="dos-utm"><b>UTM del fallecimiento y UTM de la declaración</b></button>
     <button class="item" type="button" data-ir="tablas"><b>Tablas del impuesto</b></button>
     <button class="item" type="button" data-ir="ordenes"><b>Órdenes sucesorios y asignaciones</b></button>
+    <button class="item" type="button" data-ir="que-entra"><b>Qué entra a la herencia y cómo se valora</b></button>
     <button class="item" type="button" data-ir="bienes"><b>¿Dónde declaro cada bien?</b></button>
     <button class="item" type="button" data-ir="formulario"><b>Explicación del formulario en línea</b></button>
     <button class="item" type="button" data-ir="conceptos"><b>Diccionario</b></button>
     <button class="item" type="button" data-ir="trampas"><b>Trampas conocidas</b></button>
     <button class="item" type="button" data-ir="documentos"><b>Documentos a reunir</b></button>
+    <button class="item" type="button" data-ir="guias"><b>Guías en PDF para descargar</b></button>
   </div>
 </section>
 
@@ -436,6 +442,7 @@
   <div class="menu enlace-caja">
     <button class="item" type="button" data-ir="dos-utm"><b>¿Por qué me pregunta la fecha?</b><span>Porque se usan dos UTM distintas</span></button>
     <button class="item" type="button" data-ir="tablas"><b>Ver las tablas del impuesto</b><span>Exención, tramos y recargo explicados</span></button>
+    <button class="item" type="button" data-ir="guias"><b>Guía 3 en PDF: el cálculo paso a paso</b><span>Para leer con calma o imprimir</span></button>
   </div>
 </section>
 
@@ -1114,6 +1121,201 @@
   <p>El impuesto debe declararse y pagarse dentro de dos años contados desde la delación. Después de ese plazo se devengan los intereses penales del art. 53 del Código Tributario. En casos antiguos conviene advertirlo desde la primera entrevista, porque cambia la expectativa de costo del usuario.</p></details>
 </section>
 
+<section class="pantalla" id="que-entra" hidden="">
+  <h1>Qué entra a la herencia y cómo se valora</h1>
+  <p class="bajada">La herencia es todo lo que dejó la persona, con sus deudas. Pero no todo se trata igual: algunos bienes no pagan impuesto, otros tienen una regla especial para valorarlos y otros, simplemente, no son parte de la herencia.</p>
+
+  <h2>Cuatro cajones</h2>
+  <div class="cajones">
+    <div class="cajon entra"><h3>Entra y se valora</h3><ul>
+      <li>Casas, departamentos, terrenos y campos</li>
+      <li>Vehículos</li>
+      <li>Dinero en cuentas y depósitos</li>
+      <li>Muebles de la casa (menaje)</li>
+      <li>Joyas, obras de arte, colecciones</li>
+      <li>Acciones y derechos en sociedades</li>
+      <li>Plata que le debían a la persona</li>
+    </ul></div>
+    <div class="cajon exento"><h3>Entra, pero no paga impuesto</h3><ul>
+      <li>Fondos de AFP, hasta 4.000 UF</li>
+      <li>Vivienda DFL 2 construida o comprada en primera venta por la persona, con los requisitos de esa ley</li>
+      <li>Vivienda acogida a la Ley Pereira</li>
+    </ul><p class="nota-mini">Se declaran igual: el F4412 aplica la exención.</p></div>
+    <div class="cajon fuera"><h3>No es parte de la herencia o no paga este impuesto</h3><ul>
+      <li>Seguro de vida y cuota mortuoria que recibe la familia</li>
+      <li>La mitad de los gananciales que es del cónyuge sobreviviente</li>
+      <li>La parte del fondo de AFP que financia pensiones de sobrevivencia</li>
+    </ul></div>
+    <div class="cajon resta"><h3>Se resta antes de repartir</h3><ul>
+      <li>Deudas sin seguro de desgravamen</li>
+      <li>Gastos de la última enfermedad adeudados</li>
+      <li>Funeral</li>
+      <li>Gastos de la posesión efectiva</li>
+    </ul><button type="button" class="enlace-txt" data-ir="descuentos">Ver el detalle</button></div>
+  </div>
+  <div class="norma">Ley 16.271, arts. 4, 20 y 46 a 47; DL 3.500, art. 72; DFL 2, art. 16; Ley 9.135, art. 3; Código Civil, art. 1774.</div>
+
+  <h2>Una casa: qué es cada cosa</h2>
+  <div class="ilus">
+    <figure><svg class="ilus-svg" viewBox="0 0 640 380" role="img" aria-labelledby="ilCasaT ilCasaD" xmlns="http://www.w3.org/2000/svg">
+<title id="ilCasaT">Una casa por dentro, con sus bienes numerados</title>
+<desc id="ilCasaD">1: terreno, casa y árbol plantado. 2: cañerías. 3: muebles y electrodomésticos. 4: un cuadro valioso y un joyero. 5: un auto en el garaje.</desc>
+<rect width="640" height="380" fill="#EEF4FB"/>
+<circle cx="590" cy="52" r="24" fill="#FCD37A"/>
+<rect y="318" width="640" height="62" fill="#D9CDB4"/>
+<rect x="62" y="228" width="14" height="92" rx="4" fill="#8A5A3B" stroke="#24324A" stroke-width="2.5" stroke-linejoin="round"/>
+<circle cx="69" cy="206" r="44" fill="#86BC84" stroke="#24324A" stroke-width="2.5" stroke-linejoin="round"/>
+<rect x="140" y="160" width="300" height="158" fill="#FBF6EC" stroke="#24324A" stroke-width="3"/>
+<path d="M118 166 L290 70 L462 166 Z" fill="#E58A5F" stroke="#24324A" stroke-width="3" stroke-linejoin="round"/>
+<line x1="300" y1="166" x2="300" y2="318" stroke="#24324A" stroke-width="2" stroke-dasharray="6 6"/>
+<rect x="168" y="184" width="58" height="42" rx="3" fill="#FCD37A" stroke="#24324A" stroke-width="2.5" stroke-linejoin="round"/>
+<path d="M175 220 l14-16 l10 10 l9-9 l12 15 z" fill="#4E86D0"/>
+<rect x="152" y="256" width="20" height="46" rx="8" fill="#4E86D0" stroke="#24324A" stroke-width="2.5" stroke-linejoin="round"/>
+<rect x="248" y="256" width="20" height="46" rx="8" fill="#4E86D0" stroke="#24324A" stroke-width="2.5" stroke-linejoin="round"/>
+<rect x="162" y="268" width="96" height="32" rx="9" fill="#6C9BDB" stroke="#24324A" stroke-width="2.5" stroke-linejoin="round"/>
+<rect x="320" y="258" width="62" height="8" rx="2" fill="#B07A52" stroke="#24324A" stroke-width="2.5" stroke-linejoin="round"/>
+<line x1="328" y1="266" x2="328" y2="300" stroke="#24324A" stroke-width="3"/>
+<line x1="374" y1="266" x2="374" y2="300" stroke="#24324A" stroke-width="3"/>
+<rect x="337" y="244" width="22" height="14" rx="2" fill="#C2410A" stroke="#24324A" stroke-width="2.5" stroke-linejoin="round"/>
+<rect x="392" y="194" width="38" height="108" rx="5" fill="#FFFFFF" stroke="#24324A" stroke-width="2.5" stroke-linejoin="round"/>
+<line x1="392" y1="232" x2="430" y2="232" stroke="#24324A" stroke-width="2"/>
+<line x1="422" y1="208" x2="422" y2="222" stroke="#24324A" stroke-width="3" stroke-linecap="round"/>
+<path d="M300 311 H384 V242 H372" fill="none" stroke="#2F7BC0" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="440" y="208" width="152" height="110" fill="#F1ECE2" stroke="#24324A" stroke-width="3"/>
+<path d="M430 212 L516 172 L602 212 Z" fill="#E58A5F" stroke="#24324A" stroke-width="3" stroke-linejoin="round"/>
+<path d="M466 276 q8-22 26-24 h34 q18 2 28 24 z" fill="#9CC0EE" stroke="#24324A" stroke-width="2.5" stroke-linejoin="round"/>
+<rect x="456" y="274" width="122" height="30" rx="11" fill="#1C5DA8" stroke="#24324A" stroke-width="2.5" stroke-linejoin="round"/>
+<circle cx="482" cy="306" r="11" fill="#24324A"/><circle cx="552" cy="306" r="11" fill="#24324A"/>
+<g transform="translate(69 150)"><circle r="17" fill="#1C5DA8" stroke="#fff" stroke-width="3"/><text y="6.5" text-anchor="middle" font-size="19" font-weight="700" fill="#fff">1</text></g><g transform="translate(290 124)"><circle r="17" fill="#1C5DA8" stroke="#fff" stroke-width="3"/><text y="6.5" text-anchor="middle" font-size="19" font-weight="700" fill="#fff">1</text></g><g transform="translate(330 340)"><circle r="17" fill="#1C5DA8" stroke="#fff" stroke-width="3"/><text y="6.5" text-anchor="middle" font-size="19" font-weight="700" fill="#fff">2</text></g><g transform="translate(212 246)"><circle r="17" fill="#1C5DA8" stroke="#fff" stroke-width="3"/><text y="6.5" text-anchor="middle" font-size="19" font-weight="700" fill="#fff">3</text></g><g transform="translate(411 184)"><circle r="17" fill="#1C5DA8" stroke="#fff" stroke-width="3"/><text y="6.5" text-anchor="middle" font-size="19" font-weight="700" fill="#fff">3</text></g><g transform="translate(197 172)"><circle r="17" fill="#1C5DA8" stroke="#fff" stroke-width="3"/><text y="6.5" text-anchor="middle" font-size="19" font-weight="700" fill="#fff">4</text></g><g transform="translate(348 226)"><circle r="17" fill="#1C5DA8" stroke="#fff" stroke-width="3"/><text y="6.5" text-anchor="middle" font-size="19" font-weight="700" fill="#fff">4</text></g><g transform="translate(517 254)"><circle r="17" fill="#1C5DA8" stroke="#fff" stroke-width="3"/><text y="6.5" text-anchor="middle" font-size="19" font-weight="700" fill="#fff">5</text></g>
+</svg><figcaption>Ilustración de la Clínica Jurídica, con fines didácticos.</figcaption></figure>
+    <ol class="leyenda-ilus">
+      <li><span class="n">1</span><div><b>Terreno, casa y árbol: inmuebles</b>Son inmuebles las tierras y lo que adhiere permanentemente a ellas, como los edificios y los árboles (inmuebles por adherencia).<span class="reg">Se declaran juntos en "Bienes raíces no agrícolas", por el avalúo fiscal a la fecha del fallecimiento (art. 46 a).</span></div></li>
+      <li><span class="n">2</span><div><b>Cañerías: inmuebles por destinación</b>Cosas muebles por naturaleza que la ley trata como inmuebles porque están destinadas permanentemente al uso de la casa, como los tubos de las cañerías o las losas del piso.<span class="reg">Si están comprendidas en el avalúo, como las instalaciones de una casa, no se declaran aparte.</span></div></li>
+      <li><span class="n">3</span><div><b>Muebles y electrodomésticos: menaje</b>Lo que amuebla la casa: sofá, camas, mesa, refrigerador.<span class="reg">Categoría "Menaje": se detalla o, si no se puede, se estima en 20% del avalúo de la casa (art. 47).</span></div></li>
+      <li><span class="n">4</span><div><b>Cuadro valioso y joyas: no son menaje</b>Tienen su propia categoría aunque estén dentro de la casa.<span class="reg">"Joyas, objetos de arte, antigüedades y armas", por su valor corriente en plaza (art. 46 bis).</span></div></li>
+      <li><span class="n">5</span><div><b>Auto: bien mueble</b>Se puede trasladar de un lugar a otro sin perder su forma.<span class="reg">Categoría "Vehículos": el formulario trae la tasación fiscal del SII (art. 46 c).</span></div></li>
+      <li class="ojo">Depende del caso: el mismo objeto puede clasificarse distinto según su valor o su destino. Si dudas, anótalo y pregúntalo antes de declarar.</li>
+    </ol>
+  </div>
+
+  <h2>Un campo: lo que va fuera del avalúo</h2>
+  <div class="ilus">
+    <figure><svg class="ilus-svg" viewBox="0 0 640 360" role="img" aria-labelledby="ilCampoT ilCampoD" xmlns="http://www.w3.org/2000/svg">
+<title id="ilCampoT">Un predio agrícola, con sus bienes numerados</title>
+<desc id="ilCampoD">1: el terreno y la casa del predio. 2: un tractor y animales destinados al trabajo del predio. 3: plantaciones y una bodega.</desc>
+<rect width="640" height="360" fill="#EEF4FB"/>
+<path d="M0 170 L90 110 L170 150 L260 90 L360 150 L450 100 L560 150 L640 120 V200 H0 Z" fill="#C9D8EA"/>
+<rect y="190" width="640" height="170" fill="#CFE3B4"/>
+<path d="M0 240 Q320 220 640 240 M0 280 Q320 258 640 280 M0 320 Q320 298 640 320" fill="none" stroke="#B2CF92" stroke-width="3"/>
+<rect x="40" y="150" width="104" height="70" fill="#FBF6EC" stroke="#24324A" stroke-width="2.5" stroke-linejoin="round"/>
+<path d="M30 154 L92 116 L154 154 Z" fill="#E58A5F" stroke="#24324A" stroke-width="2.5" stroke-linejoin="round"/>
+<rect x="80" y="186" width="22" height="34" fill="#B07A52" stroke="#24324A" stroke-width="2.5" stroke-linejoin="round"/>
+<rect x="196" y="140" width="92" height="80" fill="#C24A3A" stroke="#24324A" stroke-width="2.5" stroke-linejoin="round"/>
+<path d="M188 144 L242 108 L296 144 Z" fill="#9E3529" stroke="#24324A" stroke-width="2.5" stroke-linejoin="round"/>
+<rect x="224" y="176" width="36" height="44" fill="#FBF6EC" stroke="#24324A" stroke-width="2.5" stroke-linejoin="round"/>
+<g fill="#86BC84" stroke="#24324A" stroke-width="2"><circle cx="400" cy="168" r="18"/><circle cx="450" cy="168" r="18"/><circle cx="500" cy="168" r="18"/><circle cx="550" cy="168" r="18"/><circle cx="600" cy="168" r="18"/></g>
+<g stroke="#8A5A3B" stroke-width="5"><line x1="400" y1="186" x2="400" y2="204"/><line x1="450" y1="186" x2="450" y2="204"/><line x1="500" y1="186" x2="500" y2="204"/><line x1="550" y1="186" x2="550" y2="204"/><line x1="600" y1="186" x2="600" y2="204"/></g>
+<rect x="210" y="262" width="96" height="36" rx="6" fill="#E0A23A" stroke="#24324A" stroke-width="2.5" stroke-linejoin="round"/>
+<rect x="250" y="232" width="44" height="34" rx="4" fill="#E0A23A" stroke="#24324A" stroke-width="2.5" stroke-linejoin="round"/>
+<circle cx="230" cy="304" r="16" fill="#24324A"/><circle cx="292" cy="300" r="22" fill="#24324A"/>
+<g stroke="#24324A" stroke-width="2.5" stroke-linejoin="round"><ellipse cx="430" cy="290" rx="40" ry="20" fill="#FFFFFF"/><circle cx="478" cy="278" r="13" fill="#FFFFFF"/><ellipse cx="420" cy="286" rx="10" ry="7" fill="#24324A"/><line x1="410" y1="308" x2="410" y2="322"/><line x1="448" y1="308" x2="448" y2="322"/></g>
+<g stroke="#24324A" stroke-width="2.5" stroke-linejoin="round"><ellipse cx="540" cy="306" rx="34" ry="17" fill="#FFFFFF"/><circle cx="580" cy="296" r="11" fill="#FFFFFF"/><ellipse cx="530" cy="302" rx="9" ry="6" fill="#24324A"/><line x1="522" y1="322" x2="522" y2="334"/><line x1="556" y1="322" x2="556" y2="334"/></g>
+<g transform="translate(92 100)"><circle r="17" fill="#1C5DA8" stroke="#fff" stroke-width="3"/><text y="6.5" text-anchor="middle" font-size="19" font-weight="700" fill="#fff">1</text></g><g transform="translate(40 250)"><circle r="17" fill="#1C5DA8" stroke="#fff" stroke-width="3"/><text y="6.5" text-anchor="middle" font-size="19" font-weight="700" fill="#fff">1</text></g><g transform="translate(268 214)"><circle r="17" fill="#1C5DA8" stroke="#fff" stroke-width="3"/><text y="6.5" text-anchor="middle" font-size="19" font-weight="700" fill="#fff">2</text></g><g transform="translate(470 252)"><circle r="17" fill="#1C5DA8" stroke="#fff" stroke-width="3"/><text y="6.5" text-anchor="middle" font-size="19" font-weight="700" fill="#fff">2</text></g><g transform="translate(242 92)"><circle r="17" fill="#1C5DA8" stroke="#fff" stroke-width="3"/><text y="6.5" text-anchor="middle" font-size="19" font-weight="700" fill="#fff">3</text></g><g transform="translate(500 128)"><circle r="17" fill="#1C5DA8" stroke="#fff" stroke-width="3"/><text y="6.5" text-anchor="middle" font-size="19" font-weight="700" fill="#fff">3</text></g>
+</svg><figcaption>Ilustración de la Clínica Jurídica, con fines didácticos.</figcaption></figure>
+    <ol class="leyenda-ilus">
+      <li><span class="n">1</span><div><b>Terreno y casa del predio</b>Inmuebles.<span class="reg">Categoría "Bienes raíces agrícolas", por el avalúo fiscal a la fecha del fallecimiento.</span></div></li>
+      <li><span class="n">2</span><div><b>Tractor y animales de trabajo</b>Si el dueño del predio los puso ahí para cultivarlo, la ley los considera inmuebles por destinación, aunque se puedan mover.<span class="reg">Lo que no está comprendido en el avalúo se declara aparte, por su valor corriente en plaza, en "Bienes excluidos de avalúo fiscal de inmuebles agrícolas" (art. 46 a y 46 bis).</span></div></li>
+      <li><span class="n">3</span><div><b>Plantaciones y bodega</b>Adhieren al suelo: son inmuebles por adherencia.<span class="reg">Si quedaron fuera del avalúo, van en la misma categoría de bienes excluidos.</span></div></li>
+      <li class="ojo">Si el tractor no era del dueño del predio, o no estaba destinado de forma permanente al campo, no es inmueble por destinación: si era de la persona fallecida, se declara como bien mueble.</li>
+    </ol>
+  </div>
+  <div class="norma">Código Civil, art. 568 (inmuebles y adherencia) y art. 570 (inmuebles por destinación: "las losas de un pavimento; los tubos de las cañerías; los utensilios de labranza o minería, y los animales actualmente destinados al cultivo o beneficio de una finca, con tal que hayan sido puestos en ella por el dueño de la finca"); Ley 16.271, art. 46 letra a.</div>
+
+  <h2>El menaje: qué cuenta y qué no</h2>
+  <div class="ilus">
+    <figure><svg class="ilus-svg" viewBox="0 0 640 300" role="img" aria-labelledby="ilMenT ilMenD" xmlns="http://www.w3.org/2000/svg">
+<title id="ilMenT">Un living y un dormitorio, con sus objetos numerados</title>
+<desc id="ilMenD">Con el número 1, objetos que son menaje: sofá, mesa, televisor, lámpara y cama. Con el número 2, objetos que no son menaje: un cuadro valioso y un joyero.</desc>
+<rect width="640" height="300" fill="#FBF6EC"/>
+<rect y="236" width="640" height="64" fill="#E2D3BC"/>
+<line x1="380" y1="0" x2="380" y2="236" stroke="#24324A" stroke-width="2" stroke-dasharray="6 6"/>
+<rect x="40" y="46" width="90" height="62" rx="3" fill="#FCD37A" stroke="#24324A" stroke-width="2.5" stroke-linejoin="round"/>
+<path d="M48 100 l20-22 l14 14 l12-12 l18 20 z" fill="#4E86D0"/>
+<rect x="24" y="172" width="24" height="64" rx="9" fill="#4E86D0" stroke="#24324A" stroke-width="2.5" stroke-linejoin="round"/>
+<rect x="166" y="172" width="24" height="64" rx="9" fill="#4E86D0" stroke="#24324A" stroke-width="2.5" stroke-linejoin="round"/>
+<rect x="38" y="186" width="138" height="42" rx="11" fill="#6C9BDB" stroke="#24324A" stroke-width="2.5" stroke-linejoin="round"/>
+<rect x="210" y="208" width="70" height="8" rx="2" fill="#B07A52" stroke="#24324A" stroke-width="2.5" stroke-linejoin="round"/>
+<line x1="218" y1="216" x2="218" y2="236" stroke="#24324A" stroke-width="3"/><line x1="272" y1="216" x2="272" y2="236" stroke="#24324A" stroke-width="3"/>
+<rect x="232" y="196" width="26" height="12" rx="2" fill="#C2410A" stroke="#24324A" stroke-width="2.5" stroke-linejoin="round"/>
+<rect x="292" y="128" width="72" height="46" rx="4" fill="#24324A"/><rect x="298" y="134" width="60" height="34" fill="#9CC0EE"/>
+<rect x="300" y="174" width="56" height="62" rx="3" fill="#B07A52" stroke="#24324A" stroke-width="2.5" stroke-linejoin="round"/>
+<line x1="210" y1="80" x2="210" y2="170" stroke="#24324A" stroke-width="3"/><path d="M190 80 h40 l-10 -26 h-20 z" fill="#FCD37A" stroke="#24324A" stroke-width="2.5" stroke-linejoin="round"/>
+<rect x="420" y="168" width="190" height="52" rx="8" fill="#FFFFFF" stroke="#24324A" stroke-width="2.5" stroke-linejoin="round"/>
+<rect x="420" y="140" width="22" height="80" rx="6" fill="#B07A52" stroke="#24324A" stroke-width="2.5" stroke-linejoin="round"/>
+<rect x="452" y="154" width="54" height="22" rx="8" fill="#E9EEF7" stroke="#24324A" stroke-width="2.5" stroke-linejoin="round"/>
+<rect x="430" y="186" width="176" height="34" rx="6" fill="#86BC84" stroke="#24324A" stroke-width="2.5" stroke-linejoin="round"/>
+<g transform="translate(107 166)"><circle r="17" fill="#1C5DA8" stroke="#fff" stroke-width="3"/><text y="6.5" text-anchor="middle" font-size="19" font-weight="700" fill="#fff">1</text></g><g transform="translate(328 112)"><circle r="17" fill="#1C5DA8" stroke="#fff" stroke-width="3"/><text y="6.5" text-anchor="middle" font-size="19" font-weight="700" fill="#fff">1</text></g><g transform="translate(516 142)"><circle r="17" fill="#1C5DA8" stroke="#fff" stroke-width="3"/><text y="6.5" text-anchor="middle" font-size="19" font-weight="700" fill="#fff">1</text></g><g transform="translate(210 40)"><circle r="17" fill="#1C5DA8" stroke="#fff" stroke-width="3"/><text y="6.5" text-anchor="middle" font-size="19" font-weight="700" fill="#fff">1</text></g><g transform="translate(85 30)"><circle r="17" fill="#C2410A" stroke="#fff" stroke-width="3"/><text y="6.5" text-anchor="middle" font-size="19" font-weight="700" fill="#fff">2</text></g><g transform="translate(245 176)"><circle r="17" fill="#C2410A" stroke="#fff" stroke-width="3"/><text y="6.5" text-anchor="middle" font-size="19" font-weight="700" fill="#fff">2</text></g>
+</svg><figcaption>Ilustración de la Clínica Jurídica, con fines didácticos.</figcaption></figure>
+    <ol class="leyenda-ilus">
+      <li><span class="n">1</span><div><b>Es menaje</b>Sofá, mesa, televisor, lámpara, cama: el mobiliario común que guarnece la casa.</div></li>
+      <li><span class="n naranjo">2</span><div><b>No es menaje</b>Un cuadro de valor o un joyero con joyas: se declaran en su propia categoría, por su valor corriente.</div></li>
+      <li class="ojo">Cuando no se justifica que no haya muebles, cuando los inventariados no guardan proporción con el resto de la herencia o no se pudieron valorizar, la ley estima el menaje en 20% del avalúo del inmueble que guarnecían, aunque ese inmueble no fuera de la persona fallecida (art. 47). Por eso decir "no había nada" puede terminar costando más que hacer el inventario.</li>
+    </ol>
+  </div>
+
+  <h2>La herencia y los bienes con reglas especiales</h2>
+  <p>La herencia se trata como un todo: no se tramita la posesión efectiva "de la casa", sino de todo lo que dejó la persona. Pero dentro de ese todo, la ley tributaria da reglas propias a algunos bienes:</p>
+  <ul>
+    <li><strong>Reglas para valorar:</strong> los inmuebles van por avalúo fiscal, salvo que se hayan comprado en los tres años anteriores por un precio mayor; las acciones en bolsa, por su precio promedio de los seis meses anteriores; lo demás, por su valor corriente en plaza (art. 46 y 46 bis).</li>
+    <li><strong>Reglas para eximir:</strong> fondos de AFP hasta 4.000 UF, viviendas DFL 2 y de la Ley Pereira, con sus requisitos.</li>
+    <li><strong>Reglas para retirar sin posesión efectiva:</strong> hasta 5 UTA de una cuenta de ahorro pueden retirarlas los herederos, y hasta ese mismo monto de lo que deban pagar cajas de previsión o empleadores pueden recibirlo el cónyuge o conviviente civil, los padres y los hijos. Basta probar el estado civil, sin posesión efectiva ni certificado del SII (art. 26).</li>
+  </ul>
+  <div class="menu enlace-caja">
+    <button class="item" type="button" data-ir="bienes"><b>¿En qué categoría del formulario va cada bien?</b><span>Buscador de bienes</span></button>
+    <button class="item" type="button" data-ir="guias"><b>Guía 1 en PDF: conceptos clave, con estas ilustraciones</b><span>Para imprimir</span></button>
+  </div>
+</section>
+
+<section class="pantalla" id="guias" hidden="">
+  <h1>Guías para descargar</h1>
+  <p class="bajada">Cuatro guías breves en PDF, para leer con calma, imprimir o enviar por WhatsApp a quien está haciendo el trámite. Tienen el mismo contenido y las mismas fuentes que esta página.</p>
+  <div class="guias">
+    <div class="guia"><b>1. Conceptos clave</b>
+      <p>Herencia, asignación, exención, las dos UTM, inmuebles por adherencia y por destinación, menaje, fideicomiso, representación y transmisión. Con ilustraciones.</p>
+      <a class="descarga" href="pdf/guia-1-conceptos-clave.pdf" download>Descargar PDF</a>
+      <span class="meta">PDF · 80 KB · actualizado al 29-10-2026</span></div>
+    <div class="guia"><b>2. Documentos por etapa</b>
+      <p>Lista de chequeo para imprimir: qué documento se usa en el Registro Civil, en el SII y en el Conservador, y dónde se obtiene.</p>
+      <a class="descarga" href="pdf/guia-2-documentos.pdf" download>Descargar PDF</a>
+      <span class="meta">PDF · 45 KB · actualizado al 29-10-2026</span></div>
+    <div class="guia"><b>3. Cómo se calcula el impuesto</b>
+      <p>De los bienes a la masa líquida, el reparto, la exención, el tramo y el recargo, con un ejemplo resuelto por la misma lógica de la calculadora.</p>
+      <a class="descarga" href="pdf/guia-3-calculo.pdf" download>Descargar PDF</a>
+      <span class="meta">PDF · 70 KB · actualizado al 29-10-2026</span></div>
+    <div class="guia"><b>4. Declarar, pagar y los otros trámites</b>
+      <p>La diferencia entre declarar, pagar y obtener el certificado; qué pasa si no se hace a tiempo; y los errores más comunes al llenar los formularios.</p>
+      <a class="descarga" href="pdf/guia-4-declarar-pagar-errores.pdf" download>Descargar PDF</a>
+      <span class="meta">PDF · 44 KB · actualizado al 29-10-2026</span></div>
+  </div>
+  <div class="nota">Las guías son material de orientación de la Clínica Jurídica Derecho UC y no reemplazan la asesoría de un abogado ni las instrucciones oficiales del SII y del Registro Civil. Revisa la fecha de actualización impresa en cada una: la UTM y los formularios cambian.</div>
+</section>
+
+<section class="pantalla" id="privacidad" hidden="">
+  <h1>Qué guarda esta página</h1>
+  <p class="bajada">Para usar la guía no tienes que registrarte ni dar tu nombre. Esto es lo que pasa con lo que escribes.</p>
+  <div class="tabla-scroll">
+    <table>
+      <tbody><tr><th>Dónde escribes</th><th>Qué pasa con eso</th></tr>
+      <tr><td>Calculadora</td><td>Se calcula en tu propio navegador. No se envía a nadie ni se guarda: al cerrar o recargar la página, se borra.</td></tr>
+      <tr><td>Lista de documentos</td><td>Se guarda en este navegador solo qué casillas marcaste, para que no pierdas el avance. No incluye datos personales. Puedes borrarlo limpiando los datos del sitio en tu navegador.</td></tr>
+      <tr><td>Asistente SIILV-I.A</td><td>La conversación se guarda en este navegador mientras la pestaña esté abierta y se borra al cerrarla. El asistente responde con textos fijos de esta guía, en tu propio navegador: no usa inteligencia artificial ni envía tus mensajes a ningún servidor. Igual, no escribas claves, contraseñas, RUT ni números de cuenta.</td></tr>
+      <tr><td>Tamaño del texto</td><td>Se guarda en este navegador el tamaño de letra que elegiste, para mantenerlo la próxima vez que entres.</td></tr>
+    </tbody></table>
+  </div>
+  <p>La página carga la tipografía desde Google Fonts y el ícono desde el sitio de Derecho UC. Como cualquier sitio que usa recursos externos, esos servidores reciben la dirección de tu conexión al cargarlos.</p>
+  <div class="aviso-ok"><b>Esta página no presenta nada ante el SII.</b> Ningún cálculo hecho aquí se envía al Servicio ni reemplaza la declaración en el formulario F4412.</div>
+</section>
+
 <section class="pantalla" id="documentos" hidden="">
   <h1>Documentos a reunir</h1>
   <p class="bajada">Marca lo que ya tienes. Lo que quede sin marcar es lo que falta para poder avanzar.</p>
@@ -1152,6 +1354,8 @@
           <li><button class="enlace" type="button" data-ir="tablas">Tablas del impuesto</button></li>
           <li><button class="enlace" type="button" data-ir="trampas">Trampas conocidas</button></li>
           <li><button class="enlace" type="button" data-ir="conceptos">Diccionario</button></li>
+          <li><button class="enlace" type="button" data-ir="guias">Guías en PDF</button></li>
+          <li><button class="enlace" type="button" data-ir="privacidad">Qué guarda esta página</button></li>
         </ul>
       </div>
       <div>

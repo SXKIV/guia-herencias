@@ -44,7 +44,11 @@ Somos estudiantes de Derecho y no programamos. Por eso:
 - img/: logos.
 - Secciones principales: inicio, menu-usuario, menu-estudiante, viaje, cadena,
   parentesco, calculadora, cero, costos, descuentos, dudas-usuario, dos-utm,
-  tablas, ordenes, bienes, formulario, conceptos, trampas, documentos.
+  tablas, ordenes, bienes, formulario, conceptos, trampas, documentos,
+  que-entra (con ilustraciones), guias (descarga los PDF de pdf/) y
+  privacidad (qué guarda la página: si cambia lo que guarda el chat, la
+  calculadora o la lista de documentos, hay que cambiarlo ahí también).
+- pdf/: las cuatro guías en PDF que enlaza la sección guias.
 
 ## Asistente SIILV-I.A: cómo responde y cómo probarlo
 Orden en que busca la respuesta (en asistente.js, función responder):
