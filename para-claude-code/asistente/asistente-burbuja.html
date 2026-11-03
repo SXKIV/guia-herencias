@@ -1,0 +1,39 @@
+<!-- =========================================================
+     Asistente SIILV-I.A (burbuja de chat)
+     ========================================================= -->
+<button class="sia-lanzador" id="siaLanzador" type="button" aria-expanded="false" aria-controls="siaPanel" aria-label="Abrir el asistente SIILV-I.A" title="¿Dudas? Pregúntale al asistente">
+  <svg class="sia-ico-abrir" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.5 8.5 0 0 1-12.4 7.6L3.5 20.5l1.4-4.6A8.5 8.5 0 1 1 21 11.5z"/><path d="M8.5 11.5h.01M12.5 11.5h.01M16.5 11.5h.01" stroke-width="2.8"/></svg>
+  <svg class="sia-ico-cerrar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+  <span class="sia-punto" id="siaPunto" aria-hidden="true"></span>
+</button>
+
+<div class="sia-panel" id="siaPanel" role="dialog" aria-labelledby="siaTitulo" hidden>
+  <div class="sia-cab">
+    <span class="sia-avatar" aria-hidden="true">
+      <svg viewBox="0 0 32 32"><path d="M8.5 4.5h10.5l6.5 6.5v16.5h-17z" fill="#0B3A6E"/><path d="M19 4.5V11h6.5z" fill="#EB510D"/><path d="M12 16h9.5M12 20h9.5M12 24h5.5" stroke="#fff" stroke-width="1.9" stroke-linecap="round"/></svg>
+    </span>
+    <div class="sia-cab-txt">
+      <b id="siaTitulo">SIILV-I.A</b>
+      <span>Clínica Jurídica Derecho UC</span>
+    </div>
+    <button type="button" id="siaNueva" aria-label="Empezar una conversación nueva" title="Conversación nueva">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 12a8 8 0 1 1-2.6-5.9"/><path d="M20 4v5h-5"/></svg>
+    </button>
+    <button type="button" id="siaCerrar" aria-label="Cerrar el asistente" title="Cerrar">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+    </button>
+  </div>
+
+  <div class="sia-cuerpo" id="siaCuerpo" role="log" aria-live="polite"></div>
+
+  <form class="sia-pie" id="siaForm" autocomplete="off">
+    <div class="sia-form">
+      <label class="sia-oculto" for="siaTexto">Escribe tu pregunta</label>
+      <textarea id="siaTexto" rows="1" maxlength="2000" placeholder="Escribe tu pregunta…"></textarea>
+      <button class="sia-enviar" id="siaEnviar" type="submit" aria-label="Enviar">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </button>
+    </div>
+    <p class="sia-legal">Respuestas automáticas basadas en esta guía: son orientación general y no reemplazan la asesoría de un abogado. No escribas claves, contraseñas ni números de cuenta.</p>
+  </form>
+</div>
