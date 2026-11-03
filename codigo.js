@@ -49,7 +49,10 @@
   fTodo.addEventListener("click", function(){ aplicarFiltro("todo"); });
 
   var navItems = Array.prototype.slice.call(document.querySelectorAll("[data-nav]"));
-  function mostrar(id){
+  var TITULO_BASE = document.title;
+  // enfocar: al navegar con los botones, el foco pasa al título de la
+  // sección (para teclado y lector de pantalla). Al cargar la página, no.
+  function mostrar(id, enfocar){
     pantallas.forEach(function(p){ p.hidden = (p.id !== id); });
     if(id === "inicio"){
       rutaElegida = null;
@@ -65,7 +68,13 @@
     topbar.hidden = (id === "inicio");
     rutaActual.textContent = id === "inicio" ? "" : (rutaElegida === "estudiante" ? "Asistiendo un caso" : "Haciendo el trámite");
     if(id === "conceptos") aplicarFiltro(rutaElegida === "estudiante" ? "todo" : "basico");
+    var h1 = document.querySelector("#" + id + " h1");
+    document.title = (id === "inicio" || !h1) ? TITULO_BASE : h1.textContent + " · " + TITULO_BASE;
     window.scrollTo(0,0);
+    if(enfocar && h1){
+      h1.setAttribute("tabindex","-1");
+      try{ h1.focus({preventScroll:true}); }catch(e){ h1.focus(); }
+    }
   }
 
   // Cada sección tiene su propia dirección (index.html#calculadora).
@@ -89,13 +98,13 @@
   }
 
   function ir(id){
-    if(location.hash === "#" + id) mostrar(id);
+    if(location.hash === "#" + id) mostrar(id, true);
     else location.hash = id;
   }
 
   window.addEventListener("hashchange", function(){
     anotarPosicion(posicion + 1);
-    mostrar(pantallaDeLaDireccion());
+    mostrar(pantallaDeLaDireccion(), true);
   });
 
   document.addEventListener("click", function(e){
