@@ -41,12 +41,39 @@ Somos estudiantes de Derecho y no programamos. Por eso:
 - .github/: la tarea automática de GitHub que cada día (5:00 UTC) busca
   dictámenes nuevos en el SII y los agrega a siaDictamenes con un commit.
   Se puede correr a mano en la pestaña Actions del repositorio.
-- para-claude-code/: el paquete original del asistente, como referencia
-  (solo en este computador: no está en git ni se publica).
 - img/: logos.
 - Secciones principales: inicio, menu-usuario, menu-estudiante, viaje, cadena,
   parentesco, calculadora, cero, costos, descuentos, dudas-usuario, dos-utm,
   tablas, ordenes, bienes, formulario, conceptos, trampas, documentos.
+
+## Asistente SIILV-I.A: cómo responde y cómo probarlo
+Orden en que busca la respuesta (en asistente.js, función responder):
+1. Botones y conversaciones guiadas ("Revisar mi caso", "Guiar Formulario 4412").
+2. siaInfoExtra: lo que agrega la Clínica a mano (formato explicado en el propio bloque).
+3. Preguntas por dictámenes ("¿hay dictámenes sobre…?").
+4. Cálculos de impuesto y repartos (art. 988) con montos.
+5. Dónde se declara cada bien (lista BIENES).
+6. Temas frecuentes (lista TEMAS).
+7. Texto de la guía y diccionario (los <details> de la sección conceptos).
+8. Dictámenes que calcen con la pregunta.
+9. Si nada calza, lo dice y ofrece la Clínica (no inventa).
+Los enlaces [texto](#id) del chat abren secciones de la guía: si se cambia el
+id de una sección, hay que cambiarlo también en asistente.js.
+
+Después de cambiar el asistente, abrir la burbuja y probar:
+| Pregunta | Debe responder |
+|---|---|
+| hola | Saludo con botones |
+| Botón "Revisar mi caso" | 5 preguntas y resumen Qué tienes listo / Qué te falta / Próximo paso |
+| Soy hijo y me tocan 50 millones, ¿cuánto pago? | Exención de 600 UTM, tramo de 1%, ≈ $69.700 |
+| herencia de 80 millones, cónyuge y 3 hijos | $16.000.000 por hijo y $32.000.000 al cónyuge, exentos |
+| ¿dónde declaro el auto? | Categoría Vehículos, código SII y tasación |
+| ¿qué es la nuda propiedad? | Cita del diccionario |
+| ¿Hay dictámenes sobre sepulturas? | Oficio 1126 de 2026 |
+| ¿se paga impuesto por el seguro de vida? | Oficios 1229 y 186 de 2023 |
+| Mi RUT es 12.345.678-9 | Advertencia de no compartir datos |
+| ¿qué tiempo hará mañana? | Que no puede ayudar y ofrece la Clínica |
+Revisar también que en el celular la ventana ocupe toda la pantalla.
 
 ## Contenido jurídico: reglas estrictas
 - NO cambies montos, exenciones, tasas, tramos, deducciones, recargos,

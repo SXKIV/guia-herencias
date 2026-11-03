@@ -1,7 +1,7 @@
 """
 Actualiza los dictámenes del SII sobre herencias (Ley 16.271) que usa el
-asistente SIILV-I.A. Es la versión para GitHub Actions del script
-para-claude-code/dictamenes/actualizar-dictamenes.ps1.
+asistente SIILV-I.A. Lo corre cada día la tarea de GitHub Actions
+.github/workflows/actualizar-dictamenes.yml.
 
 Fuente: índice de jurisprudencia administrativa del SII, sección "Otras Normas"
 https://www.sii.cl/normativa_legislacion/jurisprudencia_administrativa/indice_jadm.htm
