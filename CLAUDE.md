@@ -29,6 +29,20 @@ Somos estudiantes de Derecho y no programamos. Por eso:
   en el <head>.
 - codigo.js: el código (navegación, calculadora, valor de la UTM). index.html lo
   carga al final del <body>.
+- asistente.css y asistente.js: el chat SIILV-I.A (burbuja abajo a la derecha).
+  Responde en el navegador, sin IA ni servidores. Su configuración está en
+  ASISTENTE_CONFIG, al comienzo de asistente.js. Sus respuestas fijas repiten
+  datos de la guía (exenciones, tramos, recargos, costos): si cambian en la
+  guía, hay que cambiarlos también ahí.
+- En index.html, después del pie de página: la burbuja del chat y dos bloques
+  ocultos que solo lee el chat: siaInfoExtra (respuestas que la Clínica agrega
+  a mano; se ve en el código fuente, no poner datos personales) y
+  siaDictamenes (dictámenes del SII sobre la Ley 16.271; no editar a mano).
+- .github/: la tarea automática de GitHub que cada día (5:00 UTC) busca
+  dictámenes nuevos en el SII y los agrega a siaDictamenes con un commit.
+  Se puede correr a mano en la pestaña Actions del repositorio.
+- para-claude-code/: el paquete original del asistente, como referencia
+  (solo en este computador: no está en git ni se publica).
 - img/: logos.
 - Secciones principales: inicio, menu-usuario, menu-estudiante, viaje, cadena,
   parentesco, calculadora, cero, costos, descuentos, dudas-usuario, dos-utm,
@@ -49,7 +63,8 @@ Somos estudiantes de Derecho y no programamos. Por eso:
   `var UTM = {valor: ..., mes: ..., anio: ...};` al comienzo
   de codigo.js. Al actualizarla, cambia solo esa línea (y el valor de arriba).
 - Desde ahí se escriben solos en todo el sitio el mes, el valor, los montos
-  en pesos, los links a la tabla UTM del SII y la calculadora.
+  en pesos, los links a la tabla UTM del SII, la calculadora y el chat
+  (asistente.js la lee de window.UTM_GUIA).
 - Marcas en el HTML:
   - data-utm="mes": el mes y el año.
   - data-utm="valor": el valor de la UTM.

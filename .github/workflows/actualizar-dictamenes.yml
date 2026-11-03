@@ -1,0 +1,37 @@
+# Revisa cada día si el SII publicó dictámenes nuevos sobre herencias
+# (Ley 16.271) y, si hay, los agrega al bloque siaDictamenes de index.html
+# con un commit automático. GitHub Pages publica el cambio solo.
+#
+# También se puede correr a mano: pestaña "Actions" del repositorio,
+# "Actualizar dictámenes del SII", botón "Run workflow".
+name: Actualizar dictámenes del SII
+
+on:
+  schedule:
+    - cron: "0 5 * * *"   # 5:00 UTC = 2:00 en Chile en horario de verano (1:00 en invierno)
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  actualizar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Buscar dictámenes nuevos en el SII
+        run: python3 .github/scripts/actualizar_dictamenes.py index.html
+
+      - name: Guardar los cambios (solo si hubo dictámenes nuevos)
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html
+          if git diff --cached --quiet; then
+            echo "No hay cambios que guardar."
+          else
+            git commit -m "Dictámenes del SII actualizados automáticamente"
+            git push
+          fi
