@@ -342,3 +342,174 @@ body[data-pantalla="inicio"] .flotante-calc{display:none}
   details p,details .norma{display:block !important}
   .pie-sitio{background:none;color:#000}
 }
+
+/* Extraído de antonio-guia-herencias-sii-v3.html: estilos nuevos de la v3 (calculadora con esquema,
+   ilustraciones, mapa de etapas, guías PDF, avisos). No incluye los estilos del asistente (sia-*). */
+/* =========================================================
+   SIIMPLE v3: estilos agregados en la implementación de la
+   auditoría (calculadora con esquema, ilustraciones, mapas
+   del trámite, guías PDF y avisos de alcance).
+   ========================================================= */
+h1[tabindex="-1"]:focus{outline:none}
+.aviso-sitio-corto{display:none}
+@media (max-width:640px){ .franja .aviso-sitio-corto{display:inline;opacity:.9;margin-right:auto} .franja .contenedor{justify-content:space-between} }
+
+/* Avisos */
+.aviso-ok{border-left:5px solid var(--primario-osc);background:var(--celeste);padding:12px 18px;margin:0 0 20px;border-radius:0 var(--radio) var(--radio) 0;font-size:15px}
+.aviso-amable{border-left:4px solid #B7791F;background:#FFF8E6;padding:10px 16px;margin:12px 0;border-radius:0 var(--radio) var(--radio) 0;font-size:15px}
+.alcance{border:1px solid var(--linea);border-radius:var(--radio);padding:16px 20px;margin:20px 0;background:#fff}
+.alcance h2{margin-top:0;font-size:19px}
+.alcance ul{margin:6px 0 0;padding-left:20px}
+.alcance li{margin-bottom:4px}
+.fecha-act{font-size:13px;color:var(--tinta-suave);margin:4px 0 0}
+
+/* Calculadora v3 */
+fieldset.campo{border:none;padding:0;margin:0 0 18px;min-width:0}
+fieldset.campo legend{font-weight:600;padding:0;margin-bottom:4px}
+.leyenda{font-weight:700;color:var(--primario-osc);margin:22px 0 6px;font-size:17px}
+input[type=date]{font:inherit;padding:10px 12px;border:1px solid var(--linea);border-radius:var(--radio);background:#fff;color:var(--tinta);max-width:240px;width:100%}
+input[aria-invalid="true"]{border-color:var(--alerta);outline:2px solid rgba(198,40,40,.2)}
+.error-campo{display:block;color:var(--alerta);font-size:14px;margin-top:4px;min-height:0}
+.error-campo:empty{display:none}
+.enlace-txt{font:inherit;color:var(--primario);background:none;border:none;padding:0;text-decoration:underline;cursor:pointer}
+.btn-sec{font:inherit;font-size:15px;font-weight:600;cursor:pointer;background:#fff;color:var(--primario-osc);border:1px solid var(--primario-osc);border-radius:var(--radio);padding:10px 16px}
+.btn-sec:hover{background:var(--celeste)}
+.acciones-res{display:flex;flex-wrap:wrap;gap:10px;margin:18px 0}
+details.mas{margin-top:8px}
+.checks-especiales{display:grid;gap:10px;padding-bottom:14px}
+.checks-especiales label{display:flex;gap:10px;align-items:flex-start;font-size:15px;cursor:pointer}
+.checks-especiales input{width:18px;height:18px;margin-top:3px;flex:none;accent-color:var(--primario)}
+#calcComp .campo{margin-bottom:14px}
+#calcComp input[type=number]{max-width:140px}
+.veredicto-viva[data-estado="revision"]{border-left-color:#B7791F;background:#FFFBF0}
+.veredicto-viva[data-estado="alto"]{border-left-color:var(--primario-osc);background:var(--celeste)}
+@media (max-width:640px){ .veredicto-viva{position:static} }
+.res-tit{margin-top:30px}
+.nota-mini{font-size:14px;color:var(--tinta-suave);margin:-4px 0 14px}
+
+/* Esquema visual del cálculo: lo dibuja la misma función que calcula */
+.esq{list-style:none;margin:0 0 20px;padding:0}
+.esq-paso{position:relative;display:grid;grid-template-columns:36px 1fr;gap:12px;padding-bottom:14px}
+.esq-paso::before{content:"";position:absolute;left:17px;top:36px;bottom:0;width:2px;background:var(--linea)}
+.esq-paso:last-child::before{display:none}
+.esq-num{width:36px;height:36px;border-radius:50%;background:var(--primario-osc);color:#fff;font-weight:700;display:flex;align-items:center;justify-content:center;font-size:15px;position:relative;z-index:1}
+.esq-paso.final .esq-num{background:var(--ok)}
+.esq-paso.paga .esq-num{background:var(--alerta)}
+.esq-paso.alto .esq-num{background:#B7791F}
+.esq-caja{border:1px solid var(--linea-suave);border-radius:var(--radio);padding:12px 14px;background:#fff;box-shadow:var(--sombra);min-width:0}
+.esq-paso.final .esq-caja{border-color:#A5D6A7;background:#F3FAF3}
+.esq-paso.paga .esq-caja{border-color:#EF9A9A;background:#FFF6F5}
+.esq-paso.alto .esq-caja{border-color:#E6C27A;background:#FFFBF0}
+.esq-caja h3{margin:0 0 8px;font-size:16px;color:var(--primario-osc)}
+.esq-cuenta{display:grid;grid-template-columns:1fr auto 1fr;gap:8px;align-items:stretch}
+.esq-cuenta > span{display:block;border-radius:var(--radio);padding:6px 10px;font-variant-numeric:tabular-nums;font-size:15px;min-width:0;overflow-wrap:anywhere}
+.esq-cuenta small{display:block;font-size:11px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--tinta-suave)}
+.esq-e{background:var(--banda)}
+.esq-op{background:#fff;border:1px dashed var(--linea);text-align:center}
+.esq-r{background:var(--celeste);font-weight:700;color:var(--primario-osc)}
+.esq-por{margin:8px 0 4px;font-size:14px;color:var(--tinta)}
+.esq-norma{display:block;font-size:13px;color:var(--tinta-suave)}
+@media (max-width:640px){
+  .esq-cuenta{grid-template-columns:1fr}
+  .esq-op{text-align:left}
+}
+.tabla-desglose td.num{white-space:nowrap}
+.tabla-familia tr.yo td{background:#FFF4EE !important;font-weight:600}
+.tag-yo{display:inline-block;font-size:11px;font-weight:700;background:var(--acento);color:#fff;border-radius:999px;padding:0 7px;margin-left:6px;vertical-align:middle}
+.tabla-familia .sub{display:block;font-size:13px;font-weight:400;color:var(--tinta-suave)}
+.casilla{border:2px solid var(--primario-osc);border-radius:var(--radio);padding:14px 18px;margin:18px 0;background:#fff}
+.casilla h3{margin:0 0 6px;color:var(--primario-osc)}
+.casilla .opcion{display:flex;gap:10px;align-items:center;font-weight:700;margin:8px 0}
+.casilla .opcion i{display:inline-block;width:18px;height:18px;border:2px solid var(--primario-osc);border-radius:3px;flex:none}
+.casilla .opcion i.si{background:var(--primario-osc);box-shadow:inset 0 0 0 3px #fff}
+.plazos{font-size:15px}
+
+/* Ilustraciones pedagógicas */
+.ilus{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:22px;align-items:start;margin:20px 0 28px;border:1px solid var(--linea-suave);border-radius:var(--radio);padding:16px;background:#fff;box-shadow:var(--sombra)}
+.ilus.vertical{grid-template-columns:minmax(0,260px) minmax(0,1fr)}
+.ilus figure{margin:0}
+.ilus-svg{width:100%;height:auto;display:block;border-radius:var(--radio)}
+.ilus figcaption{font-size:13px;color:var(--tinta-suave);margin-top:6px}
+.leyenda-ilus{list-style:none;margin:0;padding:0;counter-reset:none}
+.leyenda-ilus li{display:grid;grid-template-columns:30px 1fr;gap:10px;margin:0 0 12px;font-size:15px}
+.leyenda-ilus .n{width:28px;height:28px;border-radius:50%;background:#1C5DA8;color:#fff;font-weight:700;display:flex;align-items:center;justify-content:center;font-size:14px}
+.leyenda-ilus .n.naranjo{background:#C2410A}
+.leyenda-ilus b{display:block;color:var(--primario-osc)}
+.leyenda-ilus .reg{display:block;font-size:14px;color:var(--tinta-suave)}
+.ilus .ojo{grid-column:1 / -1;font-size:14px;margin:0;color:var(--tinta-suave);border-top:1px dotted var(--linea);padding-top:10px}
+@media (max-width:760px){ .ilus,.ilus.vertical{grid-template-columns:1fr} .ilus.vertical figure{max-width:300px;margin:0 auto} }
+
+/* Clasificación de lo que entra a la herencia */
+.cajones{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin:18px 0}
+.cajon{border:1px solid var(--linea-suave);border-top:5px solid var(--primario);border-radius:var(--radio);padding:12px 14px;background:#fff}
+.cajon h3{margin:0 0 6px;font-size:16px}
+.cajon ul{margin:0;padding-left:18px;font-size:14px}
+.cajon li{margin-bottom:4px}
+.cajon.entra{border-top-color:var(--primario-osc)}
+.cajon.exento{border-top-color:var(--ok)}
+.cajon.fuera{border-top-color:#7A8594}
+.cajon.resta{border-top-color:var(--acento)}
+@media (max-width:900px){ .cajones{grid-template-columns:1fr 1fr} }
+@media (max-width:520px){ .cajones{grid-template-columns:1fr} }
+
+/* Mapa de etapas */
+.mapa{list-style:none;margin:22px 0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0}
+.mapa > li{position:relative;padding:0 14px 0 0;margin:0}
+.mapa .nodo{border:1px solid var(--linea-suave);border-top:5px solid var(--primario-osc);border-radius:var(--radio);padding:12px 14px;background:#fff;height:100%;box-shadow:var(--sombra)}
+.mapa > li:not(:last-child)::after{content:"";position:absolute;right:1px;top:34px;border:7px solid transparent;border-left:9px solid var(--primario-osc)}
+.mapa .quien{display:block;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--tinta-suave)}
+.mapa b{display:block;color:var(--primario-osc);font-size:17px;margin:2px 0 6px}
+.mapa p{font-size:14px;margin:0 0 6px}
+.mapa .sale{display:block;font-size:13px;border-top:1px dotted var(--linea);padding-top:6px;color:var(--tinta)}
+.mapa .antes .nodo{border-top-color:var(--acento);background:#FFF8F4}
+@media (max-width:900px){
+  .mapa{grid-template-columns:1fr;gap:18px}
+  .mapa > li{padding:0}
+  .mapa > li:not(:last-child)::after{right:auto;left:24px;top:auto;bottom:-17px;border:7px solid transparent;border-top:9px solid var(--primario-osc)}
+}
+
+/* Línea de tiempo: representación y transmisión */
+.linea-tiempo{display:grid;gap:14px;margin:18px 0}
+.lt-caso{border:1px solid var(--linea-suave);border-radius:var(--radio);padding:12px 16px;background:#fff}
+.lt-caso h3{margin:0 0 10px;font-size:16px;color:var(--primario-osc)}
+.lt-eje{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:8px}
+.lt-hito{background:var(--banda);border-radius:999px;padding:4px 12px;font-size:14px;font-weight:600}
+.lt-hito.primero{background:var(--primario-osc);color:#fff}
+.lt-flecha{color:var(--primario-osc);font-weight:700}
+.lt-caso p{margin:0 0 4px;font-size:15px}
+
+/* Dos UTM */
+.dos-utm-vis{display:grid;grid-template-columns:1fr auto 1fr;gap:12px;align-items:stretch;margin:18px 0}
+.dos-utm-vis .lado{border:1px solid var(--linea-suave);border-radius:var(--radio);padding:12px 14px;background:#fff}
+.dos-utm-vis .lado b{display:block;color:var(--primario-osc)}
+.dos-utm-vis .lado ul{margin:6px 0 0;padding-left:18px;font-size:14px}
+.dos-utm-vis .medio{display:flex;align-items:center;justify-content:center;font-size:28px;color:var(--primario-osc)}
+@media (max-width:640px){ .dos-utm-vis{grid-template-columns:1fr} .dos-utm-vis .medio{transform:rotate(90deg)} }
+
+/* Guías PDF */
+.guias{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin:18px 0}
+.guia{display:flex;flex-direction:column;border:1px solid var(--linea-suave);border-left:6px solid var(--primario-osc);border-radius:var(--radio);padding:14px 16px;background:#fff;box-shadow:var(--sombra)}
+.guia b{color:var(--primario-osc);font-size:17px}
+.guia p{font-size:15px;margin:6px 0 10px;flex:1}
+.guia a.descarga{align-self:flex-start;font-weight:700;font-size:15px;color:#fff;background:var(--primario-osc);padding:8px 14px;border-radius:var(--radio);text-decoration:none}
+.guia a.descarga:hover{background:var(--primario)}
+.guia .meta{font-size:13px;color:var(--tinta-suave);margin-top:6px}
+@media (max-width:640px){ .guias{grid-template-columns:1fr} }
+
+/* Documentos por etapa */
+.etapa-docs{font-size:14px;font-weight:700;color:var(--primario-osc);margin:22px 0 4px;text-transform:uppercase;letter-spacing:.05em}
+
+/* Impresión: solo la pantalla visible, sin botones flotantes ni asistente */
+@media print{
+  .pantalla[hidden]{display:none !important}
+  .pantalla{page-break-after:auto}
+  .flotante-calc,.acciones-res,.franja,.nav-principal,.topbar,.pie-sitio .columnas{display:none !important}
+  .veredicto-viva{position:static;box-shadow:none}
+  .esq-caja{box-shadow:none;break-inside:avoid}
+  details.steps-calc{display:block}
+  .calc{box-shadow:none}
+}
+.casilla-et{display:block;font-size:13px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--tinta-suave)}
+.casilla > b{display:block;font-size:20px;color:var(--primario-osc);margin:4px 0 6px}
+.casilla p{margin:0;font-size:15px}
+.res-sub{font-size:18px;margin:26px 0 6px}
