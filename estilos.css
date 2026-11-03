@@ -51,7 +51,7 @@ img{max-width:100%}
 
 /* ---------- Cabecera con logo y menú principal ---------- */
 .cabecera{background:#fff;border-bottom:4px solid var(--primario-osc);box-shadow:0 2px 6px -4px rgba(11,58,110,.35)}
-.cabecera .contenedor{display:flex;align-items:center;gap:22px;min-height:86px;flex-wrap:wrap}
+.cabecera .contenedor{display:flex;align-items:center;gap:22px;min-height:86px;flex-wrap:wrap;padding-top:16px}
 .marca-uc{display:flex;align-items:center;flex:none;text-decoration:none;color:var(--primario-osc)}
 .marca-uc img{height:58px;width:auto;display:block}
 .logo-texto{display:flex;flex-direction:column;font-weight:700;line-height:1.05;font-size:0.75rem;letter-spacing:.06em;text-transform:uppercase;border-left:4px solid var(--acento);padding-left:10px}
