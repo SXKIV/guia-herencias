@@ -60,6 +60,13 @@ img{max-width:100%}
 .unidad .facultad{display:block;font-size:1.0625rem;font-weight:700;color:var(--primario-osc)}
 .unidad .clinica{display:block;font-size:0.8125rem;color:var(--tinta-suave)}
 .nav-principal{margin-left:auto}
+/* En computador: logos en la primera fila; menú y lupa en la segunda */
+@media (min-width:981px){
+  .cabecera .contenedor{row-gap:8px}
+  .cabecera .contenedor::before{content:"";flex-basis:100%;order:1}
+  .nav-principal{margin-left:0;order:2}
+  .tamano-texto{order:2}
+}
 .menu-principal{list-style:none;display:flex;gap:2px;padding:0;margin-top:0;margin-bottom:0;flex-wrap:wrap}
 .menu-principal li{margin:0}
 .menu-principal button{font:inherit;font-size:0.9375rem;font-weight:600;color:var(--primario-osc);background:none;border:none;border-bottom:3px solid transparent;padding:10px 12px 8px;cursor:pointer;white-space:nowrap}
