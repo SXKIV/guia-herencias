@@ -77,13 +77,13 @@
           Calculadora de impuesto a la herencia
         </span>
         <p class="big">¿Vas a tener que <strong>pagar impuesto</strong> por la herencia?</p>
-        <p class="medium">Responde tres preguntas y te mostramos al instante si te corresponde pagar y cuánto, calculado sobre la parte que te toca a ti.</p>
+        <p class="medium">Responde unas preguntas y te mostramos una estimación de si tu parte paga impuesto, con el cálculo paso a paso y lo que correspondería marcar en el Registro Civil.</p>
         <button class="btn-cta" type="button" data-ir="calculadora">
           Calcular mi impuesto
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
         </button>
         <ol class="cta-pasos">
-          <li><b>1</b> Tu parentesco</li>
+          <li><b>1</b> Fecha y parentesco</li>
           <li><b>2</b> Quién más hereda</li>
           <li><b>3</b> Cuánto valen los bienes</li>
         </ol>
@@ -93,8 +93,8 @@
         <div class="m-linea"><span>Parentesco</span><b>Hijo</b></div>
         <div class="m-linea"><span>Te toca</span><b>$16.000.000</b></div>
         <div class="m-linea"><span>Exención</span><b>600 UTM</b></div>
-        <div class="m-res">✓ Con estos datos, no pagarías impuesto</div>
-        <p class="m-nota">Aun así hay que declarar ante el SII.</p>
+        <div class="m-res">✓ Con estos datos, tu parte no paga impuesto</div>
+        <p class="m-nota">Igual necesitarás el certificado del SII para inscribir los bienes.</p>
       </div>
     </div>
   </div>
@@ -110,7 +110,7 @@
       <h2>Accesos rápidos</h2>
       <ul>
         <li><button type="button" data-ir="viaje">Etapas del trámite</button></li>
-        <li><button type="button" data-ir="cero">Por qué declarar aunque no pagues</button></li>
+        <li><button type="button" data-ir="cero">Por qué ir al SII aunque no pagues</button></li>
         <li><button type="button" data-ir="que-entra">Qué entra a la herencia</button></li>
         <li><button type="button" data-ir="descuentos">Gastos que se descuentan</button></li>
         <li><button type="button" data-ir="parentesco">Parentesco y exenciones</button></li>
@@ -139,7 +139,19 @@
     <div class="nota">
       Si no encuentras lo que buscas en tu apartado, entra igual al otro: es la misma materia con otro nivel de detalle. Esta guía es material de orientación y no reemplaza la asesoría de un abogado ni las instrucciones oficiales del SII y del Registro Civil.
     </div>
-    <span class="sello">Versión 2.1</span>
+    <div class="alcance">
+      <h2>Para qué sirve esta guía y para qué no</h2>
+      <p><b>Sirve</b> para herencias sin testamento cuya posesión efectiva se pide en el Registro Civil: estimar si cada heredero paga impuesto, saber qué marcar en la solicitud, reunir los documentos y entender el formulario F4412 del SII.</p>
+      <p><b>No cubre</b>, y conviene revisarlos con la clínica:</p>
+      <ul>
+        <li>herencias con testamento;</li>
+        <li>un heredero que murió antes o después que la persona (representación o transmisión);</li>
+        <li>bienes en el extranjero, donaciones en vida a un heredero, o herederos que rechazaron o vendieron su parte;</li>
+        <li>sociedades, empresas o predios agrícolas, en que la valoración tiene reglas especiales.</li>
+      </ul>
+      <p class="fecha-act">Esta página no presenta nada ante el SII. Lo que escribes no se envía a nadie: <button type="button" class="enlace-txt" data-ir="privacidad">ver qué guarda en tu navegador</button>.</p>
+    </div>
+    <span class="sello">Versión 3.0 · Normas y valores revisados al 29 de octubre de 2026</span>
   </div>
 </section>
 
@@ -155,7 +167,7 @@
     <button class="item" type="button" data-ir="viaje"><b>Etapas del trámite</b></button>
     <button class="item" type="button" data-ir="descuentos"><b>Gastos que se pueden descontar</b></button>
     <button class="item" type="button" data-ir="parentesco"><b>Parentesco y exenciones</b></button>
-    <button class="item" type="button" data-ir="cero"><b>Por qué hay que declarar aunque no se pague</b></button>
+    <button class="item" type="button" data-ir="cero"><b>Por qué ir al SII aunque no pagues</b></button>
     <button class="item" type="button" data-ir="que-entra"><b>Qué entra a la herencia, con ilustraciones</b></button>
     <button class="item" type="button" data-ir="costos"><b>Cuánto me va a costar todo esto</b></button>
     <button class="item" type="button" data-ir="documentos"><b>Documentos a reunir</b></button>
@@ -179,7 +191,7 @@
     <button class="item" type="button" data-ir="ordenes"><b>Órdenes sucesorios y asignaciones</b></button>
     <button class="item" type="button" data-ir="que-entra"><b>Qué entra a la herencia y cómo se valora</b></button>
     <button class="item" type="button" data-ir="bienes"><b>¿Dónde declaro cada bien?</b></button>
-    <button class="item" type="button" data-ir="formulario"><b>Explicación del formulario en línea</b></button>
+    <button class="item" type="button" data-ir="formulario"><b>El formulario F4412, panel por panel</b></button>
     <button class="item" type="button" data-ir="conceptos"><b>Diccionario</b></button>
     <button class="item" type="button" data-ir="trampas"><b>Trampas conocidas</b></button>
     <button class="item" type="button" data-ir="documentos"><b>Documentos a reunir</b></button>
@@ -188,34 +200,77 @@
 </section>
 
 <section class="pantalla" id="viaje" hidden="">
-  <h1>El trámite no termina en el Registro Civil</h1>
-  <p class="bajada">Es la confusión más común y la más cara. Los pasos, a nivel general, son los siguientes:</p>
-  <ol class="pasos">
-    <li>
-      <b>Registro Civil</b>
-      <p>Se solicita la posesión efectiva. En el formulario se declaran los datos de la persona fallecida, los datos de todos los herederos y el inventario de sus bienes con la valorización de cada uno. Se paga un arancel y, semanas después, se dicta la resolución que concede la posesión efectiva y se inscribe.</p>
-      <p><strong>Al final de este paso todavía no puedes vender, transferir ni poner a tu nombre nada.</strong> Lo que obtienes es el reconocimiento de que eres heredero de esa persona, no la propiedad de los bienes.</p>
-      <p><strong>Si la persona fallecida estaba casada, primero hay que saber bajo qué régimen.</strong> Si tenía sociedad conyugal o participación en los gananciales, una parte del patrimonio común es del cónyuge sobreviviente y no entra a la herencia; solo se declara la parte que era del fallecido. Si estaba separado totalmente de bienes, se declara completo lo que estaba a su nombre.</p>
-      <p>Guarda bien el inventario que presentaste: los mismos montos se vuelven a usar en el paso siguiente.</p>
-    </li>
-    <li>
-      <b>Servicio de Impuestos Internos</b>
-      <p>Se declaran los bienes otra vez, pero de manera más específica y detallada que en la solicitud del Registro Civil, para determinar el impuesto a la herencia que corresponde pagar.</p>
-      <p>Aunque el resultado sea cero, la declaración es obligatoria: de ahí sale el comprobante que acredita que pagaste o que estás exento.</p>
-      <p>Se hace en línea con clave única o clave tributaria. Si el sistema no deja avanzar porque falta un dato o el caso tiene alguna particularidad, hay que terminarlo presencialmente en una unidad del SII.</p>
-      <p><span class="destaca">Es en este paso donde te ayuda esta guía.</span></p>
-    </li>
-    <li>
-      <b>Conservador de Bienes Raíces</b>
-      <p>Con la resolución del Registro Civil y el comprobante del SII se practican las inscripciones que faltan sobre cada propiedad.</p>
-      <p>Recién aquí el trámite produce el efecto de que los bienes del causante pasan a ser de los herederos y se pueden vender, hipotecar o transferir.</p>
-    </li>
+  <h1>Las etapas del trámite</h1>
+  <p class="bajada">Una herencia sin testamento pasa por tres instituciones. Cada una entrega un documento que la siguiente pide, y el impuesto conviene estimarlo antes de la primera.</p>
+
+  <ol class="mapa" aria-label="Mapa de las etapas del trámite">
+    <li class="antes"><div class="nodo">
+      <span class="quien">Antes de empezar</span>
+      <b>Estimar el impuesto de la familia</b>
+      <p>Con la fecha de fallecimiento, el parentesco de cada heredero y el valor de los bienes.</p>
+      <span class="sale">Sirve para: saber qué marcar en la solicitud del Registro Civil.</span>
+    </div></li>
+    <li><div class="nodo">
+      <span class="quien">Paso 1 · Registro Civil</span>
+      <b>Posesión efectiva</b>
+      <p>Solicitud con los herederos y el inventario valorizado. Se marca si las asignaciones están exentas o afectas.</p>
+      <span class="sale">Sale: resolución que concede la posesión efectiva, inscrita en el Registro Nacional de Posesiones Efectivas.</span>
+    </div></li>
+    <li><div class="nodo">
+      <span class="quien">Paso 2 · SII</span>
+      <b>Formulario F4412</b>
+      <p>Declaración detallada de bienes y herederos, en línea. Si hay impuesto, se gira y se paga.</p>
+      <span class="sale">Sale: certificado de pago o de exención del impuesto.</span>
+    </div></li>
+    <li><div class="nodo">
+      <span class="quien">Paso 3 · Conservador</span>
+      <b>Inscripciones</b>
+      <p>Inscripción especial de herencia en cada inmueble y, si la hay, de la partición.</p>
+      <span class="sale">Sale: los inmuebles quedan inscritos a nombre de los herederos.</span>
+    </div></li>
   </ol>
+
+  <h2>Antes de empezar: estimar el impuesto</h2>
+  <p>La solicitud de posesión efectiva pregunta si las asignaciones están exentas o afectas al impuesto. Es una pregunta sobre <strong>todos los herederos</strong>, no solo sobre quien llena la solicitud, y tiene tres respuestas posibles: exentas todas, afectas algunas o afectas todas.</p>
+  <p>Para contestarla hay que saber cuánto le toca a cada heredero y compararlo con su exención. Eso es lo que hace la calculadora de esta guía. El propio formulario F4412 del SII también puede usarse para calcular y guardar un borrador antes de tener la posesión efectiva, con la clave de uno de los herederos.</p>
+  <div class="norma">Ley 16.271, art. 60: en las posesiones efectivas que se tramitan ante el Registro Civil, la solicitud debe indicar si las asignaciones están afectas o exentas.</div>
+  <div class="menu enlace-caja">
+    <button class="item" type="button" data-ir="calculadora"><b>Estimar el impuesto de la familia</b><span>La calculadora indica qué casilla correspondería marcar</span></button>
+  </div>
+
+  <h2>Paso 1. Registro Civil: la posesión efectiva</h2>
+  <p>En la solicitud se declaran los datos de la persona fallecida, los de todos los herederos y el inventario de sus bienes, con el valor de cada uno a la fecha del fallecimiento. Se paga un arancel según el monto del inventario y, semanas después, se dicta la resolución que concede la posesión efectiva, que el propio Registro Civil inscribe.</p>
+  <p><strong>Al terminar este paso todavía no se puede vender ni transferir un inmueble.</strong> La resolución reconoce quiénes son los herederos; para disponer de los inmuebles faltan las inscripciones del paso 3.</p>
+  <p><strong>Si la persona estaba casada o tenía acuerdo de unión civil, primero hay que saber bajo qué régimen,</strong> porque no todo lo que estaba a su nombre, o al nombre de la pareja, forma la herencia:</p>
+  <ul>
+    <li><strong>Sociedad conyugal.</strong> Los bienes sociales se dividen entre el cónyuge sobreviviente y la herencia; en general, por mitades, después de las recompensas. A la herencia entra esa mitad más los bienes propios de la persona fallecida. Revisa las instrucciones vigentes del formulario del Registro Civil para saber cómo anotarlos.</li>
+    <li><strong>Participación en los gananciales.</strong> No hay bienes comunes: cada cónyuge tiene su propio patrimonio. Al morir uno, puede nacer un crédito a favor del que ganó menos durante el matrimonio. No es automáticamente la mitad de nada: se calcula comparando lo que cada uno ganó.</li>
+    <li><strong>Separación total de bienes.</strong> Forma la herencia lo que era de la persona fallecida.</li>
+    <li><strong>Acuerdo de unión civil.</strong> Por regla general cada conviviente conserva lo suyo. Solo si al celebrarlo pactaron comunidad, los bienes adquiridos a título oneroso durante el acuerdo se entienden de ambos por mitades.</li>
+  </ul>
+  <div class="norma">Código Civil, arts. 1774 (división de los gananciales por mitad) y 1792-1 y siguientes (participación en los gananciales); Ley 20.830, art. 15 (régimen de bienes del acuerdo de unión civil).</div>
+  <p>Guarda una copia de la solicitud con su inventario: esos montos se vuelven a usar en el paso siguiente.</p>
+
+  <h2>Paso 2. SII: la declaración en el formulario F4412</h2>
+  <p>Con la posesión efectiva concedida, uno de los herederos entra a sii.cl con su clave y completa el formulario F4412. Ahí se declaran los bienes con más detalle que en el Registro Civil, y el sistema calcula el impuesto de cada heredero. Si corresponde pagar, se genera el giro; si no, el sistema deja constancia de la exención.</p>
+  <p><strong>Si toda la herencia quedó exenta y así se marcó en el Registro Civil,</strong> la ley da por cumplida la obligación de declarar. Igual vas a necesitar el certificado del SII para inscribir los inmuebles y, en muchos casos, para que bancos u otras instituciones entreguen bienes. Ese certificado se obtiene completando el F4412.</p>
+  <p>El sistema cruza lo que escribes con las bases del SII. Puede no dejarte avanzar si no tiene registrada la fecha de defunción o si un parentesco no coincide con sus datos; en esos casos hay que regularizar el dato con el SII antes de seguir. Después de enviar, el SII también puede pedir antecedentes.</p>
+  <div class="menu enlace-caja">
+    <button class="item" type="button" data-ir="cero"><b>Por qué hacer el F4412 aunque no pagues</b><span>Qué dice la ley y qué pasa en la práctica</span></button>
+    <button class="item" type="button" data-ir="formulario"><b>El formulario F4412, panel por panel</b><span>En la ruta del estudiante</span></button>
+  </div>
+
+  <h2>Paso 3. Conservador de Bienes Raíces: las inscripciones</h2>
+  <p>Con la resolución de posesión efectiva y el certificado del SII se pide, en el Conservador de cada comuna donde haya un inmueble, la inscripción especial de herencia. Desde ahí los herederos pueden vender o hipotecar, pero todos juntos. Para que cada uno disponga por separado del inmueble que le tocó, falta inscribir la partición.</p>
+  <p>Si la masa de bienes es pequeña, el Conservador no cobra o cobra la mitad: revisa los <button type="button" class="enlace-txt" data-ir="costos">costos</button>.</p>
+  <div class="norma">Código Civil, art. 688; Ley 16.271, arts. 30 bis y 54.</div>
+
   <div class="aviso">
-    <p><b>Si te quedaste en el paso 1</b>, el Conservador no va a inscribir nada, porque le falta el comprobante del SII. No es un error tuyo: es una etapa que casi nadie explica.</p>
+    <p><b>Si te quedaste en el paso 1</b>, el Conservador no va a inscribir: le falta el certificado del SII. No es un error tuyo; es una etapa que suele no explicarse.</p>
   </div>
   <div class="menu enlace-caja">
-    <button class="item" type="button" data-ir="cadena"><b>Ver el detalle de qué documento sale de cada etapa</b><span>Explicación técnica, en la ruta del estudiante</span></button>
+    <button class="item" type="button" data-ir="cadena"><b>Qué documento sale de cada etapa y para qué sirve</b><span>Explicación técnica, en la ruta del estudiante</span></button>
+    <button class="item" type="button" data-ir="guias"><b>Guía 4 en PDF: declarar, pagar y los otros trámites</b><span>Para imprimir o enviar</span></button>
   </div>
 </section>
 
@@ -229,14 +284,15 @@
   <p>Dos reglas de valorización que se aplican ya en esta etapa y que casi siempre se pasan por alto:</p>
   <ul>
     <li>Los valores son los que tenían los bienes <strong>a la fecha del fallecimiento</strong>, no los actuales.</li>
-    <li>Si el bien es propio del causante se anota el valor total; si es de la sociedad conyugal o del régimen de participación en los gananciales, se anota aproximadamente el <strong>50%</strong>.</li>
+    <li>Si había <strong>sociedad conyugal</strong>, a la herencia entra la parte de los bienes sociales que corresponde al causante (en general, la mitad, después de las recompensas) más sus bienes propios. En <strong>participación en los gananciales</strong> no hay bienes comunes que dividir: cada cónyuge tiene su patrimonio y puede nacer un crédito de participación. Revisa las instrucciones vigentes del formulario del Registro Civil.</li>
   </ul>
-  <p>En este mismo formulario hay un recuadro donde se declara si las asignaciones quedan exentas o afectas al impuesto, lo que obliga a haber hecho antes el cálculo del SII.</p>
+  <p>En este mismo formulario se declara si las asignaciones quedan exentas o afectas al impuesto, lo que obliga a estimar antes el impuesto de <strong>todos</strong> los herederos. Si todas resultan exentas y así consta en la solicitud, la ley da por cumplida la obligación de declarar (art. 60 de la Ley 16.271); el certificado del SII se sigue necesitando para inscribir.</p>
 
   <h2>Etapa 2. SII: el formulario se construye sobre el inventario anterior</h2>
-  <p>El F4423 en papel lo dice de forma expresa: en la sección de determinación de la masa hereditaria hay que trasladar los totales de los recuadros del inventario del formulario de solicitud de posesión efectiva. El formulario en línea hace lo mismo, pero desagregado en más de veinte categorías y con validaciones automáticas.</p>
+  <p>Desde noviembre de 2021 el impuesto se declara en el formulario F4412, en línea, que reemplazó a los formularios en papel 4423 y 4419. El antiguo F4423 ordenaba trasladar los totales de los recuadros del inventario de la solicitud de posesión efectiva; el F4412 pide los mismos bienes, desagregados en más de veinte categorías y con validaciones contra las bases del SII.</p>
   <p>Por eso, si el inventario del Registro Civil quedó mal armado, el problema no se queda ahí: se arrastra al SII, donde además hay reglas de valoración más exigentes.</p>
   <p>Lo que agrega el SII respecto del Registro Civil es todo el aparato de cálculo: distribución de la masa entre los asignatarios según los órdenes sucesorios, exención por parentesco, tramos, recargo, créditos y giro del impuesto.</p>
+  <div class="nota"><b>Ojo con la sociedad conyugal al pasar al F4412.</b> Según las instrucciones del F4412, si un inmueble pertenece completo a la sociedad conyugal se anota el 100% de su valor, y el régimen se descuenta en líneas propias del formulario. Si ahí se anota la mitad, como en el inventario del Registro Civil, la parte del cónyuge podría descontarse dos veces. Esta regla se tomó del instructivo oficial y no se ha comprobado en una sesión real del formulario: verifícala al llenarlo.</div>
 
   <h2>Etapa 3. Conservador: las inscripciones del artículo 688</h2>
   <p>El art. 688 del Código Civil parte de una premisa que confunde a todo el mundo: al momento de deferirse la herencia, la posesión efectiva de ella se confiere por el solo ministerio de la ley al heredero. Es decir, el heredero ya es poseedor legal desde la muerte. Pero esa posesión legal no lo habilita para disponer de un inmueble mientras no preceda:</p>
@@ -246,14 +302,14 @@
     <li><strong>La inscripción del acto de partición o adjudicación.</strong> Sin ella, ningún heredero puede disponer <strong>por sí solo</strong> del inmueble que le tocó.</li>
   </ol>
   <p>La distinción entre la segunda y la tercera inscripción es la que más se olvida y explica muchos casos que llegan atascados: la familia tiene la posesión efectiva inscrita, pero sigue sin poder vender individualmente porque nunca hubo partición.</p>
-  <div class="norma">Arts. 686 a 688 del Código Civil. Los conservadores y notarios no inscriben ni autorizan mientras no se acredite el pago del impuesto, porque responden como terceros responsables.</div>
+  <div class="norma">Arts. 686 a 688 del Código Civil. Ley 16.271, art. 54: los notarios no pueden autorizar ni los conservadores inscribir las adjudicaciones o enajenaciones en común de los herederos sin el comprobante de pago del impuesto, salvo garantía o partición en juicio constituido legalmente.</div>
 
   <h2>Resumen del encadenamiento</h2>
   <div class="tabla-scroll">
     <table>
       <tbody><tr><th>Etapa</th><th>Qué se entrega</th><th>Qué se obtiene</th><th>Para qué sirve después</th></tr>
       <tr><td>Registro Civil</td><td>Formulario de solicitud con herederos e inventario valorizado</td><td>Resolución que concede la posesión efectiva e inscripción en el Registro Nacional</td><td>Es requisito del SII y la primera inscripción del art. 688</td></tr>
-      <tr><td>SII</td><td>Declaración de impuesto, construida sobre el inventario anterior</td><td>Giro pagado o comprobante de exención</td><td>Sin esto el Conservador no inscribe</td></tr>
+      <tr><td>SII</td><td>Declaración en el F4412, construida sobre el inventario anterior</td><td>Certificado de pago o de exención</td><td>Sin esto el Conservador no inscribe</td></tr>
       <tr><td>Conservador</td><td>Resolución más comprobante del SII</td><td>Inscripción especial de herencia y, si hubo partición, su inscripción</td><td>Habilita a disponer, primero en conjunto y después individualmente</td></tr>
     </tbody></table>
   </div>
@@ -269,7 +325,7 @@
   <div class="tabla-scroll">
     <table>
       <tbody><tr><th>Categoría</th><th>Quiénes son</th></tr>
-      <tr><td>Hijo</td><td>Hijos e hijas, sin importar si son de distintas parejas. Los nietos entran acá si su padre o madre falleció antes que el causante.</td></tr>
+      <tr><td>Hijo</td><td>Hijos e hijas, sin importar si son de distintas parejas. Si un hijo murió antes que el causante, sus hijos heredan en su lugar: se reparten lo que a él le tocaba y pagan el impuesto que a él le habría correspondido, con una sola exención para todos (art. 3 de la Ley 16.271).</td></tr>
       <tr><td>Cónyuge</td><td>Marido o mujer sobreviviente, y también el conviviente civil (acuerdo de unión civil). Una pareja o conviviente sin matrimonio ni unión civil <strong>no</strong> entra acá.</td></tr>
       <tr><td>Ascendiente</td><td>Padre, madre, abuelos, bisabuelos. Hereda el más cercano que esté vivo.</td></tr>
       <tr><td>Hermano</td><td>Hermano o hermana de padre y madre.</td></tr>
@@ -286,17 +342,17 @@
   <div class="tabla-scroll">
     <table>
       <tbody><tr><th>Heredero</th><th class="num">Exención</th><th class="num">Aproximado en pesos</th></tr>
-      <tr><td>Hijo</td><td class="num">600 UTM</td><td class="num" data-utm-por="600">$43.032.600</td></tr>
-      <tr><td>Cónyuge o conviviente civil</td><td class="num">600 UTM</td><td class="num" data-utm-por="600">$43.032.600</td></tr>
-      <tr><td>Ascendiente</td><td class="num">600 UTM</td><td class="num" data-utm-por="600">$43.032.600</td></tr>
-      <tr><td>Hermano</td><td class="num">60 UTM</td><td class="num" data-utm-por="60">$4.303.260</td></tr>
-      <tr><td>Medio hermano</td><td class="num">60 UTM</td><td class="num" data-utm-por="60">$4.303.260</td></tr>
-      <tr><td>Colateral 3.º o 4.º grado</td><td class="num">60 UTM</td><td class="num" data-utm-por="60">$4.303.260</td></tr>
+      <tr><td>Hijo</td><td class="num">600 UTM</td><td class="num" data-utm-por="600">$43.464.000</td></tr>
+      <tr><td>Cónyuge o conviviente civil</td><td class="num">600 UTM</td><td class="num" data-utm-por="600">$43.464.000</td></tr>
+      <tr><td>Ascendiente</td><td class="num">600 UTM</td><td class="num" data-utm-por="600">$43.464.000</td></tr>
+      <tr><td>Hermano</td><td class="num">60 UTM</td><td class="num" data-utm-por="60">$4.346.400</td></tr>
+      <tr><td>Medio hermano</td><td class="num">60 UTM</td><td class="num" data-utm-por="60">$4.346.400</td></tr>
+      <tr><td>Colateral 3.º o 4.º grado</td><td class="num">60 UTM</td><td class="num" data-utm-por="60">$4.346.400</td></tr>
       <tr><td>Colateral 5.º o 6.º grado</td><td class="num">0</td><td class="num">$0</td></tr>
     </tbody></table>
   </div>
   <div class="nota">
-    Los montos en pesos son aproximados y están calculados con la UTM de <strong><span data-utm="mes">septiembre de 2026</span> (<span data-utm="valor">$71.721</span>)</strong>. La UTM cambia el primer día de cada mes: revisa el valor vigente en la <a href="https://www.sii.cl/valores_y_fechas/utm/utm2026.htm" data-utm="link" target="_blank" rel="noopener">tabla oficial del SII</a>.
+    Los montos en pesos son aproximados y están calculados con la UTM de <strong><span data-utm="mes">noviembre de 2026</span> (<span data-utm="valor">$72.440</span>)</strong>. Pero la exención se mide con la UTM del <strong>mes del fallecimiento</strong>: si la persona murió hace años, el límite en pesos es menor que el de esta tabla. La calculadora usa la UTM que corresponde a la fecha. Valores oficiales en la <a href="https://www.sii.cl/valores_y_fechas/utm/utm2026.htm" data-utm="link" target="_blank" rel="noopener">tabla del SII</a>.
   </div>
 
   <h2>Tercero: qué se descuenta antes</h2>
@@ -311,6 +367,7 @@
     <li><strong>Sociedad conyugal:</strong> la mitad del patrimonio común corresponde al cónyuge sobreviviente, y la otra mitad, junto con los bienes propios del fallecido, forma la herencia.</li>
     <li><strong>Participación en los gananciales:</strong> cada uno mantuvo su propio patrimonio, pero al morir uno de los dos puede generarse un crédito a favor del que ganó menos durante el matrimonio.</li>
     <li><strong>Separación total de bienes:</strong> no hay nada que dividir; lo que estaba a nombre del fallecido forma la herencia completa.</li>
+    <li><strong>Acuerdo de unión civil:</strong> por regla general cada conviviente conserva lo suyo; solo si pactaron comunidad al celebrarlo, los bienes adquiridos a título oneroso durante el acuerdo son de ambos por mitades (art. 15 de la Ley 20.830).</li>
   </ul>
   <p>Si no sabes cuál tenía la persona fallecida, revisa la libreta de matrimonio o pregunta a quien te está asistiendo antes de seguir.</p>
 
@@ -447,105 +504,181 @@
 </section>
 
 <section class="pantalla" id="cero" hidden="">
-  <h1>Aunque no pagues, tienes que declarar</h1>
-  <p>La ley deja fuera del impuesto una parte de lo que recibe cada heredero. Eso se llama <strong>exención</strong>, y no es un descuento sobre el impuesto: es una porción que directamente no se toma en cuenta para calcularlo.</p>
-  <p>La exención depende del parentesco: mientras más cercano seas a la persona fallecida, mayor es la parte que queda libre. Un hijo, un cónyuge o un padre tienen la exención más alta; un hermano o un tío, una mucho menor; los parientes muy lejanos, ninguna.</p>
-  <p>Como esa exención es alta para los parientes cercanos, en muchos casos el impuesto termina siendo cero. Pero la declaración ante el SII hay que hacerla igual.</p>
-  <h3>Qué pasa después de declarar</h3>
-  <p>Como resultado de la declaración realizada, el SII determinará si la herencia quedó exenta de impuestos o si se debe pagar un monto.</p>
-  <p><span class="destaca">Sin la respuesta del SII de que la herencia está exenta, o sin el comprobante de pago del impuesto que corresponda, un Conservador de Bienes Raíces no inscribirá ningún bien.</span></p>
-  <p>Ese documento hay que guardarlo: se lo van a pedir en el Conservador, y también cada vez que quieran vender o transferir alguno de los bienes heredados.</p>
-  <div class="aviso">
-    <p><b>Señal de alerta:</b> si alguien te dijo que "no pagas impuesto, así que no tienes que ir al SII", esa información es incorrecta y es la causa más frecuente de trámites que quedan a medias por años.</p>
+  <h1>Por qué ir al SII aunque no pagues impuesto</h1>
+  <p class="bajada">Declarar, pagar y obtener el certificado son tres cosas distintas. Que tu parte no pague impuesto no significa que puedas saltarte el SII.</p>
+
+  <h2>Primero: declarar no es lo mismo que pagar</h2>
+  <div class="tabla-scroll">
+    <table>
+      <tbody><tr><th>Qué es</th><th>Qué significa</th><th>Cuándo ocurre</th></tr>
+      <tr><td><b>Declarar</b></td><td>Informar al SII los bienes, las deudas y los herederos, para que se calcule el impuesto de cada uno.</td><td>Siempre que alguna asignación pague impuesto. Si todas son exentas, ver abajo.</td></tr>
+      <tr><td><b>Pagar</b></td><td>Enterar el impuesto que resulta para cada heredero que supera su exención.</td><td>Solo si a alguien le corresponde pagar.</td></tr>
+      <tr><td><b>Obtener el certificado</b></td><td>Documento del SII que acredita que el impuesto se pagó o que la herencia está exenta.</td><td>Al terminar el F4412. Es el que se pide para inscribir y retirar bienes.</td></tr>
+    </tbody></table>
   </div>
+
+  <h2>Qué dice la ley cuando toda la herencia está exenta</h2>
+  <p>La exención es la parte de cada asignación que la ley deja fuera del impuesto: 600 UTM para hijos, cónyuge o conviviente civil y padres; 60 UTM para hermanos, tíos, sobrinos y primos; nada para parientes más lejanos. Como es alta para la familia cercana, en muchas herencias nadie paga.</p>
+  <p>Para ese caso hay una regla especial. Si la posesión efectiva se pide en el Registro Civil, la solicitud debe indicar si las asignaciones están exentas o afectas. <strong>Si todas resultan exentas y así consta en la solicitud, la ley da por cumplida la obligación de declarar.</strong></p>
+  <div class="norma">Ley 16.271, art. 60, inciso final.</div>
+  <p>Ojo con dos cosas. La regla exige que <em>todas</em> las asignaciones estén exentas: si un solo heredero supera su exención, corresponde marcar "afectas algunas" y declarar. Y la constancia tiene que ser correcta: si se marcó "exentas todas" y no lo eran, la obligación no se cumplió.</p>
+
+  <h2>Entonces, ¿para qué ir al SII?</h2>
+  <p>Por el certificado. Aunque la ley dé por cumplida la declaración, otras normas exigen acreditar el pago o la exención antes de entregar o inscribir bienes del causante:</p>
+  <ul>
+    <li>Quien tenga dinero, joyas u otros valores de la persona fallecida, como un banco, no puede entregarlos sin que se acredite el pago o la garantía del impuesto, salvo autorización del SII (art. 44). Hay una excepción para montos pequeños: cuentas de ahorro y algunas sumas previsionales hasta 5 UTA (art. 26).</li>
+    <li>Los notarios y conservadores no pueden autorizar ni inscribir las adjudicaciones o enajenaciones que hagan los herederos sin el comprobante del impuesto (art. 54).</li>
+  </ul>
+  <p>En la práctica, el certificado de exención se obtiene completando el F4412. La Defensoría del Contribuyente recomienda hacer el trámite en el SII aunque la herencia esté exenta.</p>
+
+  <h2>Qué pasa si no se hace a tiempo</h2>
+  <p>El impuesto, si lo hay, debe declararse y pagarse dentro de <strong>dos años</strong> desde el fallecimiento. Lo que pasa después depende de si había o no impuesto:</p>
+  <ul>
+    <li><strong>Si había impuesto,</strong> desde el fin del segundo año se deben intereses penales sobre lo adeudado (art. 50). El SII puede además liquidar y girar el impuesto con los antecedentes que tenga (art. 53).</li>
+    <li><strong>Si se vendió un bien de la herencia que no estaba en el inventario,</strong> el SII puede cobrar de inmediato y los contratantes responden solidariamente, con multa (art. 69).</li>
+    <li><strong>Si todo era exento,</strong> no hay intereses que cobrar, pero los bienes siguen sin poder inscribirse ni retirarse hasta tener el certificado.</li>
+  </ul>
+  <p>Si se descubre después un error, como un bien que se olvidó, la declaración se puede rectificar en el mismo sistema del SII. Conviene hacerlo: el SII puede revisar durante tres años desde que venció el plazo de dos años, o seis si no se presentó declaración.</p>
+  <div class="norma">Ley 16.271, arts. 26, 44, 50, 53, 54, 60 y 69; Código Tributario, art. 200.</div>
+
   <div class="nota">
-    Hay un plazo: el impuesto debe declararse y pagarse dentro de los dos años siguientes a la fecha en que se defiere la herencia, que por regla general es la fecha del fallecimiento. Pasado ese plazo se empiezan a devengar intereses.
+    <b>Si alguien te dijo que "no pagas impuesto, así que no tienes que ir al SII"</b>, tiene razón a medias: puede que no debas pagar, y puede que la ley dé por cumplida tu declaración, pero vas a necesitar el certificado del SII para terminar el trámite.
+  </div>
+  <div class="menu enlace-caja">
+    <button class="item" type="button" data-ir="calculadora"><b>Ver si toda la familia queda exenta</b><span>Calculadora con el resultado por heredero</span></button>
+    <button class="item" type="button" data-ir="guias"><b>Guía 4 en PDF: declarar, pagar y los otros trámites</b><span>Para imprimir o enviar</span></button>
   </div>
 </section>
 
 <section class="pantalla" id="costos" hidden="">
   <h1>Cuánto me va a costar todo esto</h1>
-  <p class="bajada">La asesoría es gratuita. Los que cobran son los servicios del Estado.</p>
+  <p class="bajada">La asesoría de la clínica es gratuita. Los cobros vienen de los servicios del Estado y del impuesto, si corresponde, y varios dependen del valor total de los bienes.</p>
   <div class="tabla-scroll">
     <table>
-      <tbody><tr><th>Concepto</th><th>Quién lo cobra</th><th class="num">Referencia de costo</th></tr>
-      <tr><td>Arancel de tramitación de la posesión efectiva</td><td>Registro Civil</td><td class="num">Sin costo hasta 15 UTA (~<span data-utm-por="180" data-redondeo="100000">$12.900.000</span>) de inventario; 1,6 UTM (~<span data-utm-por="1.6" data-redondeo="10">$114.750</span>) hasta 45 UTA; 2,5 UTM (~<span data-utm-por="2.5" data-redondeo="10">$179.300</span>) sobre ese monto</td></tr>
-      <tr><td>Certificados de defunción, nacimiento y matrimonio</td><td>Registro Civil</td><td class="num">Gratis, descargados en línea con ClaveÚnica</td></tr>
-      <tr><td>Certificado de avalúo fiscal</td><td>SII</td><td class="num">Gratis, en el sitio del SII</td></tr>
-      <tr><td>Impuesto a la herencia</td><td>SII</td><td class="num">$0 si la parte de cada heredero no supera su exención; variable si la supera</td></tr>
-      <tr><td>Inscripción especial de herencia y copias de inscripción</td><td>Conservador de Bienes Raíces</td><td class="num">Un porcentaje del avalúo de cada propiedad, fijado en un arancel oficial; consulta el valor exacto en el Conservador correspondiente</td></tr>
+      <tbody><tr><th>Concepto</th><th>Quién lo cobra</th><th>Referencia de costo</th></tr>
+      <tr><td>Arancel de la posesión efectiva</td><td>Registro Civil</td><td>Sin costo si el inventario no supera 15 UTA (~<span data-utm-por="180" data-redondeo="100000">$13.000.000</span>). 1,6 UTM (~<span data-utm-por="1.6" data-redondeo="10">$115.900</span>) si supera 15 y no pasa de 45 UTA (~<span data-utm-por="540" data-redondeo="100000">$39.100.000</span>). 2,5 UTM (~<span data-utm-por="2.5" data-redondeo="10">$181.100</span>) sobre 45 UTA.</td></tr>
+      <tr><td>Certificados de defunción, nacimiento y matrimonio</td><td>Registro Civil</td><td>Gratis, descargados en línea con ClaveÚnica</td></tr>
+      <tr><td>Certificado de avalúo fiscal</td><td>SII</td><td>Gratis, en el sitio del SII</td></tr>
+      <tr><td>Impuesto a la herencia</td><td>SII</td><td>$0 para cada heredero cuya parte no supera su exención; si la supera, depende del monto y del parentesco</td></tr>
+      <tr><td>Inscripción especial de herencia y copias</td><td>Conservador de Bienes Raíces</td><td>Liberado de aranceles si la masa de bienes no supera 15 UTA; 50% de rebaja si supera 15 y no pasa de 45 UTA; sobre eso, el arancel de cada Conservador</td></tr>
     </tbody></table>
   </div>
-  <div class="nota">El arancel del Registro Civil está calculado con la UTM de <span data-utm="mes">septiembre de 2026</span> (<span data-utm="valor">$71.721</span>) y con la UTA (12 UTM). El del Conservador no tiene un monto único: se calcula sobre el avalúo de cada inmueble según una escala fijada por decreto, así que conviene preguntar el monto exacto antes de inscribir.</div>
-  <div class="aviso">
-    <p><b>El privilegio de pobreza no cubre todos los cobros.</b> En particular, no cubre el arancel de tramitación del Registro Civil ni el impuesto a la herencia, que deben pagarse igual.</p>
-  </div>
-  <h3>Si el impuesto es alto</h3>
-  <p>Al momento de enviar la declaración, el sistema del SII permite generar el giro en hasta tres anualidades, con lo que el pago se divide en tres cuotas anuales. Cada cuota vence el 31 de diciembre del año calendario que corresponda.</p>
+  <div class="norma">Ley 19.903, art. 11 (arancel del Registro Civil); Ley 16.271, art. 30 bis (Conservador). Montos en pesos calculados con la UTM de <span data-utm="mes">noviembre de 2026</span> (<span data-utm="valor">$72.440</span>) y la UTA de 12 UTM; cambian cada mes.</div>
+  <p>El valor que define el tramo es el del inventario completo, no el de tu parte. Por eso es importante valorizar bien desde el principio: un inventario inflado puede hacerte pasar a un tramo con cobro, y uno incompleto deja bienes fuera de la posesión efectiva.</p>
+
+  <h2>Si te asiste una clínica jurídica</h2>
+  <p>La asesoría es gratuita, pero eso no significa que todo el trámite lo sea. El impuesto a la herencia, si corresponde, se paga igual.</p>
+  <p>Sobre el arancel del Registro Civil hay una discusión abierta. En junio de 2026 la Corte de Apelaciones de Temuco acogió un recurso de protección de una persona patrocinada por una clínica jurídica universitaria y ordenó tramitar su posesión efectiva sin cobro. Es un fallo que vale para ese caso; no obliga al Registro Civil en otros, y no consta si fue confirmado. Si te cobran el arancel y no puedes pagarlo, coméntalo con quien te asiste antes de pagar.</p>
+
+  <h2>Si el impuesto es alto: el pago en cuotas</h2>
+  <p>Se puede pedir pagar el impuesto en cuotas anuales, en un plazo de hasta tres años. Antes de elegirlo, conviene saber sus condiciones:</p>
+  <ul>
+    <li>Hay que pedirlo <strong>dentro del plazo de dos años</strong> desde el fallecimiento.</li>
+    <li>Las cuotas no son sin costo: llevan <strong>reajuste e interés mensual</strong>, y quien elige cuotas no puede pedir después la condonación de esos intereses.</li>
+    <li>Cada cuota vence el <strong>31 de diciembre</strong> de cada año, empezando el año en que se resuelve la solicitud.</li>
+    <li>Si un heredero no paga una cuota, debe pagar todo lo que le queda hasta el 30 de marzo del año siguiente.</li>
+    <li>Mientras queden cuotas pendientes, el SII no emite el certificado de pago, salvo que se garantice el saldo. <strong>En la práctica, no se puede inscribir ni vender hasta terminar de pagar.</strong></li>
+  </ul>
+  <div class="norma">Ley 16.271, art. 50; Código Tributario, art. 53; SII, Circular 33 de 2021.</div>
 </section>
 
 <section class="pantalla" id="descuentos" hidden="">
-  <h1>¿Qué gastos puedo descontar para pagar menos impuestos?</h1>
-  <p class="bajada">Descontar significa restar un gasto o una deuda del total de la herencia antes de repartirla y antes de calcular el impuesto. Mientras más se descuenta, menor es lo que se reparte y menor es el impuesto.</p>
+  <h1>¿Qué gastos y deudas se descuentan?</h1>
+  <p class="bajada">Antes de repartir la herencia y de calcular el impuesto se restan ciertos gastos y deudas. Mientras más se puede descontar con respaldo, menor es la parte de cada heredero y, si corresponde, menor el impuesto.</p>
 
-  <h2>Qué son las bajas generales de la herencia</h2>
-  <p>La ley no permite descontar cualquier cosa. Existe una lista de rebajas, llamadas <strong>bajas generales de la herencia</strong>, que se restan del total de los bienes antes de cualquier otro cálculo. El resultado de esa resta es lo único que efectivamente se reparte entre los herederos.</p>
-  <div class="norma">Art. 959 del Código Civil. Las bajas se deducen del acervo o masa de bienes que el difunto ha dejado, incluidos los créditos hereditarios.</div>
+  <h2>Qué permite descontar la ley del impuesto</h2>
+  <p>Para el impuesto a la herencia, la lista está en el art. 4 de la Ley 16.271. Es parecida a las bajas generales del Código Civil, pero no igual, y para este trámite manda la ley tributaria.</p>
+  <div class="tabla-scroll">
+    <table>
+      <tbody><tr><th>Qué se descuenta</th><th>Con qué condición</th><th>Cómo se acredita</th></tr>
+      <tr><td><b>Gastos de la última enfermedad</b></td><td>Los que quedaron <strong>adeudados</strong> al fallecimiento. También los que la familia pagó de su bolsillo, o con un préstamo, antes del fallecimiento, si se acredita.</td><td>Boletas, bonos o cuentas de la clínica u hospital y comprobante de quién pagó</td></tr>
+      <tr><td><b>Gastos de entierro</b></td><td>Funeral, sepultura, cremación.</td><td>Boletas o facturas de la funeraria</td></tr>
+      <tr><td><b>Gastos del trámite</b></td><td>Los de la posesión efectiva y de la partición, incluidos honorarios de partidor, en lo que no excedan los aranceles vigentes.</td><td>Comprobantes de pago</td></tr>
+      <tr><td><b>Deudas que dejó la persona</b></td><td>Créditos, tarjetas, deudas con casas comerciales o tributarias. <strong>No</strong> las que paga un seguro de desgravamen, ni las contraídas para comprar, conservar o ampliar bienes exentos del impuesto.</td><td>Certificado de deuda con el saldo a la fecha del fallecimiento</td></tr>
+      <tr><td><b>Pensiones de alimentos obligatorias</b></td><td>Las que la persona debía pagar por ley.</td><td>Sentencia o acuerdo de alimentos</td></tr>
+    </tbody></table>
+  </div>
+  <div class="norma">Ley 16.271, art. 4: gastos de última enfermedad adeudados y de entierro (N.º 1); costas de apertura de la sucesión, posesión efectiva y partición (N.º 2); deudas hereditarias, incluidas las de última enfermedad pagadas antes por los herederos, y exclusión de las deudas por bienes exentos (N.º 3); asignaciones alimenticias forzosas (N.º 4); porción conyugal (N.º 5).</div>
 
-  <h3>Las que casi siempre importan</h3>
+  <h2>Lo que suele confundir</h2>
   <ul>
-    <li><strong>Gastos del funeral.</strong> Féretro, sepultura, nicho, cremación, servicios de la funeraria.</li>
-    <li><strong>Gastos de la última enfermedad.</strong> Honorarios médicos, clínica u hospital, medicamentos. Solo la parte que no haya sido cubierta por un seguro, isapre o fonasa.</li>
-    <li><strong>Deudas que dejó la persona.</strong> Créditos de consumo, tarjetas, deudas con casas comerciales, deudas tributarias. No se descuentan las que tenían seguro de desgravamen, porque esas las paga el seguro.</li>
+    <li><strong>Lo que cubrió la isapre, Fonasa o un seguro no se descuenta:</strong> solo lo que efectivamente quedó por pagar o pagó la familia.</li>
+    <li><strong>El crédito hipotecario con seguro de desgravamen</strong> no es una deuda de la herencia, porque lo paga el seguro. Y el seguro de vida que recibe la familia no paga este impuesto.</li>
+    <li><strong>Una deuda tomada para comprar la casa DFL 2 exenta</strong> no se descuenta, porque ese bien no paga impuesto.</li>
   </ul>
+  <div class="norma">Ley 16.271, arts. 4 N.º 3 y 20.</div>
 
-  <h3>Las otras que contempla la ley</h3>
-  <p>En los casos que se ven habitualmente en una clínica jurídica estas casi nunca aplican, pero conviene saber que existen:</p>
-  <ul>
-    <li>Las costas de la publicación del testamento, si lo hubo, y los demás gastos de apertura de la sucesión.</li>
-    <li>Los impuestos fiscales que gravaban la masa hereditaria al momento del fallecimiento, distintos del impuesto a la herencia.</li>
-    <li>Las asignaciones alimenticias forzosas, es decir, las pensiones de alimentos que la persona estaba obligada por ley a pagar en vida.</li>
-  </ul>
-
-  <h3>Qué necesitas para acreditarlos</h3>
+  <h2>Qué necesitas para acreditarlos</h2>
   <ul>
     <li>Boletas o facturas de la funeraria.</li>
-    <li>Boletas, bonos o comprobantes de gastos médicos y de farmacia del último período.</li>
+    <li>Boletas, bonos o comprobantes de gastos médicos y de farmacia del último período, y prueba de quién los pagó.</li>
     <li>Certificado de deuda del banco o de la casa comercial, con el saldo a la fecha del fallecimiento.</li>
+    <li>Comprobantes de lo pagado por la posesión efectiva.</li>
   </ul>
   <div class="aviso"><p><b>Guarda esas boletas.</b> Sin respaldo no se pueden descontar, aunque el gasto haya existido.</p></div>
   <div class="menu enlace-caja">
-    <button class="item" type="button" data-ir="conceptos"><b>Ver acervo bruto, acervo líquido y las bajas en detalle</b><span>En el diccionario, con la norma y un ejemplo numérico</span></button>
+    <button class="item" type="button" data-ir="que-entra"><b>Qué entra a la herencia y qué no</b><span>Con ilustraciones de una casa y un campo</span></button>
+    <button class="item" type="button" data-ir="conceptos"><b>Acervo bruto, acervo líquido y bajas en detalle</b><span>En el diccionario</span></button>
   </div>
 </section>
 
 <section class="pantalla" id="dudas-usuario" hidden="">
   <h1>Dudas frecuentes</h1>
   <details><summary>La posesión efectiva, ¿es para la casa o para todo?</summary>
-  <p>Para todo. La herencia es una universalidad: comprende el conjunto de bienes, derechos y deudas que dejó la persona, y no se tramita bien por bien. Por eso el inventario tiene que incluir todo lo que había, incluso lo que a la familia le parece de poco valor, como los muebles de la casa o una cuenta de ahorro con poco saldo.</p></details>
+  <p>Para todo. La herencia comprende el conjunto de bienes, derechos y deudas que dejó la persona, y no se tramita bien por bien. Por eso el inventario tiene que incluir todo lo que había, incluso lo que a la familia le parece de poco valor, como los muebles de la casa o una cuenta de ahorro con poco saldo.</p></details>
 
   <details><summary>¿El impuesto lo paga la herencia o cada heredero?</summary>
-  <p>Cada heredero, por su parte. La ley grava cada asignación por separado, y por eso cada uno tiene su propia exención según el parentesco. Puede ocurrir perfectamente que en una misma familia algunos herederos queden exentos y otros tengan que pagar.</p></details>
+  <p>Cada heredero, por su parte. La ley grava cada asignación por separado, y por eso cada uno tiene su propia exención según el parentesco. En una misma familia algunos herederos pueden quedar exentos y otros tener que pagar.</p>
+  <div class="norma">Ley 16.271, art. 2.</div></details>
 
-  <details><summary>¿Se paga impuesto por cosas por las que mi papá ya pagó impuestos?</summary>
-  <p>Es una crítica frecuente, pero la ley no grava el bien en sí, sino el hecho de recibirlo en herencia. Lo relevante en la práctica es que la exención de los parientes cercanos es alta y la mayoría de los casos termina en cero.</p></details>
+  <details><summary>¿Por qué se paga impuesto por cosas que mi papá ya pagó?</summary>
+  <p>Es una pregunta razonable. La respuesta es que se trata de impuestos distintos que gravan hechos distintos. Las contribuciones gravan tener una propiedad; el IVA, comprar; el impuesto a la renta, ganar ingresos. El impuesto a la herencia no grava de nuevo la casa ni el auto: grava <strong>el hecho de recibirlos</strong> por la muerte de otra persona, y lo paga quien los recibe, no quien murió.</p>
+  <p>Dicho eso, hay dos cosas que conviene saber para dimensionarlo:</p>
+  <ul>
+    <li>La ley deja fuera del impuesto una parte importante de lo que recibe cada heredero cercano: 600 UTM por cada hijo, cónyuge o conviviente civil y padre o madre. Por eso, en muchas herencias de familias cercanas nadie paga.</li>
+    <li>Algunos bienes no pagan este impuesto, con requisitos: los fondos de AFP hasta 4.000 UF, ciertas viviendas DFL 2 o de la Ley Pereira, y los seguros de vida.</li>
+  </ul>
+  <p>Que tu parte no pague impuesto no significa que puedas saltarte el SII: vas a necesitar el certificado de exención para inscribir los bienes.</p>
+  <div class="norma">Ley 16.271, arts. 1, 2 y 20; DL 3.500, art. 72; DFL 2, art. 16; Ley 9.135, art. 3.</div>
+  <div class="menu enlace-caja">
+    <button class="item" type="button" data-ir="cero"><b>Por qué ir al SII aunque no pagues</b><span>Declarar, pagar y obtener el certificado</span></button>
+    <button class="item" type="button" data-ir="que-entra"><b>Qué bienes entran y cuáles están exentos</b><span>Con ilustraciones</span></button>
+  </div></details>
 
   <details><summary>Falleció hace muchos años y nunca se hizo nada. ¿Todavía se puede?</summary>
-  <p>Sí, pero se complica. El impuesto debía declararse y pagarse dentro de dos años contados desde el fallecimiento, y pasado ese plazo se devengan intereses. Además, si en el intertanto murieron otras personas de la familia, hay que reconstruir toda la cadena de fallecimientos y herederos, que es lo que más encarece y demora estos casos.</p></details>
+  <p>Sí. La posesión efectiva se puede pedir en cualquier momento. Lo que cambia con el tiempo es lo que pasa con el impuesto:</p>
+  <ul>
+    <li><strong>Pasados dos años</strong> desde el fallecimiento, si había impuesto, se deben intereses penales desde esa fecha.</li>
+    <li>El SII tiene un plazo para revisar y cobrar: <strong>tres años</strong> desde que vencieron esos dos años, o <strong>seis</strong> si no se presentó declaración. Si ese plazo ya corrió, según el SII, el propio F4412 emite un certificado de vencimiento de los plazos legales.</li>
+  </ul>
+  <p>Para un fallecimiento de hace más de ocho años sin declaración, esto puede cambiar mucho lo que se espera pagar. Los plazos pueden interrumpirse en algunos casos, así que confírmalo con la clínica antes de dar nada por hecho.</p>
+  <p>Además, si en el intertanto murieron otras personas de la familia, hay que reconstruir la cadena de fallecimientos y herederos, y muchas veces tramitar más de una posesión efectiva.</p>
+  <div class="norma">Ley 16.271, art. 50; Código Tributario, art. 200; SII, preguntas frecuentes sobre herencias.</div></details>
 
   <details><summary>¿Puedo hacer el trámite en línea o tengo que ir presencialmente?</summary>
-  <p>El sistema del SII permite hacerlo en línea con clave única o clave tributaria. En la práctica, cuando falta un dato o el caso tiene alguna particularidad, el sistema no deja avanzar y hay que terminar presencialmente en una unidad del SII.</p></details>
+  <p>El formulario F4412 se completa en línea con la clave del heredero. Si el sistema no deja avanzar, por ejemplo porque no tiene registrada la fecha de defunción o porque un parentesco no coincide con sus bases, hay que regularizar ese dato con el SII. Después de enviada la declaración, el SII puede pedir antecedentes adicionales.</p></details>
 
   <details><summary>¿Puede otra persona hacer el trámite por mí?</summary>
-  <p>La declaración es una declaración jurada y la presenta el heredero. El acceso al sistema se hace con la clave única o la clave tributaria, que son personales y no se pueden delegar. Quien te asiste puede acompañarte y ayudarte a completar el formulario, pero la responsabilidad de lo declarado es tuya. Para que otra persona actúe por ti se necesita un mandato.</p></details>
+  <p>La declaración la presenta un heredero, y quien la envía firma una declaración jurada sobre los datos. La clave es personal: no se presta. Según las instrucciones del F4412, también puede presentarla un mandatario o un representante electrónico autorizado previamente ante el SII.</p>
+  <p>Quien te asiste en la clínica puede acompañarte y ayudarte a completar el formulario, pero la responsabilidad de lo declarado es de quien lo envía. Si estás pensando en dar un mandato, coméntalo antes con la clínica.</p></details>
 
   <details><summary>¿Qué pasa si me olvidé de declarar un bien?</summary>
-  <p>La declaración se puede rectificar. El sistema del SII tiene una opción específica para eso, que permite corregir los datos de una declaración ya presentada. Es mejor rectificar que dejarlo así: los antecedentes deben conservarse y el SII puede fiscalizar más adelante.</p></details>
+  <p>La declaración se puede rectificar en el mismo sistema del SII. Es mejor rectificar que dejarlo así: si se vende un bien que no estaba en el inventario, el SII puede cobrar de inmediato y aplicar multa.</p>
+  <p>Si la declaración original se hizo en el formulario antiguo en papel (F4423, usado hasta 2021), revisa con el SII o con la clínica cómo rectificarla.</p>
+  <div class="norma">Ley 16.271, art. 69.</div></details>
+
+  <details><summary>¿Qué guarda esta página de lo que escribo?</summary>
+  <p>Nada de lo que escribes en la calculadora se guarda ni se envía. Solo se recuerda en tu navegador qué documentos marcaste en la lista de chequeo. <button type="button" class="enlace-txt" data-ir="privacidad">Ver el detalle</button>.</p></details>
 </section>
 
 <section class="pantalla" id="dos-utm" hidden="">
   <h1>UTM del fallecimiento y UTM de la declaración</h1>
-  <p class="bajada">El trámite usa dos valores distintos de UTM en momentos distintos, y el formulario no lo advierte con claridad. Es el error más repetido.</p>
+  <p class="bajada">El trámite usa dos valores distintos de UTM en momentos distintos, y es fácil confundirlos.</p>
+  <div class="dos-utm-vis" role="group" aria-label="Las dos UTM del trámite">
+    <div class="lado"><b>UTM del mes del fallecimiento</b>Mide la herencia:<ul><li>pasa a UTM la parte de cada heredero</li><li>aplica la exención</li><li>ubica el tramo y su deducción</li></ul></div>
+    <div class="medio" aria-hidden="true">→</div>
+    <div class="lado"><b>UTM del mes en que se paga</b>Convierte el impuesto a pesos:<ul><li>el impuesto queda fijado en UTM</li><li>se paga en pesos según la UTM del día del pago</li></ul></div>
+  </div>
   <h2>Operación por operación</h2>
   <div class="tabla-scroll">
     <table>
@@ -554,18 +687,18 @@
       <tr><td>Convertir a UTM la asignación de cada heredero para ubicar el tramo</td><td><strong>UTM del mes del fallecimiento</strong></td></tr>
       <tr><td>Aplicar la exención por parentesco (600 o 60 UTM)</td><td><strong>UTM del mes del fallecimiento</strong></td></tr>
       <tr><td>Aplicar la tabla de tramos y su deducción</td><td><strong>UTM del mes del fallecimiento</strong></td></tr>
-      <tr><td>Convertir a pesos el impuesto ya calculado, para pagarlo</td><td><strong>UTM del mes de la declaración</strong></td></tr>
-      <tr><td>Calcular el valor de cada cuota si se paga en anualidades</td><td><strong>UTM del mes de la declaración</strong></td></tr>
+      <tr><td>Convertir a pesos el impuesto ya calculado, para pagarlo</td><td><strong>UTM del mes en que se paga</strong></td></tr>
+      <tr><td>Pagar en cuotas anuales</td><td>Las cuotas llevan además reajuste e interés (art. 50); el sistema del SII calcula su valor</td></tr>
     </tbody></table>
   </div>
   <p>La lógica es la siguiente: la herencia se mide con la vara del día en que falleció la persona, porque en ese momento quedó fijado el patrimonio, pero se paga con la vara de hoy. Si el fallecimiento fue hace años, la diferencia entre ambos valores es considerable.</p>
-  <div class="norma">La unidad tributaria aplicable a las exenciones y tramos es la que rija al momento de la delación de la herencia (art. 2 de la Ley 16.271). El instructivo del F4423 en papel ordena expresamente registrar el monto de la UTM a la fecha de la declaración para convertir el impuesto total a pesos.</div>
+  <div class="norma">Art. 2 de la Ley 16.271: la unidad tributaria aplicable es la que rija al momento de la delación de la herencia, y el impuesto "se expresará en unidades tributarias mensuales según su valor vigente a la fecha de la delación … y se pagará según su valor en pesos a la fecha en que se efectúe el pago".</div>
   <h3>Dónde se consultan los valores</h3>
   <ul>
     <li><a href="https://www.sii.cl/valores_y_fechas/utm/utm2026.htm" data-utm="link" target="_blank" rel="noopener">Tabla UTM del año en curso (sii.cl)</a></li>
     <li><a href="https://www.sii.cl/valores_y_fechas/index_valores_y_fechas.html" target="_blank" rel="noopener">Índice de valores y fechas del SII</a>, para años anteriores</li>
   </ul>
-  <div class="nota">Valor usado en esta guía: <strong class="dato">1 UTM = <span data-utm="valor">$71.721</span></strong> (<span data-utm="mes">septiembre de 2026</span>). Se reajusta el primer día de cada mes.</div>
+  <div class="nota">Valor usado en los ejemplos de esta guía: <strong class="dato">1 UTM = <span data-utm="valor">$72.440</span></strong> (<span data-utm="mes">noviembre de 2026</span>). Se reajusta cada mes. La calculadora trae la tabla mensual desde enero de 2019 y elige la que corresponde a la fecha.</div>
 </section>
 
 <section class="pantalla" id="tablas" hidden="">
@@ -582,7 +715,7 @@
 
   <h2>Regla previa: el impuesto es por asignación</h2>
   <p>Antes de mirar las tablas hay que tener claro esto, porque de aquí depende todo lo demás: el impuesto no grava la herencia como un todo, sino <strong>cada asignación por separado</strong>. Cada asignatario tiene su propia base imponible, su propia exención, su propio tramo y su propio recargo.</p>
-  <div class="norma">Art. 2 de la Ley 16.271: el impuesto se aplicará sobre el valor líquido de cada asignación o donación, con arreglo a una escala progresiva. El instructivo del F4423 lo confirma al ordenar calcular el impuesto total de la herencia como la <em>suma</em> del impuesto total de cada asignación.</div>
+  <div class="norma">Art. 2 de la Ley 16.271: el impuesto se aplicará sobre el valor líquido de cada asignación o donación, con arreglo a una escala progresiva. El antiguo instructivo del F4423 lo decía expresamente: el impuesto de la herencia es la <em>suma</em> del impuesto de cada asignación. El F4412 calcula por separado a cada asignatario.</div>
 
   <h2>Tabla 1. Exención según parentesco</h2>
   <p>Se resta de la asignación <strong>antes</strong> de aplicar cualquier tasa. Lo que queda después de esa resta es la base imponible. Si la resta da cero o negativo, ese asignatario queda exento y ahí termina el cálculo para él.</p>
@@ -590,16 +723,16 @@
   <div class="tabla-scroll">
     <table>
       <tbody><tr><th>Heredero</th><th class="num">Exención (UTM)</th><th class="num">Aproximado en pesos</th></tr>
-      <tr><td>Hijo</td><td class="num">600</td><td class="num" data-utm-por="600">$43.032.600</td></tr>
-      <tr><td>Cónyuge o conviviente civil</td><td class="num">600</td><td class="num" data-utm-por="600">$43.032.600</td></tr>
-      <tr><td>Ascendiente</td><td class="num">600</td><td class="num" data-utm-por="600">$43.032.600</td></tr>
-      <tr><td>Hermano</td><td class="num">60</td><td class="num" data-utm-por="60">$4.303.260</td></tr>
-      <tr><td>Medio hermano</td><td class="num">60</td><td class="num" data-utm-por="60">$4.303.260</td></tr>
-      <tr><td>Colateral 3.º o 4.º grado</td><td class="num">60</td><td class="num" data-utm-por="60">$4.303.260</td></tr>
+      <tr><td>Hijo</td><td class="num">600</td><td class="num" data-utm-por="600">$43.464.000</td></tr>
+      <tr><td>Cónyuge o conviviente civil</td><td class="num">600</td><td class="num" data-utm-por="600">$43.464.000</td></tr>
+      <tr><td>Ascendiente</td><td class="num">600</td><td class="num" data-utm-por="600">$43.464.000</td></tr>
+      <tr><td>Hermano</td><td class="num">60</td><td class="num" data-utm-por="60">$4.346.400</td></tr>
+      <tr><td>Medio hermano</td><td class="num">60</td><td class="num" data-utm-por="60">$4.346.400</td></tr>
+      <tr><td>Colateral 3.º o 4.º grado</td><td class="num">60</td><td class="num" data-utm-por="60">$4.346.400</td></tr>
       <tr><td>Colateral 5.º o 6.º grado</td><td class="num">0</td><td class="num">$0</td></tr>
     </tbody></table>
   </div>
-  <div class="nota">Montos en pesos aproximados, calculados con la UTM de <span data-utm="mes">septiembre de 2026</span> (<span data-utm="valor">$71.721</span>). Verifica siempre el valor vigente en la <a href="https://www.sii.cl/valores_y_fechas/utm/utm2026.htm" data-utm="link" target="_blank" rel="noopener">tabla del SII</a>.</div>
+  <div class="nota">Montos en pesos aproximados, calculados con la UTM de <span data-utm="mes">noviembre de 2026</span> (<span data-utm="valor">$72.440</span>). Para un caso concreto vale la UTM del mes del fallecimiento: revisa la <a href="https://www.sii.cl/valores_y_fechas/utm/utm2026.htm" data-utm="link" target="_blank" rel="noopener">tabla del SII</a>.</div>
   <p>La ley expresa estas exenciones en unidades tributarias anuales: 50 UTA para hijo, cónyuge y ascendiente, y 5 UTA para los colaterales de segundo a cuarto grado. Como una UTA equivale a doce UTM, resultan las 600 y las 60 UTM de la tabla.</p>
 
   <h2>Tabla 2. Tramos: de dónde sale la deducción</h2>
@@ -670,7 +803,7 @@
   <p>El mismo monto heredado, casi el doble de impuesto. Las dos tablas trabajan en el mismo sentido: la cercanía del parentesco aumenta la exención y evita el recargo.</p>
 
   <h2>Después del cálculo</h2>
-  <p>Al impuesto total se le restan los créditos que correspondan (donaciones previas ya gravadas, impuestos pagados en el extranjero, discapacidad del asignatario, donaciones acogidas a leyes especiales), y el resultado es el impuesto neto. Ese neto en UTM se multiplica por la UTM de la fecha de la declaración para llegar a los pesos que se giran.</p>
+  <p>Al impuesto total se le restan los créditos que correspondan (donaciones previas ya gravadas, impuestos pagados en el extranjero, discapacidad del asignatario, donaciones acogidas a leyes especiales), y el resultado es el impuesto neto. Ese neto en UTM se multiplica por la UTM del mes en que se paga para llegar a los pesos (art. 2). La rebaja por discapacidad es de 30% del impuesto para quienes están inscritos en el Registro Nacional de la Discapacidad.</p>
   <div class="nota">
     Cuando el trámite se hace en el sistema en línea del SII, todos estos cálculos los hace el propio sistema: las secciones de base imponible y de cálculo del impuesto son de solo lectura. Estas tablas sirven para entender el resultado, anticiparlo y detectar si algo salió mal.
   </div>
@@ -692,6 +825,7 @@
     <li><strong>Sociedad conyugal.</strong> Se forma un haber social único. Al disolverse por la muerte, corresponde liquidarla: en la práctica, y a falta de bienes propios relevantes de cada cónyuge, se estima que la mitad del haber social pertenece al cónyuge sobreviviente por gananciales, y la otra mitad, sumada a los bienes propios del causante, forma la herencia.</li>
     <li><strong>Participación en los gananciales.</strong> Durante el matrimonio cada cónyuge administra su propio patrimonio por separado, sin masa común. Al disolverse el régimen por la muerte, el cónyuge que obtuvo menos gananciales tiene un crédito de participación en contra del otro patrimonio, que se calcula comparando el patrimonio final e inicial de cada uno. <strong>No es automáticamente la mitad:</strong> depende de cuánto ganó cada uno durante el matrimonio.</li>
     <li><strong>Separación total de bienes.</strong> No hay masa común que liquidar. Los bienes que estaban a nombre del causante forman íntegramente la herencia, y los que estaban a nombre del cónyuge sobreviviente son solo suyos.</li>
+    <li><strong>Acuerdo de unión civil.</strong> Rige la separación, salvo que al celebrarlo se haya pactado comunidad: en ese caso, los bienes adquiridos a título oneroso durante el acuerdo se consideran de ambos por mitades (Ley 20.830, art. 15).</li>
   </ul>
   <div class="norma">Arts. 1718 y 1725 y siguientes del Código Civil para la sociedad conyugal; Ley 19.335 (arts. 1792-1 y siguientes del Código Civil) para la participación en los gananciales; art. 1720 para la separación de bienes.</div>
   <p>Este paso es previo al reparto entre los órdenes sucesorios: solo la porción que corresponde al causante entra a la masa que se divide entre sus herederos, incluido su cónyuge en su calidad de heredero.</p>
@@ -708,7 +842,7 @@
       <tr><td>7 o más hijos, más cónyuge</td><td>Regla especial</td><td>El cónyuge lleva un cuarto del acervo; el resto se divide en partes iguales entre los hijos</td></tr>
     </tbody></table>
   </div>
-  <h3>Ejemplo del caso más común</h3>
+  <h3>Ejemplo: cónyuge y tres hijos</h3>
   <p>Cónyuge y tres hijos, con un acervo líquido de $80.000.000.</p>
   <div class="calculo">
     <div class="linea"><span>Número total de partes: 3 hijos + 2</span><span>5</span></div>
@@ -720,7 +854,7 @@
   <p>La regla general es que el cónyuge lleve el doble de lo que lleva cada hijo, pero la ley le garantiza un piso: su porción no puede bajar de la cuarta parte de la herencia o de la cuarta parte de la mitad legitimaria, según el caso.</p>
   <p>Con seis hijos, dos partes de ocho son exactamente el 25%, así que ambas reglas coinciden. Con siete hijos, dos partes de nueve serían 22,2%, bajo el piso, y por eso se aplica el mínimo del cuarto y el resto se divide en partes iguales entre los hijos.</p>
   <div class="aviso">
-    <p><b>Nota para el estudiante.</b> El instructivo del F4423 dice "más de 1 hijo pero menos de 7" para una fórmula y "más de 7 hijos" para la otra, y deja sin regla el caso de exactamente siete hijos. El art. 988 lo resuelve: desde los siete hijos opera el mínimo de un cuarto para el cónyuge.</p>
+    <p><b>Nota para el estudiante.</b> El instructivo del antiguo F4423 decía "más de 1 hijo pero menos de 7" para una fórmula y "más de 7 hijos" para la otra, y dejaba sin regla el caso de exactamente siete hijos. El art. 988 lo resuelve: desde los siete hijos opera el mínimo de un cuarto para el cónyuge.</p>
   </div>
 
   <h2>Segundo orden: no hay hijos</h2>
@@ -744,9 +878,27 @@
   <h2>Quinto orden: el Fisco</h2>
   <p>A falta de todos los herederos anteriores, sucede el Fisco.</p>
 
-  <div class="aviso">
-    <p><b>Advertencia del propio instructivo del SII:</b> en el cuadro de asignatarios se registran <strong>solo los herederos directos</strong>. No se incluyen los que heredan por transmisión ni por representación. Es contraintuitivo y hay que revisarlo caso a caso, porque contradice la forma en que se razona el reparto civil.</p>
+  <h2>Cuando un heredero murió: representación o transmisión</h2>
+  <p>Todo depende de quién murió primero. Dos casos con la misma familia: un abuelo, su hijo y los hijos de este.</p>
+  <div class="linea-tiempo" role="group" aria-label="Diferencia entre representación y transmisión">
+    <div class="lt-caso">
+      <h3>Representación: el hijo murió antes</h3>
+      <div class="lt-eje"><span class="lt-hito primero">1.º muere el hijo</span><span class="lt-flecha" aria-hidden="true">→</span><span class="lt-hito">2.º muere el abuelo</span></div>
+      <p>Los nietos heredan directamente del abuelo, en el lugar de su padre, y se reparten entre todos lo que a él le habría tocado (por estirpes).</p>
+      <p><b>Impuesto:</b> pagan el que le habría correspondido a su padre, con una sola exención para todos (art. 3 de la Ley 16.271).</p>
+    </div>
+    <div class="lt-caso">
+      <h3>Transmisión: el hijo murió después</h3>
+      <div class="lt-eje"><span class="lt-hito primero">1.º muere el abuelo</span><span class="lt-flecha" aria-hidden="true">→</span><span class="lt-hito">2.º muere el hijo, sin aceptar</span></div>
+      <p>El hijo alcanzó a ser heredero del abuelo. Los nietos heredan del hijo y, dentro de esa herencia, reciben su derecho a aceptar la del abuelo.</p>
+      <p><b>Trámite:</b> normalmente hay dos posesiones efectivas encadenadas, una por cada fallecimiento.</p>
+    </div>
   </div>
+  <div class="norma">Código Civil, arts. 957 (transmisión) y 984 a 986 (representación); Ley 16.271, art. 3.</div>
+  <h3>Cómo se ingresa en el F4412</h3>
+  <p>Según las instrucciones del F4412, si un heredero murió antes que el causante se agrega a ese heredero fallecido como asignatario y, dentro de su ficha, a quienes lo representan; el sistema completa su parentesco. El antiguo instructivo del F4423 indicaba registrar solo a los herederos directos: <strong>esa instrucción ya no corresponde</strong>.</p>
+  <h3>Sobrinos cuando ningún hermano sobrevive</h3>
+  <p>Es un caso discutido. La Corte de Apelaciones de San Miguel (rol 1929-2022) repartió por cabeza entre los sobrinos, como colaterales del cuarto orden. En 2025, la Corte Suprema resolvió que heredan por representación de sus padres, por estirpes, en el orden de los hermanos. Según el criterio, la parte de cada sobrino cambia, y también quién más hereda. La calculadora no resuelve este caso: requiere revisión.</p>
   <div class="menu enlace-caja">
     <button class="item" type="button" data-ir="conceptos"><b>Ver representación, transmisión y simple conjunción en detalle</b><span>En el diccionario</span></button>
   </div>
@@ -754,7 +906,8 @@
 
 <section class="pantalla" id="bienes" hidden="">
   <h1>¿Dónde declaro cada bien?</h1>
-  <p class="bajada">Escribe lo que tenía la persona fallecida, en palabras normales, y te muestra en qué categoría del formulario va, con qué valor y de dónde se saca ese dato.</p>
+  <p class="bajada">Escribe lo que tenía la persona fallecida, en palabras normales, y te muestra en qué categoría del formulario F4412 va, con qué valor y de dónde se saca ese dato.</p>
+  <div class="menu enlace-caja"><button class="item" type="button" data-ir="que-entra"><b>Antes: qué entra a la herencia y qué no</b><span>Con ilustraciones de una casa y un campo</span></button></div>
   <div class="ubicacion">
     <strong>Antes de empezar.</strong> El formulario en línea muestra de entrada solo siete categorías. Las otras quince aparecen al hacer clic en el botón azul <strong>"Otros"</strong>, abajo a la derecha del bloque de bienes. Si no encuentras una categoría, es casi seguro que está ahí. Los conceptos que aparecen en los desplegables están explicados en el diccionario.
   </div>
@@ -764,16 +917,24 @@
   <div class="buscador">
     <input type="text" id="buscarBien" placeholder="casa, auto, cuenta de ahorro, deudas…" aria-label="Buscar un bien">
   </div>
-  <div id="resultadoBienes"><div class="bien"><b>Casa o departamento en ciudad</b><span class="cat">Bienes raíces no agrícolas</span><span class="detalle">Se busca por rol y comuna con el botón Buscar; el sistema trae dirección, destino y avalúo. Pide además la fecha de adquisición.</span><span class="fuente">Valor: avalúo fiscal vigente al mes del fallecimiento (art. 46 letra a). Si fue comprado dentro de los tres años anteriores, va el precio de compra si es mayor. El certificado de avalúo se obtiene gratis en sii.cl con el rol y la comuna.</span></div><div class="bien"><b>¿Cómo sé si el inmueble es agrícola o no agrícola?</b><span class="cat">Cómo distinguirlos</span><span class="detalle">Determina en qué categoría se declara, porque son dos categorías distintas del formulario.</span><span class="fuente">Aparece como Destino en el certificado de avalúo fiscal del SII. También lo devuelve la ventana Consultar Propiedad del propio formulario al buscar por rol.</span></div><div class="bien"><b>Parcela, campo o predio agrícola</b><span class="cat">Bienes raíces agrícolas</span><span class="detalle">Misma mecánica que el inmueble urbano, pero en la categoría agrícola. Está dentro del botón Otros.</span><span class="fuente">Valor: avalúo fiscal al mes del fallecimiento. No incluye los bienes excluidos del avalúo, que van aparte.</span></div><div class="bien"><b>Animales, plantaciones, maquinaria o construcciones del campo</b><span class="cat">Bienes excluidos de avalúo fiscal de inmuebles agrícolas</span><span class="detalle">Se elige el rol del predio y luego el tipo: construcciones, instalaciones, plantaciones, maquinaria, ganado u otros. Hay una casilla para declarar que no tiene.</span><span class="fuente">Valor corriente en plaza a la fecha del fallecimiento (art. 46 bis). Es la categoría que el SII fiscaliza con más atención en herencias rurales.</span></div><div class="bien"><b>Auto, camioneta o moto</b><span class="cat">Vehículos</span><span class="detalle">Se busca por código SII y año de fabricación; el sistema devuelve marca, modelo, versión y monto de tasación.</span><span class="fuente">El código SII está en el permiso de circulación: una letra según el tipo (A automóvil, C camioneta, S station wagon) más seis dígitos. Valor: tasación vigente a la fecha del fallecimiento (art. 46 letra g).</span></div><div class="bien"><b>Muebles y cosas de la casa</b><span class="cat">Menaje</span><span class="detalle">Se puede detallar bien por bien, o acogerse a la presunción del 20% buscando el rol del último domicilio del causante.</span><span class="fuente">La presunción del art. 47 estima el menaje en 20% del valor del inmueble que guarnecía, aunque ese inmueble no fuera del causante. Procede cuando no se justifica la falta de muebles, cuando no son proporcionados a la masa o cuando no se pudieron valorizar.</span></div><div class="bien"><b>Dinero en efectivo o en el banco</b><span class="cat">Dinero</span><span class="detalle">Se elige la institución de un desplegable de veinte opciones, o dinero en efectivo.</span><span class="fuente">Saldo a la fecha del fallecimiento. Los bancos están obligados a entregar a los herederos y al SII los datos de saldos, cuentas corrientes, garantías y custodias del cliente fallecido (art. 45 de la Ley 16.271).</span></div><div class="bien"><b>Fondos de AFP</b><span class="cat">Fondos AFP</span><span class="detalle">Pide el fondo total en UF, el fondo heredable en UF y el fondo heredable en pesos. No son lo mismo: parte del fondo puede destinarse a pensiones de sobrevivencia y esa parte no se hereda.</span><span class="fuente">Certificado de saldo de la cuenta de capitalización individual, que emite la AFP a solicitud de los herederos.</span></div><div class="bien"><b>Depósito a plazo, fondo mutuo o bonos</b><span class="cat">Otros valores mobiliarios</span><span class="detalle">Un desplegable distingue bonos, depósitos a plazo, fondo mutuo, fondo de inversión privado, efectos públicos y otros.</span><span class="fuente">Certificado de la institución con el saldo o valor a la fecha del fallecimiento.</span></div><div class="bien"><b>Acciones que se transan en bolsa</b><span class="cat">Acciones transadas en bolsa</span><span class="detalle">Son las de sociedades anónimas abiertas y otros valores con cotización bursátil. Pide número de acciones y valor promedio.</span><span class="fuente">El valor es el promedio del precio que tuvieron durante los seis meses anteriores al fallecimiento (art. 46 letra b). Se obtiene del corredor o de la bolsa. Si la sociedad tenía más del 30% de su capital en manos del causante o su familia, se valoriza igualmente a valor corriente en plaza.</span></div><div class="bien"><b>Acciones de una SpA o sociedad anónima cerrada</b><span class="cat">Acciones no transadas en bolsa</span><span class="detalle">Comprende sociedades anónimas cerradas, sociedades por acciones y en comandita por acciones. Pide número de acciones y valor corriente en plaza.</span><span class="fuente">Como no tienen cotización, se valorizan a valor corriente en plaza (art. 46 bis), y en la práctica se estima a partir del último balance. Se declara solo la parte del causante, no el total del capital social.</span></div><div class="bien"><b>Participación en una sociedad de responsabilidad limitada o EIRL</b><span class="cat">Derechos en sociedades de personas</span><span class="detalle">Pide RUT y nombre de la entidad, total de activos, total de pasivos exigibles, y una columna llamada Valor sociedad Leg 16.271.</span><span class="fuente">Esa columna es la aplicación del art. 46 letra f: al negocio o a los derechos se les asigna el valor que resulte de aplicar a los bienes del activo las reglas de ese artículo, incluyendo los intangibles a valor corriente en plaza, con deducción del pasivo acreditado. Sobre ese valor neto se aplica el porcentaje de participación del causante: se declara lo que era suyo, no el 100% de la sociedad. Los datos salen del balance y de la escritura social.</span></div><div class="bien"><b>Participación en una sociedad civil</b><span class="cat">Sociedades civiles</span><span class="detalle">Solo dos tipos: sociedad colectiva civil y sociedad en comandita civil. Pide activos, pasivos exigibles y valor neto.</span><span class="fuente">La sociedad es civil o comercial según su objeto: son comerciales las que se forman para negocios que la ley califica de actos de comercio, y civiles las demás (art. 2059 del Código Civil). Las anónimas son siempre mercantiles. Se declara la participación del causante, no el total.</span></div><div class="bien"><b>Plata que le debían al fallecido</b><span class="cat">Cuentas por cobrar</span><span class="detalle">Pide descripción, RUT del deudor y valor corriente en plaza. Suma a la herencia, no la resta.</span><span class="fuente">Documento que acredite el crédito: pagaré, contrato o reconocimiento de deuda.</span></div><div class="bien"><b>Deudas que dejó el fallecido</b><span class="cat">Pasivos heredables</span><span class="detalle">Pide descripción, RUT del acreedor, fecha del contrato y valor de la obligación. Resta de la masa.</span><span class="fuente">Certificado de deuda con el saldo a la fecha del fallecimiento. No se incluyen las que tenían seguro de desgravamen, porque las paga el seguro.</span></div><div class="bien"><b>Funeral y gastos de la última enfermedad</b><span class="cat">Gastos de última enfermedad y otros</span><span class="detalle">Solo pide descripción y valor. Resta de la masa.</span><span class="fuente">Boletas y facturas de la funeraria, y bonos o boletas médicas. Solo la parte no cubierta por seguros. Son bajas generales de la herencia (art. 959 del Código Civil).</span></div><div class="bien"><b>Joyas, obras de arte, armas o colecciones</b><span class="cat">Joyas, objetos de arte, antigüedades y armas</span><span class="detalle">Un desplegable ofrece doce tipos: joyas, antigüedades, obras de arte, alfombras y tapices, colecciones, pieles finas, instrumentos musicales, bibliotecas, equipamiento de oficio, vinos y licores, armas y otros.</span><span class="fuente">Valor corriente en plaza (art. 46 bis). No entran en el menaje, que es solo mobiliario común.</span></div><div class="bien"><b>Bienes en el extranjero</b><span class="cat">Bienes situados en el extranjero</span><span class="detalle">Pide el tipo de bien, el país de ubicación, y también los impuestos pagados en el extranjero con su fecha y la UTM de ese momento.</span><span class="fuente">Deben colacionarse en el inventario. El impuesto pagado afuera sirve de abono contra el que se adeude en Chile, pero el total no puede ser inferior al que habría correspondido considerando solo los bienes situados en Chile (art. 1 de la Ley 16.271).</span></div><div class="bien"><b>Derechos de agua, mineros, marcas o propiedad intelectual</b><span class="cat">Activos intangibles</span><span class="detalle">Un desplegable ofrece derechos de aguas, de minería, propiedad intelectual, propiedad industrial y otros.</span><span class="fuente">Valor corriente en plaza (art. 46 bis).</span></div><div class="bien"><b>Embarcaciones o aeronaves</b><span class="cat">Naves y aeronaves</span><span class="detalle">Distingue nave mayor, nave menor, artefacto naval mayor y menor, y aeronave de destino comercial o particular.</span><span class="fuente">Valor corriente en plaza (art. 46 bis). Deben estar inscritas a nombre del causante.</span></div><div class="bien"><b>Bien vendido en subasta pública</b><span class="cat">Bienes en pública subasta</span><span class="detalle">Aplica si el bien se licitó en subasta pública con admisión de postores extraños dentro de los nueve meses siguientes a la delación.</span><span class="fuente">En ese caso el bien se valora al precio en que fue subastado, y no por las reglas generales (art. 46 letra d).</span></div><div class="bien"><b>Algo que no calza en ninguna categoría</b><span class="cat">Otros bienes y/o derechos</span><span class="detalle">Última opción. Antes de usarla, revisa las quince categorías que aparecen al apretar el botón azul Otros.</span><span class="fuente">Valor corriente en plaza (art. 46 bis).</span></div></div>
+  <div id="resultadoBienes" aria-live="polite"><div class="bien"><b>Casa o departamento en ciudad</b><span class="cat">Bienes raíces no agrícolas</span><span class="detalle">Se busca por rol y comuna con el botón Buscar; el sistema trae dirección, destino y avalúo. Pide además la fecha de adquisición.</span><span class="fuente">Valor: avalúo fiscal vigente al mes del fallecimiento (art. 46 letra a). Si fue comprado dentro de los tres años anteriores, va el precio de compra si es mayor. El certificado de avalúo se obtiene gratis en sii.cl con el rol y la comuna. Si es una vivienda DFL 2 o de la Ley Pereira, la exención se indica en las opciones avanzadas del bien.</span></div><div class="bien"><b>Instalaciones fijas de la casa: cañerías, pisos, árboles</b><span class="cat">Dentro del bien raíz</span><span class="detalle">Son inmuebles por adherencia o por destinación: siguen a la casa o al terreno y no son menaje.</span><span class="fuente">Si están comprendidas en el avalúo fiscal no se declaran aparte. Las que quedan fuera del avalúo se valoran a valor corriente en plaza (art. 46 letra a). <button type="button" class="enlace-txt" data-ir="que-entra">Ver la ilustración</button></span></div><div class="bien"><b>¿Cómo sé si el inmueble es agrícola o no agrícola?</b><span class="cat">Cómo distinguirlos</span><span class="detalle">Determina en qué categoría se declara, porque son dos categorías distintas del formulario.</span><span class="fuente">Aparece como Destino en el certificado de avalúo fiscal del SII. También lo devuelve la ventana Consultar Propiedad del propio formulario al buscar por rol.</span></div><div class="bien"><b>Parcela, campo o predio agrícola</b><span class="cat">Bienes raíces agrícolas</span><span class="detalle">Misma mecánica que el inmueble urbano, pero en la categoría agrícola. Está dentro del botón Otros.</span><span class="fuente">Valor: avalúo fiscal al mes del fallecimiento. No incluye los bienes excluidos del avalúo, que van aparte.</span></div><div class="bien"><b>Animales, plantaciones, maquinaria o construcciones del campo</b><span class="cat">Bienes excluidos de avalúo fiscal de inmuebles agrícolas</span><span class="detalle">Se elige el rol del predio y luego el tipo: construcciones, instalaciones, plantaciones, maquinaria, ganado u otros. Hay una casilla para declarar que no tiene.</span><span class="fuente">Valor corriente en plaza a la fecha del fallecimiento (art. 46 bis). Si el valor se declara así, el SII puede citar al contribuyente dentro de los 60 días siguientes para revisarlo (art. 50). <button type="button" class="enlace-txt" data-ir="que-entra">Ver la ilustración del campo</button></span></div><div class="bien"><b>Auto, camioneta o moto</b><span class="cat">Vehículos</span><span class="detalle">Se busca por código SII y año de fabricación; el sistema devuelve marca, modelo, versión y monto de tasación.</span><span class="fuente">El código SII está en el permiso de circulación: una letra según el tipo (A automóvil, C camioneta, S station wagon) más seis dígitos. Valor: el formulario trae la tasación fiscal del SII. Como bien mueble, la regla legal es el valor corriente en plaza (art. 46 letra c y art. 46 bis).</span></div><div class="bien"><b>Muebles y cosas de la casa</b><span class="cat">Menaje</span><span class="detalle">Se puede detallar bien por bien, o acogerse a la presunción del 20% buscando el rol del último domicilio del causante.</span><span class="fuente">La presunción del art. 47 estima el menaje en 20% del valor del inmueble que guarnecía, aunque ese inmueble no fuera del causante. Procede cuando no se justifica la falta de muebles, cuando no son proporcionados a la masa o cuando no se pudieron valorizar. <button type="button" class="enlace-txt" data-ir="que-entra">Qué es menaje y qué no</button></span></div><div class="bien"><b>Dinero en efectivo o en el banco</b><span class="cat">Dinero</span><span class="detalle">Se elige la institución de un desplegable de veinte opciones, o dinero en efectivo.</span><span class="fuente">Saldo a la fecha del fallecimiento. Los bancos están obligados a entregar a los herederos y al SII los datos de saldos, cuentas corrientes, garantías y custodias del cliente fallecido (art. 45 de la Ley 16.271).</span></div><div class="bien"><b>Fondos de AFP</b><span class="cat">Fondos AFP</span><span class="detalle">Pide el fondo total en UF, el fondo heredable en UF y el fondo heredable en pesos. No son lo mismo: parte del fondo puede destinarse a pensiones de sobrevivencia y esa parte no se hereda.</span><span class="fuente">Certificado de saldo de la cuenta de capitalización individual, que emite la AFP a solicitud de los herederos. Los fondos están exentos del impuesto hasta 4.000 UF (art. 72 del DL 3.500); según sus instrucciones, el F4412 descuenta ese monto.</span></div><div class="bien"><b>Depósito a plazo, fondo mutuo o bonos</b><span class="cat">Otros valores mobiliarios</span><span class="detalle">Un desplegable distingue bonos, depósitos a plazo, fondo mutuo, fondo de inversión privado, efectos públicos y otros.</span><span class="fuente">Certificado de la institución con el saldo o valor a la fecha del fallecimiento.</span></div><div class="bien"><b>Acciones que se transan en bolsa</b><span class="cat">Acciones transadas en bolsa</span><span class="detalle">Son las de sociedades anónimas abiertas y otros valores con cotización bursátil. Pide número de acciones y valor promedio.</span><span class="fuente">El valor es el promedio del precio que tuvieron durante los seis meses anteriores al fallecimiento (art. 46 letra b). Se obtiene del corredor o de la bolsa. Si la sociedad tenía más del 30% de su capital en manos del causante o su familia, se valoriza igualmente a valor corriente en plaza.</span></div><div class="bien"><b>Acciones de una SpA o sociedad anónima cerrada</b><span class="cat">Acciones no transadas en bolsa</span><span class="detalle">Comprende sociedades anónimas cerradas, sociedades por acciones y en comandita por acciones. Pide número de acciones y valor corriente en plaza.</span><span class="fuente">Como no tienen cotización, se valorizan a valor corriente en plaza (art. 46 bis), y en la práctica se estima a partir del último balance. Se declara solo la parte del causante, no el total del capital social.</span></div><div class="bien"><b>Participación en una sociedad de responsabilidad limitada o EIRL</b><span class="cat">Derechos en sociedades de personas</span><span class="detalle">Pide RUT y nombre de la entidad, total de activos, total de pasivos exigibles, y una columna llamada Valor sociedad Leg 16.271.</span><span class="fuente">Esa columna es la aplicación del art. 46 letra f: al negocio o a los derechos se les asigna el valor que resulte de aplicar a los bienes del activo las reglas de ese artículo, incluyendo los intangibles a valor corriente en plaza, con deducción del pasivo acreditado. Sobre ese valor neto se aplica el porcentaje de participación del causante: se declara lo que era suyo, no el 100% de la sociedad. Los datos salen del balance y de la escritura social.</span></div><div class="bien"><b>Participación en una sociedad civil</b><span class="cat">Sociedades civiles</span><span class="detalle">Solo dos tipos: sociedad colectiva civil y sociedad en comandita civil. Pide activos, pasivos exigibles y valor neto.</span><span class="fuente">La sociedad es civil o comercial según su objeto: son comerciales las que se forman para negocios que la ley califica de actos de comercio, y civiles las demás (art. 2059 del Código Civil). Las anónimas son siempre mercantiles. Se declara la participación del causante, no el total.</span></div><div class="bien"><b>Plata que le debían al fallecido</b><span class="cat">Cuentas por cobrar</span><span class="detalle">Pide descripción, RUT del deudor y valor corriente en plaza. Suma a la herencia, no la resta.</span><span class="fuente">Documento que acredite el crédito: pagaré, contrato o reconocimiento de deuda.</span></div><div class="bien"><b>Deudas que dejó el fallecido</b><span class="cat">Pasivos heredables</span><span class="detalle">Pide descripción, RUT del acreedor, fecha del contrato y valor de la obligación. Resta de la masa.</span><span class="fuente">Certificado de deuda con el saldo a la fecha del fallecimiento. No se incluyen las que tenían seguro de desgravamen, porque las paga el seguro, ni las contraídas para comprar bienes exentos (art. 4 N.º 3 de la Ley 16.271).</span></div><div class="bien"><b>Funeral y gastos de la última enfermedad</b><span class="cat">Gastos de última enfermedad y otros</span><span class="detalle">Solo pide descripción y valor. Resta de la masa.</span><span class="fuente">Boletas y facturas de la funeraria, y bonos o boletas médicas. De la última enfermedad se descuenta lo que quedó adeudado o lo que la familia pagó antes del fallecimiento; no lo cubierto por seguros (art. 4 de la Ley 16.271).</span></div><div class="bien"><b>Joyas, obras de arte, armas o colecciones</b><span class="cat">Joyas, objetos de arte, antigüedades y armas</span><span class="detalle">Un desplegable ofrece doce tipos: joyas, antigüedades, obras de arte, alfombras y tapices, colecciones, pieles finas, instrumentos musicales, bibliotecas, equipamiento de oficio, vinos y licores, armas y otros.</span><span class="fuente">Valor corriente en plaza (art. 46 bis). No entran en el menaje, que es solo mobiliario común.</span></div><div class="bien"><b>Bienes en el extranjero</b><span class="cat">Bienes situados en el extranjero</span><span class="detalle">Pide el tipo de bien, el país de ubicación, y también los impuestos pagados en el extranjero con su fecha y la UTM de ese momento.</span><span class="fuente">Deben colacionarse en el inventario. El impuesto pagado afuera sirve de abono contra el que se adeude en Chile, pero el total no puede ser inferior al que habría correspondido considerando solo los bienes situados en Chile (art. 1 de la Ley 16.271).</span></div><div class="bien"><b>Derechos de agua, mineros, marcas o propiedad intelectual</b><span class="cat">Activos intangibles</span><span class="detalle">Un desplegable ofrece derechos de aguas, de minería, propiedad intelectual, propiedad industrial y otros.</span><span class="fuente">Valor corriente en plaza (art. 46 bis).</span></div><div class="bien"><b>Embarcaciones o aeronaves</b><span class="cat">Naves y aeronaves</span><span class="detalle">Distingue nave mayor, nave menor, artefacto naval mayor y menor, y aeronave de destino comercial o particular.</span><span class="fuente">Valor corriente en plaza (art. 46 bis). Deben estar inscritas a nombre del causante.</span></div><div class="bien"><b>Bien vendido en subasta pública</b><span class="cat">Bienes en pública subasta</span><span class="detalle">Aplica si el bien se licitó en subasta pública con admisión de postores extraños dentro de los nueve meses siguientes a la delación.</span><span class="fuente">En ese caso el bien se valora al precio en que fue subastado, y no por las reglas generales (art. 46 letra d).</span></div><div class="bien"><b>Algo que no calza en ninguna categoría</b><span class="cat">Otros bienes y/o derechos</span><span class="detalle">Última opción. Antes de usarla, revisa las quince categorías que aparecen al apretar el botón azul Otros.</span><span class="fuente">Valor corriente en plaza (art. 46 bis).</span></div></div>
 </section>
 
 <section class="pantalla" id="formulario" hidden="">
   <h1>Explicación del formulario en línea</h1>
   <p class="bajada">Recorrido del formulario de herencias intestadas del sitio del SII, con lo que pide cada panel y lo que hay que saber antes de tocarlo.</p>
 
+  <details open=""><summary>Antes de empezar: qué es el F4412</summary>
+  <p>Desde noviembre de 2021 el impuesto de las herencias intestadas se declara en el formulario 4412, en línea, que reemplazó a los formularios en papel 4423 y 4419. Lo que sigue se contrastó con las instrucciones de llenado oficiales del F4412 (noviembre de 2021); no se revisó en una sesión real, y el sistema puede haber cambiado.</p>
+  <ul>
+    <li><strong>Se puede usar antes de la posesión efectiva</strong> para calcular y guardar un borrador; para enviarlo se necesitan los datos de la resolución.</li>
+    <li><strong>Quién lo presenta:</strong> un heredero con su clave, o un mandatario o representante electrónico autorizado previamente ante el SII.</li>
+    <li><strong>Quien no es heredero forzoso</strong> (por ejemplo, un hermano) no puede declarar si en las bases del SII aparecen herederos forzosos, como hijos o cónyuge.</li>
+  </ul></details>
+
   <details><summary>1. Datos del declarante</summary>
   <p>Viene prellenado con los datos de quien inició sesión, que debe ser uno de los asignatarios. Solo hay que completar o corregir el domicilio, el teléfono y el correo.</p>
-  <p>Si hay un error en el nombre o en el RUT, el propio texto de ayuda del sistema advierte que no se corrige aquí: hay que dirigirse a la unidad del SII para regularizar los datos antes de continuar. Lo mismo ocurre con la fecha de fallecimiento del causante, que se trae desde las bases de datos del Servicio.</p>
+  <p>Si hay un error en el nombre o en el RUT, el propio texto de ayuda del sistema advierte que no se corrige aquí: hay que dirigirse a la unidad del SII para regularizar los datos antes de continuar. Lo mismo ocurre con la fecha de fallecimiento del causante, que se trae desde las bases de datos del Servicio: si no está registrada, el formulario no deja declarar hasta regularizarla, y conviene llevar el certificado de defunción.</p>
   <p>Conviene revisarlo al principio: si el dato está mal y se descubre al final, se pierde todo el trabajo de carga.</p></details>
 
   <details><summary>2. Contador, abogado o contacto tributario</summary>
@@ -783,15 +944,16 @@
   <details><summary>3. Datos del causante</summary>
   <p>Se ingresa el RUT de la persona fallecida y el sistema trae nombre, apellidos y fecha de fallecimiento. El dato que sí hay que elegir es el <strong>estado civil</strong>, del que dependen después las opciones de parentesco disponibles para los asignatarios.</p>
   <p><strong>Cuidado con el orden de trabajo.</strong> Si más adelante se modifica el estado civil, el sistema borra los bienes ya declarados y obliga a cargarlos de nuevo. Aparece un aviso, pero es fácil pasarlo por alto. La regla práctica: resolver el estado civil, verificarlo con el certificado de matrimonio si corresponde, y recién entonces empezar a cargar bienes.</p>
-  <p>El estado civil importa además por la sociedad conyugal: si el causante estaba casado bajo ese régimen, lo que se transmite es su mitad, no la propiedad completa.</p></details>
+  <p>El estado civil importa además por el régimen de bienes. Según las instrucciones del F4412, si un bien pertenece completo a la sociedad conyugal se anota el 100% de su valor, y el régimen se descuenta en líneas propias del formulario, incluido el crédito de participación en los gananciales. Si se anota la mitad por cuenta propia, la parte del cónyuge podría descontarse dos veces. Compruébalo en el formulario al llenarlo.</p></details>
 
   <details><summary>4. Datos de la solicitud de posesión efectiva</summary>
-  <p>Número de inscripción, oficina del Registro Civil que la concedió, fecha de la resolución y folio. Todos estos datos salen del certificado o resolución que entregó el Registro Civil, de manera que esta sección es imposible de completar antes de tener concedida la posesión efectiva.</p></details>
+  <p>Número de inscripción, oficina del Registro Civil que la concedió, fecha de la resolución y folio. Todos estos datos salen del certificado o resolución que entregó el Registro Civil, de manera que esta sección solo se completa con la posesión efectiva concedida. El resto del formulario se puede usar antes para calcular.</p></details>
 
   <details><summary>5. Lista de asignatarios</summary>
   <p>Se agregan uno a uno con el botón naranja. De cada asignatario se pide RUT, domicilio y parentesco con el causante.</p>
   <p>El desplegable de parentesco tiene quince opciones y el sistema las filtra según el estado civil del causante. Cada una de esas categorías está explicada en el diccionario, incluida la distinción entre colaterales de simple y doble conjunción, que es la que más errores produce.</p>
-  <p>Recuerda la instrucción del formulario: se registran solo los herederos directos, sin incluir a quienes heredan por transmisión ni por representación.</p>
+  <p><strong>Representación.</strong> Si un heredero murió antes que el causante, se agrega a ese heredero fallecido y, dentro de su ficha, a sus representantes; el sistema completa su parentesco. La instrucción del antiguo F4423 de registrar solo herederos directos ya no corresponde.</p>
+  <p><strong>Parentesco validado.</strong> El sistema compara el parentesco que ingresas con sus bases. Si no coincide, avisa una inconsistencia: conviene tener a mano los certificados de nacimiento o matrimonio que lo acreditan y consultar al SII.</p>
   <h4>El bloque de opciones avanzadas del asignatario</h4>
   <p>Dentro de la ficha de cada asignatario hay tres campos que no son de trámite sino de fondo, y conviene entenderlos antes de tocarlos:</p>
   <ul>
@@ -831,7 +993,7 @@
   <details><summary>9. Declaración jurada y envío</summary>
   <p>El recuadro final es una declaración jurada: quien envía afirma que los datos son la expresión fiel de la verdad, y se obliga a conservar los documentos que sirvieron de base durante todo el plazo de prescripción, a disposición del Servicio para futuras fiscalizaciones.</p>
   <p>Los botones son tres: volver, que sale sin enviar; guardar, que deja un borrador; y enviar, que presenta la declaración y abre la ventana de giros.</p>
-  <p>En esa ventana el sistema muestra los giros por asignatario y ofrece la casilla para pagar en hasta tres anualidades, indicando el valor de cada cuota.</p>
+  <p>En esa ventana el sistema muestra los giros por asignatario y ofrece la opción de pagar en hasta tres anualidades, indicando el valor de cada cuota. Antes de elegirla, revisa sus <button type="button" class="enlace-txt" data-ir="costos">condiciones</button>: lleva intereses y, mientras queden cuotas, no hay certificado de pago.</p>
   <p>Si hay que corregir una declaración ya presentada, existe la opción de rectificatoria, que permite partir de los datos vigentes o de un formulario nuevo.</p></details>
 
   <h3>Lo que se puede saltar en un caso típico</h3>
@@ -886,7 +1048,7 @@
   <details data-nivel="basico"><summary>Impuesto a la herencia</summary>
   <p>Tributo que grava el hecho de adquirir bienes por sucesión por causa de muerte. Se aplica sobre el valor líquido de cada asignación, con una escala progresiva, exenciones según parentesco y recargos según su lejanía. Lo aplica y fiscaliza el SII.</p>
   <div class="norma">Ley 16.271, cuyo texto refundido está fijado en el art. 8 del DFL 1 de 2000 del Ministerio de Justicia, el mismo cuerpo que en su art. 1 fija el texto del Código Civil.</div>
-  <p><em>Ejemplo:</em> un hijo que recibe una asignación bajo la exención de 600 UTM no paga impuesto, pero igualmente debe declarar.</p>
+  <p><em>Ejemplo:</em> un hijo que recibe una asignación bajo la exención de 600 UTM no paga impuesto. Si todos los herederos quedan exentos y así se marcó en el Registro Civil, la ley da por cumplida la declaración (art. 60), pero igual se necesita el certificado del SII para inscribir.</p>
   <p><em>En el formulario:</em> el sistema lo calcula solo; las secciones de base imponible y de impuesto son de solo lectura.</p></details>
 
   <details data-nivel="basico"><summary>Exención</summary>
@@ -901,10 +1063,22 @@
   <p><em>Ejemplo:</em> la casa es un inmueble; el auto y el refrigerador son muebles; el saldo de una cuenta corriente y la participación en una sociedad son bienes incorporales.</p>
   <p><em>En el formulario:</em> cada tipo de bien tiene su propia categoría, con columnas y reglas de valoración distintas.</p></details>
 
+  <details data-nivel="basico"><summary>Inmuebles por adherencia y por destinación</summary>
+  <p>Son cosas que la ley trata como inmuebles aunque no lo sean por sí mismas. Por <strong>adherencia</strong>, las que están unidas permanentemente a la tierra, como los edificios y los árboles. Por <strong>destinación</strong>, las cosas muebles que el dueño destina de forma permanente al uso, cultivo o beneficio de un inmueble, como los tubos de las cañerías, las losas del piso o los animales y herramientas de un campo puestos ahí por el dueño.</p>
+  <div class="norma">Arts. 568 y 570 del Código Civil; art. 46 letra a) de la Ley 16.271.</div>
+  <p><em>Ejemplo:</em> el tractor que el dueño del campo usa para cultivarlo es inmueble por destinación; el mismo tractor, si era arrendado, no.</p>
+  <p><em>En el formulario:</em> si están comprendidos en el avalúo fiscal, no se declaran aparte. En los predios agrícolas, lo que quedó fuera del avalúo se declara en "Bienes excluidos de avalúo fiscal de inmuebles agrícolas", a valor corriente en plaza.</p>
+  <button type="button" class="enlace-txt" data-ir="que-entra">Ver las ilustraciones de la casa y del campo</button></details>
+
+  <details data-nivel="basico"><summary>Bienes exentos</summary>
+  <p>Bienes que forman parte de la herencia pero que la ley deja fuera del impuesto, con requisitos: los fondos de AFP hasta 4.000 UF, las viviendas DFL 2 construidas o adquiridas en primera transferencia por el causante y las acogidas a la Ley Pereira. No hay que confundirlos con la exención por parentesco, que depende de quién recibe y no de qué se recibe.</p>
+  <div class="norma">DL 3.500, art. 72; DFL 2, art. 16; Ley 9.135, art. 3.</div>
+  <p><em>En el formulario:</em> se declaran igual; la exención se aplica en el propio formulario. Las deudas contraídas para comprar estos bienes no se descuentan (art. 4 N.º 3 de la Ley 16.271).</p></details>
+
   <details data-nivel="basico"><summary>Inventario de bienes</summary>
   <p>La enumeración y valorización de todo lo que dejó el causante, activos y pasivos. Es la base del trámite completo: se presenta en el Registro Civil y sus totales se trasladan después al formulario del SII.</p>
   <p><em>Ejemplo:</em> si en el inventario se omite el auto, ese bien no queda amparado por la posesión efectiva y no se podrá transferir.</p>
-  <p><em>En el formulario:</em> el F4423 en papel ordena expresamente trasladar los totales de los recuadros del inventario de la solicitud de posesión efectiva.</p></details>
+  <p><em>En el formulario:</em> el F4412 vuelve a pedir los mismos bienes, con más detalle. Guarda la solicitud del Registro Civil con su inventario.</p></details>
 
   <details data-nivel="basico"><summary>Avalúo fiscal</summary>
   <p>Valor que el SII asigna a una propiedad para efectos del pago de contribuciones. Es distinto del precio comercial y normalmente bastante menor.</p>
@@ -914,8 +1088,8 @@
 
   <details data-nivel="basico"><summary>UTM</summary>
   <p>Unidad Tributaria Mensual: unidad de cuenta que se reajusta el primer día de cada mes según la variación del IPC. Se usa para expresar exenciones, tramos y montos tributarios sin que la inflación los desactualice.</p>
-  <p><em>Ejemplo:</em> en <span data-utm="mes">septiembre de 2026</span> una UTM equivale a <span data-utm="valor">$71.721</span>, de modo que 600 UTM son aproximadamente <span data-utm-por="600">$43.032.600</span>.</p>
-  <p><em>En el formulario:</em> se usan dos valores distintos, el del mes del fallecimiento y el del mes de la declaración. Los valores oficiales están en la <a href="https://www.sii.cl/valores_y_fechas/utm/utm2026.htm" data-utm="link" target="_blank" rel="noopener">tabla del SII</a>.</p></details>
+  <p><em>Ejemplo:</em> en <span data-utm="mes">noviembre de 2026</span> una UTM equivale a <span data-utm="valor">$72.440</span>, de modo que 600 UTM son aproximadamente <span data-utm-por="600">$43.464.000</span>.</p>
+  <p><em>En el formulario:</em> se usan dos valores distintos, el del mes del fallecimiento y el del mes en que se paga. Los valores oficiales están en la <a href="https://www.sii.cl/valores_y_fechas/utm/utm2026.htm" data-utm="link" target="_blank" rel="noopener">tabla del SII</a>.</p></details>
 
   <details data-nivel="basico"><summary>Comprobante o certificado de exención</summary>
   <p>Documento que acredita que la declaración del impuesto se presentó y que las asignaciones quedaron exentas. Cumple la misma función que el comprobante de pago cuando sí hubo impuesto.</p>
@@ -926,7 +1100,8 @@
   <p>Los muebles y accesorios que guarnecen una casa: camas, mesas, sillas, electrodomésticos, ropa de hogar. No incluye antigüedades, obras de arte, joyas ni objetos de alto valor, que tienen su propia categoría.</p>
   <div class="norma">Art. 47 de la Ley 16.271.</div>
   <p><em>Ejemplo:</em> el refrigerador, el living y las camas son menaje; el cuadro de un pintor conocido colgado en el mismo living, no.</p>
-  <p><em>En el formulario:</em> tiene categoría propia y admite la presunción del 20%.</p></details>
+  <p><em>En el formulario:</em> tiene categoría propia y admite la presunción del 20%.</p>
+  <button type="button" class="enlace-txt" data-ir="que-entra">Ver la ilustración: qué es menaje y qué no</button></details>
 
   <details data-nivel="basico"><summary>Presunción del 20% del menaje</summary>
   <p>Cuando no se justifica la falta de bienes muebles en el inventario, cuando los inventariados no son proporcionados a la masa que se transmite, o cuando no se han podido valorizar, la ley los estima en un 20% del valor del inmueble que guarnecían o a cuyo servicio o explotación estaban destinados, <strong>aunque ese inmueble no fuera de propiedad del causante</strong>.</p>
@@ -936,7 +1111,7 @@
 
   <details data-nivel="basico"><summary>Bajas generales de la herencia</summary>
   <p>Deducciones que se practican sobre la masa total antes de repartir y antes de calcular el impuesto. Fijan el valor líquido sobre el cual se aplican tanto las asignaciones como el tributo.</p>
-  <div class="norma">Art. 959 del Código Civil: 1.º las costas de la publicación del testamento y las demás anexas a la apertura de la sucesión; 2.º las deudas hereditarias; 3.º los impuestos fiscales que gravaren toda la masa; 4.º las asignaciones alimenticias forzosas. Los gastos de última enfermedad y de entierro, aunque no están enumerados, disminuyen igualmente la masa.</div>
+  <div class="norma">Para el impuesto rige el art. 4 de la Ley 16.271: gastos de última enfermedad adeudados y de entierro; costas de apertura de la sucesión, posesión efectiva y partición; deudas hereditarias, salvo las contraídas para adquirir bienes exentos; asignaciones alimenticias forzosas; y porción conyugal. El art. 959 del Código Civil regula las bajas para el reparto civil, con una lista parecida pero no idéntica.</div>
   <p><em>Ejemplo:</em> con un acervo bruto de 100 millones y bajas por 30 millones, el acervo líquido es de 70 millones, y ese es el único monto que se reparte y sobre el que se calcula el impuesto.</p>
   <p><em>En el formulario:</em> aparecen como categorías con signo negativo: "gastos de última enfermedad y otros" y "pasivos heredables".</p></details>
 
@@ -961,13 +1136,14 @@
   <p>Ficción legal por la cual se supone que una persona tiene el lugar y el grado de parentesco de su padre o madre, que no quiso o no pudo suceder. Solo hay lugar a ella en la descendencia del difunto y en la descendencia de sus hermanos. Quienes suceden por representación heredan siempre <strong>por estirpes</strong>: cualquiera sea el número de representantes, toman entre todos y por partes iguales la porción que le habría cabido al representado.</p>
   <div class="norma">Arts. 984 a 987 del Código Civil.</div>
   <p><em>Ejemplo:</em> el causante tuvo dos hijos y uno de ellos falleció antes dejando tres nietos. Esos tres nietos reciben entre todos la mitad que le correspondía a su padre, es decir, un sexto cada uno.</p>
-  <p><em>En el formulario:</em> el instructivo indica registrar solo herederos directos, sin incluir a los que heredan por representación, lo que obliga a revisar caso a caso cómo se ingresan.</p></details>
+  <p><em>Para el impuesto:</em> quien sucede por representación paga el impuesto que habría correspondido al representado, de modo que la exención es una sola para toda la estirpe (art. 3 de la Ley 16.271).</p>
+  <p><em>En el formulario:</em> según las instrucciones del F4412, se agrega al heredero fallecido y, dentro de su ficha, a sus representantes. La instrucción contraria del antiguo F4423 ya no corresponde.</p></details>
 
   <details data-nivel="tecnico" hidden=""><summary>Transmisión <span class="marca">técnica</span></summary>
   <p>Opera cuando el heredero fallece <strong>después</strong> del causante sin haber alcanzado a aceptar o repudiar. Lo que pasa a sus propios herederos es el derecho de opción, es decir, la facultad de aceptar o repudiar esa herencia. Requiere que el transmitente haya sido capaz y digno de suceder, y que su heredero acepte primero la herencia del transmitente.</p>
   <p><em>Ejemplo:</em> murió el abuelo y meses después el padre, sin tramitar nada. Los nietos heredan del padre, y dentro de esa herencia va su derecho a aceptar la del abuelo.</p>
   <p><em>Diferencia con la representación:</em> depende de quién murió primero. Si el padre murió antes que el abuelo, es representación; si murió después, es transmisión.</p>
-  <p><em>En el formulario:</em> tampoco se registran como asignatarios directos, según el instructivo. En estos casos suelen tramitarse dos posesiones efectivas encadenadas.</p></details>
+  <p><em>En el formulario:</em> en estos casos suelen tramitarse dos posesiones efectivas encadenadas. Cómo se ingresa cada una en el F4412 conviene revisarlo con la clínica.</p></details>
 
   <details data-nivel="tecnico" hidden=""><summary>Colaterales y grados de parentesco <span class="marca">técnica</span></summary>
   <p>Los parientes colaterales no descienden unos de otros, sino que provienen de un tronco común. El grado se cuenta subiendo hasta ese antepasado común y bajando hasta el pariente: hermano es segundo grado, tío o sobrino tercero, primo o tío abuelo cuarto.</p>
@@ -993,10 +1169,40 @@
   <p><em>En el formulario:</em> las opciones avanzadas ofrecen gravamen por tiempo determinado, sujeto a condición o vitalicio, y habilitan campos distintos según cuál se elija.</p></details>
 
   <details data-nivel="tecnico" hidden=""><summary>Fideicomiso <span class="marca">técnica</span></summary>
-  <p>Propiedad sujeta al gravamen de pasar a otra persona si se verifica una condición. Quien la tiene mientras pende la condición es el propietario fiduciario; quien puede llegar a adquirirla es el fideicomisario.</p>
-  <div class="norma">Arts. 732 y siguientes del Código Civil; su tratamiento tributario está en la Ley 16.271.</div>
-  <p><em>Ejemplo:</em> "dejo la casa a mi hermano, pero pasará a mi hijo cuando este cumpla treinta años".</p>
-  <p><em>En el formulario:</em> aparece en las opciones avanzadas de los bienes y en la categoría de asignación de fideicomisario, que se declara solo cuando la condición se cumple o falla.</p></details>
+  <p>Propiedad sujeta al gravamen de pasar a otra persona si se cumple una condición. Intervienen tres personas: quien lo constituye, el <strong>fiduciario</strong>, que tiene el bien mientras la condición está pendiente, y el <strong>fideicomisario</strong>, que lo recibe si la condición se cumple. Si falla, el bien se queda definitivamente con el fiduciario.</p>
+  <div class="ilus vertical">
+    <figure><svg class="ilus-svg ilus-vertical" viewBox="0 0 360 540" role="img" aria-labelledby="ilFidT ilFidD" xmlns="http://www.w3.org/2000/svg">
+<title id="ilFidT">Las tres personas de un fideicomiso</title>
+<desc id="ilFidD">A, el constituyente, entrega un bien a B, el fiduciario, con el encargo de pasarlo a C, el fideicomisario, si se cumple una condición. Si la condición falla, el bien queda definitivamente en B.</desc>
+<rect width="360" height="540" rx="14" fill="#EEF4FB"/>
+<g stroke="#24324A" stroke-width="2.5" stroke-linejoin="round"><circle cx="64" cy="58" r="22" fill="#F2C9A5"/><path d="M28 118 q36-44 72 0 z" fill="#4E86D0"/></g>
+<text x="118" y="60" font-size="19" font-weight="700" fill="#24324A">A · Constituyente</text>
+<text x="118" y="84" font-size="15" fill="#4A5566">es el dueño y crea el encargo</text>
+<path d="M64 128 V210" stroke="#24324A" stroke-width="3" marker-end="url(#flechaFid)"/>
+<g stroke="#24324A" stroke-width="2.5" stroke-linejoin="round" transform="translate(86 150)"><path d="M0 22 L18 6 L36 22 V44 H0 Z" fill="#E58A5F"/><rect x="13" y="30" width="10" height="14" fill="#FBF6EC"/></g>
+<text x="132" y="168" font-size="15" fill="#24324A">le entrega el bien con el</text>
+<text x="132" y="188" font-size="15" fill="#24324A">encargo de pasarlo a C</text>
+<g stroke="#24324A" stroke-width="2.5" stroke-linejoin="round"><circle cx="64" cy="244" r="22" fill="#E8B48C"/><path d="M28 304 q36-44 72 0 z" fill="#E0A23A"/></g>
+<text x="118" y="246" font-size="19" font-weight="700" fill="#24324A">B · Fiduciario</text>
+<text x="118" y="270" font-size="15" fill="#4A5566">lo tiene mientras la</text>
+<text x="118" y="290" font-size="15" fill="#4A5566">condición está pendiente</text>
+<path d="M64 314 V396" stroke="#24324A" stroke-width="3" stroke-dasharray="7 6" marker-end="url(#flechaFid)"/>
+<text x="92" y="350" font-size="15" fill="#24324A">si se cumple la condición</text>
+<text x="92" y="370" font-size="15" fill="#24324A">(p. ej., C se titula)</text>
+<g stroke="#24324A" stroke-width="2.5" stroke-linejoin="round"><circle cx="64" cy="430" r="22" fill="#F2C9A5"/><path d="M28 490 q36-44 72 0 z" fill="#86BC84"/></g>
+<text x="118" y="432" font-size="19" font-weight="700" fill="#24324A">C · Fideicomisario</text>
+<text x="118" y="456" font-size="15" fill="#4A5566">recibe el bien</text>
+<text x="20" y="522" font-size="14" fill="#4A5566">Si la condición falla, el bien se queda con B.</text>
+<defs><marker id="flechaFid" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#24324A"/></marker></defs>
+</svg><figcaption>Ilustración de la Clínica Jurídica, con fines didácticos.</figcaption></figure>
+    <div>
+      <p>Un fideicomiso se constituye por testamento o por acto entre vivos. En una herencia intestada aparece cuando la persona fallecida ya tenía bienes sujetos a uno: si era fiduciaria, sus herederos reciben el bien con el mismo cargo de restituirlo si se cumple la condición (art. 751 del Código Civil).</p>
+      <p><em>Para el impuesto:</em> cuando una asignación lleva un fideicomiso a favor de un tercero, se descuenta la mitad del valor de la cosa. Si después se cumple la condición, el fideicomisario paga sobre el valor total a esa fecha, menos lo ya pagado; si falla, paga el fiduciario de la misma forma (art. 8 de la Ley 16.271).</p>
+    </div>
+  </div>
+  <div class="norma">Arts. 733 y siguientes del Código Civil, en especial el art. 751; Ley 16.271, art. 8.</div>
+  <p><em>Ejemplo:</em> "dejo la casa a mi hermano, pero pasará a mi hijo cuando este se titule". Mientras el hijo no se titule, la casa es del hermano, con esa carga.</p>
+  <p><em>En el formulario:</em> aparece en las opciones avanzadas de cada bien, donde se indica si lo que se transmite está sujeto a fideicomiso.</p></details>
 
   <details data-nivel="tecnico" hidden=""><summary>Repudiación de la asignación <span class="marca">técnica</span></summary>
   <p>Acto por el cual el asignatario rechaza la asignación que se le defiere. Quien repudia se entiende que nunca fue asignatario, y su porción acrece a los demás o pasa al siguiente llamado. Tratándose de inmuebles, debe constar por escritura pública.</p>
@@ -1020,7 +1226,7 @@
   <p>La posesión legal de la herencia no habilita al heredero para disponer de un inmueble mientras no preceda: la inscripción de la resolución que otorga la posesión efectiva, en el Registro Nacional de Posesiones Efectivas si es administrativa; la inscripción especial de herencia en el Conservador donde está ubicado cada inmueble, que permite disponer <em>de consuno</em>; y la inscripción del acto de partición, sin la cual ningún heredero puede disponer por sí solo de lo que le fue adjudicado.</p>
   <div class="norma">Arts. 687 y 688 del Código Civil.</div>
   <p><em>Ejemplo:</em> con la posesión efectiva inscrita y la especial de herencia practicada, los tres hijos pueden vender la casa solo si firman los tres. Para que uno venda solo se necesita partición inscrita.</p>
-  <p><em>En el formulario:</em> ninguna de estas inscripciones se hace en el SII, pero el comprobante del SII es requisito para todas ellas.</p></details>
+  <p><em>En el formulario:</em> ninguna de estas inscripciones se hace en el SII. La primera la practica el propio Registro Civil al conceder la posesión efectiva, antes de ir al SII; para las del Conservador se pide el certificado de pago o exención del impuesto.</p></details>
 
   <details data-nivel="tecnico" hidden=""><summary>Valor corriente en plaza <span class="marca">técnica</span></summary>
   <p>Criterio residual de valoración: los bienes respecto de los cuales la ley no establece una regla especial se consideran en su valor corriente en plaza, esto es, el que tendrían en el mercado a la fecha de la delación.</p>
@@ -1042,7 +1248,8 @@
   </ul>
   <div class="norma">Arts. 1718 y 1725 y siguientes del Código Civil (sociedad conyugal); Ley 19.335, arts. 1792-1 y siguientes del Código Civil (participación en los gananciales); art. 1720 (separación de bienes).</div>
   <p><em>Ejemplo:</em> con sociedad conyugal y un patrimonio común de 200 millones, 100 son del cónyuge sobreviviente por gananciales y 100 forman la herencia sobre la que se calculan las asignaciones.</p>
-  <p><em>En el formulario:</em> las instrucciones del Registro Civil ordenan registrar, si había sociedad conyugal o participación en los gananciales, aproximadamente el 50% del valor de esos bienes comunes. Declarar el 100% infla artificialmente la masa y puede generar impuesto donde no lo hay.</p></details>
+  <p><em>Acuerdo de unión civil:</em> rige la separación, salvo que al celebrarlo se haya pactado comunidad; entonces los bienes adquiridos a título oneroso durante el acuerdo son de ambos por mitades (Ley 20.830, art. 15).</p>
+  <p><em>En los formularios hay que distinguir:</em> en el inventario del Registro Civil se anota la parte que corresponde a la herencia. En el F4412, según sus instrucciones, un bien que pertenece completo a la sociedad conyugal se anota al 100% y el régimen se descuenta en líneas propias; anotar ahí la mitad podría descontar dos veces la parte del cónyuge. En participación en los gananciales no hay bienes comunes: el F4412 tiene líneas para el crédito de participación.</p></details>
 
   <details data-nivel="tecnico" hidden=""><summary>Base imponible, deducción de tramo y recargo <span class="marca">técnica</span></summary>
   <p>La base imponible es la asignación menos la exención por parentesco. Sobre ella se aplica la tasa del tramo correspondiente y se resta la deducción, que no es un beneficio sino el ajuste aritmético de la escala progresiva. Al impuesto así obtenido se le aplica el recargo por parentesco, que lo multiplica por 1,2 o por 1,4 según el caso.</p>
@@ -1052,13 +1259,14 @@
   <details data-nivel="tecnico" hidden=""><summary>Giro y anualidades <span class="marca">técnica</span></summary>
   <p>El giro es la orden de pago que emite el Servicio. Presentada la declaración, el SII debe girar de inmediato con el solo mérito de los antecedentes presentados, sin perjuicio de ejercer después sus facultades de fiscalización.</p>
   <div class="norma">Art. 50 de la Ley 16.271.</div>
-  <p><em>Ejemplo:</em> una sucesión con impuesto de tres millones puede optar por tres cuotas anuales de un millón cada una.</p>
+  <p><em>Ejemplo:</em> un heredero con un impuesto de tres millones puede pedir pagarlo en tres cuotas anuales. Las cuotas llevan reajuste e interés, y mientras queden cuotas pendientes el SII no emite el certificado de pago, salvo garantía (Circular SII 33 de 2021).</p>
   <p><em>En el formulario:</em> al enviar, el sistema muestra los giros por asignatario y ofrece generar entre una y tres anualidades, indicando el valor de cada cuota.</p></details>
 
   <details data-nivel="tecnico" hidden=""><summary>Plazo de dos años e intereses <span class="marca">técnica</span></summary>
   <p>El impuesto debe declararse y pagarse simultáneamente dentro del plazo de dos años contado desde la fecha en que la asignación se defiere. Transcurrido ese plazo se devenga el interés penal del art. 53 del Código Tributario, que no se aplica a quienes hayan pagado dentro de plazo el impuesto correspondiente a sus asignaciones.</p>
   <div class="norma">Art. 50 de la Ley 16.271.</div>
-  <p><em>Ejemplo:</em> un fallecimiento de 2015 que recién se tramita hoy arrastra intereses por todo el tiempo posterior al segundo año.</p>
+  <p><em>Ejemplo:</em> si había impuesto, un fallecimiento de mayo de 2022 que recién se declara hoy arrastra intereses desde mayo de 2024.</p>
+  <p><em>Prescripción:</em> el SII tiene tres años para revisar y cobrar, contados desde que vence el plazo de dos años, o seis si no se presentó declaración (art. 200 del Código Tributario). Según el SII, vencidos esos plazos el F4412 emite un certificado de vencimiento de los plazos legales. Los plazos pueden interrumpirse, así que en casos antiguos hay que revisarlo con cuidado.</p>
   <p><em>En el formulario:</em> el sistema calcula el giro con los recargos legales que correspondan a la fecha de la declaración.</p></details>
 
   </div>
@@ -1069,21 +1277,26 @@
   <p class="bajada">Los puntos donde se cae la gente, incluidos los que vienen del propio sistema.</p>
 
   <details open=""><summary>Usar una sola UTM</summary>
-  <p>El trámite usa dos valores distintos. La asignación se convierte a UTM, se le aplica la exención y se ubica el tramo con la <strong>UTM del mes del fallecimiento</strong>, porque esa es la que rige al momento de la delación. Pero el impuesto ya calculado se convierte a pesos con la <strong>UTM del mes de la declaración</strong>, que es la que ordena aplicar el instructivo del formulario.</p>
-  <p>En fallecimientos antiguos la diferencia es grande y opera en ambos sentidos: usar la UTM actual para valorizar puede dejar a alguien bajo la exención cuando no correspondía, o al revés.</p></details>
+  <p>El trámite usa dos valores distintos. La asignación se convierte a UTM, se le aplica la exención y se ubica el tramo con la <strong>UTM del mes del fallecimiento</strong>, porque esa es la que rige al momento de la delación. Pero el impuesto ya calculado se convierte a pesos con la <strong>UTM del mes en que se paga</strong> (art. 2 de la Ley 16.271).</p>
+  <p>En fallecimientos antiguos la diferencia es grande: usar la UTM actual para medir la asignación la hace parecer más chica en UTM y puede dejar a alguien bajo la exención cuando no correspondía.</p></details>
 
   <details><summary>Usar el avalúo fiscal actual</summary>
   <p>Corresponde el avalúo vigente a la fecha del fallecimiento, no el de hoy. Y hay una excepción que casi nadie aplica: si el inmueble fue adquirido dentro de los tres años anteriores al fallecimiento, se declara por el valor de adquisición cuando este sea superior al avalúo.</p>
   <div class="norma">Art. 46 letra a) de la Ley 16.271.</div>
-  <p>El SII cruza estos datos con su propia información, de modo que el error se detecta y devuelve el trámite.</p></details>
+  <p>En el F4412 el sistema trae el avalúo al buscar por rol: revisa que corresponda a la fecha del fallecimiento.</p></details>
 
-  <details><summary>Declarar el 100% de un bien de sociedad conyugal</summary>
-  <p>Si el causante estaba casado en sociedad conyugal, la mitad del patrimonio común corresponde al cónyuge sobreviviente por gananciales y solo la otra mitad integra la herencia. Las instrucciones del Registro Civil ordenan registrar aproximadamente el 50% del valor.</p>
-  <p>El efecto de equivocarse es doble: se infla la masa y con ella la asignación de cada heredero, lo que puede generar impuesto donde no correspondía, y además se paga un arancel mayor en el Registro Civil, que se calcula sobre el monto declarado.</p></details>
+  <details><summary>Usar la misma regla de sociedad conyugal en los dos formularios</summary>
+  <p>Si el causante estaba casado en sociedad conyugal, a su herencia entra su parte de los bienes sociales, en general la mitad. En el inventario del Registro Civil se anota esa parte: anotar el 100% infla la masa, puede generar impuesto donde no lo hay y sube el arancel.</p>
+  <p>En el F4412 es distinto. Según sus instrucciones, un inmueble que pertenece completo a la sociedad conyugal se anota al 100% y el régimen se descuenta en líneas propias del formulario. Anotar ahí la mitad podría descontar dos veces la parte del cónyuge y dejar el impuesto más bajo de lo que corresponde. Verifícalo en el formulario antes de enviar.</p>
+  <p>En participación en los gananciales no hay bienes comunes que partir por la mitad: lo que puede haber es un crédito de participación.</p></details>
 
   <details><summary>Confundir representación con transmisión</summary>
   <p>Todo depende de quién murió primero. Si el padre murió <strong>antes</strong> que el abuelo, los nietos suceden por representación, ocupan el lugar de su padre en la herencia del abuelo y heredan por estirpes. Si el padre murió <strong>después</strong> sin alcanzar a aceptar, lo que se transmite a los nietos es el derecho de opción sobre la herencia del abuelo, y normalmente hay que tramitar dos posesiones efectivas encadenadas.</p>
-  <p>A esto se suma una instrucción del propio formulario que va contra la intuición: en el cuadro de asignatarios se registran solo los herederos directos, sin incluir a los que heredan por transmisión ni por representación.</p></details>
+  <p>Para el impuesto, quien sucede por representación paga el que le habría correspondido al representado (art. 3 de la Ley 16.271). En el F4412 se agrega al heredero fallecido y, dentro de su ficha, a sus representantes; la instrucción del antiguo F4423 de registrar solo herederos directos ya no corresponde.</p></details>
+
+  <details><summary>Marcar «exentas todas» mirando solo tu parte</summary>
+  <p>La casilla de la solicitud del Registro Civil pregunta por <strong>todas</strong> las asignaciones. En una familia con cónyuge y tres hijos, cada hijo puede quedar exento y el cónyuge, que recibe el doble, superar su exención. En ese caso corresponde "afectas algunas de las asignaciones", aunque tu parte no pague.</p>
+  <div class="norma">Art. 60 de la Ley 16.271.</div></details>
 
   <details><summary>Cambiar el estado civil del causante a mitad de camino</summary>
   <p>El sistema en línea borra los bienes ya declarados y obliga a cargarlos de nuevo. Hay un aviso, pero es fácil pasarlo por alto y el trabajo perdido puede ser de una sesión completa.</p>
@@ -1102,23 +1315,23 @@
   <p>Conviene explicarle esto a la familia antes de que afirme que "no había nada", porque la presunción puede resultar más alta que el inventario real.</p></details>
 
   <details><summary>Olvidar las bajas generales de la herencia</summary>
-  <p>Los gastos de funeral, los de última enfermedad no cubiertos por seguros y las deudas sin desgravamen se restan de la masa antes de repartir y antes de calcular el impuesto. En sucesiones pequeñas suelen ser la diferencia entre pagar y quedar exento.</p>
-  <div class="norma">Art. 959 del Código Civil.</div>
+  <p>Los gastos de funeral, los de última enfermedad que quedaron adeudados, los de la posesión efectiva y las deudas sin desgravamen se restan de la masa antes de repartir y antes de calcular el impuesto. Cuando una parte queda cerca de la exención, pueden ser la diferencia entre pagar y quedar exento.</p>
+  <div class="norma">Art. 4 de la Ley 16.271.</div>
   <p>El problema práctico es que nadie guarda las boletas de la funeraria ni los bonos médicos, y sin respaldo no se pueden descontar. Conviene pedirlas en la primera entrevista, no al final.</p></details>
 
   <details><summary>Prometer que el trámite es gratis</summary>
   <p>La asesoría es gratuita, pero los servicios del Estado cobran: el arancel de tramitación del Registro Civil, que sube según el monto de los bienes declarados; el impuesto, si corresponde; y los aranceles del Conservador de Bienes Raíces, tanto por las copias de inscripción como por cada inscripción que haya que practicar.</p>
-  <p>El privilegio de pobreza no cubre todos esos cobros.</p></details>
+  <p>El privilegio de pobreza no libera del impuesto. Sobre el arancel del Registro Civil hay un fallo reciente que lo discute, y si la masa es pequeña el Conservador no cobra o rebaja 50% (art. 30 bis de la Ley 16.271). <button type="button" class="enlace-txt" data-ir="costos">Ver costos</button></p></details>
 
   <details><summary>Suponer que el trámite se completa siempre en línea</summary>
-  <p>El sistema permite trabajar en línea con clave única o clave tributaria del heredero, que es personal y no puede usarla quien lo asiste. Cuando falta un dato prellenado o el caso tiene alguna particularidad, el sistema no deja avanzar y hay que terminar presencialmente en una unidad del SII. Los propios textos de ayuda remiten a la unidad para regularizar errores de identificación o de fecha de fallecimiento.</p></details>
+  <p>El sistema permite trabajar en línea con clave única o clave tributaria del heredero, que es personal y no puede usarla quien lo asiste; el F4412 admite además a un mandatario o a un representante electrónico autorizado previamente. Cuando falta un dato prellenado o el caso tiene alguna particularidad, el sistema no deja avanzar y hay que terminar presencialmente en una unidad del SII. Los propios textos de ayuda remiten a la unidad para regularizar errores de identificación o de fecha de fallecimiento.</p></details>
 
   <details><summary>Bienes rurales valorizados a la ligera</summary>
   <p>Si hay predio agrícola, además del inmueble hay que declarar en categoría separada lo que no está comprendido en el avalúo fiscal: construcciones, instalaciones, plantaciones, maquinaria y ganado. Se valorizan a valor corriente en plaza.</p>
-  <p>Es una de las categorías que el SII fiscaliza con más atención, porque suele ser donde se concentra el valor real de una herencia rural.</p></details>
+  <p>Cuando los bienes se valoran a valor corriente en plaza, el SII puede citar al contribuyente dentro de los 60 días siguientes a la declaración para revisar ese valor y cobrar diferencias (art. 50 de la Ley 16.271). <button type="button" class="enlace-txt" data-ir="que-entra">Ver la ilustración del campo</button></p></details>
 
   <details><summary>Dejar pasar el plazo de dos años</summary>
-  <p>El impuesto debe declararse y pagarse dentro de dos años contados desde la delación. Después de ese plazo se devengan los intereses penales del art. 53 del Código Tributario. En casos antiguos conviene advertirlo desde la primera entrevista, porque cambia la expectativa de costo del usuario.</p></details>
+  <p>El impuesto debe declararse y pagarse dentro de dos años contados desde la delación. Después de ese plazo se devengan los intereses penales del art. 53 del Código Tributario. En casos antiguos conviene revisar también la prescripción: tres años desde que vence el plazo de dos, o seis si no se declaró (art. 200 del Código Tributario). Las dos cosas cambian la expectativa de costo del usuario y conviene verlas en la primera entrevista.</p></details>
 </section>
 
 <section class="pantalla" id="que-entra" hidden="">
@@ -1318,12 +1531,15 @@
 
 <section class="pantalla" id="documentos" hidden="">
   <h1>Documentos a reunir</h1>
-  <p class="bajada">Marca lo que ya tienes. Lo que quede sin marcar es lo que falta para poder avanzar.</p>
-  <div class="progreso" id="progresoTexto">0 de 14 reunidos</div>
+  <p class="bajada">Ordenados por la etapa en que se usan. Marca lo que ya tienes: lo que quede sin marcar es lo que falta para avanzar.</p>
+  <div class="progreso" id="progresoTexto" aria-live="polite">0 de 17 reunidos</div>
   <div class="barra"><i id="progresoBarra" style="width: 0%;"></i></div>
-  <div id="listaDocs"><div class="check"><input type="checkbox" id="doc0"><label for="doc0">Certificado de defunción del causante<span class="donde">Lo emite el Registro Civil, en línea o presencialmente</span></label></div><div class="check"><input type="checkbox" id="doc1"><label for="doc1">Cédula de identidad de quien hace el trámite<span class="donde">La tuya</span></label></div><div class="check"><input type="checkbox" id="doc2"><label for="doc2">Certificados de nacimiento o matrimonio que acrediten el parentesco<span class="donde">Registro Civil, uno por cada heredero</span></label></div><div class="check"><input type="checkbox" id="doc3"><label for="doc3">Resolución o certificado de posesión efectiva<span class="donde">Lo entrega el Registro Civil una vez concedida</span></label></div><div class="check"><input type="checkbox" id="doc4"><label for="doc4">Certificado de avalúo fiscal de cada propiedad<span class="donde">Se obtiene gratis en el sitio del SII con el rol y la comuna. Debe ser el vigente al fallecimiento</span></label></div><div class="check"><input type="checkbox" id="doc5"><label for="doc5">Copia de la inscripción de dominio de cada propiedad<span class="donde">Conservador de Bienes Raíces de la comuna donde está el inmueble</span></label></div><div class="check"><input type="checkbox" id="doc6"><label for="doc6">Permiso de circulación o padrón de los vehículos<span class="donde">El permiso trae el código SII que pide el formulario</span></label></div><div class="check"><input type="checkbox" id="doc7"><label for="doc7">Certificados de saldos bancarios a la fecha del fallecimiento<span class="donde">Cada banco, que está obligado a entregarlos a los herederos</span></label></div><div class="check"><input type="checkbox" id="doc8"><label for="doc8">Certificado de saldo de la cuenta de AFP<span class="donde">La AFP en que estaba afiliado el causante</span></label></div><div class="check"><input type="checkbox" id="doc9"><label for="doc9">Boletas del funeral<span class="donde">La funeraria</span></label></div><div class="check"><input type="checkbox" id="doc10"><label for="doc10">Boletas o bonos de la última enfermedad<span class="donde">Clínica, hospital, consulta o farmacia</span></label></div><div class="check"><input type="checkbox" id="doc11"><label for="doc11">Certificados de las deudas pendientes<span class="donde">Banco o casa comercial, con saldo a la fecha del fallecimiento</span></label></div><div class="check"><input type="checkbox" id="doc12"><label for="doc12">Escritura y último balance, si había sociedades<span class="donde">La propia sociedad o su contador</span></label></div><div class="check"><input type="checkbox" id="doc13"><label for="doc13">Clave única o clave tributaria del heredero<span class="donde">Registro Civil o SII. Es personal y sirve para entrar al sistema en línea</span></label></div></div>
+  <div id="listaDocs"><p class="etapa-docs">Para estimar el impuesto y pedir la posesión efectiva (Registro Civil)</p><div class="check"><input type="checkbox" id="doc0"><label for="doc0">Certificado de defunción de la persona fallecida<span class="donde">Registro Civil, en línea o presencialmente</span></label></div><div class="check"><input type="checkbox" id="doc1"><label for="doc1">Certificados de nacimiento, matrimonio o acuerdo de unión civil que acrediten el parentesco<span class="donde">Registro Civil, uno por cada heredero</span></label></div><div class="check"><input type="checkbox" id="doc2"><label for="doc2">Cédula de identidad de quien hace el trámite<span class="donde">La tuya</span></label></div><div class="check"><input type="checkbox" id="doc3"><label for="doc3">Certificado de avalúo fiscal de cada propiedad<span class="donde">Gratis en sii.cl con el rol y la comuna. Debe ser el vigente a la fecha del fallecimiento</span></label></div><div class="check"><input type="checkbox" id="doc4"><label for="doc4">Permiso de circulación o padrón de los vehículos<span class="donde">El permiso trae el código SII que pide el formulario</span></label></div><div class="check"><input type="checkbox" id="doc5"><label for="doc5">Certificados de saldos bancarios a la fecha del fallecimiento<span class="donde">Cada banco, que debe entregarlos a los herederos (art. 45 de la Ley 16.271)</span></label></div><div class="check"><input type="checkbox" id="doc6"><label for="doc6">Certificado de saldo de la cuenta de AFP<span class="donde">La AFP en que estaba afiliada la persona</span></label></div><div class="check"><input type="checkbox" id="doc7"><label for="doc7">Certificados de las deudas pendientes<span class="donde">Banco o casa comercial, con el saldo a la fecha del fallecimiento</span></label></div><div class="check"><input type="checkbox" id="doc8"><label for="doc8">Boletas del funeral<span class="donde">La funeraria</span></label></div><div class="check"><input type="checkbox" id="doc9"><label for="doc9">Boletas o bonos de la última enfermedad, y prueba de quién los pagó<span class="donde">Clínica, hospital, consulta o farmacia</span></label></div><div class="check"><input type="checkbox" id="doc10"><label for="doc10">Escritura y último balance, si había sociedades<span class="donde">La propia sociedad o su contador</span></label></div><p class="etapa-docs">Para declarar en el SII (formulario F4412)</p><div class="check"><input type="checkbox" id="doc11"><label for="doc11">Resolución o certificado de posesión efectiva<span class="donde">Lo entrega el Registro Civil una vez concedida</span></label></div><div class="check"><input type="checkbox" id="doc12"><label for="doc12">Copia de la solicitud de posesión efectiva con su inventario<span class="donde">La que presentaste: los montos se vuelven a usar en el F4412</span></label></div><div class="check"><input type="checkbox" id="doc13"><label for="doc13">Comprobantes de los gastos de la posesión efectiva<span class="donde">Se pueden descontar (art. 4 N.º 2 de la Ley 16.271)</span></label></div><div class="check"><input type="checkbox" id="doc14"><label for="doc14">ClaveÚnica o clave tributaria del heredero que declara<span class="donde">Registro Civil o SII. Es personal y no se presta</span></label></div><p class="etapa-docs">Para inscribir en el Conservador</p><div class="check"><input type="checkbox" id="doc15"><label for="doc15">Certificado del SII de pago o de exención del impuesto<span class="donde">Se obtiene al terminar el F4412</span></label></div><div class="check"><input type="checkbox" id="doc16"><label for="doc16">Copia de la inscripción de dominio de cada propiedad<span class="donde">Conservador de Bienes Raíces de la comuna donde está el inmueble</span></label></div></div>
   <div class="nota">
-    La lista puede variar según el caso, sobre todo si hay predio agrícola, sociedades, bienes en el extranjero o fallecimientos antiguos encadenados. Confirma con quien te está asistiendo antes de darla por cerrada.
+    La lista puede variar según el caso, sobre todo si hay predio agrícola, sociedades, bienes en el extranjero o fallecimientos antiguos encadenados. Confirma con quien te está asistiendo antes de darla por cerrada. Las marcas se guardan solo en este navegador.
+  </div>
+  <div class="menu enlace-caja">
+    <button class="item" type="button" data-ir="guias"><b>Guía 2 en PDF: documentos por etapa</b><span>Para imprimir y llevar marcada</span></button>
   </div>
 </section>
 
@@ -1379,7 +1595,7 @@
         <img src="img/siimple-logo-blanco.png" alt="SiiMPLE">
       </a>
       <div class="legal">
-        <p>Guía de orientación sobre la declaración del impuesto a las herencias intestadas. Versión 2.1, contenido en revisión. Los valores en pesos usan la UTM de <span data-utm="mes">septiembre de 2026</span> (<span data-utm="valor">$71.721</span>) y deben actualizarse según la <a href="https://www.sii.cl/valores_y_fechas/utm/utm2026.htm" data-utm="link" target="_blank" rel="noopener">tabla oficial del SII</a>.</p>
+        <p>Guía de orientación sobre la declaración del impuesto a las herencias intestadas. Versión 3.0: normas y valores revisados al 29 de octubre de 2026. Los valores en pesos usan la UTM de <span data-utm="mes">septiembre de 2026</span> (<span data-utm="valor">$71.721</span>) y deben actualizarse según la <a href="https://www.sii.cl/valores_y_fechas/utm/utm2026.htm" data-utm="link" target="_blank" rel="noopener">tabla oficial del SII</a>.</p>
         <p>No constituye asesoría legal ni tributaria. Ante cualquier duda, consulta al SII, al Registro Civil o a quien esté asistiendo tu caso. Este sitio es elaborado por la Clínica Jurídica Derecho UC y no pertenece al Servicio de Impuestos Internos.</p>
       </div>
     </div>

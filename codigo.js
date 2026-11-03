@@ -688,7 +688,8 @@
   var BIENES = [
     {q:"casa departamento vivienda inmueble urbano propiedad techo sitio", nombre:"Casa o departamento en ciudad", cat:"Bienes raíces no agrícolas",
      detalle:"Se busca por rol y comuna con el botón Buscar; el sistema trae dirección, destino y avalúo. Pide además la fecha de adquisición.",
-     fuente:"Valor: avalúo fiscal vigente al mes del fallecimiento (art. 46 letra a). Si fue comprado dentro de los tres años anteriores, va el precio de compra si es mayor. El certificado de avalúo se obtiene gratis en sii.cl con el rol y la comuna."},
+     fuente:"Valor: avalúo fiscal vigente al mes del fallecimiento (art. 46 letra a). Si fue comprado dentro de los tres años anteriores, va el precio de compra si es mayor. El certificado de avalúo se obtiene gratis en sii.cl con el rol y la comuna. Si es una vivienda DFL 2 o de la Ley Pereira, la exención se indica en las opciones avanzadas del bien."},
+    {q:"cañerías cañeria tubos losas piso instalaciones adherencia destinacion arbol árbol", nombre:"Instalaciones fijas de la casa: cañerías, pisos, árboles", cat:"Dentro del bien raíz", detalle:"Son inmuebles por adherencia o por destinación: siguen a la casa o al terreno y no son menaje.", fuente:"Si están comprendidas en el avalúo fiscal no se declaran aparte. Las que quedan fuera del avalúo se valoran a valor corriente en plaza (art. 46 letra a). <button type=\"button\" class=\"enlace-txt\" data-ir=\"que-entra\">Ver la ilustración</button>"},
     {q:"agricola no agricola destino urbano rural como saber si es agricola", nombre:"¿Cómo sé si el inmueble es agrícola o no agrícola?", cat:"Cómo distinguirlos",
      detalle:"Determina en qué categoría se declara, porque son dos categorías distintas del formulario.",
      fuente:"Aparece como Destino en el certificado de avalúo fiscal del SII. También lo devuelve la ventana Consultar Propiedad del propio formulario al buscar por rol."},
@@ -697,19 +698,19 @@
      fuente:"Valor: avalúo fiscal al mes del fallecimiento. No incluye los bienes excluidos del avalúo, que van aparte."},
     {q:"animales vacas ganado plantaciones maquinaria tractor instalaciones bodega silos construcciones bosques", nombre:"Animales, plantaciones, maquinaria o construcciones del campo", cat:"Bienes excluidos de avalúo fiscal de inmuebles agrícolas",
      detalle:"Se elige el rol del predio y luego el tipo: construcciones, instalaciones, plantaciones, maquinaria, ganado u otros. Hay una casilla para declarar que no tiene.",
-     fuente:"Valor corriente en plaza a la fecha del fallecimiento (art. 46 bis). Es la categoría que el SII fiscaliza con más atención en herencias rurales."},
+     fuente:"Valor corriente en plaza a la fecha del fallecimiento (art. 46 bis). Si el valor se declara así, el SII puede citar al contribuyente dentro de los 60 días siguientes para revisarlo (art. 50). <button type=\"button\" class=\"enlace-txt\" data-ir=\"que-entra\">Ver la ilustración del campo</button>"},
     {q:"auto automovil vehiculo camioneta moto furgon camion patente jeep station", nombre:"Auto, camioneta o moto", cat:"Vehículos",
      detalle:"Se busca por código SII y año de fabricación; el sistema devuelve marca, modelo, versión y monto de tasación.",
-     fuente:"El código SII está en el permiso de circulación: una letra según el tipo (A automóvil, C camioneta, S station wagon) más seis dígitos. Valor: tasación vigente a la fecha del fallecimiento (art. 46 letra g)."},
+     fuente:"El código SII está en el permiso de circulación: una letra según el tipo (A automóvil, C camioneta, S station wagon) más seis dígitos. Valor: el formulario trae la tasación fiscal del SII. Como bien mueble, la regla legal es el valor corriente en plaza (art. 46 letra c y art. 46 bis)."},
     {q:"muebles menaje living comedor cama refrigerador cosas de la casa electrodomesticos ropa", nombre:"Muebles y cosas de la casa", cat:"Menaje",
      detalle:"Se puede detallar bien por bien, o acogerse a la presunción del 20% buscando el rol del último domicilio del causante.",
-     fuente:"La presunción del art. 47 estima el menaje en 20% del valor del inmueble que guarnecía, aunque ese inmueble no fuera del causante. Procede cuando no se justifica la falta de muebles, cuando no son proporcionados a la masa o cuando no se pudieron valorizar."},
+     fuente:"La presunción del art. 47 estima el menaje en 20% del valor del inmueble que guarnecía, aunque ese inmueble no fuera del causante. Procede cuando no se justifica la falta de muebles, cuando no son proporcionados a la masa o cuando no se pudieron valorizar. <button type=\"button\" class=\"enlace-txt\" data-ir=\"que-entra\">Qué es menaje y qué no</button>"},
     {q:"plata efectivo dinero cuenta corriente cuenta vista ahorro banco libreta", nombre:"Dinero en efectivo o en el banco", cat:"Dinero",
      detalle:"Se elige la institución de un desplegable de veinte opciones, o dinero en efectivo.",
      fuente:"Saldo a la fecha del fallecimiento. Los bancos están obligados a entregar a los herederos y al SII los datos de saldos, cuentas corrientes, garantías y custodias del cliente fallecido (art. 45 de la Ley 16.271)."},
     {q:"afp fondo previsional pension jubilacion cuenta de capitalizacion ahorro previsional", nombre:"Fondos de AFP", cat:"Fondos AFP",
      detalle:"Pide el fondo total en UF, el fondo heredable en UF y el fondo heredable en pesos. No son lo mismo: parte del fondo puede destinarse a pensiones de sobrevivencia y esa parte no se hereda.",
-     fuente:"Certificado de saldo de la cuenta de capitalización individual, que emite la AFP a solicitud de los herederos."},
+     fuente:"Certificado de saldo de la cuenta de capitalización individual, que emite la AFP a solicitud de los herederos. Los fondos están exentos del impuesto hasta 4.000 UF (art. 72 del DL 3.500); según sus instrucciones, el F4412 descuenta ese monto."},
     {q:"deposito a plazo fondo mutuo bonos fondo de inversion efectos publicos", nombre:"Depósito a plazo, fondo mutuo o bonos", cat:"Otros valores mobiliarios",
      detalle:"Un desplegable distingue bonos, depósitos a plazo, fondo mutuo, fondo de inversión privado, efectos públicos y otros.",
      fuente:"Certificado de la institución con el saldo o valor a la fecha del fallecimiento."},
@@ -730,10 +731,10 @@
      fuente:"Documento que acredite el crédito: pagaré, contrato o reconocimiento de deuda."},
     {q:"deudas credito banco tarjeta casa comercial pasivos debia hipoteca", nombre:"Deudas que dejó el fallecido", cat:"Pasivos heredables",
      detalle:"Pide descripción, RUT del acreedor, fecha del contrato y valor de la obligación. Resta de la masa.",
-     fuente:"Certificado de deuda con el saldo a la fecha del fallecimiento. No se incluyen las que tenían seguro de desgravamen, porque las paga el seguro."},
+     fuente:"Certificado de deuda con el saldo a la fecha del fallecimiento. No se incluyen las que tenían seguro de desgravamen, porque las paga el seguro, ni las contraídas para comprar bienes exentos (art. 4 N.º 3 de la Ley 16.271)."},
     {q:"funeral entierro sepultura ultima enfermedad clinica hospital remedios gastos medicos", nombre:"Funeral y gastos de la última enfermedad", cat:"Gastos de última enfermedad y otros",
      detalle:"Solo pide descripción y valor. Resta de la masa.",
-     fuente:"Boletas y facturas de la funeraria, y bonos o boletas médicas. Solo la parte no cubierta por seguros. Son bajas generales de la herencia (art. 959 del Código Civil)."},
+     fuente:"Boletas y facturas de la funeraria, y bonos o boletas médicas. De la última enfermedad se descuenta lo que quedó adeudado o lo que la familia pagó antes del fallecimiento; no lo cubierto por seguros (art. 4 de la Ley 16.271)."},
     {q:"joyas oro anillos arte cuadros pinturas antiguedades armas colecciones instrumentos vinos alfombras pieles biblioteca", nombre:"Joyas, obras de arte, armas o colecciones", cat:"Joyas, objetos de arte, antigüedades y armas",
      detalle:"Un desplegable ofrece doce tipos: joyas, antigüedades, obras de arte, alfombras y tapices, colecciones, pieles finas, instrumentos musicales, bibliotecas, equipamiento de oficio, vinos y licores, armas y otros.",
      fuente:"Valor corriente en plaza (art. 46 bis). No entran en el menaje, que es solo mobiliario común."},
@@ -783,44 +784,53 @@
     });
   }
 
+  // Documentos por etapa: [etapa, documento, dónde se obtiene]
+  var ETAPAS = {rc:"Para estimar el impuesto y pedir la posesión efectiva (Registro Civil)", sii:"Para declarar en el SII (formulario F4412)", cbr:"Para inscribir en el Conservador"};
   var DOCS = [
-    ["Certificado de defunción del causante", "Lo emite el Registro Civil, en línea o presencialmente"],
-    ["Cédula de identidad de quien hace el trámite", "La tuya"],
-    ["Certificados de nacimiento o matrimonio que acrediten el parentesco", "Registro Civil, uno por cada heredero"],
-    ["Resolución o certificado de posesión efectiva", "Lo entrega el Registro Civil una vez concedida"],
-    ["Certificado de avalúo fiscal de cada propiedad", "Se obtiene gratis en el sitio del SII con el rol y la comuna. Debe ser el vigente al fallecimiento"],
-    ["Copia de la inscripción de dominio de cada propiedad", "Conservador de Bienes Raíces de la comuna donde está el inmueble"],
-    ["Permiso de circulación o padrón de los vehículos", "El permiso trae el código SII que pide el formulario"],
-    ["Certificados de saldos bancarios a la fecha del fallecimiento", "Cada banco, que está obligado a entregarlos a los herederos"],
-    ["Certificado de saldo de la cuenta de AFP", "La AFP en que estaba afiliado el causante"],
-    ["Boletas del funeral", "La funeraria"],
-    ["Boletas o bonos de la última enfermedad", "Clínica, hospital, consulta o farmacia"],
-    ["Certificados de las deudas pendientes", "Banco o casa comercial, con saldo a la fecha del fallecimiento"],
-    ["Escritura y último balance, si había sociedades", "La propia sociedad o su contador"],
-    ["Clave única o clave tributaria del heredero", "Registro Civil o SII. Es personal y sirve para entrar al sistema en línea"]
+    ["rc", "Certificado de defunción de la persona fallecida", "Registro Civil, en línea o presencialmente"],
+    ["rc", "Certificados de nacimiento, matrimonio o acuerdo de unión civil que acrediten el parentesco", "Registro Civil, uno por cada heredero"],
+    ["rc", "Cédula de identidad de quien hace el trámite", "La tuya"],
+    ["rc", "Certificado de avalúo fiscal de cada propiedad", "Gratis en sii.cl con el rol y la comuna. Debe ser el vigente a la fecha del fallecimiento"],
+    ["rc", "Permiso de circulación o padrón de los vehículos", "El permiso trae el código SII que pide el formulario"],
+    ["rc", "Certificados de saldos bancarios a la fecha del fallecimiento", "Cada banco, que debe entregarlos a los herederos (art. 45 de la Ley 16.271)"],
+    ["rc", "Certificado de saldo de la cuenta de AFP", "La AFP en que estaba afiliada la persona"],
+    ["rc", "Certificados de las deudas pendientes", "Banco o casa comercial, con el saldo a la fecha del fallecimiento"],
+    ["rc", "Boletas del funeral", "La funeraria"],
+    ["rc", "Boletas o bonos de la última enfermedad, y prueba de quién los pagó", "Clínica, hospital, consulta o farmacia"],
+    ["rc", "Escritura y último balance, si había sociedades", "La propia sociedad o su contador"],
+    ["sii", "Resolución o certificado de posesión efectiva", "Lo entrega el Registro Civil una vez concedida"],
+    ["sii", "Copia de la solicitud de posesión efectiva con su inventario", "La que presentaste: los montos se vuelven a usar en el F4412"],
+    ["sii", "Comprobantes de los gastos de la posesión efectiva", "Se pueden descontar (art. 4 N.º 2 de la Ley 16.271)"],
+    ["sii", "ClaveÚnica o clave tributaria del heredero que declara", "Registro Civil o SII. Es personal y no se presta"],
+    ["cbr", "Certificado del SII de pago o de exención del impuesto", "Se obtiene al terminar el F4412"],
+    ["cbr", "Copia de la inscripción de dominio de cada propiedad", "Conservador de Bienes Raíces de la comuna donde está el inmueble"]
   ];
 
   var lista = document.getElementById("listaDocs");
   if(lista){
-    lista.innerHTML = DOCS.map(function(d,i){
-      return '<div class="check"><input type="checkbox" id="doc'+i+'">' +
-        '<label for="doc'+i+'">' + d[0] + '<span class="donde">' + d[1] + '</span></label></div>';
-    }).join("");
+    var etapaActual = null, html = "";
+    DOCS.forEach(function(d, i){
+      if(d[0] !== etapaActual){ etapaActual = d[0]; html += '<p class="etapa-docs">' + ETAPAS[d[0]] + '</p>'; }
+      html += '<div class="check"><input type="checkbox" id="doc' + i + '">' +
+        '<label for="doc' + i + '">' + d[1] + '<span class="donde">' + d[2] + '</span></label></div>';
+    });
+    lista.innerHTML = html;
 
     var cajas = lista.querySelectorAll("input[type=checkbox]");
     var texto = document.getElementById("progresoTexto");
     var barra = document.getElementById("progresoBarra");
+    var CLAVE_DOCS = "docsHerencia3";
 
     function guardar(){
       try{
-        localStorage.setItem("docsHerencia", JSON.stringify(
+        localStorage.setItem(CLAVE_DOCS, JSON.stringify(
           Array.prototype.map.call(cajas, function(c){ return c.checked ? 1 : 0; })
         ));
       }catch(e){}
     }
     function cargar(){
       try{
-        var crudo = localStorage.getItem("docsHerencia");
+        var crudo = localStorage.getItem(CLAVE_DOCS);
         if(!crudo) return;
         var estado = JSON.parse(crudo);
         if(!Array.isArray(estado)) return;
