@@ -20,8 +20,6 @@
       var redondeo = parseFloat(el.getAttribute("data-redondeo")) || 1;
       el.textContent = pesos(Math.round(monto / redondeo) * redondeo);
     });
-    var campoUtm = document.getElementById("calcUtm");
-    if(campoUtm) campoUtm.value = UTM.valor.toLocaleString("es-CL");
   }
   escribirUTM();
 
@@ -118,279 +116,572 @@
     else ir("inicio");
   });
 
-  function aNumero(txt){
-    var limpio = String(txt).replace(/[^0-9]/g,"");
-    return limpio ? parseInt(limpio,10) : 0;
-  }
   function pesos(n){ return "$" + Math.round(n).toLocaleString("es-CL"); }
-  function utmFmt(n){ return n.toLocaleString("es-CL",{minimumFractionDigits:2, maximumFractionDigits:2}) + " UTM"; }
-  ["calcActivo","calcPasivo","calcUtm"].forEach(function(id){
-    var el = document.getElementById(id);
-    if(!el) return;
-    el.addEventListener("input", function(){
-      var n = aNumero(el.value);
-      el.value = n ? n.toLocaleString("es-CL") : "";
-    });
-  });
 
-  (function calculadoraViva(){
-    var TRAMOS_C = [[960,.01,0],[1920,.025,14.4],[3840,.05,62.4],[5760,.075,158.4],
-                     [7680,.10,302.4],[9600,.15,686.4],[14400,.20,1166.4],[Infinity,.25,1886.4]];
-    var EXENCION_C = {hijo:600, conyuge:600, ascendiente:600, hermano:60, medio:60, col34:60, col56:0};
-    var RECARGO_C  = {hijo:0, conyuge:0, ascendiente:0, hermano:20, medio:20, col34:20, col56:40};
-    var NOMBRE_C   = {hijo:"hijo o hija", conyuge:"cónyuge o conviviente civil", ascendiente:"ascendiente",
-                       hermano:"hermano o hermana", medio:"medio hermano", col34:"colateral de 3.º o 4.º grado",
-                       col56:"colateral de 5.º o 6.º grado"};
+  /* =========================================================
+     CALCULADORA SIIMPLE (v3)
+     Una sola función, calcular(), produce TODO lo que se muestra:
+     el veredicto, el esquema visual, la tabla de la familia,
+     la casilla del Registro Civil y el desglose en texto.
+     Así el esquema y las cifras no pueden diferir.
+     ========================================================= */
+  (function calculadoraSIIMPLE(){
+    var app = document.getElementById("calcApp");
+    if(!app) return;
 
-    var elRel = document.getElementById("calcRel");
-    if(!elRel) return; // esta sección no está en la página actual
-
-    var S = {rel:null, comp:{}, act:null, pas:0, utm:UTM.valor};
-
-    function campo(id,label,sub,val){
-      return '<div class="campo"><label for="'+id+'">'+label+'</label>'+
-        (sub?'<span class="ayuda">'+sub+'</span>':'')+
-        '<input type="number" id="'+id+'" min="0" step="1" inputmode="numeric" value="'+(val==null?"":val)+'"></div>';
-    }
-    function siNo(id,label,sub){
-      return '<div class="campo"><label>'+label+'</label>'+
-        (sub?'<span class="ayuda">'+sub+'</span>':'')+
-        '<div class="chips" role="radiogroup" aria-label="'+label.replace(/"/g,'')+'">'+
-        '<label class="chip"><input type="radio" name="'+id+'" value="1"><span>Sí</span></label>'+
-        '<label class="chip"><input type="radio" name="'+id+'" value="0"><span>No</span></label></div></div>';
-    }
-
-    var FORMS_C = {
-      hijo: siNo("cc-cony","¿Quedó cónyuge o conviviente civil sobreviviente?") +
-            campo("cc-h","¿Cuántos hijos dejó en total?","Contándote a ti. Si alguno falleció antes que el causante, revisa la sección de representación."),
-      conyuge: campo("cc-h","¿Cuántos hijos dejó?","Escribe 0 si no tuvo hijos.") +
-               '<div id="cc-ascWrap" hidden>'+campo("cc-a","¿Cuántos padres o abuelos suyos siguen vivos?","Cuenta solo los del grado más cercano.")+'</div>',
-      ascendiente: siNo("cc-hijos0","¿La persona dejó hijos (vivos o representados)?","Si dejó hijos, los ascendientes no heredan en este orden.") +
-                   '<div id="cc-ascRest" hidden>'+siNo("cc-cony","¿Quedó cónyuge sobreviviente?")+
-                   campo("cc-a","¿Cuántos ascendientes del mismo grado que tú siguen vivos?","Contándote a ti.")+'</div>',
-      hermano: siNo("cc-previos0","¿La persona dejó hijos, cónyuge o ascendientes vivos?","Si dejó alguno de ellos, los hermanos no heredan.") +
-               '<div id="cc-hermRest" hidden>'+campo("cc-n","¿Cuántos hermanos de padre y madre (contándote a ti)?","")+
-               campo("cc-m","¿Cuántos medio hermanos, de solo padre o solo madre?","Escribe 0 si no hay.")+'</div>',
-      medio: siNo("cc-previos0","¿La persona dejó hijos, cónyuge o ascendientes vivos?","Si dejó alguno de ellos, los hermanos no heredan.") +
-             '<div id="cc-hermRest" hidden>'+campo("cc-n","¿Cuántos hermanos de padre y madre?","Escribe 0 si no hay.")+
-             campo("cc-m","¿Cuántos medio hermanos, contándote a ti?","")+'</div>',
-      col34: siNo("cc-previos1","¿Quedó algún pariente más cercano?","Hijos, cónyuge, ascendientes, hermanos o medio hermanos.") +
-             '<div id="cc-colRest" hidden>'+siNo("cc-yodoble","¿Compartes ambas líneas de parentesco con el causante (doble conjunción)?","Por ejemplo, un primo hijo de dos hermanos entre sí. Si compartes solo una línea, es simple conjunción.")+
-             campo("cc-cd","¿Cuántos parientes de tu mismo grado son de doble conjunción?","Contándote a ti si corresponde.")+
-             campo("cc-cs","¿Cuántos son de simple conjunción?","Contándote a ti si corresponde.")+'</div>',
-      col56: siNo("cc-previos1","¿Quedó algún pariente más cercano?","Hijos, cónyuge, ascendientes, hermanos o medio hermanos.") +
-             '<div id="cc-colRest" hidden>'+siNo("cc-yodoble","¿Compartes ambas líneas de parentesco con el causante (doble conjunción)?","Por ejemplo, un primo hijo de dos hermanos entre sí. Si compartes solo una línea, es simple conjunción.")+
-             campo("cc-cd","¿Cuántos parientes de tu mismo grado son de doble conjunción?","Contándote a ti si corresponde.")+
-             campo("cc-cs","¿Cuántos son de simple conjunción?","Contándote a ti si corresponde.")+'</div>'
+    /* ---------- Datos ---------- */
+    // UTM mensual en pesos (enero a diciembre). Fuente: sii.cl, valores_y_fechas/utm/utm20XX.htm
+    // (2019, 2022, 2023, 2024, 2025 y 2026 contrastados con el SII; 2020, 2021 y diciembre de 2025
+    // tomados de calcular.cl). Se llama UTM_MENSUAL para no confundirla con la UTM del
+    // comienzo de codigo.js. Cada mes, agregar aquí el valor nuevo (ver más abajo).
+    var UTM_MENSUAL = {
+      2019:[48353,48305,48353,48353,48595,48741,49033,49033,49131,49229,49229,49623],
+      2020:[49673,49723,50021,50221,50372,50372,50322,50272,50322,50372,50674,51029],
+      2021:[50978,51131,51489,51592,51798,52005,52161,52213,52631,52842,53476,54171],
+      2022:[54442,54878,55537,55704,56762,57557,58248,58772,59595,60310,60853,61157],
+      2023:[61769,61954,62450,62388,63074,63263,63326,63199,63452,63515,63960,64216],
+      2024:[64666,64343,64793,65182,65443,65770,65967,65901,66362,66561,66628,67294],
+      2025:[67429,67294,68034,68306,68648,68785,68923,68647,69265,69265,69542,69542],
+      2026:[69751,69611,69889,69889,70588,71506,71649,71649,71721,72151,72440,null]
     };
+    // Art. 2 Ley 16.271: escala en UTA convertida a UTM (1 UTA = 12 UTM). [tope, tasa, deducción]
+    var TRAMOS = [[960,.01,0],[1920,.025,14.4],[3840,.05,62.4],[5760,.075,158.4],
+                  [7680,.10,302.4],[9600,.15,686.4],[14400,.20,1166.4],[Infinity,.25,1886.4]];
+    var EXENCION = {hijo:600, conyuge:600, ascendiente:600, hermano:60, medio:60, col34:60, col56:0};
+    var RECARGO  = {hijo:0, conyuge:0, ascendiente:0, hermano:20, medio:20, col34:20, col56:40};
+    var NOMBRE = {hijo:"hijo o hija", conyuge:"cónyuge o conviviente civil", ascendiente:"padre, madre o abuelo",
+                  hermano:"hermano de padre y madre", medio:"medio hermano", col34:"colateral de 3.º o 4.º grado",
+                  col56:"colateral de 5.º o 6.º grado"};
+    var LEY = "https://www.sii.cl/normativa_legislacion/ley16271.pdf";
+    var CIRC33 = "https://www.sii.cl/normativa_legislacion/circulares/2021/circu33.pdf";
+    var CC = "https://www.bcn.cl/leychile/navegar?idNorma=172986";
+    var MESES = ["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre"];
+    // La UTM de la línea "var UTM = ..." del comienzo de codigo.js (window.UTM_GUIA)
+    // se escribe en esta tabla, en su año y mes: así, al actualizar esa línea cada mes,
+    // la calculadora la recibe sola. Ese valor no queda guardado en la tabla: cuando
+    // pase el mes, hay que agregarlo arriba para que siga sirviendo a quienes
+    // fallecieron en ese mes.
+    (function(){
+      var g = window.UTM_GUIA, m = g ? MESES.indexOf(g.mes) : -1;
+      if(m < 0 || !g.valor) return;
+      if(!UTM_MENSUAL[g.anio]) UTM_MENSUAL[g.anio] = [null,null,null,null,null,null,null,null,null,null,null,null];
+      UTM_MENSUAL[g.anio][m] = g.valor;
+    })();
 
-    function reparto(M){
-      var r = S.rel, c = S.comp;
-      var g = function(k){ var v = c[k]; return (v==="" || v==null || isNaN(v)) ? null : Number(v); };
-
-      if(r === "hijo"){
-        var cony = g("cony"), h = g("h");
-        if(cony===null || h===null || h<1) return null;
-        if(!cony) return {asig:M/h, regla:"Sin cónyuge, la herencia se divide en partes iguales entre los "+h+" hijos (art. 988 CC)."};
-        if(h===1) return {asig:M/2, regla:"Con un hijo y cónyuge, cada uno recibe la mitad (art. 988 CC)."};
-        if(h<7)   return {asig:M/(h+2), regla:"Con "+h+" hijos y cónyuge, el cónyuge lleva el doble que cada hijo: la masa se divide en "+(h+2)+" partes y a ti te toca una (art. 988 CC)."};
-        return {asig:3*M/(4*h), regla:"Con 7 hijos o más y cónyuge, el cónyuge lleva un cuarto de la herencia y el resto se divide entre los "+h+" hijos (art. 988 CC)."};
-      }
-      if(r === "conyuge"){
-        var h2 = g("h");
-        if(h2===null) return null;
-        if(h2===0){
-          var a = g("a"); if(a===null) return null;
-          if(a===0) return {asig:M, regla:"Sin hijos ni ascendientes vivos, el cónyuge recibe toda la herencia (art. 989 CC)."};
-          return {asig:2*M/3, regla:"Sin hijos, el cónyuge lleva dos tercios y el tercio restante se reparte entre los ascendientes (art. 989 CC)."};
-        }
-        if(h2===1) return {asig:M/2, regla:"Con un hijo, el cónyuge recibe la mitad (art. 988 CC)."};
-        if(h2<7)   return {asig:2*M/(h2+2), regla:"Con "+h2+" hijos, el cónyuge lleva el doble que cada hijo: dos partes de "+(h2+2)+" (art. 988 CC)."};
-        return {asig:M/4, regla:"Con 7 hijos o más, el cónyuge lleva un cuarto de la herencia (art. 988 CC)."};
-      }
-      if(r === "ascendiente"){
-        if(g("hijos0") !== 0) return null;
-        var cy = g("cony"), aa = g("a");
-        if(cy===null || aa===null || aa<1) return null;
-        if(cy) return {asig:M/(3*aa), regla:"Sin hijos, el cónyuge lleva dos tercios y el tercio restante se divide entre los "+aa+" ascendientes (art. 989 CC)."};
-        return {asig:M/aa, regla:"Sin hijos ni cónyuge, la herencia se divide en partes iguales entre los "+aa+" ascendientes (art. 989 CC)."};
-      }
-      if(r === "hermano" || r === "medio"){
-        if(g("previos0") !== 0) return null;
-        var n = g("n"), m = g("m");
-        if(n===null || m===null || (n+m)<1) return null;
-        var partes = 2*n + m;
-        if(r === "hermano"){
-          if(n<1) return null;
-          return m===0 ? {asig:M/n, regla:"La herencia se divide en partes iguales entre los "+n+" hermanos (art. 990 CC)."}
-                       : {asig:2*M/partes, regla:"Un hermano de padre y madre lleva el doble que un medio hermano (art. 990 CC): la masa se divide en "+partes+" partes y a ti te tocan dos."};
-        }
-        if(m<1) return null;
-        return n===0 ? {asig:M/m, regla:"La herencia se divide en partes iguales entre los "+m+" medio hermanos (art. 990 CC)."}
-                     : {asig:M/partes, regla:"Un medio hermano lleva la mitad que un hermano de padre y madre (art. 990 CC): la masa se divide en "+partes+" partes y a ti te toca una."};
-      }
-      if(r === "col34" || r === "col56"){
-        if(g("previos1") !== 0) return null;
-        var yoDoble = g("yodoble"), cd = g("cd"), cs = g("cs");
-        if(yoDoble===null || cd===null || cs===null) return null;
-        if(yoDoble===1 && cd<1) return null;
-        if(yoDoble===0 && cs<1) return null;
-        var partesC = 2*cd + cs;
-        if(partesC<1) return null;
-        if(cs===0) return {asig:M/cd, regla:"La herencia se divide en partes iguales entre los "+cd+" parientes de doble conjunción (art. 992 CC)."};
-        if(cd===0) return {asig:M/cs, regla:"La herencia se divide en partes iguales entre los "+cs+" parientes de simple conjunción (art. 992 CC)."};
-        return yoDoble
-          ? {asig:2*M/partesC, regla:"Un pariente de doble conjunción lleva el doble que uno de simple conjunción (art. 992 CC): la masa se divide en "+partesC+" partes y a ti te tocan dos."}
-          : {asig:M/partesC, regla:"Un pariente de simple conjunción lleva la mitad que uno de doble conjunción (art. 992 CC): la masa se divide en "+partesC+" partes y a ti te toca una."};
+    /* ---------- Utilidades ---------- */
+    function utmDe(anio, mes){ var a = UTM_MENSUAL[anio]; return (a && a[mes-1]) ? a[mes-1] : null; }
+    function ultimaUTM(){
+      var anios = Object.keys(UTM_MENSUAL).map(Number).sort(function(a,b){ return a-b; });
+      for(var i = anios.length-1; i >= 0; i--){
+        for(var m = 11; m >= 0; m--){ if(UTM_MENSUAL[anios[i]][m]) return {valor:UTM_MENSUAL[anios[i]][m], mes:m+1, anio:anios[i]}; }
       }
       return null;
     }
+    function utmPago(hoy){
+      var v = utmDe(hoy.getFullYear(), hoy.getMonth()+1);
+      if(v) return {valor:v, mes:hoy.getMonth()+1, anio:hoy.getFullYear(), exacta:true};
+      var u = ultimaUTM(); u.exacta = false; return u;
+    }
+    function aPesos(txt){
+      var t = String(txt == null ? "" : txt).replace(/[\s$]/g, "");
+      if(!t) return null;
+      if(/[^0-9.,]/.test(t)) return NaN;
+      if(t.indexOf(",") >= 0){
+        t = t.replace(/\./g, "");
+        if(t.split(",").length > 2) return NaN;
+        t = t.replace(",", ".");
+      } else {
+        t = t.replace(/\./g, "");
+      }
+      var n = parseFloat(t);
+      return isFinite(n) ? n : NaN;
+    }
+    function pesos(n){ return "$" + Math.round(n).toLocaleString("es-CL"); }
+    function num(n, d){ return n.toLocaleString("es-CL", {minimumFractionDigits:d, maximumFractionDigits:d}); }
+    function utm(n){ return num(n, 2) + " UTM"; }
+    function pct(t){ return (t*100).toLocaleString("es-CL", {maximumFractionDigits:1}) + "%"; }
+    function esc(s){ return String(s).replace(/[&<>"]/g, function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]; }); }
+    function fechaTxt(d){ return d.getDate() + " de " + MESES[d.getMonth()] + " de " + d.getFullYear(); }
+    function sumarAnios(d, n){ var x = new Date(d.getTime()); x.setFullYear(x.getFullYear() + n); return x; }
+    function norma(t, u){ return {t:t, u:u}; }
 
-    function impuestoUTM(base, rel){
-      if(base <= 0) return {utm:0, tasa:0, ded:0, bruto:0};
-      for(var i=0;i<TRAMOS_C.length;i++){
-        if(base <= TRAMOS_C[i][0]){
-          var bruto = Math.max(0, base*TRAMOS_C[i][1] - TRAMOS_C[i][2]);
-          return {utm: bruto*(1+RECARGO_C[rel]/100), tasa:TRAMOS_C[i][1], ded:TRAMOS_C[i][2], bruto:bruto};
+    /* ---------- Cálculo del impuesto de UNA asignación (art. 2 Ley 16.271) ---------- */
+    function impuestoAsignacion(asigPesos, rel, utmF, conDiscapacidad){
+      var u = asigPesos / utmF, ex = EXENCION[rel], base = Math.max(0, u - ex);
+      var r = {pesos:asigPesos, utm:u, ex:ex, base:base, tasa:0, ded:0, bruto:0, recargo:RECARGO[rel], conRecargo:0, disc:!!conDiscapacidad, total:0, tramo:null};
+      if(base <= 0) return r;
+      for(var i = 0; i < TRAMOS.length; i++){
+        if(base <= TRAMOS[i][0]){
+          r.tasa = TRAMOS[i][1]; r.ded = TRAMOS[i][2];
+          r.tramo = [i === 0 ? 0 : TRAMOS[i-1][0], TRAMOS[i][0]];
+          r.bruto = Math.max(0, base * r.tasa - r.ded);
+          break;
         }
       }
-      return {utm:0, tasa:0, ded:0, bruto:0};
+      r.conRecargo = r.bruto * (1 + r.recargo/100);
+      r.total = r.conRecargo * (r.disc ? 0.7 : 1);
+      return r;
     }
 
-    function fila(k,v,src,clase){
-      return '<div class="'+(clase||"")+'"><span>'+k+'</span><span>'+v+'</span></div>' +
-             (src ? '<div class="fuente-linea">'+src+'</div>' : '');
+    /* ---------- Preguntas por parentesco ---------- */
+    var SI_NO = "sino", NUM = "num", OPC = "opc";
+    var P = {
+      rep: {tipo:SI_NO, texto:"¿Algún hijo o hija de la persona murió antes que ella y dejó hijos?", ayuda:"Esos nietos heredan en lugar de su padre o madre (representación). Esta calculadora no cubre ese caso."},
+      cony:{tipo:SI_NO, texto:"¿Quedó cónyuge o conviviente civil sobreviviente?", ayuda:"Una pareja sin matrimonio ni acuerdo de unión civil no hereda por ley."},
+      prev:{tipo:SI_NO, texto:"Al morir, ¿la persona tenía hijos, nietos, cónyuge o conviviente civil, padres o abuelos?", ayuda:"Si dejó a alguno de ellos, heredan antes que los hermanos y demás parientes."},
+      hv:  {tipo:SI_NO, texto:"¿Le sobrevivió algún hermano o medio hermano?", ayuda:"Cuenta también a los que murieron después que la persona."},
+      ds:  {tipo:SI_NO, texto:"¿Dejó sobrinos o sobrinos nietos (hijos o nietos de sus hermanos)?", ayuda:"Si los hay, pueden heredar en lugar de sus padres. Ese caso tiene reglas discutidas y la calculadora no lo cubre."},
+      yodoble:{tipo:SI_NO, texto:"¿Tu parentesco pasa solo por hermanos de padre y madre (doble conjunción)?", ayuda:"Ejemplo: un tío que es hermano de padre y madre del padre de la persona es de doble conjunción. Si en la cadena hay un medio hermano, es de simple conjunción (art. 992 del Código Civil)."},
+      cd:  {tipo:NUM, min:0, max:60, texto:"¿Cuántos parientes de tu mismo grado son de doble conjunción?", ayuda:"Contándote a ti si corresponde. Escribe 0 si no hay."},
+      cs:  {tipo:NUM, min:0, max:60, texto:"¿Cuántos parientes de tu mismo grado son de simple conjunción?", ayuda:"Contándote a ti si corresponde. Escribe 0 si no hay."}
+    };
+    function q(base, extra){ var o = {}; var k; for(k in base) o[k] = base[k]; for(k in extra) o[k] = extra[k]; return o; }
+    var FORM = {
+      hijo: [
+        q(P.rep, {id:"rep"}),
+        q(P.cony, {id:"cony", si:function(c){ return c.rep === 0; }}),
+        {id:"h", tipo:NUM, min:1, max:40, texto:"¿Cuántos hijos e hijas tenía la persona al morir, contándote a ti?", ayuda:"Cuenta también a los que murieron después que ella: su parte pasa a sus propios herederos (transmisión).", si:function(c){ return c.rep === 0; }}
+      ],
+      conyuge: [
+        q(P.rep, {id:"rep"}),
+        {id:"h", tipo:NUM, min:0, max:40, texto:"¿Cuántos hijos e hijas tenía la persona al morir?", ayuda:"Cuenta también a los que murieron después que ella. Escribe 0 si no tuvo.", si:function(c){ return c.rep === 0; }},
+        {id:"a", tipo:NUM, min:0, max:8, texto:"¿Cuántos padres o abuelos de la persona vivían cuando murió?", ayuda:"Cuenta solo los del grado más cercano: si vivía al menos uno de sus padres, cuenta solo a los padres. Escribe 0 si no había.", si:function(c){ return c.rep === 0 && c.h === 0; }}
+      ],
+      ascendiente: [
+        {id:"desc", tipo:SI_NO, texto:"¿La persona dejó hijos, hijas o nietos?", ayuda:"Si dejó descendientes, los padres y abuelos no heredan."},
+        q(P.cony, {id:"cony", si:function(c){ return c.desc === 0; }}),
+        {id:"a", tipo:NUM, min:1, max:8, texto:"¿Cuántos ascendientes del grado más cercano vivían cuando murió, contándote a ti?", ayuda:"Si vivía alguno de los padres, los abuelos no heredan.", si:function(c){ return c.desc === 0; }}
+      ],
+      hermano: [
+        q(P.prev, {id:"prev"}),
+        {id:"rep", tipo:SI_NO, texto:"¿Algún hermano o medio hermano murió antes que la persona y dejó hijos?", ayuda:"Esos sobrinos heredan en lugar de su padre o madre. La calculadora no cubre ese caso.", si:function(c){ return c.prev === 0; }},
+        {id:"n", tipo:NUM, min:1, max:40, texto:"¿Cuántos hermanos de padre y madre le sobrevivieron, contándote a ti?", si:function(c){ return c.prev === 0 && c.rep === 0; }},
+        {id:"m", tipo:NUM, min:0, max:40, texto:"¿Cuántos medio hermanos (solo de padre o solo de madre) le sobrevivieron?", ayuda:"Escribe 0 si no hay.", si:function(c){ return c.prev === 0 && c.rep === 0; }}
+      ],
+      medio: [
+        q(P.prev, {id:"prev"}),
+        {id:"rep", tipo:SI_NO, texto:"¿Algún hermano o medio hermano murió antes que la persona y dejó hijos?", ayuda:"Esos sobrinos heredan en lugar de su padre o madre. La calculadora no cubre ese caso.", si:function(c){ return c.prev === 0; }},
+        {id:"n", tipo:NUM, min:0, max:40, texto:"¿Cuántos hermanos de padre y madre le sobrevivieron?", ayuda:"Escribe 0 si no hay.", si:function(c){ return c.prev === 0 && c.rep === 0; }},
+        {id:"m", tipo:NUM, min:1, max:40, texto:"¿Cuántos medio hermanos le sobrevivieron, contándote a ti?", si:function(c){ return c.prev === 0 && c.rep === 0; }}
+      ],
+      col34: [
+        {id:"grado", tipo:OPC, texto:"¿Cuál es tu parentesco?", opciones:[["3","Tío o tía de la persona (3.er grado)"],["4","Primo, prima o tío abuelo (4.º grado)"]]},
+        q(P.prev, {id:"prev"}),
+        q(P.hv, {id:"hv", si:function(c){ return c.prev === 0; }}),
+        q(P.ds, {id:"ds", si:function(c){ return c.prev === 0 && c.hv === 0; }}),
+        {id:"tio", tipo:SI_NO, texto:"¿Le sobrevivió algún tío o tía?", ayuda:"Los parientes de 3.er grado excluyen a los de 4.º.", si:function(c){ return c.grado === 4 && c.prev === 0 && c.hv === 0 && c.ds === 0; }},
+        q(P.yodoble, {id:"yodoble", si:listosCol}),
+        q(P.cd, {id:"cd", si:listosCol}),
+        q(P.cs, {id:"cs", si:listosCol})
+      ],
+      col56: [
+        {id:"grado", tipo:OPC, texto:"¿Cuál es tu grado de parentesco?", opciones:[["5","5.º grado (por ejemplo, primo del padre o de la madre de la persona)"],["6","6.º grado (por ejemplo, primo segundo)"]]},
+        q(P.prev, {id:"prev"}),
+        q(P.hv, {id:"hv", si:function(c){ return c.prev === 0; }}),
+        q(P.ds, {id:"ds", si:function(c){ return c.prev === 0 && c.hv === 0; }}),
+        {id:"c34", tipo:SI_NO, texto:"¿Le sobrevivió algún tío, tía, primo, prima o tío abuelo?", ayuda:"Los parientes de 3.er y 4.º grado excluyen a los más lejanos.", si:function(c){ return c.prev === 0 && c.hv === 0 && c.ds === 0; }},
+        {id:"c5", tipo:SI_NO, texto:"¿Le sobrevivió algún pariente de 5.º grado?", si:function(c){ return c.grado === 6 && c.prev === 0 && c.hv === 0 && c.ds === 0 && c.c34 === 0; }},
+        q(P.yodoble, {id:"yodoble", si:listosCol}),
+        q(P.cd, {id:"cd", si:listosCol}),
+        q(P.cs, {id:"cs", si:listosCol})
+      ],
+      representante: []
+    };
+    function listosCol(c){
+      if(c.prev !== 0 || c.hv !== 0 || c.ds !== 0) return false;
+      if(S.rel === "col34") return c.grado === 3 || (c.grado === 4 && c.tio === 0);
+      return c.c34 === 0 && (c.grado === 5 || (c.grado === 6 && c.c5 === 0));
     }
 
-    function veredicto(estado, titulo, porque, monto){
-      var caja = document.getElementById("vvCaja");
-      caja.setAttribute("data-estado", estado);
-      document.getElementById("vvTitulo").textContent = titulo;
-      document.getElementById("vvPorque").innerHTML = porque;
-      var m = document.getElementById("vvMonto");
-      if(monto){ m.hidden = false; m.innerHTML = monto; } else { m.hidden = true; }
+    /* ---------- Estado ---------- */
+    var S = {test:null, fecha:null, utmManual:null, rel:null, comp:{}, act:null, exentos:null, deudas:null, gastos:null,
+             esp:{extranjero:false, donaciones:false, repudio:false, sociedades:false}, disc:false};
+    function v(k){ var x = S.comp[k]; return (x === "" || x == null || (typeof x === "number" && isNaN(x))) ? null : x; }
+
+    /* ---------- Quién hereda y en qué proporción (Código Civil, arts. 988 a 992) ---------- */
+    function grupo(clave, nombre, rel, n, num, den, yo){ return {clave:clave, nombre:nombre, rel:rel, n:n, num:num, den:den, yo:!!yo}; }
+    function noHeredas(m, n){ return {estado:"no_heredas", motivo:m, norma:n}; }
+    function derivar(m, n){ return {estado:"derivar", motivo:m, norma:n}; }
+    function falta(m){ return {estado:"incompleto", motivo:m}; }
+    function entero(x, min){ return x !== null && Math.floor(x) === x && x >= min; }
+
+    function primerOrden(h, cony, yo){
+      // art. 988: el cónyuge lleva el doble que cada hijo; si hay un solo hijo, lo mismo; nunca menos de un cuarto.
+      var g = [];
+      if(!cony){
+        g.push(grupo("hijos", "Hijos e hijas", "hijo", h, 1, h, yo === "hijo"));
+        return {estado:"ok", grupos:g, regla:"Sin cónyuge, la herencia se divide en partes iguales entre los " + h + " hijos.", norma:"Código Civil, art. 988"};
+      }
+      if(h === 1){
+        g.push(grupo("hijos", "Hijo o hija", "hijo", 1, 1, 2, yo === "hijo"));
+        g.push(grupo("conyuge", "Cónyuge o conviviente civil", "conyuge", 1, 1, 2, yo === "conyuge"));
+        return {estado:"ok", grupos:g, regla:"Con un hijo y cónyuge, cada uno recibe la mitad.", norma:"Código Civil, art. 988"};
+      }
+      if(h <= 6){
+        g.push(grupo("hijos", "Hijos e hijas", "hijo", h, 1, h+2, yo === "hijo"));
+        g.push(grupo("conyuge", "Cónyuge o conviviente civil", "conyuge", 1, 2, h+2, yo === "conyuge"));
+        return {estado:"ok", grupos:g, regla:"El cónyuge lleva el doble que cada hijo: la herencia se divide en " + (h+2) + " partes; cada hijo recibe 1 y el cónyuge 2.", norma:"Código Civil, art. 988"};
+      }
+      g.push(grupo("hijos", "Hijos e hijas", "hijo", h, 3, 4*h, yo === "hijo"));
+      g.push(grupo("conyuge", "Cónyuge o conviviente civil", "conyuge", 1, 1, 4, yo === "conyuge"));
+      return {estado:"ok", grupos:g, regla:"Con 7 hijos o más, el doble de un hijo quedaría bajo un cuarto: el cónyuge lleva un cuarto y el resto se divide en partes iguales entre los hijos.", norma:"Código Civil, art. 988"};
+    }
+
+    function familia(){
+      var r = S.rel;
+      if(r === "representante") return derivar("Si tu padre o madre murió antes que la persona, heredas en su lugar (representación): el reparto es por estirpes y el impuesto se calcula como si heredara él o ella. Si murió después, sin alcanzar a aceptar, recibes su derecho a aceptar la herencia (transmisión) y normalmente hay que tramitar dos posesiones efectivas. Si eres sobrino o sobrina y ningún hermano de la persona sobrevive, además hay fallos contradictorios sobre cómo repartir. La calculadora no cubre estos casos: revísalos con la clínica.", "Código Civil, arts. 984 a 986; Ley 16.271, art. 3");
+      var c = {};
+      (FORM[r] || []).forEach(function(p){ c[p.id] = v(p.id); });
+      if(r === "hijo"){
+        if(c.rep === null) return falta("Responde si algún hijo murió antes dejando hijos.");
+        if(c.rep === 1) return derivar("Si un hijo murió antes dejando hijos, esos nietos heredan por representación: reciben entre todos la parte de su padre o madre y pagan el impuesto que a él le habría correspondido. La calculadora no cubre este caso.", "Código Civil, arts. 984 a 986; Ley 16.271, art. 3");
+        if(c.cony === null) return falta("Responde si quedó cónyuge o conviviente civil.");
+        if(!entero(c.h, 1)) return falta("Indica cuántos hijos tenía al morir, contándote a ti (un número entero, mínimo 1).");
+        return primerOrden(c.h, c.cony === 1, "hijo");
+      }
+      if(r === "conyuge"){
+        if(c.rep === null) return falta("Responde si algún hijo murió antes dejando hijos.");
+        if(c.rep === 1) return derivar("Si un hijo murió antes dejando hijos, esos nietos heredan por representación junto contigo. La calculadora no cubre este caso.", "Código Civil, arts. 984 a 986; Ley 16.271, art. 3");
+        if(!entero(c.h, 0)) return falta("Indica cuántos hijos dejó (un número entero; 0 si no tuvo).");
+        if(c.h >= 1) return primerOrden(c.h, true, "conyuge");
+        if(!entero(c.a, 0)) return falta("Indica cuántos padres o abuelos vivían cuando murió (0 si no había).");
+        if(c.a === 0) return {estado:"ok", grupos:[grupo("conyuge", "Cónyuge o conviviente civil", "conyuge", 1, 1, 1, true)], regla:"Sin hijos ni ascendientes, el cónyuge recibe toda la herencia.", norma:"Código Civil, art. 989"};
+        return {estado:"ok", grupos:[grupo("conyuge", "Cónyuge o conviviente civil", "conyuge", 1, 2, 3, true), grupo("asc", "Padres o abuelos", "ascendiente", c.a, 1, 3*c.a, false)], regla:"Sin hijos, el cónyuge lleva dos tercios y el tercio restante se reparte entre " + c.a + " ascendiente" + (c.a>1?"s":"") + ".", norma:"Código Civil, art. 989"};
+      }
+      if(r === "ascendiente"){
+        if(c.desc === null) return falta("Responde si la persona dejó hijos o nietos.");
+        if(c.desc === 1) return noHeredas("Si la persona dejó hijos o nietos, sus padres y abuelos no heredan: la ley llama primero a los descendientes.", "Código Civil, arts. 988 y 989");
+        if(c.cony === null) return falta("Responde si quedó cónyuge o conviviente civil.");
+        if(!entero(c.a, 1)) return falta("Indica cuántos ascendientes del grado más cercano vivían cuando murió, contándote a ti.");
+        if(c.cony === 1) return {estado:"ok", grupos:[grupo("asc", "Padres o abuelos", "ascendiente", c.a, 1, 3*c.a, true), grupo("conyuge", "Cónyuge o conviviente civil", "conyuge", 1, 2, 3, false)], regla:"Sin hijos, el cónyuge lleva dos tercios y el tercio restante se divide entre " + c.a + " ascendiente" + (c.a>1?"s":"") + ".", norma:"Código Civil, art. 989"};
+        return {estado:"ok", grupos:[grupo("asc", "Padres o abuelos", "ascendiente", c.a, 1, c.a, true)], regla:"Sin hijos ni cónyuge, la herencia se divide en partes iguales entre los ascendientes del grado más cercano.", norma:"Código Civil, art. 989"};
+      }
+      if(r === "hermano" || r === "medio"){
+        if(c.prev === null) return falta("Responde si quedaron hijos, nietos, cónyuge, padres o abuelos.");
+        if(c.prev === 1) return noHeredas("Si la persona dejó hijos, nietos, cónyuge o conviviente civil, padres o abuelos, ellos heredan antes que los hermanos.", "Código Civil, arts. 988 a 990");
+        if(c.rep === null) return falta("Responde si algún hermano murió antes dejando hijos.");
+        if(c.rep === 1) return derivar("Si un hermano murió antes dejando hijos, esos sobrinos heredan en su lugar (representación). La calculadora no cubre este caso.", "Código Civil, arts. 986 y 990; Ley 16.271, art. 3");
+        var minN = r === "hermano" ? 1 : 0, minM = r === "medio" ? 1 : 0;
+        if(!entero(c.n, minN)) return falta(r === "hermano" ? "Indica cuántos hermanos de padre y madre le sobrevivieron, contándote a ti." : "Indica cuántos hermanos de padre y madre le sobrevivieron (0 si no hay).");
+        if(!entero(c.m, minM)) return falta(r === "medio" ? "Indica cuántos medio hermanos le sobrevivieron, contándote a ti." : "Indica cuántos medio hermanos le sobrevivieron (0 si no hay).");
+        var partes = 2*c.n + c.m, g = [];
+        if(c.n > 0) g.push(grupo("herm", "Hermanos de padre y madre", "hermano", c.n, 2, partes, r === "hermano"));
+        if(c.m > 0) g.push(grupo("medios", "Medio hermanos", "medio", c.m, 1, partes, r === "medio"));
+        var regla = (c.n > 0 && c.m > 0) ? "Un medio hermano lleva la mitad que un hermano de padre y madre: la herencia se divide en " + partes + " partes; cada hermano carnal recibe 2 y cada medio hermano 1." : "La herencia se divide en partes iguales entre los hermanos.";
+        return {estado:"ok", grupos:g, regla:regla, norma:"Código Civil, art. 990"};
+      }
+      if(r === "col34" || r === "col56"){
+        if(c.grado === null) return falta("Indica tu grado de parentesco.");
+        if(c.prev === null) return falta("Responde si quedaron hijos, nietos, cónyuge, padres o abuelos.");
+        if(c.prev === 1) return noHeredas("Si la persona dejó hijos, nietos, cónyuge o conviviente civil, padres o abuelos, ellos heredan antes que los demás parientes.", "Código Civil, arts. 988 a 992");
+        if(c.hv === null) return falta("Responde si le sobrevivió algún hermano o medio hermano.");
+        if(c.hv === 1) return noHeredas("Si a la persona le sobrevivió un hermano o medio hermano, los demás colaterales no heredan.", "Código Civil, arts. 990 y 992");
+        if(c.ds === null) return falta("Responde si la persona dejó sobrinos o sobrinos nietos.");
+        if(c.ds === 1) return derivar("Si quedaron sobrinos o sobrinos nietos, la Corte Suprema ha resuelto que heredan por representación de sus padres (2025), aunque antes se aplicó otro criterio. Según cuál se siga, tú podrías no heredar o heredar junto con ellos. Revísalo con la clínica.", "Código Civil, arts. 986, 990 y 992");
+        if(r === "col34" && c.grado === 4){
+          if(c.tio === null) return falta("Responde si le sobrevivió algún tío o tía.");
+          if(c.tio === 1) return noHeredas("Los tíos (3.er grado) excluyen a los primos y tíos abuelos (4.º grado).", "Código Civil, art. 992");
+        }
+        if(r === "col56"){
+          if(c.c34 === null) return falta("Responde si le sobrevivió algún tío, primo o tío abuelo.");
+          if(c.c34 === 1) return noHeredas("Los parientes de 3.er y 4.º grado excluyen a los de 5.º y 6.º.", "Código Civil, art. 992");
+          if(c.grado === 6){
+            if(c.c5 === null) return falta("Responde si le sobrevivió algún pariente de 5.º grado.");
+            if(c.c5 === 1) return noHeredas("Los parientes de 5.º grado excluyen a los de 6.º.", "Código Civil, art. 992");
+          }
+        }
+        if(c.yodoble === null) return falta("Responde si tu parentesco es de doble o de simple conjunción.");
+        if(!entero(c.cd, 0) || !entero(c.cs, 0)) return falta("Indica cuántos parientes de tu grado hay de doble y de simple conjunción.");
+        if(c.yodoble === 1 && c.cd < 1) return falta("Si eres de doble conjunción, el número de parientes de doble conjunción debe incluirte (mínimo 1).");
+        if(c.yodoble === 0 && c.cs < 1) return falta("Si eres de simple conjunción, el número de parientes de simple conjunción debe incluirte (mínimo 1).");
+        var pt = 2*c.cd + c.cs, gc = [];
+        if(c.cd > 0) gc.push(grupo("doble", "Parientes de doble conjunción", r, c.cd, 2, pt, c.yodoble === 1));
+        if(c.cs > 0) gc.push(grupo("simple", "Parientes de simple conjunción", r, c.cs, 1, pt, c.yodoble === 0));
+        var rg = (c.cd > 0 && c.cs > 0) ? "Un pariente de simple conjunción lleva la mitad que uno de doble: la herencia se divide en " + pt + " partes." : "La herencia se divide en partes iguales entre los parientes de tu grado.";
+        return {estado:"ok", grupos:gc, regla:rg, norma:"Código Civil, art. 992"};
+      }
+      return falta("Indica tu parentesco.");
+    }
+
+    /* ---------- Cálculo completo ---------- */
+    function calcular(hoy){
+      hoy = hoy || new Date();
+      var R = {estado:"inicial", titulo:"", porque:"", monto:"", pasos:[], avisos:[], familia:null, yo:null, casilla:null, plazos:null, utmF:null};
+      if(S.test === 1){
+        R.estado = "alto"; R.titulo = "Esta guía no cubre herencias con testamento";
+        R.porque = "Si la persona dejó testamento, la posesión efectiva se pide ante un tribunal, con abogado, y la declaración del impuesto sigue otro camino. Pide orientación a la clínica.";
+        return R;
+      }
+      if(!S.rel){ R.titulo = "Todavía no podemos decírtelo"; R.porque = "Empieza por indicar qué eras de la persona que falleció."; return R; }
+
+      var fam = familia();
+      R.familia = fam;
+      var ex = EXENCION[S.rel];
+
+      if(fam.estado === "no_heredas"){
+        R.estado = "alto"; R.titulo = "Con estos datos, no eres heredero";
+        R.porque = fam.motivo + " Si crees que hay un error, revisa tus respuestas.";
+        R.pasos.push({t:"Quién hereda", e:"Tu parentesco: " + (NOMBRE[S.rel] || "otro"), op:"", r:"No heredas en este orden", m:fam.motivo, n:norma(fam.norma, CC), alto:true});
+        return R;
+      }
+      if(fam.estado === "derivar"){
+        R.estado = "alto"; R.titulo = "Este caso necesita revisión";
+        R.porque = fam.motivo;
+        R.pasos.push({t:"Quién hereda", e:"Tu situación", op:"", r:"La calculadora se detiene aquí", m:fam.motivo, n:norma(fam.norma, CC), alto:true});
+        return R;
+      }
+
+      // Fecha y UTM
+      var fecha = S.fecha, utmF = null, manual = false;
+      if(fecha){
+        if(fecha > hoy){ R.estado = "revision"; R.titulo = "Revisa la fecha"; R.porque = "La fecha de fallecimiento no puede ser posterior a hoy."; return R; }
+        utmF = utmDe(fecha.getFullYear(), fecha.getMonth()+1);
+        if(!utmF && S.utmManual > 0){ utmF = S.utmManual; manual = true; }
+      }
+      var pago = utmPago(hoy);
+      R.utmF = utmF;
+
+      if(fam.estado === "incompleto" || !fecha || !utmF || S.act === null){
+        R.estado = "revision";
+        if(fam.estado === "incompleto"){ R.titulo = "Falta saber cómo se reparte"; R.porque = fam.motivo; }
+        else if(!fecha){ R.titulo = "Falta la fecha de fallecimiento"; R.porque = "De esa fecha depende la UTM con que se miden la exención y los tramos."; }
+        else if(!utmF){ R.titulo = "Falta la UTM de ese mes"; R.porque = "La tabla interna parte en enero de 2019. Escribe la UTM del mes del fallecimiento; está en la tabla oficial del SII."; }
+        else { R.titulo = "Falta el valor de los bienes"; R.porque = "Escribe el valor total de lo que dejó la persona."; }
+        var ref = utmF || pago.valor;
+        R.porque += " Como " + NOMBRE[S.rel] + ", tu exención es de <b>" + ex + " UTM</b> (" + pesos(ex*ref) + " con la UTM " + (utmF ? "del fallecimiento" : "de este mes") + ").";
+        return R;
+      }
+      var act = S.act, exentos = S.exentos || 0, deudas = S.deudas || 0, gastos = S.gastos || 0;
+      if([act, exentos, deudas, gastos].some(function(x){ return isNaN(x) || x < 0; })){
+        R.estado = "revision"; R.titulo = "Revisa los montos"; R.porque = "Escribe solo números en pesos, sin letras. Puedes usar puntos para los miles."; return R;
+      }
+      if(exentos > act){ R.estado = "revision"; R.titulo = "Revisa los bienes exentos"; R.porque = "Los bienes exentos son parte del total: no pueden superarlo."; return R; }
+      if(S.esp.extranjero || S.esp.donaciones || S.esp.repudio){
+        var cual = [];
+        if(S.esp.extranjero) cual.push("bienes en el extranjero");
+        if(S.esp.donaciones) cual.push("donaciones en vida a algún heredero");
+        if(S.esp.repudio) cual.push("un heredero que repudió o cedió su parte");
+        R.estado = "alto"; R.titulo = "Este caso necesita revisión";
+        R.porque = "Marcaste " + cual.join(", ") + ". Eso cambia el reparto o la base del impuesto, y la calculadora no lo modela.";
+        R.pasos.push({t:"Situaciones especiales", e:cual.join(", "), op:"", r:"La calculadora se detiene aquí", m:"Las donaciones previas se suman a la asignación (art. 23), los bienes en el extranjero tienen reglas propias (art. 1) y el repudio o la cesión cambian quién recibe.", n:norma("Ley 16.271, arts. 1 y 23", LEY), alto:true});
+        return R;
+      }
+
+      // Pasos comunes
+      var conDisc = S.disc && fecha >= new Date(2020, 2, 1);
+      R.pasos.push({t:"Fecha de fallecimiento y UTM", e:fechaTxt(fecha), op:manual ? "UTM escrita por ti" : "UTM de " + MESES[fecha.getMonth()] + " de " + fecha.getFullYear(), r:pesos(utmF) + " por UTM", m:"La exención y los tramos se miden con la UTM vigente cuando murió la persona, no con la de hoy.", n:norma("Ley 16.271, art. 2", LEY)});
+      R.pasos.push({t:"Lo que dejó la persona", e:"Valor total que escribiste", op:"", r:pesos(act), m:"Cada bien se valora a la fecha del fallecimiento: avalúo fiscal para inmuebles, tasación fiscal para vehículos, saldo para cuentas.", n:norma("Ley 16.271, arts. 46 y 46 bis", LEY)});
+      var trasEx = act - exentos;
+      if(exentos > 0) R.pasos.push({t:"Bienes exentos", e:pesos(act), op:"− " + pesos(exentos), r:pesos(trasEx), m:"No pagan este impuesto los fondos de AFP hasta 4.000 UF, las viviendas DFL 2 adquiridas en primera transferencia y las de la Ley Pereira, con los requisitos de sus leyes.", n:norma("DL 3.500, art. 72; DFL 2, art. 16; Ley 9.135, art. 3", LEY)});
+      var M = Math.max(0, trasEx - deudas - gastos);
+      R.pasos.push({t:"Deudas y gastos que se restan", e:pesos(trasEx), op:"− " + pesos(deudas) + " en deudas − " + pesos(gastos) + " en gastos", r:pesos(M) + " de masa líquida", m:"Se restan antes de repartir: deudas sin seguro de desgravamen, gastos de la última enfermedad adeudados, funeral y gastos de la posesión efectiva. La masa líquida es de toda la familia; todavía no es tu parte." + (trasEx - deudas - gastos < 0 ? " Las deudas y gastos superan los bienes: la masa queda en cero." : ""), n:norma("Ley 16.271, art. 4", LEY)});
+
+      // Familia completa (misma función para todos)
+      var filas = [], hayPago = false, hayExento = false, yo = null;
+      fam.grupos.forEach(function(g){
+        var asig = M * g.num / g.den;
+        var res = impuestoAsignacion(asig, g.rel, utmF, g.yo && conDisc);
+        var fila = {g:g, res:res};
+        filas.push(fila);
+        if(res.total > 0) hayPago = true; else hayExento = true;
+        if(g.yo) yo = fila;
+      });
+      R.filas = filas; R.yo = yo;
+      R.casilla = !hayPago ? "exentas" : (!hayExento ? "afectas_todas" : "afectas_algunas");
+
+      var a = yo.res, g = yo.g;
+      R.pasos.push({t:"Reparto: tu parte", e:pesos(M) + " (masa de toda la herencia)", op:"× " + g.num + "/" + g.den, r:pesos(a.pesos) + " es tu asignación", m:fam.regla, n:norma(fam.norma, CC)});
+      R.pasos.push({t:"Tu parte en UTM", e:pesos(a.pesos), op:"÷ " + pesos(utmF), r:utm(a.utm), m:"Se convierte a UTM del fallecimiento para comparar con la exención y los tramos.", n:norma("Ley 16.271, art. 2", LEY)});
+      R.pasos.push({t:"Exención por parentesco", e:utm(a.utm), op:"− " + a.ex + " UTM", r:a.base > 0 ? utm(a.base) + " de base imponible" : "0 UTM: tu parte queda exenta", m:"Como " + NOMBRE[S.rel] + ", la ley deja fuera del impuesto los primeros " + a.ex + " UTM de tu parte" + (a.ex === 600 ? " (50 UTA)." : a.ex === 60 ? " (5 UTA)." : ": para parientes de 5.º grado o más lejanos no hay exención."), n:norma("Ley 16.271, art. 2", LEY)});
+      if(a.base > 0){
+        R.pasos.push({t:"Tasa del tramo", e:utm(a.base), op:"× " + pct(a.tasa) + (a.ded ? " − " + num(a.ded, 1) + " UTM" : ""), r:utm(a.bruto), m:"Tu base cae en el tramo de " + num(a.tramo[0], 0) + " a " + (isFinite(a.tramo[1]) ? num(a.tramo[1], 0) : "más") + " UTM. La deducción es fija por tramo: hace que cada porción pague solo su propia tasa.", n:norma("Ley 16.271, art. 2", LEY)});
+        R.pasos.push({t:"Recargo por parentesco", e:utm(a.bruto), op:a.recargo ? "× " + num(1 + a.recargo/100, 1) : "× 1 (sin recargo)", r:utm(a.conRecargo), m:a.recargo ? "Los colaterales de 2.º a 4.º grado tienen un recargo de 20% y los más lejanos de 40%, sobre el impuesto ya calculado." : "Hijos, cónyuge o conviviente civil y ascendientes no tienen recargo.", n:norma("Ley 16.271, art. 2", LEY)});
+        if(a.disc) R.pasos.push({t:"Rebaja por discapacidad", e:utm(a.conRecargo), op:"× 0,7", r:utm(a.total), m:"Quien está inscrito en el Registro Nacional de la Discapacidad tiene una rebaja de 30% del impuesto (sucesiones abiertas desde el 1 de marzo de 2020; tope anual de 8.000 UF).", n:norma("Ley 16.271, art. 2; Circular SII 33/2021", CIRC33)});
+        R.pasos.push({t:"Tu impuesto estimado en pesos", e:utm(a.total), op:"× " + pesos(pago.valor) + " (UTM de " + MESES[pago.mes-1] + " de " + pago.anio + ")", r:pesos(a.total * pago.valor), m:"El impuesto queda fijado en UTM, pero se paga según la UTM del mes en que efectivamente se paga." + (pago.exacta ? "" : " La tabla interna aún no tiene la UTM de este mes: se usó la última disponible."), n:norma("Ley 16.271, art. 2, inciso final", LEY)});
+      }
+      var casillaTxt = {exentas:"Exentas todas las asignaciones", afectas_algunas:"Afectas algunas de las asignaciones", afectas_todas:"Afectas todas las asignaciones"}[R.casilla];
+      R.pasos.push({t:"Toda la familia: qué marcar en el Registro Civil", e:filas.length + (filas.length === 1 ? " grupo de herederos" : " grupos de herederos"), op:"", r:casillaTxt, m:"La solicitud de posesión efectiva pregunta por todas las asignaciones, no solo por la tuya. Por eso se calcula a cada heredero con las mismas reglas.", n:norma("Ley 16.271, art. 60", LEY)});
+
+      // Plazos
+      var plazo2 = sumarAnios(fecha, 2), plazo8 = sumarAnios(fecha, 8);
+      R.plazos = {plazo2:plazo2, vencido2:hoy > plazo2, plazo8:plazo8, vencido8:hoy > plazo8};
+
+      // Veredicto
+      if(a.total > 0){
+        R.estado = "paga"; R.titulo = "Con estos datos, sí habría impuesto para ti";
+        R.porque = "Tu parte es " + pesos(a.pesos) + " (" + utm(a.utm) + "). Descontada tu exención de " + a.ex + " UTM, quedan " + utm(a.base) + " sobre los que se calcula el impuesto.";
+        R.monto = "Estimación de lo que te correspondería pagar<br><b>" + pesos(a.total * pago.valor) + "</b> · " + utm(a.total);
+      } else {
+        R.estado = "calma"; R.titulo = "Con estos datos, tu parte no paga impuesto";
+        R.porque = "Tu parte es " + pesos(a.pesos) + " (" + utm(a.utm) + ") y queda bajo tu exención de " + a.ex + " UTM.";
+        if(R.casilla !== "exentas") R.porque += " <b>Ojo:</b> otro heredero de tu familia sí supera su exención. En el Registro Civil corresponde marcar «" + casillaTxt.toLowerCase() + "».";
+      }
+      if(S.esp.sociedades) R.avisos.push("Marcaste sociedades, empresas o un predio agrícola. Sus reglas de valoración son especiales (art. 46 letras a y f): el resultado es tan bueno como el valor que escribiste.");
+      if(S.disc && !conDisc) R.avisos.push("La rebaja por discapacidad rige para sucesiones abiertas desde el 1 de marzo de 2020; no se aplicó.");
+      if(R.yo && Math.abs(R.yo.res.utm - R.yo.res.ex) <= R.yo.res.ex * 0.1 && R.yo.res.ex > 0) R.avisos.push("Tu parte queda muy cerca del límite de tu exención. Una diferencia pequeña en el avalúo, en las deudas o en los gastos puede cambiar el resultado: revisa esos valores con tus documentos.");
+      return R;
+    }
+
+    /* ---------- Dibujo ---------- */
+    var $ = function(id){ return document.getElementById(id); };
+    function htmlNorma(n){ return n && n.t ? '<span class="esq-norma">Norma: ' + (n.u ? '<a href="' + n.u + '" target="_blank" rel="noopener">' + esc(n.t) + '</a>' : esc(n.t)) + '</span>' : ""; }
+    function dibujarEsquema(R){
+      return R.pasos.map(function(p, i){
+        return '<li class="esq-paso' + (p.alto ? ' alto' : '') + (i === R.pasos.length-1 && !p.alto ? ' final' : '') + '">' +
+          '<span class="esq-num" aria-hidden="true">' + (p.alto ? '!' : (i+1)) + '</span>' +
+          '<div class="esq-caja"><h3>' + esc(p.t) + '</h3>' +
+          '<div class="esq-cuenta">' +
+            (p.e ? '<span class="esq-e"><small>Entra</small>' + esc(p.e) + '</span>' : '') +
+            (p.op ? '<span class="esq-op"><small>Operación</small>' + esc(p.op) + '</span>' : '') +
+            '<span class="esq-r"><small>Resultado</small>' + esc(p.r) + '</span>' +
+          '</div>' +
+          '<p class="esq-por"><b>Por qué:</b> ' + esc(p.m) + '</p>' + htmlNorma(p.n) +
+          '</div></li>';
+      }).join("");
+    }
+    function dibujarTexto(R){
+      return '<div class="tabla-scroll"><table class="tabla-desglose"><tbody><tr><th>Paso</th><th>Operación</th><th class="num">Resultado</th></tr>' +
+        R.pasos.map(function(p, i){
+          return '<tr><td><b>' + (i+1) + '. ' + esc(p.t) + '</b><span class="fuente-linea">' + esc(p.m) + (p.n && p.n.t ? ' (' + esc(p.n.t) + ')' : '') + '</span></td><td>' + esc((p.e ? p.e + ' ' : '') + (p.op || '')) + '</td><td class="num">' + esc(p.r) + '</td></tr>';
+        }).join("") + '</tbody></table></div>';
+    }
+    function dibujarFamilia(R){
+      if(!R.filas) return "";
+      var filas = R.filas.map(function(f){
+        var x = f.res;
+        return '<tr' + (f.g.yo ? ' class="yo"' : '') + '><td>' + esc(f.g.nombre) + (f.g.yo ? ' <span class="tag-yo">tú</span>' : '') + '</td><td class="num">' + f.g.n + '</td><td class="num">' + pesos(x.pesos) + '<span class="sub">' + utm(x.utm) + '</span></td><td class="num">' + x.ex + ' UTM</td><td class="num">' + (x.total > 0 ? utm(x.total) : 'Exenta') + '</td></tr>';
+      }).join("");
+      return '<h3 class="res-sub">Toda la familia, con las mismas reglas</h3><p class="nota-mini">Cada persona de un mismo grupo recibe lo mismo. El impuesto se calcula por persona.</p>' +
+        '<div class="tabla-scroll"><table class="tabla-familia"><tbody><tr><th>Herederos</th><th class="num">Personas</th><th class="num">Parte de cada uno</th><th class="num">Exención</th><th class="num">Impuesto por persona</th></tr>' + filas + '</tbody></table></div>';
+    }
+    function dibujarCasilla(R){
+      if(!R.casilla) return "";
+      var txt = {exentas:"Exentas todas las asignaciones", afectas_algunas:"Afectas algunas de las asignaciones", afectas_todas:"Afectas todas las asignaciones"}[R.casilla];
+      var sig = R.casilla === "exentas"
+        ? "La ley da por cumplida la obligación de declarar con esa constancia en la solicitud (art. 60). Igual necesitarás el certificado de exención del SII para inscribir o retirar bienes: se obtiene completando el F4412."
+        : "Después de obtener la posesión efectiva, uno de los herederos completa el F4412 en sii.cl. El SII gira el impuesto; cuando se paga, emite el certificado que piden el Conservador y otras instituciones.";
+      return '<div class="casilla"><span class="casilla-et">En la solicitud del Registro Civil, la casilla del impuesto sería</span><b>' + txt + '</b><p>' + sig + '</p></div>';
+    }
+    function dibujarPlazos(R){
+      if(!R.plazos) return "";
+      var p = R.plazos, t = '<div class="nota plazos"><b>Plazos según la fecha que indicaste.</b> ';
+      t += p.vencido2 ? "El plazo de dos años para declarar y pagar sin intereses venció el " + fechaTxt(p.plazo2) + ": si hay impuesto, se adeudan intereses desde esa fecha (art. 50)."
+                      : "Hay plazo para declarar y pagar sin intereses hasta el " + fechaTxt(p.plazo2) + " (art. 50).";
+      if(p.vencido8) t += " Además, pasaron más de ocho años: es posible que haya vencido el plazo del SII para revisar y cobrar. En ese caso, el F4412 emite un certificado de vencimiento de los plazos legales. Confírmalo con la clínica.";
+      return t + '</div>';
+    }
+
+    function veredicto(R){
+      var caja = $("vvCaja");
+      caja.setAttribute("data-estado", R.estado);
+      var t = $("vvTitulo"), p = $("vvPorque"), m = $("vvMonto");
+      if(t.textContent !== R.titulo) t.textContent = R.titulo;
+      if(p.innerHTML !== R.porque) p.innerHTML = R.porque;
+      if(R.monto){ m.hidden = false; m.innerHTML = R.monto; } else { m.hidden = true; m.innerHTML = ""; }
     }
 
     function render(){
-      document.getElementById("calcCompWrap").hidden = !S.rel;
-      var listo2 = S.rel && reparto(1) !== null;
-      document.getElementById("calcValoresWrap").hidden = !listo2;
-
-      if(!S.rel){
-        veredicto("inicial", "Todavía no podemos decírtelo", "Empieza por indicar qué eras de la persona que falleció.");
-        document.getElementById("calcPasos").hidden = true;
-        return;
-      }
-
-      if(S.rel === "ascendiente" && S.comp.hijos0 === 1){
-        veredicto("revision", "En este caso no heredas",
-          "Si la persona que falleció dejó hijos, sus padres y abuelos no heredan: la herencia se reparte entre los hijos y, si lo hay, el cónyuge o conviviente civil. Los padres y abuelos solo heredan cuando no hay hijos (art. 989 del Código Civil). Por eso no hay una parte tuya sobre la cual calcular el impuesto.<br><br>Si marcaste “Sí” por error, puedes cambiar la respuesta.");
-        document.getElementById("calcPasos").hidden = true;
-        return;
-      }
-      if((S.rel === "hermano" || S.rel === "medio") && S.comp.previos0 === 1){
-        veredicto("revision", "En este caso no heredas",
-          "Si la persona que falleció dejó hijos, cónyuge o conviviente civil, o padres o abuelos vivos, ellos heredan antes que los hermanos y medio hermanos. Los hermanos solo heredan cuando no queda ninguno de ellos (art. 990 del Código Civil). Por eso no hay una parte tuya sobre la cual calcular el impuesto.<br><br>Si marcaste “Sí” por error, puedes cambiar la respuesta.");
-        document.getElementById("calcPasos").hidden = true;
-        return;
-      }
-
-      var ex = EXENCION_C[S.rel];
-      if(!listo2){
-        veredicto("revision", "Falta saber cómo se reparte",
-          "Como "+NOMBRE_C[S.rel]+", puedes recibir hasta <b>"+ex+" UTM</b> ("+pesos(ex*S.utm)+" con la UTM que tienes puesta) sin pagar impuesto. Falta saber qué parte te toca a ti exactamente.");
-        document.getElementById("calcPasos").hidden = true;
-        return;
-      }
-
-      if(S.act===null || isNaN(S.act) || S.act<=0){
-        veredicto("revision", "Falta el valor de los bienes",
-          "Tu exención como "+NOMBRE_C[S.rel]+" es de <b>"+ex+" UTM</b>, o sea "+pesos(ex*S.utm)+". Si tu parte de la herencia queda bajo esa cifra, no pagas impuesto.");
-        document.getElementById("calcPasos").hidden = true;
-        return;
-      }
-
-      var M = Math.max(0, S.act - (S.pas||0));
-      var rep = reparto(M);
-      if(!rep){ document.getElementById("calcPasos").hidden = true; return; }
-
-      var asig = rep.asig;
-      var asigU = asig / S.utm;
-      var base = Math.max(0, asigU - ex);
-      var imp = impuestoUTM(base, S.rel);
-      var enPesos = imp.utm * S.utm;
-
-      if(base <= 0){
-        veredicto("calma", "Con estos datos, no pagarías impuesto",
-          "Te tocan "+pesos(asig)+" ("+utmFmt(asigU)+"). Como "+NOMBRE_C[S.rel]+" tu exención es de "+ex+" UTM, así que tu parte queda bajo el monto en que empieza a cobrarse.<br><br><b>Aun así tienes que declarar</b>, marcando la opción “exentas todas las asignaciones” en el formulario.");
-      } else {
-        veredicto("paga", "Con estos datos, sí habría impuesto",
-          "Te tocan "+pesos(asig)+" ("+utmFmt(asigU)+"). Descontada tu exención de "+ex+" UTM, quedan "+utmFmt(base)+" sobre los que se calcula el impuesto.",
-          "Estimación de lo que te correspondería pagar<br><b>"+pesos(enPesos)+"</b> · "+utmFmt(imp.utm));
-      }
-
-      var html = "";
-      html += fila("Bienes", pesos(S.act), "Suma de todo lo que dejó, según el inventario.");
-      if(S.pas>0) html += fila("Menos las deudas", "−"+pesos(S.pas), "Solo las que se pueden acreditar.");
-      html += fila("Masa hereditaria", pesos(M), "Bajas generales de la herencia ya aplicadas (art. 959 CC).");
-      html += fila("Lo que te toca a ti", pesos(asig), rep.regla);
-      html += fila("Convertido a UTM", utmFmt(asigU), "Se divide por la UTM del mes del fallecimiento ("+pesos(S.utm)+").");
-      html += fila("Tu exención por parentesco", "−"+ex+" UTM", "Tabla N.°1, fila “"+NOMBRE_C[S.rel]+"”.");
-      html += fila("Base imponible", utmFmt(base), base<=0
-        ? "La exención cubre toda tu parte, así que la base queda en cero y no se sigue calculando."
-        : "Es lo único sobre lo que se aplica la tabla de tasas.");
-
-      if(base > 0){
-        html += fila("Tasa del tramo", (imp.tasa*100).toLocaleString("es-CL")+"%", "Tabla N.°2, según el tramo en que cae tu base imponible.");
-        html += fila("Menos la deducción del tramo", "−"+imp.ded.toLocaleString("es-CL")+" UTM", "La misma tabla trae una deducción por tramo, para que el impuesto suba de forma gradual.");
-        html += fila("Impuesto antes del recargo", utmFmt(imp.bruto));
-        html += fila("Recargo por parentesco", RECARGO_C[S.rel]+"%", RECARGO_C[S.rel]===0
-          ? "Tabla N.°3. Los hijos, el cónyuge y los ascendientes no tienen recargo."
-          : "Tabla N.°3. Se aplica sobre el impuesto ya calculado, no sobre la herencia.");
-        html += fila("Impuesto total estimado", utmFmt(imp.utm)+" ("+pesos(enPesos)+")", "Para pagar, el formulario convierte esta cifra usando la UTM del mes de la declaración, que puede ser distinta de la que usamos aquí.", "total");
-      } else {
-        html += fila("Impuesto estimado", "$0", "La declaración se presenta igual, marcando la asignación como exenta.", "total");
-      }
-
-      document.getElementById("calcDesglose").innerHTML = html;
-      document.getElementById("calcPasos").hidden = false;
+      var R = calcular();
+      $("calcCompWrap").hidden = !S.rel || S.test === 1 || S.rel === "representante";
+      var fam = R.familia;
+      var puedeValores = S.rel && S.test !== 1 && fam && fam.estado === "ok";
+      $("calcValoresWrap").hidden = !puedeValores;
+      veredicto(R);
+      var hayPasos = R.pasos.length > 0;
+      $("calcResultado").hidden = !hayPasos;
+      if(!hayPasos) return;
+      $("calcEsquema").innerHTML = dibujarEsquema(R);
+      $("calcDesglose").innerHTML = dibujarTexto(R);
+      $("calcFamilia").innerHTML = dibujarFamilia(R);
+      $("calcCasilla").innerHTML = dibujarCasilla(R);
+      $("calcPlazos").innerHTML = dibujarPlazos(R);
+      $("calcAvisos").innerHTML = R.avisos.map(function(a){ return '<p class="aviso-amable">' + esc(a) + '</p>'; }).join("");
     }
 
-    elRel.addEventListener("change", function(e){
-      if(e.target.name !== "calc-rel") return;
-      S.rel = e.target.value; S.comp = {};
-      document.getElementById("calcComp").innerHTML = FORMS_C[S.rel] || "";
-      render();
-    });
-
-    document.getElementById("calcComp").addEventListener("input", function(e){
-      var t = e.target;
-      var key = (t.name || t.id).replace(/^cc-/, "");
-      S.comp[key] = t.type === "radio" ? Number(t.value) : (t.value === "" ? "" : Number(t.value));
-      var w;
-      if((w = document.getElementById("cc-ascWrap"))) w.hidden = !(S.comp.h === 0);
-      if((w = document.getElementById("cc-ascRest"))) w.hidden = !(S.comp.hijos0 === 0);
-      if((w = document.getElementById("cc-hermRest"))) w.hidden = !(S.comp.previos0 === 0);
-      if((w = document.getElementById("cc-colRest"))) w.hidden = !(S.comp.previos1 === 0);
-      render();
-    });
-
-    function dinero(id, key){
-      var el = document.getElementById(id);
-      el.addEventListener("input", function(){
-        var v = aNumero(this.value);
-        S[key] = (key==="pas") ? (v||0) : (v||null);
-        render();
+    /* ---------- Formularios ---------- */
+    function htmlPregunta(p){
+      var id = "cc-" + p.id, ayuda = p.ayuda ? '<span class="ayuda" id="' + id + '-ay">' + esc(p.ayuda) + '</span>' : "";
+      var desc = p.ayuda ? ' aria-describedby="' + id + '-ay"' : "";
+      if(p.tipo === NUM){
+        return '<div class="campo" data-q="' + p.id + '"><label for="' + id + '">' + esc(p.texto) + '</label>' + ayuda +
+          '<input type="number" id="' + id + '" name="' + p.id + '" min="' + p.min + '" max="' + p.max + '" step="1" inputmode="numeric"' + desc + '><span class="error-campo" id="' + id + '-err" role="alert"></span></div>';
+      }
+      var ops = p.tipo === SI_NO ? [["1","Sí"],["0","No"]] : p.opciones;
+      return '<fieldset class="campo" data-q="' + p.id + '"><legend>' + esc(p.texto) + '</legend>' + ayuda +
+        '<div class="chips">' + ops.map(function(o){ return '<label class="chip"><input type="radio" name="cc-' + p.id + '" value="' + o[0] + '"><span>' + esc(o[1]) + '</span></label>'; }).join("") + '</div></fieldset>';
+    }
+    function visibilidad(){
+      (FORM[S.rel] || []).forEach(function(p){
+        var nodo = app.querySelector('[data-q="' + p.id + '"]');
+        if(!nodo) return;
+        var ver = !p.si || p.si(leer());
+        nodo.hidden = !ver;
+        if(!ver && S.comp[p.id] != null){
+          S.comp[p.id] = null;
+          Array.prototype.forEach.call(nodo.querySelectorAll("input"), function(i){ if(i.type === "radio") i.checked = false; else i.value = ""; });
+        }
       });
     }
-    dinero("calcActivo","act");
-    dinero("calcPasivo","pas");
-    document.getElementById("calcUtm").addEventListener("input", function(){
-      var v = aNumero(this.value);
-      S.utm = (!v || v<1) ? UTM.valor : v;
-      render();
-    });
+    function leer(){ var c = {}; (FORM[S.rel] || []).forEach(function(p){ c[p.id] = v(p.id); }); return c; }
 
+    app.addEventListener("change", function(e){
+      var t = e.target;
+      if(t.name === "calc-test"){ S.test = Number(t.value); render(); return; }
+      if(t.name === "calc-rel"){
+        S.rel = t.value; S.comp = {};
+        $("calcComp").innerHTML = (FORM[S.rel] || []).map(htmlPregunta).join("");
+        visibilidad(); render(); return;
+      }
+      if(t.name && t.name.indexOf("cc-") === 0 && t.type === "radio"){
+        S.comp[t.name.slice(3)] = Number(t.value); visibilidad(); render(); return;
+      }
+      if(t.id && t.id.indexOf("esp-") === 0){ S.esp[t.id.slice(4)] = t.checked; render(); return; }
+      if(t.id === "calcDisc"){ S.disc = t.checked; render(); return; }
+    });
+    app.addEventListener("input", function(e){
+      var t = e.target;
+      if(t.type === "number" && t.id.indexOf("cc-") === 0){
+        var p = null; (FORM[S.rel] || []).forEach(function(x){ if("cc-" + x.id === t.id) p = x; });
+        var err = $(t.id + "-err"), n = t.value === "" ? null : Number(t.value);
+        var msj = "";
+        if(n !== null && (Math.floor(n) !== n)) msj = "Escribe un número entero.";
+        else if(n !== null && p && (n < p.min || n > p.max)) msj = "Escribe un número entre " + p.min + " y " + p.max + ".";
+        if(err) err.textContent = msj;
+        t.setAttribute("aria-invalid", msj ? "true" : "false");
+        S.comp[t.name] = msj ? null : n;
+        visibilidad(); render(); return;
+      }
+      var mapa = {calcBienes:"act", calcExentos:"exentos", calcDeudas:"deudas", calcGastos:"gastos"};
+      if(mapa[t.id]){
+        var val = aPesos(t.value);
+        S[mapa[t.id]] = val;
+        var e2 = $(t.id + "-err");
+        if(e2) e2.textContent = (val !== null && isNaN(val)) ? "Escribe solo el número, por ejemplo 45.000.000." : "";
+        render(); return;
+      }
+      if(t.id === "calcFecha"){
+        var f = t.value ? new Date(t.value + "T12:00:00") : null;
+        S.fecha = (f && !isNaN(f.getTime())) ? f : null;
+        var info = $("calcUtmInfo"), wrap = $("calcUtmManualWrap");
+        if(S.fecha){
+          var u = utmDe(S.fecha.getFullYear(), S.fecha.getMonth()+1);
+          wrap.hidden = !!u;
+          info.innerHTML = u ? "UTM de " + MESES[S.fecha.getMonth()] + " de " + S.fecha.getFullYear() + ": <b>" + pesos(u) + "</b> (tabla oficial del SII)." : "";
+        } else { wrap.hidden = true; info.innerHTML = ""; }
+        render(); return;
+      }
+      if(t.id === "calcUtmManual"){ var um = aPesos(t.value); S.utmManual = (um && !isNaN(um)) ? um : null; render(); return; }
+    });
+    // Formato de miles al salir del campo (no mientras se escribe)
+    ["calcBienes","calcExentos","calcDeudas","calcGastos","calcUtmManual"].forEach(function(id){
+      var el = $(id); if(!el) return;
+      el.addEventListener("blur", function(){ var n = aPesos(el.value); if(n !== null && !isNaN(n)) el.value = Math.round(n).toLocaleString("es-CL"); });
+    });
+    var bImp = $("calcImprimir"); if(bImp) bImp.addEventListener("click", function(){ window.print(); });
+    var hoyIso = new Date(); var fEl = $("calcFecha"); if(fEl) fEl.max = hoyIso.getFullYear() + "-" + String(hoyIso.getMonth()+1).padStart(2,"0") + "-" + String(hoyIso.getDate()).padStart(2,"0");
+
+    // Para pruebas automáticas y para el asistente: misma lógica, sin duplicarla.
+    window.SIIMPLE_CALC = {calcular:calcular, impuestoAsignacion:impuestoAsignacion, estado:S, utmDe:utmDe, familia:familia};
     render();
   })();
 

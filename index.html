@@ -318,73 +318,124 @@
 
 <section class="pantalla" id="calculadora" hidden="">
   <h1>Calcular el impuesto</h1>
-  <p class="bajada">Responde estas preguntas y arriba vas a ver una respuesta que se va afinando a medida que avanzas, sin esperar al final. El impuesto se calcula <strong>por cada heredero, sobre lo que le toca a él</strong>: haz el cálculo una vez por persona.</p>
+  <p class="bajada">Responde las preguntas y verás, con el cálculo a la vista, si tu parte paga impuesto y qué corresponde marcar en la solicitud del Registro Civil. El impuesto se calcula <strong>por heredero, sobre su parte</strong>; por eso también te mostramos al resto de la familia.</p>
+  <p class="aviso-ok"><b>Esto no es una declaración.</b> Nada de lo que escribes se envía al SII ni queda guardado: se borra al cerrar o recargar la página. El resultado es una estimación; el cálculo oficial lo hace el formulario F4412 del SII.</p>
 
-  <div class="veredicto-viva" id="vvCaja" data-estado="inicial" aria-live="polite">
+  <div class="veredicto-viva" id="vvCaja" data-estado="inicial">
     <p class="vv-pregunta">Con los datos que llevas</p>
-    <p class="vv-respuesta" id="vvTitulo">Todavía no podemos decírtelo</p>
+    <p class="vv-respuesta" id="vvTitulo" role="status" aria-live="polite">Todavía no podemos decírtelo</p>
     <p class="vv-porque" id="vvPorque">Empieza por indicar qué eras de la persona que falleció.</p>
     <p class="vv-monto" id="vvMonto" hidden=""></p>
   </div>
 
-  <div class="calc">
+  <div class="calc" id="calcApp">
+    <fieldset class="campo">
+      <legend>1. ¿La persona dejó testamento?</legend>
+      <span class="ayuda">Si no sabes, puedes pedir un certificado en el Registro Civil (Registro Nacional de Testamentos).</span>
+      <div class="chips">
+        <label class="chip"><input type="radio" name="calc-test" value="0"><span>No</span></label>
+        <label class="chip"><input type="radio" name="calc-test" value="1"><span>Sí</span></label>
+        <label class="chip"><input type="radio" name="calc-test" value="2"><span>No sé</span></label>
+      </div>
+    </fieldset>
+
     <div class="campo">
-      <label>1. ¿Qué eras de la persona que falleció?</label>
-      <span class="ayuda">De esto depende cuánto puedes recibir sin pagar impuesto: un hijo o cónyuge tiene una exención diez veces mayor que un hermano.</span>
-      <div class="chips" id="calcRel" role="radiogroup" aria-label="Parentesco">
+      <label for="calcFecha">2. ¿En qué fecha falleció?</label>
+      <span class="ayuda">Con esa fecha la página busca la UTM que corresponde y calcula tus plazos.</span>
+      <input type="date" id="calcFecha" min="1980-01-01">
+      <span class="ayuda" id="calcUtmInfo" aria-live="polite"></span>
+      <div id="calcUtmManualWrap" hidden>
+        <label for="calcUtmManual">UTM del mes del fallecimiento (en pesos)</label>
+        <span class="ayuda">La tabla interna parte en enero de 2019. Busca el valor en la <a href="https://www.sii.cl/valores_y_fechas/index_valores_y_fechas.html" target="_blank" rel="noopener">tabla oficial del SII</a>.</span>
+        <input type="text" id="calcUtmManual" inputmode="numeric" placeholder="Ej.: 47.729">
+      </div>
+    </div>
+
+    <fieldset class="campo">
+      <legend>3. ¿Qué eras de la persona que falleció?</legend>
+      <span class="ayuda">De esto depende cuánto puedes recibir sin pagar impuesto. Una pareja sin matrimonio ni acuerdo de unión civil no hereda por ley.</span>
+      <div class="chips" id="calcRel">
         <label class="chip"><input type="radio" name="calc-rel" value="hijo"><span>Hijo o hija</span></label>
         <label class="chip"><input type="radio" name="calc-rel" value="conyuge"><span>Cónyuge o conviviente civil</span></label>
         <label class="chip"><input type="radio" name="calc-rel" value="ascendiente"><span>Padre, madre o abuelo</span></label>
         <label class="chip"><input type="radio" name="calc-rel" value="hermano"><span>Hermano o hermana</span></label>
         <label class="chip"><input type="radio" name="calc-rel" value="medio"><span>Medio hermano</span></label>
-        <label class="chip"><input type="radio" name="calc-rel" value="col34"><span>Tío, sobrino o primo</span></label>
+        <label class="chip"><input type="radio" name="calc-rel" value="col34"><span>Tío, tía, primo, prima o tío abuelo</span></label>
         <label class="chip"><input type="radio" name="calc-rel" value="col56"><span>Pariente más lejano</span></label>
+        <label class="chip"><input type="radio" name="calc-rel" value="representante"><span>Heredo en lugar de mi padre o madre, que murió antes o después (nieto, sobrino u otro)</span></label>
       </div>
-    </div>
+    </fieldset>
 
-    <div class="campo" id="calcCompWrap" hidden="">
-      <label>2. ¿Quién más hereda?</label>
-      <span class="ayuda" id="calcCompAyuda">La herencia se reparte antes de calcular el impuesto, y cada heredero paga por su parte, no por el total.</span>
+    <div class="campo" id="calcCompWrap" hidden>
+      <p class="leyenda">4. ¿Quién más hereda?</p>
+      <span class="ayuda">La herencia se reparte antes de calcular el impuesto, y cada heredero paga por su parte, no por el total.</span>
       <div id="calcComp"></div>
     </div>
 
-    <div id="calcValoresWrap" hidden="">
+    <div id="calcValoresWrap" hidden>
+      <p class="leyenda">5. Los bienes, en pesos y a la fecha del fallecimiento</p>
       <div class="campo">
-        <label for="calcActivo">3. Todo lo que era del fallecido, sumado (en pesos)</label>
-        <span class="ayuda">Propiedades (avalúo fiscal, no precio de mercado), vehículos, muebles, cuentas, acciones y lo demás. Si estaba casado en sociedad conyugal o en participación en los gananciales, no incluyas la parte que corresponde al cónyuge sobreviviente: solo lo que era exclusivamente del fallecido, más su parte del patrimonio común.</span>
-        <input type="text" id="calcActivo" inputmode="numeric" placeholder="0">
-      </div>
-      <div class="campo">
-        <label for="calcPasivo">Deudas que se pueden acreditar</label>
-        <span class="ayuda">Se restan antes de repartir. Si no hay, déjalo en 0.</span>
-        <input type="text" id="calcPasivo" inputmode="numeric" placeholder="0">
+        <label for="calcBienes">Valor total de lo que dejó la persona</label>
+        <span class="ayuda">Propiedades por su avalúo fiscal (no el precio de venta), vehículos por su tasación fiscal, cuentas, fondos de AFP, menaje y lo demás. Si estaba casada en sociedad conyugal, solo su parte: revisa <button type="button" class="enlace-txt" data-ir="ordenes">cómo se separa</button>.</span>
+        <input type="text" id="calcBienes" inputmode="decimal" placeholder="Ej.: 80.000.000" aria-describedby="calcBienes-err">
+        <span class="error-campo" id="calcBienes-err" role="alert"></span>
       </div>
       <div class="campo">
-        <label for="calcUtm">Valor de la UTM del mes del fallecimiento</label>
-        <span class="ayuda">Viene puesto el valor de <span data-utm="mes">septiembre de 2026</span>. Si el fallecimiento fue antes, cámbialo por el del mes correspondiente.</span>
-        <input type="text" id="calcUtm" inputmode="numeric" value="71.721">
+        <label for="calcExentos">De ese total, ¿cuánto corresponde a bienes exentos?</label>
+        <span class="ayuda">Fondos de AFP hasta 4.000 UF, vivienda DFL 2 que la persona construyó o compró en primera venta, vivienda de la Ley Pereira. Si no tienes certeza, deja 0. <button type="button" class="enlace-txt" data-ir="que-entra">Ver qué es exento</button></span>
+        <input type="text" id="calcExentos" inputmode="decimal" placeholder="0" aria-describedby="calcExentos-err">
+        <span class="error-campo" id="calcExentos-err" role="alert"></span>
       </div>
-      <div class="nota">
-        <b>Ojo con esta cifra.</b> En este trámite se usan dos valores de UTM distintos y no son intercambiables. Aquí va la del <b>mes del fallecimiento</b>, que sirve para saber si hay impuesto. Más adelante, para pagar, el formulario pide la UTM del <b>mes en que se presenta la declaración</b>.
+      <div class="campo">
+        <label for="calcDeudas">Deudas que dejó y que se pueden acreditar</label>
+        <span class="ayuda">Saldo al día del fallecimiento. No cuentan las que tenían seguro de desgravamen ni las contraídas para comprar bienes exentos.</span>
+        <input type="text" id="calcDeudas" inputmode="decimal" placeholder="0" aria-describedby="calcDeudas-err">
+        <span class="error-campo" id="calcDeudas-err" role="alert"></span>
       </div>
+      <div class="campo">
+        <label for="calcGastos">Gastos que se restan</label>
+        <span class="ayuda">Funeral, gastos de la última enfermedad que quedaron impagos (o que los herederos pagaron de su bolsillo) y gastos de la posesión efectiva. Con boletas.</span>
+        <input type="text" id="calcGastos" inputmode="decimal" placeholder="0" aria-describedby="calcGastos-err">
+        <span class="error-campo" id="calcGastos-err" role="alert"></span>
+      </div>
+      <details class="mas">
+        <summary>¿Hay alguna de estas situaciones?</summary>
+        <div class="checks-especiales">
+          <label><input type="checkbox" id="esp-extranjero"> Hay bienes fuera de Chile</label>
+          <label><input type="checkbox" id="esp-donaciones"> La persona hizo donaciones en vida a algún heredero</label>
+          <label><input type="checkbox" id="esp-repudio"> Algún heredero rechazó la herencia o vendió (cedió) su parte</label>
+          <label><input type="checkbox" id="esp-sociedades"> Hay sociedades, empresas o un predio agrícola</label>
+          <label><input type="checkbox" id="calcDisc"> Estoy inscrito en el Registro Nacional de la Discapacidad</label>
+        </div>
+      </details>
     </div>
+  </div>
 
-    <details class="steps-calc" id="calcPasos" hidden="">
-      <summary>Ver de dónde sale este resultado</summary>
+  <div id="calcResultado" hidden>
+    <h2 class="res-tit">Cómo se llega a este resultado</h2>
+    <p class="nota-mini">Cada caja es un paso del cálculo, en el mismo orden que usa la ley. Las cifras salen de lo que escribiste.</p>
+    <ol class="esq" id="calcEsquema"></ol>
+    <div id="calcAvisos"></div>
+    <div id="calcFamilia"></div>
+    <div id="calcCasilla"></div>
+    <div id="calcPlazos"></div>
+    <details class="steps-calc" id="calcPasos">
+      <summary>Ver de dónde sale este resultado (detalle en texto)</summary>
       <div class="desglose" id="calcDesglose"></div>
     </details>
+    <div class="acciones-res">
+      <button type="button" class="btn-sec" id="calcImprimir">Imprimir o guardar este resultado</button>
+      <button type="button" class="btn-sec" data-ir="documentos">Ver qué documentos reunir</button>
+    </div>
   </div>
 
   <div class="aviso">
-    <p><b>Es una orientación, no el cálculo oficial.</b> Sirve para saber de qué lado estás antes de entrar al formulario del SII; la cifra definitiva la determina el propio sistema con los valores acreditados de cada bien. No cubre herederos por representación ni por transmisión, donaciones anteriores, bienes situados fuera de Chile, ni asignaciones testamentarias a personas sin parentesco. Si tu caso tiene alguno de esos elementos, consulta antes de usar este resultado.</p>
-  </div>
-  <div class="nota">
-    Aunque el resultado dé cero, igual hay que declarar: se marca la opción "exentas todas las asignaciones" en el formulario, y de esa declaración sale el comprobante que exige el Conservador para inscribir los bienes.
+    <p><b>Es una orientación, no el cálculo oficial.</b> El cálculo que vale es el del formulario F4412 del SII, con los valores acreditados de cada bien. La calculadora no cubre testamento, herederos que reemplazan a otro que murió antes (representación o transmisión), donaciones previas, bienes en el extranjero, repudio ni cesión. En esos casos, consulta antes de usar este resultado.</p>
   </div>
 
   <div class="menu enlace-caja">
-    <button class="item" type="button" data-ir="dos-utm"><b>¿Por qué me pregunta la UTM del mes del fallecimiento?</b><span>Porque en este trámite se usan dos UTM distintas</span></button>
-    <button class="item" type="button" data-ir="tablas"><b>Ver cómo funciona el cálculo por dentro</b><span>Las tres tablas explicadas paso a paso</span></button>
+    <button class="item" type="button" data-ir="dos-utm"><b>¿Por qué me pregunta la fecha?</b><span>Porque se usan dos UTM distintas</span></button>
+    <button class="item" type="button" data-ir="tablas"><b>Ver las tablas del impuesto</b><span>Exención, tramos y recargo explicados</span></button>
   </div>
 </section>
 

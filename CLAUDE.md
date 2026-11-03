@@ -100,6 +100,13 @@ Revisar también que en el celular la ventana ocupe toda la pantalla.
   - data-redondeo="M": redondea ese monto al múltiplo de M.
 - El texto escrito en el HTML es solo un respaldo. Todo monto nuevo en pesos
   que dependa de la UTM debe llevar data-utm-por, o no se actualizará.
+- La calculadora usa además una tabla con la UTM de cada mes desde enero de
+  2019 (`UTM_MENSUAL`, dentro de calculadoraSIIMPLE en codigo.js): mide la
+  exención y los tramos con la UTM del mes del fallecimiento, y pasa el
+  impuesto a pesos con la UTM del mes en curso (según la fecha del
+  computador). La línea `var UTM = ...` se escribe sola en esa tabla, pero no
+  queda guardada: cada mes, al actualizar la línea, agrega también ese valor
+  a la tabla, en su año y mes.
 
 ## Estilo
 - Español de Chile, tono claro y cercano en la ruta del usuario,
