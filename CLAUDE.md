@@ -27,13 +27,16 @@ Somos estudiantes de Derecho y no programamos. Por eso:
   y se navega con atributos data-ir.
 - estilos.css: los estilos (colores, tipografía, diseño). index.html lo carga
   en el <head>.
-- codigo.js: el código (navegación, calculadora, valor de la UTM). index.html lo
-  carga al final del <body>.
+- codigo.js: el código (navegación, calculadora, valor de la UTM, listas de
+  bienes y documentos). index.html lo carga al final del <body>.
 - asistente.css y asistente.js: el chat SIILV-I.A (burbuja abajo a la derecha).
   Responde en el navegador, sin IA ni servidores. Su configuración está en
   ASISTENTE_CONFIG, al comienzo de asistente.js. Sus respuestas fijas repiten
-  datos de la guía (exenciones, tramos, recargos, costos): si cambian en la
-  guía, hay que cambiarlos también ahí.
+  datos de la guía (exenciones, tramos, recargos, costos, descuentos, plazos,
+  documentos y su propia lista de bienes): si cambian en la guía, hay que
+  cambiarlos también ahí. El chat calcula con una sola UTM (la de la línea
+  `var UTM`); la calculadora, con la del mes del fallecimiento: para un mismo
+  caso pueden dar montos algo distintos.
 - En index.html, después del pie de página: la burbuja del chat y dos bloques
   ocultos que solo lee el chat: siaInfoExtra (respuestas que la Clínica agrega
   a mano; se ve en el código fuente, no poner datos personales) y
@@ -48,7 +51,37 @@ Somos estudiantes de Derecho y no programamos. Por eso:
   que-entra (con ilustraciones), guias (descarga los PDF de pdf/) y
   privacidad (qué guarda la página: si cambia lo que guarda el chat, la
   calculadora o la lista de documentos, hay que cambiarlo ahí también).
-- pdf/: las cuatro guías en PDF que enlaza la sección guias.
+- pdf/: las cuatro guías en PDF que enlaza la sección guias. Las hizo Antonio
+  (29-10-2026) y traen sus propios montos con la UTM de octubre de 2026: no se
+  actualizan solas.
+- Listas de bienes (BIENES) y documentos (DOCS, ordenados por etapa) en
+  codigo.js. index.html tiene una copia ya pintada de las dos como respaldo:
+  si se cambia una lista, actualizar también esa copia. Las casillas marcadas
+  de documentos se guardan en el navegador con la clave docsHerencia3; si
+  cambia el orden o la cantidad de documentos, cambiar la clave.
+
+## Calculadora
+- Está en codigo.js, en calculadoraSIIMPLE. Una sola función, calcular(),
+  produce todo lo que se ve (veredicto, esquema de pasos, tabla de la familia,
+  casilla del Registro Civil y plazos), para que no puedan diferir.
+- Calcula a toda la familia (Código Civil, arts. 988 a 992) y dice qué casilla
+  marcar: exentas todas, afectas algunas o afectas todas.
+- Se detiene y deriva a la Clínica con testamento, representación,
+  transmisión, sobrinos sin hermanos vivos, bienes en el extranjero,
+  donaciones previas, repudio o cesión, y avisa cuando el parentesco elegido
+  no hereda.
+- window.SIIMPLE_CALC expone la misma lógica para pruebas.
+- Después de cambiarla, probar (testamento = No en todos):
+| Caso | Datos | Debe decir |
+|---|---|---|
+| A | Hijo · 15-03-2025 · ¿hijo murió antes? No · cónyuge Sí · 3 hijos · $80.000.000 | Tu parte no paga; hijos $16.000.000 y cónyuge $32.000.000; Exentas todas |
+| B | Hijo · 10-10-2026 · cónyuge No · 1 hijo · $50.000.000 | Paga 0,93 UTM; Afectas todas |
+| C | Hijo · 15-03-2025 · cónyuge Sí · 3 hijos · $200.000.000 | Tu parte no paga, el cónyuge paga 5,76 UTM; Afectas algunas, con aviso "Ojo" |
+| D | Hermano · 01-06-2024 · nadie antes · 1 hermano carnal (tú) y 1 medio hermano · $30.000.000 | Tú 2,93 UTM; medio hermano 1,10 UTM |
+| E | Padre, madre o abuelo · dejó hijos: Sí | No eres heredero |
+| F | Testamento: Sí | La guía no cubre herencias con testamento |
+| G | Hijo · 01-05-2016 · UTM manual 45.000 · cónyuge No · 1 hijo · $100.000.000 | 26,16 UTM y aviso de más de ocho años |
+| H | "Heredo en lugar de mi padre o madre…" | Este caso necesita revisión |
 
 ## Asistente SIILV-I.A: cómo responde y cómo probarlo
 Orden en que busca la respuesta (en asistente.js, función responder):
@@ -77,13 +110,19 @@ Después de cambiar el asistente, abrir la burbuja y probar:
 | ¿se paga impuesto por el seguro de vida? | Oficios 1229 y 186 de 2023 |
 | Mi RUT es 12.345.678-9 | Advertencia de no compartir datos |
 | ¿qué tiempo hará mañana? | Que no puede ayudar y ofrece la Clínica |
+| ¿tengo que declarar si no pago? | Art. 60 (se da por cumplida si todas son exentas) y certificado del SII |
+| ¿qué gastos puedo descontar? | Art. 4 de la Ley 16.271 (no el art. 959 del Código Civil) |
+| ¿dónde declaro las cañerías? | Instalaciones fijas, dentro del bien raíz |
 Revisar también que en el celular la ventana ocupe toda la pantalla.
 
 ## Contenido jurídico: reglas estrictas
 - NO cambies montos, exenciones, tasas, tramos, deducciones, recargos,
   artículos citados ni reglas de reparto sin aprobación explícita del equipo.
   Toda modificación de fondo pasa por revisión de un profesor.
-- Normas base: Ley 16.271 y Código Civil (arts. 959, 988 a 992, 688).
+- Normas base: Ley 16.271 (para el impuesto, los descuentos son los de su
+  art. 4) y Código Civil (arts. 959, 988 a 992, 688). También se citan la
+  Ley 20.830 (acuerdo de unión civil), la Ley 19.903 (arancel del Registro
+  Civil) y el Código Tributario (art. 200, prescripción).
 - Si detectas un posible error jurídico, avísalo; no lo corrijas por tu cuenta.
 - Mantén siempre los avisos de que la guía es orientación, no asesoría legal,
   y de que no es un sitio oficial del SII.
@@ -119,7 +158,17 @@ Revisar también que en el celular la ventana ocupe toda la pantalla.
 - Cuida la accesibilidad: contraste, textos alternativos y navegación con teclado.
 
 ## Pendientes conocidos
-- Navegación con direcciones propias por sección (#calculadora) y botón atrás del navegador.
-- Calculadora: indicar cuando el parentesco elegido no hereda en ese orden.
+- Verificar antes de publicar (vienen de la versión 3 de Antonio):
+  - Rol del fallo de la Corte Suprema de 2025 sobre sobrinos (sección ordenes).
+  - Rol del fallo de la C.A. de Temuco de junio de 2026 y si fue confirmado (costos).
+  - Fuente de la recomendación de la Defensoría del Contribuyente (cero).
+  - Regla del 100% de la sociedad conyugal en el F4412: no se comprobó en una
+    sesión real del formulario (cadena, formulario, trampas, diccionario, chat).
+  - Mención a la porción conyugal en la cita del art. 4 (descuentos, diccionario).
+  - En tablas, la rebaja por discapacidad no dice desde cuándo rige
+    (1-3-2020) ni su tope de 8.000 UF, que la calculadora sí indica.
+  - Contenido de las guías 1, 2 y 4 en PDF.
+- Chat: a "¿tengo que declarar si no pago?" agrega un dictamen sobre
+  impuesto territorial que no viene al caso (busca por palabras parecidas).
 - Definir identidad visual propia (hoy se parece al portal del SII).
 - Autorización de la UC para usar su marca.
