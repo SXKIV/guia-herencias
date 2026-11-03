@@ -43,7 +43,7 @@ img{max-width:100%}
 .franja .simple:hover{text-decoration:underline}
 
 /* Botón para agrandar o achicar el texto (lupa con − y +) */
-.tamano-texto{display:flex;align-items:center;background:#fff;border:2px solid var(--primario);border-radius:999px;padding:2px;flex:none}
+.tamano-texto{display:flex;align-items:center;background:#fff;border:2px solid var(--primario);border-radius:999px;padding:2px;flex:none;margin-left:auto}
 .tamano-texto button{display:grid;place-items:center;width:30px;height:30px;font:inherit;font-size:20px;font-weight:700;line-height:1;color:var(--primario);background:none;border:none;border-radius:50%;cursor:pointer;padding:0}
 .tamano-texto button:hover{background:var(--celeste)}
 .tamano-texto button:disabled{color:#9AA3AE;background:none;cursor:default}
