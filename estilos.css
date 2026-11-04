@@ -129,7 +129,7 @@ a{color:var(--primario)}
 .carrusel-puntos button::before{content:"";grid-area:1/1;width:8px;height:8px;border-radius:4px;background:rgba(11,58,110,.3)}
 .carrusel-puntos button[aria-current="true"]::before{width:24px;background:rgba(11,58,110,.2)}
 /* El punto activo se llena mientras corre el tiempo de la diapositiva */
-.carrusel-puntos button[aria-current="true"]::after{content:"";grid-area:1/1;justify-self:start;width:24px;height:8px;border-radius:4px;background:var(--primario-osc);transform-origin:left;animation:carruselAvance var(--avance,12s) linear forwards}
+.carrusel-puntos button[aria-current="true"]::after{content:"";grid-area:1/1;justify-self:start;width:24px;height:8px;border-radius:4px;background:var(--primario-osc);transform-origin:left;animation:carruselAvance var(--avance,6s) linear forwards}
 .carrusel.en-pausa .carrusel-puntos button::after{animation-play-state:paused}
 @keyframes carruselAvance{from{transform:scaleX(0)}to{transform:scaleX(1)}}
 @media (prefers-reduced-motion:reduce){.carrusel-puntos button[aria-current="true"]::after{animation:none}}

@@ -45,7 +45,7 @@ Somos estudiantes de Derecho y no programamos. Por eso:
   dictámenes nuevos en el SII y los agrega a siaDictamenes con un commit.
   Se puede correr a mano en la pestaña Actions del repositorio.
 - Portada: el banner de arriba es un carrusel de 3 diapositivas (calculadora,
-  simulador y chat SIILV-I.A), cada una con su color. Avanza sola cada 12
+  simulador y chat SIILV-I.A), cada una con su color. Avanza sola cada 6
   segundos (SEGUNDOS_POR_SLIDE en codigo.js, "Carrusel de la portada") y
   tiene botón de pausa. Sus textos describen el simulador y el chat: si
   cambian, revisarlos.

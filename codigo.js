@@ -879,7 +879,7 @@
   // el botón de pausa, con el mouse encima o al navegar con el teclado
   // dentro; no arranca solo si el equipo pide reducir las animaciones.
   // Las diapositivas ocultas quedan fuera del teclado.
-  var SEGUNDOS_POR_SLIDE = 12;
+  var SEGUNDOS_POR_SLIDE = 6;
   var carrusel = document.getElementById("carrusel");
   if(carrusel){
     var pista = document.getElementById("carruselPista");
@@ -899,8 +899,11 @@
       temporizador = null;
       restante = Math.max(0, restante - (Date.now() - inicioCuenta));
     }
+    // La portada está a la vista: su sección no está oculta y la pestaña del navegador está abierta
+    var portada = carrusel.closest(".pantalla");
+    function portadaVisible(){ return !document.hidden && !(portada && portada.hidden); }
     function actualizarCuenta(){
-      var enPausa = pausaUsuario || mouseEncima || focoTeclado;
+      var enPausa = pausaUsuario || mouseEncima || focoTeclado || !portadaVisible();
       carrusel.classList.toggle("en-pausa", enPausa);
       pista.setAttribute("aria-live", enPausa ? "polite" : "off");
       if(enPausa){ detenerCuenta(); return; }
@@ -908,9 +911,7 @@
       inicioCuenta = Date.now();
       temporizador = setTimeout(function(){
         temporizador = null;
-        // Si la portada no se está viendo, espera otra vuelta sin cambiar
-        if(document.hidden || !carrusel.offsetParent){ restante = duracion; actualizarCuenta(); }
-        else irSlide(slideActual + 1);
+        irSlide(slideActual + 1);
       }, restante);
     }
     function irSlide(i){
@@ -954,6 +955,19 @@
     carrusel.addEventListener("focusout", function(e){
       if(!carrusel.contains(e.relatedTarget)){ focoTeclado = false; actualizarCuenta(); }
     });
+    // Al salir de la portada la cuenta se detiene. Al volver, se olvida la pausa
+    // por mouse o teclado (el navegador no avisa que el mouse "salió" de una
+    // sección que se ocultó) y la diapositiva cuenta de nuevo desde cero, igual
+    // que el punto que se llena. La pausa del botón se respeta.
+    if(portada && window.MutationObserver){
+      new MutationObserver(function(){
+        if(portada.hidden){ actualizarCuenta(); return; }
+        mouseEncima = false; focoTeclado = false;
+        irSlide(slideActual);
+      }).observe(portada, {attributes:true, attributeFilter:["hidden"]});
+    }
+    // Al cambiar de pestaña se pausa y al volver sigue donde iba
+    document.addEventListener("visibilitychange", actualizarCuenta);
     mostrarPausa();
     document.getElementById("carruselAnt").addEventListener("click", function(){ irSlide(slideActual - 1); });
     document.getElementById("carruselSig").addEventListener("click", function(){ irSlide(slideActual + 1); });
