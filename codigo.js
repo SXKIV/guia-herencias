@@ -167,6 +167,7 @@
       if(!UTM_MENSUAL[g.anio]) UTM_MENSUAL[g.anio] = [null,null,null,null,null,null,null,null,null,null,null,null];
       UTM_MENSUAL[g.anio][m] = g.valor;
     })();
+    window.UTM_MENSUAL_GUIA = UTM_MENSUAL; // el simulador (simulador.js) usa esta misma tabla
 
     /* ---------- Utilidades ---------- */
     function utmDe(anio, mes){ var a = UTM_MENSUAL[anio]; return (a && a[mes-1]) ? a[mes-1] : null; }

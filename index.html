@@ -11,6 +11,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="estilos.css">
 <link rel="stylesheet" href="asistente.css">
+<link rel="stylesheet" href="simulador.css">
 </head>
 <body data-pantalla="inicio">
 
@@ -44,6 +45,7 @@
         <li><button type="button" data-ir="menu-estudiante" data-nav="menu-estudiante">Estudiantes</button></li>
         <li><button type="button" data-ir="documentos" data-nav="documentos">Documentos</button></li>
         <li><button type="button" data-ir="conceptos" data-nav="conceptos">Diccionario</button></li>
+        <li><button type="button" data-ir="simulador" data-nav="simulador">Simulador</button></li>
         <li><button type="button" data-ir="calculadora" data-nav="calculadora" class="nav-calc">Calculadora</button></li>
       </ul>
     </nav>
@@ -171,6 +173,7 @@
     <button class="item" type="button" data-ir="que-entra"><b>Qué entra a la herencia, con ilustraciones</b></button>
     <button class="item" type="button" data-ir="costos"><b>Cuánto me va a costar todo esto</b></button>
     <button class="item" type="button" data-ir="documentos"><b>Documentos a reunir</b></button>
+    <button class="item" type="button" data-ir="simulador"><b>Practicar el formulario del SII en un simulador</b></button>
     <button class="item" type="button" data-ir="dudas-usuario"><b>Dudas frecuentes</b></button>
     <button class="item" type="button" data-ir="guias"><b>Guías en PDF para descargar</b></button>
     <button class="item" type="button" data-ir="conceptos"><b>Diccionario</b></button>
@@ -192,6 +195,7 @@
     <button class="item" type="button" data-ir="que-entra"><b>Qué entra a la herencia y cómo se valora</b></button>
     <button class="item" type="button" data-ir="bienes"><b>¿Dónde declaro cada bien?</b></button>
     <button class="item" type="button" data-ir="formulario"><b>El formulario F4412, panel por panel</b></button>
+    <button class="item" type="button" data-ir="simulador"><b>Simulador del formulario F4412</b></button>
     <button class="item" type="button" data-ir="conceptos"><b>Diccionario</b></button>
     <button class="item" type="button" data-ir="trampas"><b>Trampas conocidas</b></button>
     <button class="item" type="button" data-ir="documentos"><b>Documentos a reunir</b></button>
@@ -923,6 +927,10 @@
 <section class="pantalla" id="formulario" hidden="">
   <h1>Explicación del formulario en línea</h1>
   <p class="bajada">Recorrido del formulario de herencias intestadas del sitio del SII, con lo que pide cada panel y lo que hay que saber antes de tocarlo.</p>
+  <button class="destacado" type="button" data-ir="simulador">
+    <b>Practicar en el simulador</b>
+    <span>Llena un formulario de prueba igual al del SII, sin enviar nada</span>
+  </button>
 
   <details open=""><summary>Antes de empezar: qué es el F4412</summary>
   <p>Desde noviembre de 2021 el impuesto de las herencias intestadas se declara en el formulario 4412, en línea, que reemplazó a los formularios en papel 4423 y 4419. Lo que sigue se contrastó con las instrucciones de llenado oficiales del F4412 (noviembre de 2021); no se revisó en una sesión real, y el sistema puede haber cambiado.</p>
@@ -1522,6 +1530,7 @@
       <tr><td>Calculadora</td><td>Se calcula en tu propio navegador. No se envía a nadie ni se guarda: al cerrar o recargar la página, se borra.</td></tr>
       <tr><td>Lista de documentos</td><td>Se guarda en este navegador solo qué casillas marcaste, para que no pierdas el avance. No incluye datos personales. Puedes borrarlo limpiando los datos del sitio en tu navegador.</td></tr>
       <tr><td>Asistente SIILV-I.A</td><td>La conversación se guarda en este navegador mientras la pestaña esté abierta y se borra al cerrarla. El asistente responde con textos fijos de esta guía, en tu propio navegador: no usa inteligencia artificial ni envía tus mensajes a ningún servidor. Igual, no escribas claves, contraseñas, RUT ni números de cuenta.</td></tr>
+      <tr><td>Simulador de declaración</td><td>Se calcula en tu propio navegador y no se envía a nadie. Solo si presionas "Guardar", el borrador (con los nombres y RUT que escribiste) queda guardado en este navegador; puedes borrarlo con "Borrar borrador" en la pantalla inicial del simulador o limpiando los datos del sitio.</td></tr>
       <tr><td>Tamaño del texto</td><td>Se guarda en este navegador el tamaño de letra que elegiste, para mantenerlo la próxima vez que entres.</td></tr>
     </tbody></table>
   </div>
@@ -1543,6 +1552,13 @@
   </div>
 </section>
 
+<section class="pantalla" id="simulador" hidden="">
+  <h1>Simulador de declaración</h1>
+  <p class="bajada">Practica el formulario de herencias del SII (F4412) con sus mismas secciones y casillas. Al final verás el impuesto de cada heredero, los giros que se generarían y un comprobante de práctica.</p>
+  <p class="aviso-ok"><b>Esto no es una declaración.</b> Nada de lo que escribes se envía al SII. Solo si presionas "Guardar", el borrador queda guardado en este navegador; puedes borrarlo desde la pantalla inicial del simulador. Si usas un computador compartido, no guardes datos reales.</p>
+  <div id="simApp"></div>
+  <noscript><p class="aviso">El simulador necesita JavaScript activado.</p></noscript>
+</section>
 
 </main>
 
@@ -1566,6 +1582,7 @@
         <h3>La guía</h3>
         <ul>
           <li><button class="enlace" type="button" data-ir="calculadora">Calculadora de impuesto</button></li>
+          <li><button class="enlace" type="button" data-ir="simulador">Simulador de declaración</button></li>
           <li><button class="enlace" type="button" data-ir="viaje">Etapas del trámite</button></li>
           <li><button class="enlace" type="button" data-ir="tablas">Tablas del impuesto</button></li>
           <li><button class="enlace" type="button" data-ir="trampas">Trampas conocidas</button></li>
@@ -1681,6 +1698,7 @@
 
 <script src="codigo.js"></script>
 <script src="asistente.js"></script>
+<script src="simulador.js"></script>
 
 
 </body></html>

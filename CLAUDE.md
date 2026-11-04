@@ -59,6 +59,16 @@ Somos estudiantes de Derecho y no programamos. Por eso:
   si se cambia una lista, actualizar también esa copia. Las casillas marcadas
   de documentos se guardan en el navegador con la clave docsHerencia3; si
   cambia el orden o la cantidad de documentos, cambiar la clave.
+- simulador.js y simulador.css: el simulador del formulario F4412 (sección
+  simulador). Reproduce las casillas del formulario del SII (testadas e
+  intestadas), calcula el impuesto por asignatario y muestra giros y un
+  comprobante de práctica. Todo ocurre en el navegador. Todas sus clases CSS
+  empiezan con "sim-" y dibuja todo dentro de <div id="simApp">. Usa
+  window.UTM_GUIA y window.UTM_MENSUAL_GUIA (codigo.js). Guarda borradores
+  solo al presionar "Guardar", con la clave simuladorHerencia1 (si cambia,
+  actualizar la sección privacidad). Sus montos, exenciones, tramos y
+  recargos siguen las reglas de "Contenido jurídico": no cambiarlos sin
+  aprobación.
 
 ## Calculadora
 - Está en codigo.js, en calculadoraSIIMPLE. Una sola función, calcular(),
