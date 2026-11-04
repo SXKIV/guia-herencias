@@ -10,6 +10,25 @@ Tiene dos públicos:
   veces vulnerables, que entran desde el celular. Lenguaje simple.
 - Estudiantes de la Clínica: asisten casos y necesitan normas, tablas y detalle técnico.
 
+## Hacia dónde va el proyecto (decidido por el equipo, todavía no hecho)
+Lo de arriba describe el sitio de hoy. El equipo ya decidió estos cambios,
+que se harán más adelante:
+- Abrirlo a todas las personas: se eliminarán las menciones a que el sitio
+  está hecho para la Clínica Jurídica.
+- Una sola ruta para todos: desaparecerá la separación entre "usuario que
+  hace el trámite" y "estudiante". La idea es simplificar el trámite para
+  cualquier persona, sepa o no de la materia.
+- SIIMPLE abarcará todos los trámites tributarios, ante el SII o en otros
+  ámbitos, no solo el impuesto a las herencias.
+Mientras tanto:
+- No hagas estos cambios por tu cuenta: se harán cuando el equipo los pida.
+- No inviertas en lo que se va a eliminar. Antes de agregar contenido nuevo
+  que dependa de la Clínica o de la separación usuario/estudiante, avisa y
+  propón una versión que sirva para todos. Lo nuevo, escríbelo para
+  cualquier persona, en lenguaje simple.
+- Los textos de la presentación del carrusel (primera diapositiva) y de la
+  sección nosotros son temporales hasta que se haga este cambio.
+
 ## Equipo
 Somos estudiantes de Derecho y no programamos. Por eso:
 - Explica cada cambio en lenguaje simple antes de hacerlo.
