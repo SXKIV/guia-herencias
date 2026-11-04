@@ -873,7 +873,7 @@
     aplicarTamano(isNaN(guardado) ? 1 : guardado);
   }catch(e){ aplicarTamano(1); }
 
-  // ===== Carrusel de la portada: calculadora, simulador y asistente =====
+  // ===== Carrusel de la portada: presentación, calculadora, simulador y asistente =====
   // Avanza solo cada SEGUNDOS_POR_SLIDE segundos. También se cambia con las
   // flechas, los puntos, las teclas ← → o deslizando el dedo. Se detiene con
   // el botón de pausa, con el mouse encima o al navegar con el teclado
@@ -927,6 +927,8 @@
       Array.prototype.forEach.call(puntos, function(p, n){
         p.setAttribute("aria-current", n === slideActual ? "true" : "false");
       });
+      // Flechas y puntos en blanco sobre la diapositiva de fondo oscuro
+      carrusel.classList.toggle("oscuro", slides[slideActual].classList.contains("s-intro"));
       actualizarCuenta();
     }
     function mostrarPausa(){
@@ -990,14 +992,16 @@
       toqueX = null;
       if(Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy)) irSlide(slideActual + (dx < 0 ? 1 : -1));
     }, {passive:true});
-    // El botón del slide 3 abre la burbuja del chat (asistente.js)
-    document.getElementById("carruselChat").addEventListener("click", function(){
-      var panelChat = document.getElementById("siaPanel");
-      var lanzadorChat = document.getElementById("siaLanzador");
-      if(panelChat && lanzadorChat && panelChat.hidden) lanzadorChat.click();
-    });
     irSlide(0);
   }
+
+  // Los botones con data-abrir-chat (carrusel y Nosotros) abren la burbuja del chat (asistente.js)
+  document.addEventListener("click", function(e){
+    if(!e.target.closest("[data-abrir-chat]")) return;
+    var panelChat = document.getElementById("siaPanel");
+    var lanzadorChat = document.getElementById("siaLanzador");
+    if(panelChat && lanzadorChat && panelChat.hidden) lanzadorChat.click();
+  });
 
   aplicarFiltro("basico");
   anotarPosicion(0);

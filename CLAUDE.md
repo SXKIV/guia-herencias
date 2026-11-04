@@ -44,18 +44,21 @@ Somos estudiantes de Derecho y no programamos. Por eso:
 - .github/: la tarea automática de GitHub que cada día (5:00 UTC) busca
   dictámenes nuevos en el SII y los agrega a siaDictamenes con un commit.
   Se puede correr a mano en la pestaña Actions del repositorio.
-- Portada: el banner de arriba es un carrusel de 3 diapositivas (calculadora,
-  simulador y chat SIILV-I.A), cada una con su color. Avanza sola cada 6
-  segundos (SEGUNDOS_POR_SLIDE en codigo.js, "Carrusel de la portada") y
-  tiene botón de pausa. Sus textos describen el simulador y el chat: si
-  cambian, revisarlos.
+- Portada: el banner de arriba es un carrusel de 4 diapositivas
+  (presentación de SIIMPLE con fondo oscuro, calculadora, simulador y chat
+  SIILV-I.A), cada una con su color. Avanza sola cada 6 segundos
+  (SEGUNDOS_POR_SLIDE en codigo.js, "Carrusel de la portada") y tiene botón
+  de pausa. Sus textos describen el simulador y el chat: si cambian,
+  revisarlos. Los botones con data-abrir-chat abren la burbuja del chat.
 - img/: logos.
 - Secciones principales: inicio, menu-usuario, menu-estudiante, viaje, cadena,
   parentesco, calculadora, cero, costos, descuentos, dudas-usuario, dos-utm,
   tablas, ordenes, bienes, formulario, conceptos, trampas, documentos,
   que-entra (con ilustraciones), guias (descarga los PDF de pdf/) y
   privacidad (qué guarda la página: si cambia lo que guarda el chat, la
-  calculadora o la lista de documentos, hay que cambiarlo ahí también).
+  calculadora o la lista de documentos, hay que cambiarlo ahí también) y
+  nosotros (qué es el proyecto, herramientas y equipo; se llega desde la
+  primera diapositiva del carrusel).
 - pdf/: las cuatro guías en PDF que enlaza la sección guias. Las hizo Antonio
   (29-10-2026) y traen sus propios montos con la UTM de octubre de 2026: no se
   actualizan solas.

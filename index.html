@@ -70,12 +70,41 @@
 
 <section class="pantalla portada" id="inicio">
 
-  <!-- Carrusel destacado: calculadora, simulador y asistente (se mueve en codigo.js) -->
-  <div class="carrusel" id="carrusel" role="region" aria-roledescription="carrusel" aria-label="Herramientas de la guía">
+  <!-- Carrusel destacado: presentación, calculadora, simulador y asistente (se mueve en codigo.js) -->
+  <div class="carrusel" id="carrusel" role="region" aria-roledescription="carrusel" aria-label="Presentación y herramientas de la guía">
     <div class="carrusel-pista" id="carruselPista">
 
-    <!-- Slide 1: calculadora -->
-    <div class="carrusel-slide" role="group" aria-roledescription="diapositiva" aria-label="1 de 3: Calculadora de impuesto"><div class="contenedor">
+    <!-- Slide 1: presentación de SIIMPLE (fondo oscuro) -->
+    <div class="carrusel-slide s-intro" role="group" aria-roledescription="diapositiva" aria-label="1 de 4: Qué es SIIMPLE"><div class="contenedor">
+      <div>
+        <span class="etiqueta">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M3 10l9-6 9 6M5 10v8M19 10v8M9 10v8M15 10v8M3 20h18"/></svg>
+          SIIMPLE · Clínica Jurídica Derecho UC
+        </span>
+        <p class="big">El impuesto a la herencia, <strong>explicado simple</strong></p>
+        <p class="medium">Una guía gratuita para resolver ante el SII el impuesto a las herencias sin testamento, después de la posesión efectiva. La hacen estudiantes de Derecho UC para acompañar a quienes atiende la Clínica Jurídica.</p>
+        <button class="btn-cta" type="button" data-ir="nosotros">
+          Conocer el proyecto
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </button>
+        <ol class="cta-pasos">
+          <li><b>1</b> Guía por etapas</li>
+          <li><b>2</b> Calculadora y simulador</li>
+          <li><b>3</b> Asistente SIILV-I.A</li>
+        </ol>
+      </div>
+      <div class="cta-muestra" aria-hidden="true">
+        <p class="m-tit">Qué encuentras aquí</p>
+        <div class="m-linea"><span>Si haces el trámite</span><b>Lenguaje simple</b></div>
+        <div class="m-linea"><span>Si eres estudiante</span><b>Normas y tablas</b></div>
+        <div class="m-linea"><span>Registro</span><b>No se pide</b></div>
+        <div class="m-res">✓ Todo funciona en tu navegador</div>
+        <p class="m-nota">Es orientación, no asesoría legal. No es un sitio oficial del SII.</p>
+      </div>
+    </div></div>
+
+    <!-- Slide 2: calculadora -->
+    <div class="carrusel-slide" role="group" aria-roledescription="diapositiva" aria-label="2 de 4: Calculadora de impuesto"><div class="contenedor">
       <div>
         <span class="etiqueta">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M8 6h8M8 11h.01M12 11h.01M16 11h.01M8 15h.01M12 15h.01M16 15h.01M8 19h.01M12 19h4"/></svg>
@@ -103,8 +132,8 @@
       </div>
     </div></div>
 
-    <!-- Slide 2: simulador del F4412 -->
-    <div class="carrusel-slide s-simulador" role="group" aria-roledescription="diapositiva" aria-label="2 de 3: Simulador de declaración"><div class="contenedor">
+    <!-- Slide 3: simulador del F4412 -->
+    <div class="carrusel-slide s-simulador" role="group" aria-roledescription="diapositiva" aria-label="3 de 4: Simulador de declaración"><div class="contenedor">
       <div>
         <span class="etiqueta">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M8 13h8M8 17h5"/></svg>
@@ -132,8 +161,8 @@
       </div>
     </div></div>
 
-    <!-- Slide 3: asistente SIILV-I.A -->
-    <div class="carrusel-slide s-asistente" role="group" aria-roledescription="diapositiva" aria-label="3 de 3: Asistente SIILV-I.A"><div class="contenedor">
+    <!-- Slide 4: asistente SIILV-I.A -->
+    <div class="carrusel-slide s-asistente" role="group" aria-roledescription="diapositiva" aria-label="4 de 4: Asistente SIILV-I.A"><div class="contenedor">
       <div>
         <span class="etiqueta">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
@@ -141,7 +170,7 @@
         </span>
         <p class="big">¿Tienes una <strong>duda puntual</strong>?</p>
         <p class="medium">Pregúntale al asistente con tus palabras: dónde declarar un bien, qué documentos reunir o cuánto podría pagar tu parte. Responde con la información de esta guía y te lleva a la sección que corresponde.</p>
-        <button class="btn-cta" type="button" id="carruselChat">
+        <button class="btn-cta" type="button" data-abrir-chat>
           Abrir el asistente
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
         </button>
@@ -163,9 +192,10 @@
     <div class="carrusel-controles contenedor">
       <button type="button" class="carrusel-flecha" id="carruselAnt" aria-label="Diapositiva anterior"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
       <div class="carrusel-puntos" id="carruselPuntos">
-        <button type="button" aria-label="Ver diapositiva 1: Calculadora de impuesto"></button>
-        <button type="button" aria-label="Ver diapositiva 2: Simulador de declaración"></button>
-        <button type="button" aria-label="Ver diapositiva 3: Asistente SIILV-I.A"></button>
+        <button type="button" aria-label="Ver diapositiva 1: Qué es SIIMPLE"></button>
+        <button type="button" aria-label="Ver diapositiva 2: Calculadora de impuesto"></button>
+        <button type="button" aria-label="Ver diapositiva 3: Simulador de declaración"></button>
+        <button type="button" aria-label="Ver diapositiva 4: Asistente SIILV-I.A"></button>
       </div>
       <button type="button" class="carrusel-flecha" id="carruselSig" aria-label="Diapositiva siguiente"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
       <button type="button" class="carrusel-flecha" id="carruselPausa" aria-label="Pausar el carrusel" title="Pausar el carrusel">
@@ -1632,6 +1662,65 @@
   <p class="aviso-ok"><b>Esto no es una declaración.</b> Nada de lo que escribes se envía al SII. Solo si presionas "Guardar", el borrador queda guardado en este navegador; puedes borrarlo desde la pantalla inicial del simulador. Si usas un computador compartido, no guardes datos reales.</p>
   <div id="simApp"></div>
   <noscript><p class="aviso">El simulador necesita JavaScript activado.</p></noscript>
+</section>
+
+<section class="pantalla" id="nosotros" hidden="">
+  <h1>Nosotros</h1>
+  <p class="bajada">SIIMPLE es un proyecto de estudiantes de Derecho UC que busca que el impuesto a la herencia deje de ser un trámite incomprensible.</p>
+
+  <h2>Qué es SIIMPLE</h2>
+  <p>Cuando una persona muere sin dejar testamento, su familia pide la posesión efectiva en el Registro Civil y después tiene que resolver ante el Servicio de Impuestos Internos el impuesto a las herencias, aunque muchas veces no haya nada que pagar. Es un trámite con lenguaje técnico, formularios en línea y plazos que pocas personas conocen, y suele llegar en un momento difícil.</p>
+  <p>SIIMPLE explica ese trámite paso a paso, en palabras simples, y reúne en un solo lugar las herramientas para estimar el impuesto, practicar el formulario y saber qué documentos reunir.</p>
+  <p>El proyecto nació en el curso Diseño Legal de la Facultad de Derecho UC y hoy se desarrolla como un proyecto real, pensado para la Clínica Jurídica Derecho UC.</p>
+
+  <h2>Para quién es</h2>
+  <div class="guias">
+    <div class="guia"><b>Personas que hacen el trámite</b>
+      <p>Usuarios de la Clínica Jurídica, sin formación jurídica, que muchas veces entran desde el celular. Para ellos la guía usa lenguaje simple y va directo a lo que hay que hacer.</p>
+      <button class="descarga" type="button" data-ir="menu-usuario">Entrar como usuario</button></div>
+    <div class="guia"><b>Estudiantes de la Clínica</b>
+      <p>Quienes asisten los casos y necesitan las normas, las tablas del impuesto, los órdenes sucesorios y el detalle del formulario.</p>
+      <button class="descarga" type="button" data-ir="menu-estudiante">Entrar como estudiante</button></div>
+  </div>
+
+  <h2>Herramientas</h2>
+  <div class="guias">
+    <div class="guia"><b>Guía del trámite por etapas</b>
+      <p>Qué viene primero y qué después: de la posesión efectiva al certificado del SII para inscribir los bienes.</p>
+      <button class="descarga" type="button" data-ir="viaje">Ver las etapas</button></div>
+    <div class="guia"><b>Calculadora de impuesto</b>
+      <p>Estima si cada heredero paga impuesto, con el cálculo paso a paso y la casilla que correspondería marcar en el Registro Civil.</p>
+      <button class="descarga" type="button" data-ir="calculadora">Abrir la calculadora</button></div>
+    <div class="guia"><b>Simulador del formulario F4412</b>
+      <p>Una práctica del formulario de herencias del SII, con sus mismas secciones y casillas. Nada se envía al SII.</p>
+      <button class="descarga" type="button" data-ir="simulador">Abrir el simulador</button></div>
+    <div class="guia"><b>Asistente SIILV-I.A</b>
+      <p>Un chat que responde preguntas frecuentes con la información de esta guía y lleva a la sección que corresponde.</p>
+      <button class="descarga" type="button" data-abrir-chat>Abrir el asistente</button></div>
+    <div class="guia"><b>Documentos y bienes</b>
+      <p>La lista de documentos a reunir, ordenada por etapa, y dónde se declara cada bien en el formulario.</p>
+      <button class="descarga" type="button" data-ir="documentos">Ver los documentos</button></div>
+    <div class="guia"><b>Diccionario y guías en PDF</b>
+      <p>Los conceptos del trámite explicados, y cuatro guías breves para leer con calma, imprimir o compartir.</p>
+      <button class="descarga" type="button" data-ir="guias">Ver las guías</button></div>
+  </div>
+
+  <h2>Cómo trabajamos</h2>
+  <ul>
+    <li><b>Con las normas a la vista.</b> El contenido se basa en la Ley 16.271 sobre impuesto a las herencias y en el Código Civil, y cita los artículos que aplica.</li>
+    <li><b>Sin pedir datos.</b> No hay que registrarse y lo que escribes se procesa en tu propio navegador: <button type="button" class="enlace-txt" data-ir="privacidad">ver qué guarda esta página</button>.</li>
+    <li><b>Con revisión.</b> Los cambios de fondo pasan por la revisión de un profesor antes de publicarse.</li>
+  </ul>
+
+  <h2>Equipo</h2>
+  <div class="equipo">
+    <div class="persona"><span class="inicial" aria-hidden="true">SL</span><b>Sergio López</b><span>Pronto agregaremos su presentación.</span></div>
+    <div class="persona"><span class="inicial" aria-hidden="true">AO</span><b>Antonio Ortiz</b><span>Pronto agregaremos su presentación.</span></div>
+    <div class="persona"><span class="inicial" aria-hidden="true">JA</span><b>Joaquín Anza</b><span>Pronto agregaremos su presentación.</span></div>
+    <div class="persona"><span class="inicial" aria-hidden="true">RL</span><b>Ryan Larenas</b><span>Pronto agregaremos su presentación.</span></div>
+  </div>
+
+  <div class="nota">SIIMPLE es material de orientación: no reemplaza la asesoría de un abogado ni las instrucciones oficiales del SII y del Registro Civil. No es un sitio oficial del Servicio de Impuestos Internos.</div>
 </section>
 
 </main>

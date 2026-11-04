@@ -113,6 +113,13 @@ a{color:var(--primario)}
 .carrusel-slide{flex:0 0 100%;min-width:0;background:linear-gradient(100deg,#EEF3F9 0%,#E1EAF5 55%,#D3E1F1 100%)}
 .carrusel-slide.s-simulador{background:linear-gradient(100deg,#FFF7F0 0%,#FFEBDB 55%,#FDDDC6 100%)}
 .carrusel-slide.s-asistente{background:linear-gradient(100deg,#F2F8F2 0%,#E4F1E5 55%,#D5E9D7 100%)}
+.carrusel-slide.s-intro{background:linear-gradient(100deg,var(--primario-osc) 0%,#0F3260 55%,var(--fondo-osc) 100%)}
+.carrusel .s-intro .etiqueta{background:#fff;color:var(--primario-osc)}
+.carrusel .s-intro .big,.carrusel .s-intro .big strong{color:#fff}
+.carrusel .s-intro .medium{color:rgba(255,255,255,.9)}
+.s-intro .cta-pasos{color:rgba(255,255,255,.85)}
+.s-intro .cta-pasos b{background:#fff;color:var(--primario-osc)}
+.s-intro .cta-muestra{border-top-color:var(--primario);box-shadow:0 14px 30px -14px rgba(0,0,0,.6)}
 .s-simulador .cta-muestra{border-top-color:var(--acento)}
 .s-asistente .cta-muestra{border-top-color:var(--ok)}
 .carrusel .carrusel-slide .contenedor{display:grid;grid-template-columns:1.2fr 1fr;gap:40px;align-items:center;padding-top:46px;padding-bottom:72px;position:relative;height:100%}
@@ -131,6 +138,12 @@ a{color:var(--primario)}
 /* El punto activo se llena mientras corre el tiempo de la diapositiva */
 .carrusel-puntos button[aria-current="true"]::after{content:"";grid-area:1/1;justify-self:start;width:24px;height:8px;border-radius:4px;background:var(--primario-osc);transform-origin:left;animation:carruselAvance var(--avance,6s) linear forwards}
 .carrusel.en-pausa .carrusel-puntos button::after{animation-play-state:paused}
+/* Controles en blanco mientras se ve la diapositiva oscura */
+.carrusel.oscuro .carrusel-flecha{border-color:rgba(255,255,255,.5);background:rgba(255,255,255,.1);color:#fff}
+.carrusel.oscuro .carrusel-flecha:hover{border-color:#fff;background:rgba(255,255,255,.25)}
+.carrusel.oscuro .carrusel-puntos button::before{background:rgba(255,255,255,.4)}
+.carrusel.oscuro .carrusel-puntos button[aria-current="true"]::before{background:rgba(255,255,255,.3)}
+.carrusel.oscuro .carrusel-puntos button::after{background:#fff}
 @keyframes carruselAvance{from{transform:scaleX(0)}to{transform:scaleX(1)}}
 @media (prefers-reduced-motion:reduce){.carrusel-puntos button[aria-current="true"]::after{animation:none}}
 .cta-muestra .m-chat{margin:0 0 10px;padding:9px 12px;border-radius:12px;font-size:0.9375rem;line-height:1.4;max-width:88%}
@@ -519,8 +532,16 @@ details.mas{margin-top:8px}
 .guia{display:flex;flex-direction:column;border:1px solid var(--linea-suave);border-left:6px solid var(--primario-osc);border-radius:var(--radio);padding:14px 16px;background:#fff;box-shadow:var(--sombra)}
 .guia b{color:var(--primario-osc);font-size:17px}
 .guia p{font-size:15px;margin:6px 0 10px;flex:1}
-.guia a.descarga{align-self:flex-start;font-weight:700;font-size:15px;color:#fff;background:var(--primario-osc);padding:8px 14px;border-radius:var(--radio);text-decoration:none}
-.guia a.descarga:hover{background:var(--primario)}
+.guia .descarga{align-self:flex-start;font-weight:700;font-size:15px;color:#fff;background:var(--primario-osc);padding:8px 14px;border-radius:var(--radio);text-decoration:none}
+.guia button.descarga{font-family:inherit;border:none;cursor:pointer}
+.guia .descarga:hover{background:var(--primario)}
+/* Nosotros: tarjetas del equipo */
+.equipo{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin:18px 0}
+@media (max-width:760px){ .equipo{grid-template-columns:repeat(2,minmax(0,1fr))} }
+.persona{display:flex;flex-direction:column;align-items:center;text-align:center;gap:6px;border:1px solid var(--linea-suave);border-top:5px solid var(--primario-osc);border-radius:var(--radio);padding:20px 16px;background:#fff;box-shadow:var(--sombra)}
+.persona .inicial{display:grid;place-items:center;width:64px;height:64px;border-radius:50%;background:var(--celeste);color:var(--primario-osc);font-weight:700;font-size:1.25rem;letter-spacing:.04em}
+.persona b{color:var(--primario-osc);font-size:17px}
+.persona span:last-child{font-size:14px;color:var(--tinta-suave)}
 .guia .meta{font-size:13px;color:var(--tinta-suave);margin-top:6px}
 @media (max-width:640px){ .guias{grid-template-columns:1fr} }
 
