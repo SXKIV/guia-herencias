@@ -74,6 +74,11 @@ Somos estudiantes de Derecho y no programamos. Por eso:
   actualizar la sección privacidad). Sus montos, exenciones, tramos y
   recargos siguen las reglas de "Contenido jurídico": no cambiarlos sin
   aprobación.
+- Antecedentes en el historial de git (carpetas ya integradas y borradas):
+  el paquete del asistente de Ryan (para-claude-code/, commit 2a9fa72) y el
+  paquete del simulador de Joaquín (integrar-simulador/, commit 5d27dcd, con
+  su LEEME y sus instrucciones). Se recuperan con
+  `git checkout <commit> -- <carpeta>`.
 
 ## Calculadora
 - Está en codigo.js, en calculadoraSIIMPLE. Una sola función, calcular(),
@@ -179,6 +184,12 @@ Revisar también que en el celular la ventana ocupe toda la pantalla.
   - Fuente de la recomendación de la Defensoría del Contribuyente (cero).
   - Regla del 100% de la sociedad conyugal en el F4412: no se comprobó en una
     sesión real del formulario (cadena, formulario, trampas, diccionario, chat).
+    Evidencia a revisar: según el LEEME del paquete del simulador (commit
+    5d27dcd), el código del F4412 muestra este aviso al elegir "Sociedad
+    Conyugal": "Recuerde que el valor que declare respecto a los bienes debe
+    ser por el total (sin considerar las divisiones que correspondan por la
+    Sociedad Conyugal). El Formulario automáticamente hará los cálculos que
+    procedan." Falta que el equipo o un profesor decidan si basta.
   - Mención a la porción conyugal en la cita del art. 4 (descuentos, diccionario).
   - En tablas, la rebaja por discapacidad no dice desde cuándo rige
     (1-3-2020) ni su tope de 8.000 UF, que la calculadora sí indica.
