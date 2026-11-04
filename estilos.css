@@ -108,8 +108,34 @@ a{color:var(--primario)}
 .dato{font-variant-numeric:tabular-nums}
 
 /* ---------- Portada: carrusel con la calculadora ---------- */
-.carrusel{margin:0 calc(50% - 50vw);background:linear-gradient(100deg,#EEF3F9 0%,#E1EAF5 55%,#D3E1F1 100%);border-bottom:1px solid var(--linea)}
-.carrusel .contenedor{display:grid;grid-template-columns:1.2fr 1fr;gap:40px;align-items:center;padding-top:46px;padding-bottom:46px;position:relative}
+.carrusel{margin:0 calc(50% - 50vw);background:linear-gradient(100deg,#EEF3F9 0%,#E1EAF5 55%,#D3E1F1 100%);border-bottom:1px solid var(--linea);overflow:hidden;position:relative}
+.carrusel-pista{display:flex;touch-action:pan-y}
+.carrusel-slide{flex:0 0 100%;min-width:0;background:linear-gradient(100deg,#EEF3F9 0%,#E1EAF5 55%,#D3E1F1 100%)}
+.carrusel-slide.s-simulador{background:linear-gradient(100deg,#FFF7F0 0%,#FFEBDB 55%,#FDDDC6 100%)}
+.carrusel-slide.s-asistente{background:linear-gradient(100deg,#F2F8F2 0%,#E4F1E5 55%,#D5E9D7 100%)}
+.s-simulador .cta-muestra{border-top-color:var(--acento)}
+.s-asistente .cta-muestra{border-top-color:var(--ok)}
+.carrusel .carrusel-slide .contenedor{display:grid;grid-template-columns:1.2fr 1fr;gap:40px;align-items:center;padding-top:46px;padding-bottom:72px;position:relative;height:100%}
+@media (prefers-reduced-motion:no-preference){.carrusel-pista{transition:transform .45s ease}}
+/* Controles: flotan sobre el borde inferior de la diapositiva, para tomar su color */
+.carrusel-controles{position:absolute;left:0;right:0;bottom:18px;display:flex;align-items:center;justify-content:center;gap:10px;pointer-events:none}
+.carrusel-controles button{pointer-events:auto}
+.carrusel-flecha{display:inline-grid;place-items:center;width:32px;height:32px;padding:0;border-radius:50%;border:1px solid rgba(11,58,110,.35);background:rgba(255,255,255,.6);color:var(--primario-osc);cursor:pointer}
+.carrusel-flecha svg{width:16px;height:16px}
+.carrusel-flecha:hover{border-color:var(--primario-osc);background:#fff}
+#carruselPausa{margin-left:6px}
+.carrusel-puntos{display:flex;gap:2px}
+.carrusel-puntos button{width:24px;height:24px;padding:0;border:none;background:none;cursor:pointer;display:grid;place-items:center}
+.carrusel-puntos button::before{content:"";grid-area:1/1;width:8px;height:8px;border-radius:4px;background:rgba(11,58,110,.3)}
+.carrusel-puntos button[aria-current="true"]::before{width:24px;background:rgba(11,58,110,.2)}
+/* El punto activo se llena mientras corre el tiempo de la diapositiva */
+.carrusel-puntos button[aria-current="true"]::after{content:"";grid-area:1/1;justify-self:start;width:24px;height:8px;border-radius:4px;background:var(--primario-osc);transform-origin:left;animation:carruselAvance var(--avance,12s) linear forwards}
+.carrusel.en-pausa .carrusel-puntos button::after{animation-play-state:paused}
+@keyframes carruselAvance{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@media (prefers-reduced-motion:reduce){.carrusel-puntos button[aria-current="true"]::after{animation:none}}
+.cta-muestra .m-chat{margin:0 0 10px;padding:9px 12px;border-radius:12px;font-size:0.9375rem;line-height:1.4;max-width:88%}
+.cta-muestra .m-chat.yo{margin-left:auto;background:var(--primario);color:#fff;border-bottom-right-radius:3px}
+.cta-muestra .m-chat.bot{background:var(--celeste);color:var(--tinta);border-bottom-left-radius:3px}
 .carrusel .etiqueta{display:inline-flex;align-items:center;gap:8px;background:var(--primario-osc);color:#fff;font-size:0.75rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:5px 12px;border-radius:2px;margin-bottom:16px}
 .carrusel .etiqueta svg{width:16px;height:16px}
 .carrusel .big{font-size:2.625rem;font-weight:300;line-height:1.12;color:var(--primario-osc);margin:0 0 14px;letter-spacing:-.01em}
@@ -311,7 +337,7 @@ body[data-pantalla="inicio"] .flotante-calc{display:none}
   .tamano-texto{margin-left:auto}
   .menu-principal{overflow-x:auto;flex-wrap:nowrap;scrollbar-width:none;padding-bottom:4px}
   .cabecera .contenedor{padding-top:12px}
-  .carrusel .contenedor{grid-template-columns:1fr}
+  .carrusel .carrusel-slide .contenedor{grid-template-columns:1fr;align-content:start}
   .cta-muestra{justify-self:start;max-width:420px}
   .fila-azul{grid-template-columns:1fr 1fr}
   .fila-azul .home-azul{grid-column:1 / -1}
@@ -324,6 +350,7 @@ body[data-pantalla="inicio"] .flotante-calc{display:none}
   .cabecera .contenedor{gap:12px}
   .unidad{flex:1;min-width:0;padding-left:12px}
   .unidad .facultad{font-size:0.9375rem}
+  .carrusel .carrusel-slide .contenedor{padding-top:30px;gap:24px}
   .carrusel .big{font-size:1.9375rem}
   .carrusel .medium{font-size:1.0625rem}
   .btn-cta{width:100%}

@@ -70,9 +70,12 @@
 
 <section class="pantalla portada" id="inicio">
 
-  <!-- Carrusel destacado: acceso a la calculadora -->
-  <div class="carrusel">
-    <div class="contenedor">
+  <!-- Carrusel destacado: calculadora, simulador y asistente (se mueve en codigo.js) -->
+  <div class="carrusel" id="carrusel" role="region" aria-roledescription="carrusel" aria-label="Herramientas de la guía">
+    <div class="carrusel-pista" id="carruselPista">
+
+    <!-- Slide 1: calculadora -->
+    <div class="carrusel-slide" role="group" aria-roledescription="diapositiva" aria-label="1 de 3: Calculadora de impuesto"><div class="contenedor">
       <div>
         <span class="etiqueta">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M8 6h8M8 11h.01M12 11h.01M16 11h.01M8 15h.01M12 15h.01M16 15h.01M8 19h.01M12 19h4"/></svg>
@@ -98,6 +101,77 @@
         <div class="m-res">✓ Con estos datos, tu parte no paga impuesto</div>
         <p class="m-nota">Igual necesitarás el certificado del SII para inscribir los bienes.</p>
       </div>
+    </div></div>
+
+    <!-- Slide 2: simulador del F4412 -->
+    <div class="carrusel-slide s-simulador" role="group" aria-roledescription="diapositiva" aria-label="2 de 3: Simulador de declaración"><div class="contenedor">
+      <div>
+        <span class="etiqueta">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M8 13h8M8 17h5"/></svg>
+          Simulador del formulario F4412
+        </span>
+        <p class="big">¿Quieres <strong>practicar la declaración</strong> antes de hacerla?</p>
+        <p class="medium">Recorre el formulario de herencias del SII con sus mismas secciones y casillas. Al final verás el impuesto de cada heredero, los giros que se generarían y un comprobante de práctica. Nada se envía al SII.</p>
+        <button class="btn-cta" type="button" data-ir="simulador">
+          Abrir el simulador
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </button>
+        <ol class="cta-pasos">
+          <li><b>1</b> Causante y herederos</li>
+          <li><b>2</b> Bienes y descuentos</li>
+          <li><b>3</b> Impuesto de cada uno</li>
+        </ol>
+      </div>
+      <div class="cta-muestra" aria-hidden="true">
+        <p class="m-tit">Así se ve la práctica</p>
+        <div class="m-linea"><span>Formulario</span><b>F4412</b></div>
+        <div class="m-linea"><span>Herederos</span><b>Cónyuge y 3 hijos</b></div>
+        <div class="m-linea"><span>Estado</span><b>Borrador</b></div>
+        <div class="m-res">✓ Comprobante de práctica listo</div>
+        <p class="m-nota">Es solo un ejercicio: no reemplaza la declaración en sii.cl.</p>
+      </div>
+    </div></div>
+
+    <!-- Slide 3: asistente SIILV-I.A -->
+    <div class="carrusel-slide s-asistente" role="group" aria-roledescription="diapositiva" aria-label="3 de 3: Asistente SIILV-I.A"><div class="contenedor">
+      <div>
+        <span class="etiqueta">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          Asistente SIILV-I.A
+        </span>
+        <p class="big">¿Tienes una <strong>duda puntual</strong>?</p>
+        <p class="medium">Pregúntale al asistente con tus palabras: dónde declarar un bien, qué documentos reunir o cuánto podría pagar tu parte. Responde con la información de esta guía y te lleva a la sección que corresponde.</p>
+        <button class="btn-cta" type="button" id="carruselChat">
+          Abrir el asistente
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </button>
+        <ol class="cta-pasos">
+          <li><b>1</b> Escribe tu pregunta</li>
+          <li><b>2</b> Lee la respuesta</li>
+          <li><b>3</b> Sigue el enlace a la guía</li>
+        </ol>
+      </div>
+      <div class="cta-muestra" aria-hidden="true">
+        <p class="m-tit">Ejemplo de conversación</p>
+        <p class="m-chat yo">¿Dónde declaro el auto?</p>
+        <p class="m-chat bot">En la categoría Vehículos, con su código SII y la tasación.</p>
+        <p class="m-nota">No escribas tu RUT ni otros datos personales en el chat.</p>
+      </div>
+    </div></div>
+
+    </div>
+    <div class="carrusel-controles contenedor">
+      <button type="button" class="carrusel-flecha" id="carruselAnt" aria-label="Diapositiva anterior"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
+      <div class="carrusel-puntos" id="carruselPuntos">
+        <button type="button" aria-label="Ver diapositiva 1: Calculadora de impuesto"></button>
+        <button type="button" aria-label="Ver diapositiva 2: Simulador de declaración"></button>
+        <button type="button" aria-label="Ver diapositiva 3: Asistente SIILV-I.A"></button>
+      </div>
+      <button type="button" class="carrusel-flecha" id="carruselSig" aria-label="Diapositiva siguiente"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
+      <button type="button" class="carrusel-flecha" id="carruselPausa" aria-label="Pausar el carrusel" title="Pausar el carrusel">
+        <svg class="ic-pausa" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 6v12M15 6v12"/></svg>
+        <svg class="ic-play" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" hidden><path d="M8 5.5v13l10-6.5z"/></svg>
+      </button>
     </div>
   </div>
 

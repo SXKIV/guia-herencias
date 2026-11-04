@@ -873,6 +873,118 @@
     aplicarTamano(isNaN(guardado) ? 1 : guardado);
   }catch(e){ aplicarTamano(1); }
 
+  // ===== Carrusel de la portada: calculadora, simulador y asistente =====
+  // Avanza solo cada SEGUNDOS_POR_SLIDE segundos. También se cambia con las
+  // flechas, los puntos, las teclas ← → o deslizando el dedo. Se detiene con
+  // el botón de pausa, con el mouse encima o al navegar con el teclado
+  // dentro; no arranca solo si el equipo pide reducir las animaciones.
+  // Las diapositivas ocultas quedan fuera del teclado.
+  var SEGUNDOS_POR_SLIDE = 12;
+  var carrusel = document.getElementById("carrusel");
+  if(carrusel){
+    var pista = document.getElementById("carruselPista");
+    var slides = pista.querySelectorAll(".carrusel-slide");
+    var puntos = document.getElementById("carruselPuntos").querySelectorAll("button");
+    var btnPausa = document.getElementById("carruselPausa");
+    var slideActual = 0;
+    var duracion = SEGUNDOS_POR_SLIDE * 1000;
+    var restante = duracion, inicioCuenta = 0, temporizador = null;
+    var pausaUsuario = false, mouseEncima = false, focoTeclado = false;
+    carrusel.style.setProperty("--avance", duracion + "ms");
+    try{ pausaUsuario = window.matchMedia("(prefers-reduced-motion: reduce)").matches; }catch(e){}
+
+    function detenerCuenta(){
+      if(!temporizador) return;
+      clearTimeout(temporizador);
+      temporizador = null;
+      restante = Math.max(0, restante - (Date.now() - inicioCuenta));
+    }
+    function actualizarCuenta(){
+      var enPausa = pausaUsuario || mouseEncima || focoTeclado;
+      carrusel.classList.toggle("en-pausa", enPausa);
+      pista.setAttribute("aria-live", enPausa ? "polite" : "off");
+      if(enPausa){ detenerCuenta(); return; }
+      if(temporizador) return;
+      inicioCuenta = Date.now();
+      temporizador = setTimeout(function(){
+        temporizador = null;
+        // Si la portada no se está viendo, espera otra vuelta sin cambiar
+        if(document.hidden || !carrusel.offsetParent){ restante = duracion; actualizarCuenta(); }
+        else irSlide(slideActual + 1);
+      }, restante);
+    }
+    function irSlide(i){
+      if(temporizador){ clearTimeout(temporizador); temporizador = null; }
+      restante = duracion;
+      slideActual = (i + slides.length) % slides.length;
+      pista.style.transform = "translateX(-" + (slideActual * 100) + "%)";
+      Array.prototype.forEach.call(slides, function(s, n){
+        var oculta = n !== slideActual;
+        s.setAttribute("aria-hidden", oculta ? "true" : "false");
+        if(oculta) s.setAttribute("inert", ""); else s.removeAttribute("inert");
+      });
+      Array.prototype.forEach.call(puntos, function(p, n){
+        p.setAttribute("aria-current", n === slideActual ? "true" : "false");
+      });
+      actualizarCuenta();
+    }
+    function mostrarPausa(){
+      btnPausa.querySelector(".ic-pausa").hidden = pausaUsuario;
+      btnPausa.querySelector(".ic-play").hidden = !pausaUsuario;
+      var txt = pausaUsuario ? "Reanudar el carrusel" : "Pausar el carrusel";
+      btnPausa.setAttribute("aria-label", txt);
+      btnPausa.title = txt;
+    }
+    btnPausa.addEventListener("click", function(){
+      pausaUsuario = !pausaUsuario;
+      mostrarPausa();
+      actualizarCuenta();
+    });
+    carrusel.addEventListener("pointerenter", function(e){
+      if(e.pointerType === "mouse"){ mouseEncima = true; actualizarCuenta(); }
+    });
+    carrusel.addEventListener("pointerleave", function(e){
+      if(e.pointerType === "mouse"){ mouseEncima = false; actualizarCuenta(); }
+    });
+    carrusel.addEventListener("focusin", function(e){
+      var visible = false;
+      try{ visible = e.target.matches(":focus-visible"); }catch(err){}
+      if(visible){ focoTeclado = true; actualizarCuenta(); }
+    });
+    carrusel.addEventListener("focusout", function(e){
+      if(!carrusel.contains(e.relatedTarget)){ focoTeclado = false; actualizarCuenta(); }
+    });
+    mostrarPausa();
+    document.getElementById("carruselAnt").addEventListener("click", function(){ irSlide(slideActual - 1); });
+    document.getElementById("carruselSig").addEventListener("click", function(){ irSlide(slideActual + 1); });
+    Array.prototype.forEach.call(puntos, function(p, n){
+      p.addEventListener("click", function(){ irSlide(n); });
+    });
+    carrusel.addEventListener("keydown", function(e){
+      if(e.target.closest("input, textarea, select")) return;
+      if(e.key === "ArrowLeft"){ irSlide(slideActual - 1); }
+      else if(e.key === "ArrowRight"){ irSlide(slideActual + 1); }
+    });
+    var toqueX = null, toqueY = null;
+    pista.addEventListener("touchstart", function(e){
+      toqueX = e.touches[0].clientX; toqueY = e.touches[0].clientY;
+    }, {passive:true});
+    pista.addEventListener("touchend", function(e){
+      if(toqueX === null) return;
+      var dx = e.changedTouches[0].clientX - toqueX;
+      var dy = e.changedTouches[0].clientY - toqueY;
+      toqueX = null;
+      if(Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy)) irSlide(slideActual + (dx < 0 ? 1 : -1));
+    }, {passive:true});
+    // El botón del slide 3 abre la burbuja del chat (asistente.js)
+    document.getElementById("carruselChat").addEventListener("click", function(){
+      var panelChat = document.getElementById("siaPanel");
+      var lanzadorChat = document.getElementById("siaLanzador");
+      if(panelChat && lanzadorChat && panelChat.hidden) lanzadorChat.click();
+    });
+    irSlide(0);
+  }
+
   aplicarFiltro("basico");
   anotarPosicion(0);
   mostrar(pantallaDeLaDireccion());
