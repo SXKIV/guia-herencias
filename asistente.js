@@ -348,7 +348,7 @@ var ASISTENTE_CONFIG = {
     "- **Exención:** parte de tu asignación que no paga impuesto (600 UTM hijos, cónyuge y padres; 60 UTM hermanos, tíos, sobrinos y primos).\n" +
     "- **CBR:** Conservador de Bienes Raíces, donde se inscriben las propiedades a nombre de los herederos.\n" +
     "- **UTM:** unidad tributaria mensual; cambia cada mes.\n\n" +
-    "Más definiciones en el [Diccionario](#conceptos).";
+    "Más definiciones en el [Glosario](#conceptos).";
 
   var PAGO = "### Después de enviar la declaración\n" +
     "1. Al presionar **Enviar**, el sistema abre la ventana de **giros**: muestra lo que paga cada asignatario.\n" +

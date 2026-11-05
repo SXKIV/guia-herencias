@@ -32,6 +32,21 @@
   var fTodo = document.getElementById("fTodo");
   var notaFiltro = document.getElementById("notaFiltro");
 
+  // Glosario: ordena las entradas en orden alfabético (sin contar la marca
+  // "técnica"), para que una entrada nueva quede en su lugar sola.
+  var glosario = document.getElementById("glosario");
+  if (glosario){
+    var entradasGlosario = Array.prototype.slice.call(glosario.querySelectorAll(":scope > details"));
+    function tituloEntrada(d){
+      var s = d.querySelector("summary");
+      return s && s.firstChild ? s.firstChild.textContent.trim() : "";
+    }
+    entradasGlosario.sort(function(a, b){
+      return tituloEntrada(a).localeCompare(tituloEntrada(b), "es", {sensitivity: "base"});
+    });
+    entradasGlosario.forEach(function(d){ glosario.appendChild(d); });
+  }
+
   function aplicarFiltro(modo){
     var entradas = document.querySelectorAll("#glosario details");
     Array.prototype.forEach.call(entradas, function(d){
