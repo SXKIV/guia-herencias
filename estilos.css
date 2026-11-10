@@ -43,11 +43,19 @@ img{max-width:100%}
 .franja .simple:hover{text-decoration:underline}
 
 /* Botón para agrandar o achicar el texto (lupa con − y +) */
-.tamano-texto{display:flex;align-items:center;background:#fff;border:2px solid var(--primario);border-radius:999px;padding:2px;flex:none;margin-left:auto}
+.tamano-texto{display:flex;flex-direction:column;align-items:center;gap:2px;flex:none;margin-left:auto}
+/* Rótulo visible encima de los botones; tamaño fijo para que no crezca con A+ */
+.tamano-rotulo{font-size:12px;font-weight:600;line-height:1.2;color:var(--primario-osc);white-space:nowrap}
+.tamano-botones{display:flex;align-items:center;background:#fff;border:2px solid var(--primario);border-radius:999px;padding:2px}
 .tamano-texto button{display:grid;place-items:center;width:30px;height:30px;font:inherit;font-size:20px;font-weight:700;line-height:1;color:var(--primario);background:none;border:none;border-radius:50%;cursor:pointer;padding:0}
 .tamano-texto button:hover{background:var(--celeste)}
 .tamano-texto button:disabled{color:#9AA3AE;background:none;cursor:default}
 .tamano-texto .lupa svg{width:20px;height:20px}
+/* A− y A+: algo más anchos que la lupa para que quepan las dos letras;
+   la lupa se angosta para que el control mida lo mismo que antes */
+#textoMenos,#textoMas{width:33px;font-size:15px;letter-spacing:-.02em;white-space:nowrap}
+.tamano-texto .lupa{width:26px}
+.tamano-texto .lupa svg{width:18px;height:18px}
 
 /* ---------- Cabecera con logo y menú principal ---------- */
 .cabecera{background:#fff;border-bottom:4px solid var(--primario-osc);box-shadow:0 2px 6px -4px rgba(11,58,110,.35)}
