@@ -39,7 +39,15 @@
       </a>
     </div>
     <nav class="nav-principal" aria-label="Secciones de la guía">
-      <ul class="menu-principal">
+      <!-- Solo en celular y tablet: botón Menú (despliega la lista) y Calculadora siempre visible -->
+      <div class="nav-movil">
+        <button type="button" class="nav-boton-menu" id="botonMenu" aria-expanded="false" aria-controls="menuPrincipal">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+          Menú
+        </button>
+        <button type="button" data-ir="calculadora" data-nav="calculadora" class="nav-calc-movil">Calculadora</button>
+      </div>
+      <ul class="menu-principal" id="menuPrincipal">
         <li><button type="button" data-ir="inicio" data-nav="inicio">Inicio</button></li>
         <li><button type="button" data-ir="nosotros" data-nav="nosotros">Nosotros</button></li>
         <li><button type="button" data-ir="menu-usuario" data-nav="menu-usuario">Hago el trámite</button></li>
@@ -47,7 +55,7 @@
         <li><button type="button" data-ir="documentos" data-nav="documentos">Documentos</button></li>
         <li><button type="button" data-ir="conceptos" data-nav="conceptos">Glosario</button></li>
         <li><button type="button" data-ir="simulador" data-nav="simulador">Simulador</button></li>
-        <li><button type="button" data-ir="calculadora" data-nav="calculadora" class="nav-calc">Calculadora</button></li>
+        <li class="li-calc"><button type="button" data-ir="calculadora" data-nav="calculadora" class="nav-calc">Calculadora</button></li>
       </ul>
     </nav>
     <div class="tamano-texto" role="group" aria-label="Tamaño del texto">

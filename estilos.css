@@ -74,6 +74,8 @@ img{max-width:100%}
 .menu-principal button[aria-current="page"]{color:var(--primario);border-bottom-color:var(--primario)}
 .menu-principal button.nav-calc{color:#fff;background:var(--primario);border-radius:2px;border-bottom-color:transparent;padding:8px 14px;margin-left:6px}
 .menu-principal button.nav-calc:hover,.menu-principal button.nav-calc[aria-current="page"]{background:var(--primario-osc);color:#fff}
+/* Fila del celular (botón Menú y Calculadora): oculta en computador */
+.nav-movil{display:none}
 
 /* ---------- Barra interna (Volver) ---------- */
 .topbar{position:sticky;top:0;z-index:20;background:var(--banda);border-bottom:1px solid var(--linea)}
@@ -349,6 +351,21 @@ body[data-pantalla="inicio"] .flotante-calc{display:none}
   .nav-principal{margin-left:0;width:100%;order:1}
   .tamano-texto{margin-left:auto}
   .menu-principal{overflow-x:auto;flex-wrap:nowrap;scrollbar-width:none;padding-bottom:4px}
+  /* Menú desplegable. La clase con-boton la pone codigo.js: si el código
+     no carga, el menú queda como fila deslizable. */
+  .nav-principal.con-boton .nav-movil{display:flex;align-items:center;justify-content:space-between;gap:10px;padding-bottom:10px}
+  .nav-boton-menu,.nav-calc-movil{display:inline-flex;align-items:center;gap:8px;font:inherit;font-size:1rem;font-weight:700;border-radius:3px;padding:9px 16px;min-height:44px;cursor:pointer}
+  .nav-boton-menu{color:var(--primario-osc);background:#fff;border:2px solid var(--primario)}
+  .nav-boton-menu svg{width:20px;height:20px}
+  .nav-boton-menu:hover,.nav-boton-menu[aria-expanded="true"]{background:var(--celeste)}
+  .nav-calc-movil{color:#fff;background:var(--primario);border:2px solid var(--primario)}
+  .nav-calc-movil:hover,.nav-calc-movil[aria-current="page"]{background:var(--primario-osc);border-color:var(--primario-osc)}
+  .nav-principal.con-boton .menu-principal{display:none;flex-direction:column;overflow:visible;gap:0;padding:0 0 10px;border-top:1px solid var(--linea)}
+  .nav-principal.con-boton.abierto .menu-principal{display:flex}
+  .nav-principal.con-boton .menu-principal .li-calc{display:none}
+  .nav-principal.con-boton .menu-principal button{display:block;width:100%;text-align:left;font-size:1rem;padding:12px 14px;min-height:44px;border-bottom:1px solid var(--linea);border-left:4px solid transparent;white-space:normal}
+  .nav-principal.con-boton .menu-principal button:hover{background:var(--celeste);border-bottom-color:var(--linea)}
+  .nav-principal.con-boton .menu-principal button[aria-current="page"]{border-left-color:var(--primario);border-bottom-color:var(--linea);background:var(--banda)}
   .cabecera .contenedor{padding-top:12px}
   .carrusel .carrusel-slide .contenedor{grid-template-columns:1fr;align-content:start}
   .cta-muestra{justify-self:start;max-width:420px}

@@ -126,6 +126,36 @@
     ir(b.getAttribute("data-ir"));
   });
 
+  // Menú del celular: el botón "Menú" abre y cierra la lista de secciones.
+  // Se cierra al elegir una sección, con la tecla Esc o al tocar fuera.
+  // En computador el botón no se ve y la lista se muestra siempre.
+  (function(){
+    var nav = document.querySelector(".nav-principal");
+    var boton = document.getElementById("botonMenu");
+    var lista = document.getElementById("menuPrincipal");
+    if(!nav || !boton || !lista) return;
+    nav.classList.add("con-boton");
+    function abrir(si){
+      nav.classList.toggle("abierto", si);
+      boton.setAttribute("aria-expanded", si ? "true" : "false");
+    }
+    boton.addEventListener("click", function(){
+      abrir(boton.getAttribute("aria-expanded") !== "true");
+    });
+    lista.addEventListener("click", function(e){
+      if(e.target.closest("button")) abrir(false);
+    });
+    nav.addEventListener("keydown", function(e){
+      if((e.key === "Escape" || e.key === "Esc") && boton.getAttribute("aria-expanded") === "true"){
+        abrir(false);
+        boton.focus();
+      }
+    });
+    document.addEventListener("click", function(e){
+      if(!nav.contains(e.target)) abrir(false);
+    });
+  })();
+
   document.getElementById("btnVolver").addEventListener("click", function(){
     if(posicion > 0) history.back();
     else ir("inicio");
