@@ -216,7 +216,5 @@ Revisar también que en el celular la ventana ocupe toda la pantalla.
   - En tablas, la rebaja por discapacidad no dice desde cuándo rige
     (1-3-2020) ni su tope de 8.000 UF, que la calculadora sí indica.
   - Contenido de las guías 1, 2 y 4 en PDF.
-- Chat: a "¿tengo que declarar si no pago?" agrega un dictamen sobre
-  impuesto territorial que no viene al caso (busca por palabras parecidas).
 - Definir identidad visual propia (hoy se parece al portal del SII).
 - Autorización de la UC para usar su marca.

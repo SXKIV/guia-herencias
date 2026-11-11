@@ -514,11 +514,13 @@ var ASISTENTE_CONFIG = {
       });
     }catch(e){ dictamenes = []; }
   }
-  function buscarDictamenes(texto, max, minimo){
+  // exigirMinimo: no bajar el mínimo de palabras en común aunque la pregunta tenga menos
+  // (así una sola palabra genérica, como "declarar", no trae dictámenes que no vienen al caso)
+  function buscarDictamenes(texto, max, minimo, exigirMinimo){
     if(!dictamenes) cargarDictamenes();
     var q = palabras(texto).map(raiz).filter(function(w){ return COMUNES.indexOf(w) < 0; });
     if(!q.length) return [];
-    minimo = Math.min(minimo, q.length);
+    if(!exigirMinimo) minimo = Math.min(minimo, q.length);
     return dictamenes.map(function(d){
       var distintas = q.filter(function(w){ return d.raices.indexOf(w) >= 0; });
       return {d: d, n: distintas.length, p: distintas.reduce(function(s, w){ return s + (w.length > 6 ? 2 : 1); }, 0)};
@@ -532,7 +534,7 @@ var ASISTENTE_CONFIG = {
     }).join("\n") + "\n\n*Son respuestas del SII a consultas de casos concretos" + (dictRevisado ? " (lista revisada el " + dictRevisado + ")" : "") + ". Sirven de referencia; revisa el texto completo o consulta con la Clínica.*";
   }
   function conDictamenes(md, texto){
-    var rel = buscarDictamenes(texto, 2, 2);
+    var rel = buscarDictamenes(texto, 2, 2, true);
     return rel.length ? md + "\n\n" + mdDictamenes(rel, "Dictámenes del SII relacionados") : md;
   }
   function respuestaDictamenes(texto){
