@@ -1,6 +1,6 @@
 # Plan: una sola guía para todo público
 
-Estado: **en curso**. Hecho: pasos 1, 2 y 3 (11-11-2026) y 4 (12-11-2026).
+Estado: **en curso**. Hecho: pasos 1, 2 y 3 (11-11-2026) y 4 y 5 (12-11-2026).
 Objetivo: eliminar la separación entre «usuario que hace el trámite» y
 «estudiante», y dejar una sola ruta, en lenguaje simple, para cualquier persona.
 
@@ -191,7 +191,12 @@ Primero se quitan los enlaces que llevan a ellas y después las secciones.
   `menu-estudiante`; glosario abre en «Esenciales»; barra «Volver» funciona.
 - Commit: «Unificación 4: una sola ruta».
 
-### Paso 5. Tabla de exenciones solo en «Parentesco y exenciones»
+### Paso 5. Tabla de exenciones solo en «Parentesco y exenciones» — HECHO (12-11-2026)
+Aplicado: en tablas, «Tabla 1» conserva su título, el párrafo, la fórmula y
+el párrafo de las 50 y 5 UTA; la tabla y su nota se cambiaron por el botón
+«Ver la tabla de exenciones», que abre parentesco. El chat ya enlazaba la
+exención a `#parentesco`, y el carrusel no enlaza a tablas ni a parentesco:
+no hubo que cambiarlos.
 - index.html, sección tablas, «Tabla 1. Exención según parentesco»: borrar la
   tabla (7 filas) y su nota de la UTM, y poner un enlace a la tabla de
   parentesco. Se **mantienen** el párrafo de que la exención se resta antes de
