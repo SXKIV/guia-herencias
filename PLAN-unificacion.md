@@ -1,6 +1,6 @@
 # Plan: una sola guía para todo público
 
-Estado: **en curso**. Hecho: pasos 1, 2 y 3 (11-11-2026) y 4, 5, 6, 7, 8, 9 y 10 (12-11-2026).
+Estado: **terminado**. Hecho: pasos 1, 2 y 3 (11-11-2026) y 4, 5, 6, 7, 8, 9, 10 y 11 (12-11-2026).
 Objetivo: eliminar la separación entre «usuario que hace el trámite» y
 «estudiante», y dejar una sola ruta, en lenguaje simple, para cualquier persona.
 
@@ -323,7 +323,17 @@ cuánto le toca»).
 - Probar la tabla completa del chat del CLAUDE.md y los casos A a H.
 - Commit solo si hubo que corregir algo.
 
-### Paso 11. Actualizar el CLAUDE.md
+### Paso 11. Actualizar el CLAUDE.md — HECHO (12-11-2026)
+Aplicado solo en CLAUDE.md (el sitio no cambió): un solo público; ruta única
+marcada como hecha (lo de la Clínica y la ampliación de SIIMPLE siguen
+pendientes); guia en la lista de secciones y una lista de secciones que ya no
+existen (menu-usuario, menu-estudiante, cadena) con sus redirecciones; regla
+de enlazar en vez de repetir (régimen en que-entra, exenciones en
+parentesco); estilo con una sola regla; la regla del 100% ahora se ubica en
+formulario, trampas y el chat (regimen y trampas), y la nota del régimen
+matrimonial dice que la explicación completa está en que-entra.
+**Este archivo no se borró**: se dejó marcado a pedido del equipo. Borrarlo
+cuando el equipo lo indique (queda en el historial de git).
 - «Qué es este proyecto»: un solo público, en lenguaje simple.
 - «Hacia dónde va el proyecto»: marcar la ruta única como hecha.
 - «Estructura», lista de secciones: quitar menu-usuario, menu-estudiante y

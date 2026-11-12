@@ -5,27 +5,26 @@ Sitio web de orientación para declarar el impuesto a las herencias intestadas
 ante el SII, después de la posesión efectiva. Nació en el curso Diseño Legal
 (Derecho UC) y se está desarrollando como proyecto real.
 
-Tiene dos públicos:
-- Usuarios de la Clínica Jurídica: personas sin formación jurídica, muchas
-  veces vulnerables, que entran desde el celular. Lenguaje simple.
-- Estudiantes de la Clínica: asisten casos y necesitan normas, tablas y detalle técnico.
+Tiene un solo público y una sola ruta: cualquier persona, sepa o no de la
+materia. Muchas no tienen formación jurídica, son vulnerables o entran desde
+el celular, por eso se escribe en lenguaje simple. El detalle técnico
+(normas, tablas, notas) está en la misma guía para quien lo necesite, sin
+estorbar a quien no.
 
-## Hacia dónde va el proyecto (decidido por el equipo, todavía no hecho)
-Lo de arriba describe el sitio de hoy. El equipo ya decidió estos cambios,
-que se harán más adelante:
+## Hacia dónde va el proyecto (decidido por el equipo)
+Hecho: una sola ruta para todos (12-11-2026). Ya no existe la separación
+entre "usuario que hace el trámite" y "estudiante": hay un solo menú, «Guía».
+
+Pendiente (se hará más adelante):
 - Abrirlo a todas las personas: se eliminarán las menciones a que el sitio
   está hecho para la Clínica Jurídica.
-- Una sola ruta para todos: desaparecerá la separación entre "usuario que
-  hace el trámite" y "estudiante". La idea es simplificar el trámite para
-  cualquier persona, sepa o no de la materia.
 - SIIMPLE abarcará todos los trámites tributarios, ante el SII o en otros
   ámbitos, no solo el impuesto a las herencias.
 Mientras tanto:
 - No hagas estos cambios por tu cuenta: se harán cuando el equipo los pida.
 - No inviertas en lo que se va a eliminar. Antes de agregar contenido nuevo
-  que dependa de la Clínica o de la separación usuario/estudiante, avisa y
-  propón una versión que sirva para todos. Lo nuevo, escríbelo para
-  cualquier persona, en lenguaje simple.
+  que dependa de la Clínica, avisa y propón una versión que sirva para
+  todos. Lo nuevo, escríbelo para cualquier persona, en lenguaje simple.
 - Los textos de la presentación del carrusel (primera diapositiva) y de la
   sección nosotros son temporales hasta que se haga este cambio.
 
@@ -70,7 +69,9 @@ Somos estudiantes de Derecho y no programamos. Por eso:
   de pausa. Sus textos describen el simulador y el chat: si cambian,
   revisarlos. Los botones con data-abrir-chat abren la burbuja del chat.
 - img/: logos.
-- Secciones principales: inicio, menu-usuario, menu-estudiante, viaje, cadena,
+- Secciones principales: inicio, guia (el menú único «Guía»: se llega desde
+  el menú superior y el botón «Entrar a la guía» de la portada; si se agrega
+  o renombra una sección, revisar este menú), viaje,
   parentesco, calculadora, cero, costos, descuentos, dudas-usuario, dos-utm,
   tablas, ordenes, bienes, formulario, conceptos, trampas,
   que-entra (con ilustraciones), guias (descarga los PDF de pdf/) y
@@ -78,6 +79,18 @@ Somos estudiantes de Derecho y no programamos. Por eso:
   calculadora o el simulador, hay que cambiarlo ahí también) y
   nosotros (qué es el proyecto, herramientas y equipo; se llega desde la
   primera diapositiva del carrusel).
+- Secciones que ya no existen: menu-usuario y menu-estudiante (se
+  reemplazaron por guia) y cadena (su contenido está en viaje, en los
+  desplegables «Más detalle» de cada Paso y en la tabla «Resumen del
+  encadenamiento»). Las direcciones viejas (index.html#cadena, etc.) abren
+  guia o viaje (`pantallaDeLaDireccion`, codigo.js). No volver a enlazarlas.
+- Cada tema se explica en un solo lugar y desde las demás secciones se
+  enlaza, en vez de repetirlo:
+  - Régimen matrimonial: en que-entra, apartado `id="regimen-matrimonial"`.
+    Viaje, parentesco, ordenes y el glosario dan una versión corta y
+    enlazan ahí (ver «Pendientes conocidos»).
+  - Tabla de exenciones por parentesco: solo en parentesco. Tablas la
+    enlaza con el botón «Ver la tabla de exenciones».
 - Los id de las secciones (por ejemplo dudas-usuario o viaje) no se cambian
   aunque cambie el título visible de la sección (decisión del equipo,
   11-11-2026): los usan los enlaces data-ir, los enlaces del chat en
@@ -232,8 +245,10 @@ Revisar también que en el celular la ventana ocupe toda la pantalla.
   a la tabla, en su año y mes.
 
 ## Estilo
-- Español de Chile, tono claro y cercano en la ruta del usuario,
-  técnico pero legible en la del estudiante.
+- Español de Chile, tono claro y cercano, para cualquier persona. Una sola
+  regla: lenguaje simple arriba y el detalle técnico (normas, artículos,
+  fórmulas) más abajo, en desplegables «Más detalle», cajas de normas o
+  notas técnicas, para que quien no lo necesite pueda saltárselo.
 - Debe verse bien en celular.
 - Cuida la accesibilidad: contraste, textos alternativos y navegación con teclado.
 
@@ -243,7 +258,8 @@ Revisar también que en el celular la ventana ocupe toda la pantalla.
   - Rol del fallo de la C.A. de Temuco de junio de 2026 y si fue confirmado (costos).
   - Fuente de la recomendación de la Defensoría del Contribuyente (cero).
   - Regla del 100% de la sociedad conyugal en el F4412: no se comprobó en una
-    sesión real del formulario (cadena, formulario, trampas, diccionario, chat).
+    sesión real del formulario (formulario, trampas y las respuestas regimen
+    y trampas del chat; que-entra no la repite, enlaza a formulario).
     Evidencia a revisar: según el LEEME del paquete del simulador (commit
     5d27dcd), el código del F4412 muestra este aviso al elegir "Sociedad
     Conyugal": "Recuerde que el valor que declare respecto a los bienes debe
@@ -254,12 +270,14 @@ Revisar también que en el celular la ventana ocupe toda la pantalla.
   - En tablas, la rebaja por discapacidad no dice desde cuándo rige
     (1-3-2020) ni su tope de 8.000 UF, que la calculadora sí indica.
   - Contenido de las guías 1, 2 y 4 en PDF.
-- Régimen matrimonial: está explicado con distinto detalle en Etapas del
-  trámite (Paso 1), Parentesco («Cuarto») y Quién hereda (órdenes, «Antes de
-  repartir»). El equipo decidió (11-11-2026) mantener las tres, porque cada
-  una da lo que esa sección necesita. La versión de órdenes es la más
-  completa. Revisar con comentarios de usuarios si conviene dejar una sola.
-  Si cambia algo de fondo, cambiarlo en las tres (y en la respuesta regimen
-  de asistente.js).
+- Régimen matrimonial: la explicación completa está en Qué entra a la
+  herencia (que-entra, apartado regimen-matrimonial). Además hay versiones
+  cortas, con distinto detalle, en Etapas del trámite (Paso 1), Parentesco
+  («Cuarto») y Quién hereda (órdenes, «Antes de repartir»), cada una con el
+  enlace «Más detalle: el régimen matrimonial». El equipo decidió
+  (11-11-2026) mantener esas tres, porque cada una da lo que esa sección
+  necesita. Revisar con comentarios de usuarios si conviene dejar una sola.
+  Si cambia algo de fondo, cambiarlo en que-entra, en las tres, en el
+  glosario y en la respuesta regimen de asistente.js.
 - Definir identidad visual propia (hoy se parece al portal del SII).
 - Autorización de la UC para usar su marca.
