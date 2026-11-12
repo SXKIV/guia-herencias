@@ -375,6 +375,13 @@ var ASISTENTE_CONFIG = {
     {id: "saludo", re: [/^ (hola|buenas|buenos dias|buenas tardes|buenas noches|hey|ola|alo) /], md: "¡Hola! Soy **SIILV-I.A**. Te oriento con el impuesto a las herencias intestadas: Formulario 4412, pago y certificado. ¿Qué necesitas?", opciones: ["Revisar mi caso", "Guiar Formulario 4412", "Pago y certificado"]},
     {id: "gracias", re: [/ (gracias|muchas gracias|vale|perfecto|genial|excelente|ok|listo) $/], md: "¡De nada! Si te surge otra duda, aquí estoy."},
     {id: "quien", re: [/ (quien eres|que eres|eres (un )?(bot|robot|humano|persona)|eres del sii|oficial)/], md: "Soy **SIILV-I.A**, el asistente de SIIMPLE. **No soy un servicio oficial del SII.** Respondo con el contenido de esta guía; para tu caso concreto conviene hablar con un abogado o la Clínica Jurídica Derecho UC. [Qué guarda esta página](#privacidad)", opciones: ["Hablar con una persona"]},
+    // Va antes de "persona" para ganarle cuando la pregunta nombra a un abogado
+    {id: "sin-abogado", re: [/ (sin (un )?abogad[oa]|necesito (un )?abogad[oa]|necesita (un )?abogad[oa]|se necesita (un )?abogad[oa]|requiere (un )?abogad[oa]|obligatorio (un )?abogad[oa])/, / (hacerlo (yo )?sol[oa]|por mi cuenta|puedo hacerlo yo|lo puedo hacer yo|hacerlo yo mism[oa])/],
+      md: "Si la persona **no dejó testamento**, **sí puedes hacerlo sin abogado**:\n" +
+        "- La **posesión efectiva** se pide en el **Registro Civil**, en una oficina o, en algunos casos, en su sitio web. No se necesita abogado.\n" +
+        "- La **declaración del impuesto** (formulario F4412) la presenta uno de los herederos en sii.cl, con su propia clave.\n\n" +
+        "Esta guía te acompaña en cada paso: [Etapas del trámite](#viaje).\n\n" +
+        "En cambio, **si la persona dejó testamento, sí se necesita abogado**. Es recomendable pedir ayuda a un abogado si un heredero murió antes o después que la persona, si hay bienes en el extranjero o donaciones en vida, o si pasaron muchos años desde el fallecimiento. [Ver dónde pedir ayuda](#ayuda)"},
     {id: "persona", re: [/ (hablar con (una )?persona|abogad[oa]|clinica|atencion|contacto|telefono|correo|direccion|asesoria|ayuda personal)/], fn: contactoMd},
     {id: "etapas", re: [/ (etapas?|pasos?|como empiezo|por donde (empiezo|parto)|que tengo que hacer|tramite completo|proceso)/, / (registro civil|conservador|cbr)/], md: "### Las tres etapas\n**Antes de empezar:** conviene estimar el impuesto de toda la familia, porque la solicitud del Registro Civil pregunta si las asignaciones están exentas o afectas.\n1. **Registro Civil:** posesión efectiva, con herederos e inventario valorizado. Reconoce quiénes son herederos, pero todavía no se puede vender un inmueble.\n2. **SII:** en el formulario F4412 declaras los bienes con más detalle para determinar el impuesto. Si todas las asignaciones son exentas y así se marcó, la declaración se da por cumplida, pero igual se completa el F4412 para obtener el **certificado de exención**.\n3. **Conservador de Bienes Raíces:** con la resolución y el certificado del SII se inscriben las propiedades. Desde ahí los herederos pueden vender o hipotecar.\n\nSi la familia quedó en el paso 1, el Conservador no inscribe porque falta el certificado del SII. [Ver etapas](#viaje)"},
     {id: "cero", re: [/ (no pago|no pagar|exento|exenta|exentos|aunque no|igual (hay que|tengo que) declarar|tengo que declarar|obligatori)/], md: "**Puede que no pagues, pero igual vas a necesitar ir al SII.** Muchos herederos quedan exentos porque la exención de los parientes cercanos es alta. Si **todas** las asignaciones de la familia quedan exentas y así se marca en la solicitud del Registro Civil, la ley da por cumplida la obligación de declarar (art. 60 de la Ley 16.271).\n\nPero para inscribir los bienes en el Conservador o retirarlos del banco se necesita el **certificado de exención** del SII (arts. 44 y 54), y se obtiene completando el **F4412**.\n\nOjo: si un solo heredero supera su exención, corresponde marcar \"afectas algunas\" y declarar. [Por qué ir al SII aunque no pagues impuesto](#cero)"},
@@ -684,7 +691,7 @@ var ASISTENTE_CONFIG = {
     });
     if(mejor){
       var mdTema = mejor.fn ? mejor.fn() : mejor.md;
-      if(!/^(saludo|gracias|quien|persona)$/.test(mejor.id)) mdTema = conDictamenes(mdTema, texto);
+      if(!/^(saludo|gracias|quien|persona|sin-abogado)$/.test(mejor.id)) mdTema = conDictamenes(mdTema, texto);
       return {md: aviso + mdTema, opciones: mejor.opciones};
     }
     if(rb) return {md: aviso + conDictamenes(rb, texto)};
