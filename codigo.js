@@ -865,11 +865,13 @@
     aplicarTamano(isNaN(guardado) ? 1 : guardado);
   }catch(e){ aplicarTamano(1); }
 
-  // ===== Carrusel de la portada: presentación, calculadora, simulador y asistente =====
-  // Avanza solo cada SEGUNDOS_POR_SLIDE segundos. También se cambia con las
-  // flechas, los puntos, las teclas ← → o deslizando el dedo. Se detiene con
-  // el botón de pausa, con el mouse encima o al navegar con el teclado
-  // dentro; no arranca solo si el equipo pide reducir las animaciones.
+  // ===== Carrusel de la portada: por dónde empezar, calculadora, simulador, asistente y presentación =====
+  // Avanza solo al abrir la página (decisión del equipo, 12-11-2026), salvo
+  // que la persona pida reducir las animaciones. Cada diapositiva dura SEGUNDOS_POR_SLIDE
+  // segundos, salvo la que tenga su propio data-segundos en index.html (la de
+  // «¿por dónde empiezo?» dura 10). También se cambia con las flechas, los puntos, las teclas ← → o
+  // deslizando el dedo. Una vez reanudado, se detiene con el botón de pausa,
+  // con el mouse encima o al navegar con el teclado dentro.
   // Las diapositivas ocultas quedan fuera del teclado.
   var SEGUNDOS_POR_SLIDE = 6;
   var carrusel = document.getElementById("carrusel");
@@ -882,8 +884,12 @@
     var duracion = SEGUNDOS_POR_SLIDE * 1000;
     var restante = duracion, inicioCuenta = 0, temporizador = null;
     var pausaUsuario = false, mouseEncima = false, focoTeclado = false;
-    carrusel.style.setProperty("--avance", duracion + "ms");
     try{ pausaUsuario = window.matchMedia("(prefers-reduced-motion: reduce)").matches; }catch(e){}
+    // Duración de una diapositiva, en milisegundos
+    function duracionDe(slide){
+      var seg = parseFloat(slide.getAttribute("data-segundos"));
+      return (seg > 0 ? seg : SEGUNDOS_POR_SLIDE) * 1000;
+    }
 
     function detenerCuenta(){
       if(!temporizador) return;
@@ -908,8 +914,11 @@
     }
     function irSlide(i){
       if(temporizador){ clearTimeout(temporizador); temporizador = null; }
-      restante = duracion;
       slideActual = (i + slides.length) % slides.length;
+      duracion = duracionDe(slides[slideActual]);
+      restante = duracion;
+      // El punto activo se llena en el mismo tiempo que dura la diapositiva
+      carrusel.style.setProperty("--avance", duracion + "ms");
       pista.style.transform = "translateX(-" + (slideActual * 100) + "%)";
       Array.prototype.forEach.call(slides, function(s, n){
         var oculta = n !== slideActual;

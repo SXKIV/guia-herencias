@@ -30,7 +30,7 @@ Mientras tanto:
 - Lo nuevo, escríbelo para cualquier persona, en lenguaje simple. No
   presentes el sitio como hecho para la Clínica: nómbrala solo como opción
   de ayuda, con la frase de arriba.
-- Los textos de la presentación del carrusel (primera diapositiva) y de la
+- Los textos de la presentación del carrusel (última diapositiva) y de la
   sección nosotros son temporales hasta que se haga este cambio.
 
 ## Equipo
@@ -68,12 +68,27 @@ Somos estudiantes de Derecho y no programamos. Por eso:
 - .github/: la tarea automática de GitHub que cada día (5:00 UTC) busca
   dictámenes nuevos en el SII y los agrega a siaDictamenes con un commit.
   Se puede correr a mano en la pestaña Actions del repositorio.
-- Portada: el banner de arriba es un carrusel de 4 diapositivas
-  (presentación de SIIMPLE con fondo oscuro, calculadora, simulador y chat
-  SIILV-I.A), cada una con su color. Avanza sola cada 6 segundos
-  (SEGUNDOS_POR_SLIDE en codigo.js, "Carrusel de la portada") y tiene botón
-  de pausa. Sus textos describen el simulador y el chat: si cambian,
-  revisarlos. Los botones con data-abrir-chat abren la burbuja del chat.
+- Portada (12-11-2026): el banner de arriba es un carrusel de 5
+  diapositivas, cada una con su color:
+  1. «Alguien falleció sin dejar testamento: ¿por dónde empiezo?» (azul
+     oscuro, clases s-intro y s-empezar; «¿por dónde empiezo?» va en el
+     amarillo suave de la diapositiva 5): tarjeta con tres acciones numeradas
+     (calcular si hay que pagar impuesto, ver las etapas del trámite y
+     preguntarle al asistente) y la línea «¿Hay testamento u otro caso
+     especial? Ver dónde pedir ayuda». Dura 10 segundos.
+  2. Calculadora (celeste). 3. Simulador (naranjo). 4. Chat SIILV-I.A
+     (verde). 5. Presentación de SIIMPLE (amarillo, clase s-nosotros).
+     Cada una dura 6 segundos.
+  - La duración general está en SEGUNDOS_POR_SLIDE (codigo.js, "Carrusel
+    de la portada"); una diapositiva con data-segundos="N" en index.html
+    dura N segundos.
+  - La diapositiva con la clase s-intro es la de fondo oscuro: con ella,
+    las flechas y los puntos se ven en blanco.
+  - Avanza solo al abrir la página y tiene botón de pausa. Se detiene con
+    el mouse encima o al navegar con el teclado dentro, y no avanza solo
+    si la persona pidió reducir las animaciones en su computador o celular.
+  - Sus textos describen el simulador y el chat: si cambian, revisarlos.
+  - Los botones con data-abrir-chat abren la burbuja del chat.
 - img/: logos.
 - Secciones principales: inicio, guia (el menú único «Guía»: se llega desde
   el menú superior y el botón «Entrar a la guía» de la portada; si se agrega
@@ -84,7 +99,7 @@ Somos estudiantes de Derecho y no programamos. Por eso:
   ayuda (ver más abajo) y privacidad (qué guarda la página: si cambia lo que guarda el chat, la
   calculadora o el simulador, hay que cambiarlo ahí también) y
   nosotros (qué es el proyecto, herramientas y equipo; se llega desde la
-  primera diapositiva del carrusel).
+  última diapositiva del carrusel).
 - Secciones que ya no existen: menu-usuario y menu-estudiante (se
   reemplazaron por guia) y cadena (su contenido está en viaje, en los
   desplegables «Más detalle» de cada Paso y en la tabla «Resumen del

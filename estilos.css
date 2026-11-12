@@ -131,6 +131,22 @@ a{color:var(--primario)}
 .s-intro .cta-muestra{border-top-color:var(--primario);box-shadow:0 14px 30px -14px rgba(0,0,0,.6)}
 .s-simulador .cta-muestra{border-top-color:var(--acento)}
 .s-asistente .cta-muestra{border-top-color:var(--ok)}
+/* Presentación de SIIMPLE (última diapositiva): amarillo con la misma intensidad que las demás */
+.carrusel-slide.s-nosotros{background:linear-gradient(100deg,#FFFBEB 0%,#FFF3D1 55%,#FDE8B4 100%)}
+.s-nosotros .cta-muestra{border-top-color:#B7791F}
+/* Diapositiva «¿Por dónde empiezo?» (fondo oscuro, s-intro): tarjeta con las tres acciones */
+.carrusel .s-empezar .big strong{color:#FDE8B4}
+.s-empezar .empezar-nota{color:rgba(255,255,255,.9);font-size:0.9375rem;margin:0}
+.s-empezar .empezar-nota .enlace-txt{color:#fff;font-weight:700}
+.m-acciones{list-style:none;margin:0;padding:0}
+.m-acciones li{margin:0;border-bottom:1px dashed var(--linea)}
+.m-acciones li:last-child{border-bottom:none}
+.m-acciones button{display:flex;align-items:center;gap:12px;width:100%;font:inherit;text-align:left;color:var(--tinta);background:none;border:none;padding:10px 0;cursor:pointer;font-size:0.8125rem;line-height:1.35}
+.m-acciones b{flex:none;display:inline-grid;place-items:center;width:24px;height:24px;border-radius:50%;background:var(--primario);color:#fff;font-size:0.75rem}
+.m-acciones span{flex:1}
+.m-acciones strong{display:block;color:var(--primario-osc);font-size:0.9375rem;margin-bottom:2px}
+.m-acciones svg{flex:none;width:18px;height:18px;color:var(--primario)}
+.m-acciones button:hover strong{text-decoration:underline}
 .carrusel .carrusel-slide .contenedor{display:grid;grid-template-columns:1.2fr 1fr;gap:40px;align-items:center;padding-top:46px;padding-bottom:72px;position:relative;height:100%}
 @media (prefers-reduced-motion:no-preference){.carrusel-pista{transition:transform .45s ease}}
 /* Controles: flotan sobre el borde inferior de la diapositiva, para tomar su color */
@@ -194,8 +210,7 @@ a{color:var(--primario)}
 .puerta b{font-size:1.25rem;font-weight:700;color:var(--primario-osc);display:block;margin-bottom:8px;line-height:1.25}
 .puerta span.p-desc{color:var(--tinta);font-size:0.9375rem;display:block;flex:1}
 .puerta .p-ir{display:inline-block;align-self:flex-start;margin-top:16px;font-weight:700;font-size:0.875rem;color:#fff;background:var(--primario);padding:7px 14px;border-radius:2px}
-.puerta:hover .p-ir{background:var(--primario-osc)}
-.sello{display:inline-block;font-size:0.75rem;font-weight:700;color:var(--tinta-suave);margin-top:10px}
+.puerta:hover .p-ir{background:var(--primario-osc)}.sello{display:inline-block;font-size:0.75rem;font-weight:700;color:var(--tinta-suave);margin-top:10px}
 
 /* ---------- Componentes de contenido ---------- */
 .destacado{display:flex;align-items:center;gap:18px;width:100%;text-align:left;background:var(--primario);color:#fff;border:none;border-left:8px solid var(--acento);border-radius:var(--radio);padding:22px 24px;font:inherit;cursor:pointer;margin-top:22px;box-shadow:var(--sombra)}
@@ -379,8 +394,7 @@ body[data-pantalla="inicio"] .flotante-calc{display:none}
   .carrusel .big{font-size:1.9375rem}
   .carrusel .medium{font-size:1.0625rem}
   .btn-cta{width:100%}
-  .fila-azul{grid-template-columns:1fr}
-  h1{font-size:1.625rem}
+  .fila-azul{grid-template-columns:1fr}  h1{font-size:1.625rem}
   .pie-sitio .columnas{grid-template-columns:1fr}
   .flotante-calc{right:12px;bottom:12px}
   .flotante-calc .txt-largo{display:none}
