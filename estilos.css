@@ -16,7 +16,6 @@
   --linea:#D3D8DF; --linea-suave:#E5E8EC;
   --verde:var(--primario); --azul:var(--primario-osc);
   --ok:#2E7D32; --alerta:#C62828; --marcador:#FFE9D6;
-  --ruta:var(--verde);
   --serif:"Open Sans","Segoe UI",Arial,sans-serif;
   --sans:"Open Sans","Segoe UI",Arial,sans-serif;
   --sombra:0 1px 3px rgba(11,58,110,.12);
@@ -90,7 +89,6 @@ img{max-width:100%}
 .topbar .contenedor{display:flex;align-items:center;gap:12px;min-height:46px}
 .volver{font:inherit;font-size:0.875rem;font-weight:600;background:#fff;border:1px solid var(--linea);border-radius:2px;padding:5px 12px;color:var(--primario);cursor:pointer}
 .volver:hover{border-color:var(--primario)}
-.ruta-actual{margin-left:auto;font-size:0.8125rem;font-weight:600;color:var(--primario-osc)}
 
 /* ---------- Migas ---------- */
 .migas{list-style:none;margin:18px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:6px;font-size:0.8125rem;color:var(--tinta-suave)}

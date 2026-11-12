@@ -1,6 +1,6 @@
 # Plan: una sola guía para todo público
 
-Estado: **en curso**. Hecho: pasos 1, 2 y 3 (11-11-2026).
+Estado: **en curso**. Hecho: pasos 1, 2 y 3 (11-11-2026) y 4 (12-11-2026).
 Objetivo: eliminar la separación entre «usuario que hace el trámite» y
 «estudiante», y dejar una sola ruta, en lenguaje simple, para cualquier persona.
 
@@ -166,7 +166,15 @@ ningún ítem del menú superior aparece marcado.
 - Probar: menú del celular (botón «Menú») y del computador.
 - Commit: «Unificación 3: menú superior».
 
-### Paso 4. Borrar las secciones menu-usuario y menu-estudiante
+### Paso 4. Borrar las secciones menu-usuario y menu-estudiante — HECHO (12-11-2026)
+Aplicado: se borraron las dos secciones y los botones «Entrar como usuario» y
+«Entrar como estudiante» de nosotros. En la primera diapositiva, las dos
+líneas quedaron en una: «Para todos · Lenguaje simple, con normas y tablas».
+La barra de arriba muestra solo «‹ Volver» y el glosario abre siempre en
+«Esenciales». Se quitaron `rutaElegida`, el texto de la barra (`rutaActual`,
+`.ruta-actual`) y `--ruta`. Las direcciones viejas `#menu-usuario` y
+`#menu-estudiante` abren el menú «Guía» (única mención que queda de esos ids,
+en `pantallaDeLaDireccion`, codigo.js).
 Primero se quitan los enlaces que llevan a ellas y después las secciones.
 - index.html: quitar los botones «Entrar como usuario» y «Entrar como
   estudiante» de nosotros y las líneas de la primera diapositiva (según la

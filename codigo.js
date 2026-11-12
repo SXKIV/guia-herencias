@@ -25,8 +25,6 @@
 
   var pantallas = Array.prototype.slice.call(document.querySelectorAll(".pantalla"));
   var topbar = document.getElementById("topbar");
-  var rutaActual = document.getElementById("rutaActual");
-  var rutaElegida = null;
 
   var fBasico = document.getElementById("fBasico");
   var fTodo = document.getElementById("fTodo");
@@ -67,20 +65,13 @@
   // sección (para teclado y lector de pantalla). Al cargar la página, no.
   function mostrar(id, enfocar){
     pantallas.forEach(function(p){ p.hidden = (p.id !== id); });
-    if(id === "inicio"){
-      rutaElegida = null;
-      document.documentElement.style.setProperty("--ruta","var(--verde)");
-    }
     document.body.setAttribute("data-pantalla", id);
     navItems.forEach(function(n){
       if(n.getAttribute("data-nav") === id) n.setAttribute("aria-current","page");
       else n.removeAttribute("aria-current");
     });
-    if(id === "menu-usuario"){ rutaElegida = "usuario"; document.documentElement.style.setProperty("--ruta","var(--verde)"); }
-    if(id === "menu-estudiante"){ rutaElegida = "estudiante"; document.documentElement.style.setProperty("--ruta","var(--azul)"); }
     topbar.hidden = (id === "inicio");
-    rutaActual.textContent = id === "inicio" ? "" : (rutaElegida === "estudiante" ? "Asistiendo un caso" : "Haciendo el trámite");
-    if(id === "conceptos") aplicarFiltro(rutaElegida === "estudiante" ? "todo" : "basico");
+    if(id === "conceptos") aplicarFiltro("basico");
     var h1 = document.querySelector("#" + id + " h1");
     document.title = (id === "inicio" || !h1) ? TITULO_BASE : h1.textContent + " · " + TITULO_BASE;
     window.scrollTo(0,0);
@@ -99,6 +90,9 @@
 
   function pantallaDeLaDireccion(){
     var id = decodeURIComponent(location.hash.slice(1));
+    // Los dos menús viejos (usuario y estudiante) ya no existen: quien tenga
+    // guardada esa dirección llega al menú único «Guía».
+    if(id === "menu-usuario" || id === "menu-estudiante") id = "guia";
     var existe = pantallas.some(function(p){ return p.id === id; });
     return existe ? id : "inicio";
   }
