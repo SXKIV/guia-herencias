@@ -1,6 +1,6 @@
 # Plan: una sola guía para todo público
 
-Estado: **en curso**. Hecho: paso 1 (11-11-2026).
+Estado: **en curso**. Hecho: pasos 1 y 2 (11-11-2026).
 Objetivo: eliminar la separación entre «usuario que hace el trámite» y
 «estudiante», y dejar una sola ruta, en lenguaje simple, para cualquier persona.
 
@@ -140,7 +140,11 @@ al entrar desde «Guía».
   en el celular el menú se ve completo. Calculadora (casos A a H) sin cambios.
 - Commit: «Unificación 1: menú único».
 
-### Paso 2. Portada: quitar los dos botones de ruta
+### Paso 2. Portada: quitar los dos botones de ruta — HECHO (11-11-2026)
+Aplicado: en lugar de los dos botones hay uno solo, «Entrar a la guía», que
+abre la sección `guia`. La fila azul pasó de 3 a 2 columnas (en el celular,
+una debajo de la otra). De `.puerta` solo se borró la regla del color de la
+etiqueta «Estudiante»; las demás las usa el botón nuevo.
 - index.html: borrar los dos botones `.puerta` («Usuario de la clínica
   jurídica» y «Estudiante de la clínica jurídica») y poner en su lugar un botón
   al menú único (si se aprueba la pregunta 1).
