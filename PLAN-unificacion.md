@@ -1,6 +1,6 @@
 # Plan: una sola guía para todo público
 
-Estado: **en curso**. Hecho: pasos 1, 2 y 3 (11-11-2026) y 4, 5, 6 y 7 (12-11-2026).
+Estado: **en curso**. Hecho: pasos 1, 2 y 3 (11-11-2026) y 4, 5, 6, 7 y 8 (12-11-2026).
 Objetivo: eliminar la separación entre «usuario que hace el trámite» y
 «estudiante», y dejar una sola ruta, en lenguaje simple, para cualquier persona.
 
@@ -266,7 +266,18 @@ carrusel no enlazaba a cadena ni a viaje.
 - Probar: los desplegables se abren con teclado; viaje se lee bien en el
   celular; chat: «¿qué hago después del SII?» y «¿cuáles son las etapas?».
 
-### Paso 8. Igualar los títulos con el menú (PENDIENTE: tabla de la V3.3)
+### Paso 8. Igualar los títulos con el menú — HECHO (12-11-2026)
+Aplicado con la tabla 0.3 (no hizo falta la V3.3). Los h1 ya se habían
+cambiado en el paso 1. Se igualaron los botones que nombran secciones:
+accesos rápidos (cero, que-entra, descuentos, guias), viaje Paso 2 (cero y
+formulario; su línea «En la ruta del estudiante» queda para el paso 9), dudas
+frecuentes (cero), glosario (enlace a que-entra) y pie de página (calculadora
+y guias). En el chat: los enlaces a cero (2), que-entra (2), descuentos,
+ordenes y dos-utm. No se tocaron los botones de acción («Ver costos»,
+«Calcular mi impuesto»…), los textos que describen en vez de nombrar, el menú
+superior corto, las tarjetas de nosotros (texto temporal, decisión 5) ni el
+carrusel, que solo enlaza a nosotros, calculadora y simulador, cuyos nombres
+no cambiaron.
 - index.html: cambiar los `<h1>` según la tabla, y los textos de los botones
   que llevan a esas secciones (accesos rápidos, menú único, nosotros, botones
   dentro de otras secciones) para que digan lo mismo.
