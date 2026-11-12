@@ -164,6 +164,17 @@ Orden en que busca la respuesta (en asistente.js, función responder):
 9. Si nada calza, lo dice y ofrece la Clínica (no inventa).
 Los enlaces [texto](#id) del chat abren secciones de la guía: si se cambia el
 id de una sección, hay que cambiarlo también en asistente.js.
+Para llevar a un apartado dentro de una sección (no solo a su comienzo):
+- El título del apartado necesita un id propio, por ejemplo
+  `<h2 id="regimen-matrimonial">` en que-entra.
+- En index.html, el botón lleva además del data-ir la marca data-apartado:
+  `data-ir="que-entra" data-apartado="regimen-matrimonial"`. La página abre la
+  sección, baja hasta ese título y deja ahí el foco (codigo.js, apartadoPendiente).
+- En el chat se escribe [texto](#que-entra#regimen-matrimonial).
+- Si se cambia o borra el id del apartado, cambiarlo también en esos botones
+  y en asistente.js. Si no, el enlace abre la sección desde arriba.
+- Hoy lo usan los cuatro enlaces al régimen matrimonial (viaje, parentesco,
+  ordenes y glosario) y la respuesta regimen del chat.
 
 Después de cambiar el asistente, abrir la burbuja y probar:
 | Pregunta | Debe responder |

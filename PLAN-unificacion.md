@@ -1,6 +1,6 @@
 # Plan: una sola guía para todo público
 
-Estado: **en curso**. Hecho: pasos 1, 2 y 3 (11-11-2026) y 4 y 5 (12-11-2026).
+Estado: **en curso**. Hecho: pasos 1, 2 y 3 (11-11-2026) y 4, 5 y 6 (12-11-2026).
 Objetivo: eliminar la separación entre «usuario que hace el trámite» y
 «estudiante», y dejar una sola ruta, en lenguaje simple, para cualquier persona.
 
@@ -208,7 +208,21 @@ no hubo que cambiarlos.
   parentesco siguen cambiando con la UTM.
 - Commit: «Unificación 5: tabla de exenciones en un solo lugar».
 
-### Paso 6. Régimen matrimonial explicado una sola vez, en «Qué entra a la herencia»
+### Paso 6. Régimen matrimonial explicado una sola vez, en «Qué entra a la herencia» — HECHO (12-11-2026)
+Aplicado en tres commits. 6a: apartado con el texto aprobado después de la
+caja de normas de «Cuatro cajones», con `id="regimen-matrimonial"` en su h2;
+«ver la explicación del formulario» es un botón a formulario. Después se
+agregó `data-apartado`: un botón con data-ir="que-entra" y
+data-apartado="regimen-matrimonial" baja directo al apartado (codigo.js), y
+en el chat se escribe [texto](#que-entra#regimen-matrimonial). 6b: «Más detalle: el régimen matrimonial» al final de viaje (Paso
+1, después de su caja de normas), parentesco («Cuarto») y ordenes («Antes de
+repartir»); en cadena se quitó la viñeta y «Dos reglas de valorización» pasó
+a «Una regla». 6c: el glosario quedó con dos frases tomadas del texto
+aprobado y el botón «Ver el detalle en «Qué entra a la herencia»»; el chat
+enlaza `[Qué entra a la herencia: el régimen matrimonial](#que-entra)`. El
+carrusel no enlaza a ninguna de estas secciones. También se aplicó la
+decisión 9: el cajón dice «En sociedad conyugal, la mitad de los gananciales
+que es del cónyuge sobreviviente».
 Se divide en tres commits para poder revisar el texto jurídico solo.
 - **6a.** que-entra: agregar un apartado nuevo, después de «Cuatro cajones»,
   con el texto unificado (ver Análisis del punto 3, que lista qué debe incluir)

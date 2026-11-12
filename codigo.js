@@ -61,8 +61,12 @@
 
   var navItems = Array.prototype.slice.call(document.querySelectorAll("[data-nav]"));
   var TITULO_BASE = document.title;
+  // Apartado dentro de la sección al que hay que bajar: lo fija un botón con
+  // data-apartado="id del apartado" (además de su data-ir) y se usa una vez.
+  var apartadoPendiente = null;
   // enfocar: al navegar con los botones, el foco pasa al título de la
-  // sección (para teclado y lector de pantalla). Al cargar la página, no.
+  // sección (para teclado y lector de pantalla), o al del apartado si el
+  // botón indicó uno. Al cargar la página, no.
   function mostrar(id, enfocar){
     pantallas.forEach(function(p){ p.hidden = (p.id !== id); });
     document.body.setAttribute("data-pantalla", id);
@@ -75,6 +79,14 @@
     var h1 = document.querySelector("#" + id + " h1");
     document.title = (id === "inicio" || !h1) ? TITULO_BASE : h1.textContent + " · " + TITULO_BASE;
     window.scrollTo(0,0);
+    var apartado = apartadoPendiente ? document.getElementById(apartadoPendiente) : null;
+    apartadoPendiente = null;
+    if(apartado && document.getElementById(id).contains(apartado)){
+      apartado.setAttribute("tabindex","-1");
+      apartado.scrollIntoView();
+      try{ apartado.focus({preventScroll:true}); }catch(e){ apartado.focus(); }
+      return;
+    }
     if(enfocar && h1){
       h1.setAttribute("tabindex","-1");
       try{ h1.focus({preventScroll:true}); }catch(e){ h1.focus(); }
@@ -117,6 +129,7 @@
   document.addEventListener("click", function(e){
     var b = e.target.closest("[data-ir]");
     if(!b) return;
+    apartadoPendiente = b.getAttribute("data-apartado");
     ir(b.getAttribute("data-ir"));
   });
 

@@ -86,6 +86,7 @@ img{max-width:100%}
 
 /* ---------- Barra interna (Volver) ---------- */
 .topbar{position:sticky;top:0;z-index:20;background:var(--banda);border-bottom:1px solid var(--linea)}
+.pantalla h2[id]{scroll-margin-top:72px}
 .topbar .contenedor{display:flex;align-items:center;gap:12px;min-height:46px}
 .volver{font:inherit;font-size:0.875rem;font-weight:600;background:#fff;border:1px solid var(--linea);border-radius:2px;padding:5px 12px;color:var(--primario);cursor:pointer}
 .volver:hover{border-color:var(--primario)}
