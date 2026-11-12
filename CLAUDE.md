@@ -46,13 +46,13 @@ Somos estudiantes de Derecho y no programamos. Por eso:
   y se navega con atributos data-ir.
 - estilos.css: los estilos (colores, tipografía, diseño). index.html lo carga
   en el <head>.
-- codigo.js: el código (navegación, calculadora, valor de la UTM, listas de
-  bienes y documentos). index.html lo carga al final del <body>.
+- codigo.js: el código (navegación, calculadora, valor de la UTM, lista de
+  bienes). index.html lo carga al final del <body>.
 - asistente.css y asistente.js: el chat SIILV-I.A (burbuja abajo a la derecha).
   Responde en el navegador, sin IA ni servidores. Su configuración está en
   ASISTENTE_CONFIG, al comienzo de asistente.js. Sus respuestas fijas repiten
   datos de la guía (exenciones, tramos, recargos, costos, descuentos, plazos,
-  documentos y su propia lista de bienes): si cambian en la guía, hay que
+  la línea de Etapas sobre documentos y su propia lista de bienes): si cambian en la guía, hay que
   cambiarlos también ahí. El chat calcula con una sola UTM (la de la línea
   `var UTM`); la calculadora, con la del mes del fallecimiento: para un mismo
   caso pueden dar montos algo distintos.
@@ -72,20 +72,23 @@ Somos estudiantes de Derecho y no programamos. Por eso:
 - img/: logos.
 - Secciones principales: inicio, menu-usuario, menu-estudiante, viaje, cadena,
   parentesco, calculadora, cero, costos, descuentos, dudas-usuario, dos-utm,
-  tablas, ordenes, bienes, formulario, conceptos, trampas, documentos,
+  tablas, ordenes, bienes, formulario, conceptos, trampas,
   que-entra (con ilustraciones), guias (descarga los PDF de pdf/) y
   privacidad (qué guarda la página: si cambia lo que guarda el chat, la
-  calculadora o la lista de documentos, hay que cambiarlo ahí también) y
+  calculadora o el simulador, hay que cambiarlo ahí también) y
   nosotros (qué es el proyecto, herramientas y equipo; se llega desde la
   primera diapositiva del carrusel).
 - pdf/: las cuatro guías en PDF que enlaza la sección guias. Las hizo Antonio
   (29-10-2026) y traen sus propios montos con la UTM de octubre de 2026: no se
   actualizan solas.
-- Listas de bienes (BIENES) y documentos (DOCS, ordenados por etapa) en
-  codigo.js. index.html tiene una copia ya pintada de las dos como respaldo:
-  si se cambia una lista, actualizar también esa copia. Las casillas marcadas
-  de documentos se guardan en el navegador con la clave docsHerencia3; si
-  cambia el orden o la cantidad de documentos, cambiar la clave.
+- Lista de bienes (BIENES) en codigo.js. index.html tiene una copia ya
+  pintada como respaldo: si se cambia la lista, actualizar también esa copia.
+- Documentos: el sitio ya no tiene una lista de documentos a reunir. En
+  "Etapas del trámite" (viaje, Paso 2) dice que el SII no pide documentos
+  para declarar, pero puede pedir antecedentes después para respaldar lo
+  declarado; "Guarda esas boletas" sigue en descuentos. El chat repite eso
+  (DOCUMENTOS, en asistente.js). La Guía 2 en PDF ("Documentos por etapa")
+  sigue en la sección guias.
 - simulador.js y simulador.css: el simulador del formulario F4412 (sección
   simulador). Reproduce las casillas del formulario del SII (testadas e
   intestadas), calcula el impuesto por asignatario y muestra giros y un
@@ -101,6 +104,23 @@ Somos estudiantes de Derecho y no programamos. Por eso:
   paquete del simulador de Joaquín (integrar-simulador/, commit 5d27dcd, con
   su LEEME y sus instrucciones). Se recuperan con
   `git checkout <commit> -- <carpeta>`.
+- Respaldo de la sección «Documentos a reunir» (eliminada por decisión del
+  grupo el 11-11-2026; se guarda para reutilizarla más adelante en otro lugar
+  de la página). El commit 04ad93f es el último que la tiene completa. Partes:
+  - index.html: `<section class="pantalla" id="documentos">` (con la copia ya
+    pintada de la lista) y sus enlaces data-ir="documentos" (menú superior,
+    accesos rápidos, menús de usuario y estudiante, botón "Ver qué documentos
+    reunir" de la calculadora, tarjeta "Documentos y bienes" de nosotros), y
+    la fila "Lista de documentos" de privacidad.
+  - codigo.js: ETAPAS, la lista DOCS (17 documentos en 3 etapas), el código que
+    la dibuja con casillas y barra de avance, y la clave docsHerencia3.
+  - estilos.css: .check, .progreso, .barra y .etapa-docs.
+  - asistente.js: botón "Lista de documentos" y la respuesta fija DOCUMENTOS.
+  Para verla sin cambiar nada: `git show 04ad93f:index.html` (o codigo.js,
+  etc.), o en GitHub: github.com/SXKIV/guia-herencias/blob/04ad93f/index.html.
+  Al reutilizarla: no copiar los archivos enteros (borrarían cambios
+  posteriores), sino solo esas partes; usar una clave nueva en vez de
+  docsHerencia3 y volver a agregar la fila en privacidad.
 
 ## Calculadora
 - Está en codigo.js, en calculadoraSIIMPLE. Una sola función, calcular(),
@@ -155,6 +175,7 @@ Después de cambiar el asistente, abrir la burbuja y probar:
 | ¿tengo que declarar si no pago? | Art. 60 (se da por cumplida si todas son exentas) y certificado del SII |
 | ¿qué gastos puedo descontar? | Art. 4 de la Ley 16.271 (no el art. 959 del Código Civil) |
 | ¿dónde declaro las cañerías? | Instalaciones fijas, dentro del bien raíz |
+| ¿qué documentos necesito? | El SII no pide documentos para declarar, pero puede pedir antecedentes después; guardar boletas |
 Revisar también que en el celular la ventana ocupe toda la pantalla.
 
 ## Contenido jurídico: reglas estrictas

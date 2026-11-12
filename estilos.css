@@ -309,15 +309,6 @@ details .norma{margin:10px 0}
 .filtro{font:inherit;font-size:0.9375rem;font-weight:600;cursor:pointer;background:#fff;color:var(--primario);border:1px solid var(--primario);border-radius:999px;padding:7px 18px}
 .filtro[aria-pressed="true"]{background:var(--primario);color:#fff}
 
-/* ---------- Lista de documentos ---------- */
-.check{display:flex;gap:12px;align-items:flex-start;padding:12px 0;border-bottom:1px solid var(--linea-suave)}
-.check:last-child{border-bottom:none}
-.check input{margin:4px 0 0;width:20px;height:20px;flex:none;accent-color:var(--primario)}
-.check label{cursor:pointer}
-.check .donde{display:block;font-size:0.9375rem;color:var(--tinta-suave);margin-top:2px}
-.progreso{font-weight:700;margin:16px 0 6px;color:var(--primario-osc)}
-.barra{height:10px;background:var(--banda);border-radius:999px;overflow:hidden}
-.barra i{display:block;height:100%;background:var(--primario);width:0;border-radius:999px}
 
 
 
@@ -399,7 +390,6 @@ body[data-pantalla="inicio"] .flotante-calc{display:none}
   .flotante-calc .txt-largo{display:none}
 }
 @media (max-width:420px){ .unidad .clinica{display:none} }
-@media (prefers-reduced-motion:no-preference){.barra i{transition:width .25s ease}}
 @media print{
   .franja,.menu-principal,.topbar,.carrusel,.fila-azul,button.accion,.buscador,.filtros,.flotante-calc,.tamano-texto{display:none !important}
   .pantalla{display:block !important;page-break-after:always}
@@ -570,8 +560,6 @@ details.mas{margin-top:8px}
 .guia .meta{font-size:13px;color:var(--tinta-suave);margin-top:6px}
 @media (max-width:640px){ .guias{grid-template-columns:1fr} }
 
-/* Documentos por etapa */
-.etapa-docs{font-size:14px;font-weight:700;color:var(--primario-osc);margin:22px 0 4px;text-transform:uppercase;letter-spacing:.05em}
 
 /* Impresión: solo la pantalla visible, sin botones flotantes ni asistente */
 @media print{

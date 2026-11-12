@@ -48,7 +48,6 @@ var ASISTENTE_CONFIG = {
   /* Botones de inicio: los iniciadores de conversación del agente */
   var INICIADORES = [
     ["Revisar mi caso", "caso"],
-    ["Lista de documentos", "documentos"],
     ["Guiar Formulario 4412", "formulario"],
     ["Pago y certificado", "pago"],
     ["Caso con testamento", "testamento"],
@@ -314,28 +313,8 @@ var ASISTENTE_CONFIG = {
   }
 
   /* ---------- Respuestas fijas (contenido de la guía y de las aptitudes) ---------- */
-  var DOCUMENTOS = "### Documentos a reunir, por etapa\n" +
-    "**Para estimar el impuesto y pedir la posesión efectiva (Registro Civil)**\n" +
-    "- [ ] Certificado de defunción de la persona fallecida\n" +
-    "- [ ] Certificados de nacimiento, matrimonio o acuerdo de unión civil que acrediten el parentesco de cada heredero\n" +
-    "- [ ] Tu cédula de identidad\n" +
-    "- [ ] Certificado de avalúo fiscal de cada propiedad, **vigente al fallecimiento** (gratis en sii.cl)\n" +
-    "- [ ] Permiso de circulación o padrón de los vehículos (trae el código SII)\n" +
-    "- [ ] Certificados de saldos bancarios a la fecha del fallecimiento\n" +
-    "- [ ] Certificado de saldo de la AFP\n" +
-    "- [ ] Certificados de deudas pendientes, con saldo a la fecha del fallecimiento\n" +
-    "- [ ] Boletas del funeral\n" +
-    "- [ ] Boletas o bonos de la última enfermedad, y prueba de quién los pagó\n" +
-    "- [ ] Escritura y último balance, si había sociedades\n\n" +
-    "**Para declarar en el SII (formulario F4412)**\n" +
-    "- [ ] Resolución o certificado de posesión efectiva\n" +
-    "- [ ] Copia de la solicitud de posesión efectiva con su inventario\n" +
-    "- [ ] Comprobantes de los gastos de la posesión efectiva (se pueden descontar)\n" +
-    "- [ ] ClaveÚnica o clave tributaria del heredero que declara (es personal y no se presta)\n\n" +
-    "**Para inscribir en el Conservador**\n" +
-    "- [ ] Certificado del SII de pago o de exención del impuesto\n" +
-    "- [ ] Copia de la inscripción de dominio de cada propiedad\n\n" +
-    "La lista puede variar si hay predio agrícola, sociedades, bienes en el extranjero o fallecimientos encadenados. Puedes ir marcándolos en [Documentos a reunir](#documentos) · [Guía 2 en PDF](#guias)";
+  var DOCUMENTOS = "**Para declarar, el SII no pide documentos.** Pero después puede pedir antecedentes para respaldar lo que declaraste.\n\n" +
+    "Guarda las **boletas** y comprobantes de los gastos que descuentes (funeral, última enfermedad, deudas y posesión efectiva): sin respaldo no se pueden descontar, aunque el gasto haya existido. [Etapas del trámite](#viaje) · [Gastos que se descuentan](#descuentos)";
 
   var DEFINICIONES = "### Definiciones rápidas\n" +
     "- **Causante:** la persona que falleció y cuya herencia se tramita.\n" +
@@ -387,7 +366,7 @@ var ASISTENTE_CONFIG = {
 
   /* Cada tema: palabras que lo activan (sobre texto sin tildes) y su respuesta */
   var TEMAS = [
-    {id: "saludo", re: [/^ (hola|buenas|buenos dias|buenas tardes|buenas noches|hey|ola|alo) /], md: "¡Hola! Soy **SIILV-I.A**. Te oriento con el impuesto a las herencias intestadas: documentos, Formulario 4412, pago y certificado. ¿Qué necesitas?", opciones: ["Revisar mi caso", "Lista de documentos", "Guiar Formulario 4412"]},
+    {id: "saludo", re: [/^ (hola|buenas|buenos dias|buenas tardes|buenas noches|hey|ola|alo) /], md: "¡Hola! Soy **SIILV-I.A**. Te oriento con el impuesto a las herencias intestadas: Formulario 4412, pago y certificado. ¿Qué necesitas?", opciones: ["Revisar mi caso", "Guiar Formulario 4412", "Pago y certificado"]},
     {id: "gracias", re: [/ (gracias|muchas gracias|vale|perfecto|genial|excelente|ok|listo) $/], md: "¡De nada! Si te surge otra duda, aquí estoy."},
     {id: "quien", re: [/ (quien eres|que eres|eres (un )?(bot|robot|humano|persona)|eres del sii|oficial)/], md: "Soy **SIILV-I.A**, el asistente de esta guía de la Clínica Jurídica Derecho UC. **No soy un servicio oficial del SII.** Respondo con el contenido de esta guía; para tu caso concreto puedes hablar con una persona de la Clínica. [Qué guarda esta página](#privacidad)", opciones: ["Hablar con una persona"]},
     {id: "persona", re: [/ (hablar con (una )?persona|abogad[oa]|clinica|atencion|contacto|telefono|correo|direccion|asesoria|ayuda personal)/], fn: contactoMd},
@@ -586,15 +565,15 @@ var ASISTENTE_CONFIG = {
     if(d.plazo === 1) falta.push("Ojo: pasaron **más de 2 años**: si había impuesto, se deben **intereses**. Revisa también con la Clínica los plazos del SII para cobrar (3 o 6 años). Conviene hacerlo cuanto antes.");
     if(d.casado === 0) falta.push("Definir el **régimen matrimonial**: en sociedad conyugal, solo la mitad del patrimonio común es herencia.");
     if(d.casado === 2) falta.push("Confirmar el **estado civil** con el certificado de matrimonio: si lo cambias a mitad del formulario, se borran los bienes.");
-    falta.push("Reunir los **documentos** y las **boletas** de funeral, última enfermedad y deudas para descontarlas.");
+    falta.push("Reunir las **boletas** y comprobantes de funeral, última enfermedad y deudas para descontarlas.");
     if(d.complejo === 1) falta.push("Tu caso tiene elementos que **requieren asesoría profesional**: pide atención a la Clínica.");
     if(d.posesion !== 0) paso = "Completa la posesión efectiva en el Registro Civil, con el inventario valorizado a la fecha del fallecimiento. Guárdalo: lo vas a reutilizar en el SII.";
     else if(d.complejo === 1) paso = "Pide atención a la Clínica antes de declarar.";
-    else paso = "Revisa la lista de documentos y calcula si te toca pagar con la [calculadora](#calculadora). Después entra al formulario del SII con tu ClaveÚnica.";
+    else paso = "Calcula si te toca pagar con la [calculadora](#calculadora). Después entra al formulario del SII con tu ClaveÚnica.";
     var md = "### Resumen de tu caso\n**Qué tienes listo:**\n" + listo.map(function(x){ return "- " + x; }).join("\n") +
       "\n\n**Qué te falta:**\n" + falta.map(function(x){ return "- " + x; }).join("\n") +
       "\n\n**Próximo paso recomendado:** " + paso + CIERRE_NOTA;
-    return {md: md, opciones: d.complejo === 1 ? ["Hablar con una persona", "Lista de documentos"] : ["Lista de documentos", "Guiar Formulario 4412", "¿Cuánto pago?"]};
+    return {md: md, opciones: d.complejo === 1 ? ["Hablar con una persona"] : ["Guiar Formulario 4412", "¿Cuánto pago?"]};
   }
 
   function pasoFormulario(t){
@@ -714,7 +693,7 @@ var ASISTENTE_CONFIG = {
 
     // Fuera de tema o no entendido
     return {md: aviso + "No encontré eso en la guía. Solo puedo ayudarte con la **posesión efectiva y el impuesto a las herencias**. Prueba preguntando, por ejemplo:\n- \"¿Dónde declaro el auto?\"\n- \"Soy hijo y me tocan 50 millones, ¿cuánto pago?\"\n- \"¿Qué gastos puedo descontar?\"",
-      opciones: ["Revisar mi caso", "Lista de documentos", "Hablar con una persona"]};
+      opciones: ["Revisar mi caso", "Hablar con una persona"]};
   }
 
   /* ---------- Pintar mensajes ---------- */
@@ -753,7 +732,7 @@ var ASISTENTE_CONFIG = {
   function alInicioDe(el){ cuerpo.scrollTop = Math.max(0, el.offsetTop - 10); }
 
   function bienvenida(){
-    filaBot("<p>Hola, soy <strong>SIILV-I.A</strong>, el asistente de esta guía. Te oriento para declarar el impuesto a las herencias ante el SII: documentos, Formulario 4412, pago y certificado.</p><p>Elige una opción o escribe tu pregunta.</p>");
+    filaBot("<p>Hola, soy <strong>SIILV-I.A</strong>, el asistente de esta guía. Te oriento para declarar el impuesto a las herencias ante el SII: Formulario 4412, pago y certificado.</p><p>Elige una opción o escribe tu pregunta.</p>");
     botones(INICIADORES.map(function(it){ return it[0]; }).concat(["Hablar con una persona"]));
   }
 
