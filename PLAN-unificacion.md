@@ -1,6 +1,6 @@
 # Plan: una sola guía para todo público
 
-Estado: **en curso**. Hecho: pasos 1, 2 y 3 (11-11-2026) y 4, 5, 6, 7 y 8 (12-11-2026).
+Estado: **en curso**. Hecho: pasos 1, 2 y 3 (11-11-2026) y 4, 5, 6, 7, 8 y 9 (12-11-2026).
 Objetivo: eliminar la separación entre «usuario que hace el trámite» y
 «estudiante», y dejar una sola ruta, en lenguaje simple, para cualquier persona.
 
@@ -286,7 +286,15 @@ no cambiaron.
 - El título de la pestaña del navegador se arma solo desde el `<h1>`.
 - Commit: «Unificación 8: títulos iguales al menú».
 
-### Paso 9. Textos que todavía hablan de «estudiante» o de rutas
+### Paso 9. Textos que todavía hablan de «estudiante» o de rutas — HECHO (12-11-2026)
+Aplicado con las dos propuestas (decisión 12): en viaje, Paso 2, el botón a
+formulario dice «Paso a paso, con cada pantalla», y en ordenes la nota se
+llama «Nota técnica». No cambió ningún id, título ni enlace: el chat y el
+carrusel no se tocaron. Quedan menciones a «estudiante» que no son de rutas y
+no se cambiaron: el bloque «Contacto tributario» de formulario y su respuesta
+en asistente.js («anotar al estudiante o al abogado supervisor», que depende
+de la Clínica) y los textos temporales de nosotros y de la primera
+diapositiva (decisión 5).
 - viaje, Paso 2: el botón al formulario dice «En la ruta del estudiante».
   Propuesta: «Paso a paso, con cada pantalla».
 - ordenes, «Nota para el estudiante» (línea 980). Propuesta: «Nota técnica».
