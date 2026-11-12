@@ -442,6 +442,9 @@ input[aria-invalid="true"]{border-color:var(--alerta);outline:2px solid rgba(198
 .btn-sec:hover{background:var(--celeste)}
 .acciones-res{display:flex;flex-wrap:wrap;gap:10px;margin:18px 0}
 details.mas{margin-top:8px}
+/* Desplegable «Ver norma y detalle técnico»: guarda normas y detalle técnico, cerrado por defecto */
+details.detalle-tecnico{margin:12px 0 22px}
+details.detalle-tecnico > summary{font-size:0.9375rem}
 .checks-especiales{display:grid;gap:10px;padding-bottom:14px}
 .checks-especiales label{display:flex;gap:10px;align-items:flex-start;font-size:15px;cursor:pointer}
 .checks-especiales input{width:18px;height:18px;margin-top:3px;flex:none;accent-color:var(--primario)}
