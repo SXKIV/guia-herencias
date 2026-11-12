@@ -384,19 +384,19 @@
 
     function familia(){
       var r = S.rel;
-      if(r === "representante") return derivar("Si tu padre o madre murió antes que la persona, heredas en su lugar (representación): el reparto es por estirpes y el impuesto se calcula como si heredara él o ella. Si murió después, sin alcanzar a aceptar, recibes su derecho a aceptar la herencia (transmisión) y normalmente hay que tramitar dos posesiones efectivas. Si eres sobrino o sobrina y ningún hermano de la persona sobrevive, además hay fallos contradictorios sobre cómo repartir. La calculadora no cubre estos casos: revísalos con la clínica.", "Código Civil, arts. 984 a 986; Ley 16.271, art. 3");
+      if(r === "representante") return derivar("Si tu padre o madre murió antes que la persona, heredas en su lugar (representación): el reparto es por estirpes y el impuesto se calcula como si heredara él o ella. Si murió después, sin alcanzar a aceptar, recibes su derecho a aceptar la herencia (transmisión) y normalmente hay que tramitar dos posesiones efectivas. Si eres sobrino o sobrina y ningún hermano de la persona sobrevive, además hay fallos contradictorios sobre cómo repartir. La calculadora no cubre estos casos: revísalos con un abogado o la Clínica Jurídica Derecho UC.", "Código Civil, arts. 984 a 986; Ley 16.271, art. 3");
       var c = {};
       (FORM[r] || []).forEach(function(p){ c[p.id] = v(p.id); });
       if(r === "hijo"){
         if(c.rep === null) return falta("Responde si algún hijo murió antes dejando hijos.");
-        if(c.rep === 1) return derivar("Si un hijo murió antes dejando hijos, esos nietos heredan por representación: reciben entre todos la parte de su padre o madre y pagan el impuesto que a él le habría correspondido. La calculadora no cubre este caso.", "Código Civil, arts. 984 a 986; Ley 16.271, art. 3");
+        if(c.rep === 1) return derivar("Si un hijo murió antes dejando hijos, esos nietos heredan por representación: reciben entre todos la parte de su padre o madre y pagan el impuesto que a él le habría correspondido. La calculadora no cubre este caso. Revísalo con un abogado o la Clínica Jurídica Derecho UC.", "Código Civil, arts. 984 a 986; Ley 16.271, art. 3");
         if(c.cony === null) return falta("Responde si quedó cónyuge o conviviente civil.");
         if(!entero(c.h, 1)) return falta("Indica cuántos hijos tenía al morir, contándote a ti (un número entero, mínimo 1).");
         return primerOrden(c.h, c.cony === 1, "hijo");
       }
       if(r === "conyuge"){
         if(c.rep === null) return falta("Responde si algún hijo murió antes dejando hijos.");
-        if(c.rep === 1) return derivar("Si un hijo murió antes dejando hijos, esos nietos heredan por representación junto contigo. La calculadora no cubre este caso.", "Código Civil, arts. 984 a 986; Ley 16.271, art. 3");
+        if(c.rep === 1) return derivar("Si un hijo murió antes dejando hijos, esos nietos heredan por representación junto contigo. La calculadora no cubre este caso. Revísalo con un abogado o la Clínica Jurídica Derecho UC.", "Código Civil, arts. 984 a 986; Ley 16.271, art. 3");
         if(!entero(c.h, 0)) return falta("Indica cuántos hijos dejó (un número entero; 0 si no tuvo).");
         if(c.h >= 1) return primerOrden(c.h, true, "conyuge");
         if(!entero(c.a, 0)) return falta("Indica cuántos padres o abuelos vivían cuando murió (0 si no había).");
@@ -415,7 +415,7 @@
         if(c.prev === null) return falta("Responde si quedaron hijos, nietos, cónyuge, padres o abuelos.");
         if(c.prev === 1) return noHeredas("Si la persona dejó hijos, nietos, cónyuge o conviviente civil, padres o abuelos, ellos heredan antes que los hermanos.", "Código Civil, arts. 988 a 990");
         if(c.rep === null) return falta("Responde si algún hermano murió antes dejando hijos.");
-        if(c.rep === 1) return derivar("Si un hermano murió antes dejando hijos, esos sobrinos heredan en su lugar (representación). La calculadora no cubre este caso.", "Código Civil, arts. 986 y 990; Ley 16.271, art. 3");
+        if(c.rep === 1) return derivar("Si un hermano murió antes dejando hijos, esos sobrinos heredan en su lugar (representación). La calculadora no cubre este caso. Revísalo con un abogado o la Clínica Jurídica Derecho UC.", "Código Civil, arts. 986 y 990; Ley 16.271, art. 3");
         var minN = r === "hermano" ? 1 : 0, minM = r === "medio" ? 1 : 0;
         if(!entero(c.n, minN)) return falta(r === "hermano" ? "Indica cuántos hermanos de padre y madre le sobrevivieron, contándote a ti." : "Indica cuántos hermanos de padre y madre le sobrevivieron (0 si no hay).");
         if(!entero(c.m, minM)) return falta(r === "medio" ? "Indica cuántos medio hermanos le sobrevivieron, contándote a ti." : "Indica cuántos medio hermanos le sobrevivieron (0 si no hay).");
@@ -432,7 +432,7 @@
         if(c.hv === null) return falta("Responde si le sobrevivió algún hermano o medio hermano.");
         if(c.hv === 1) return noHeredas("Si a la persona le sobrevivió un hermano o medio hermano, los demás colaterales no heredan.", "Código Civil, arts. 990 y 992");
         if(c.ds === null) return falta("Responde si la persona dejó sobrinos o sobrinos nietos.");
-        if(c.ds === 1) return derivar("Si quedaron sobrinos o sobrinos nietos, la Corte Suprema ha resuelto que heredan por representación de sus padres (2025), aunque antes se aplicó otro criterio. Según cuál se siga, tú podrías no heredar o heredar junto con ellos. Revísalo con la clínica.", "Código Civil, arts. 986, 990 y 992");
+        if(c.ds === 1) return derivar("Si quedaron sobrinos o sobrinos nietos, la Corte Suprema ha resuelto que heredan por representación de sus padres (2025), aunque antes se aplicó otro criterio. Según cuál se siga, tú podrías no heredar o heredar junto con ellos. Revísalo con un abogado o la Clínica Jurídica Derecho UC.", "Código Civil, arts. 986, 990 y 992");
         if(r === "col34" && c.grado === 4){
           if(c.tio === null) return falta("Responde si le sobrevivió algún tío o tía.");
           if(c.tio === 1) return noHeredas("Los tíos (3.er grado) excluyen a los primos y tíos abuelos (4.º grado).", "Código Civil, art. 992");
@@ -464,7 +464,7 @@
       var R = {estado:"inicial", titulo:"", porque:"", monto:"", pasos:[], avisos:[], familia:null, yo:null, casilla:null, plazos:null, utmF:null};
       if(S.test === 1){
         R.estado = "alto"; R.titulo = "Esta guía no cubre herencias con testamento";
-        R.porque = "Si la persona dejó testamento, la posesión efectiva se pide ante un tribunal, con abogado, y la declaración del impuesto sigue otro camino. Pide orientación a la clínica.";
+        R.porque = "Si la persona dejó testamento, la posesión efectiva se pide ante un tribunal, con abogado, y la declaración del impuesto sigue otro camino. Pide orientación a un abogado o a la Clínica Jurídica Derecho UC.";
         return R;
       }
       if(!S.rel){ R.titulo = "Todavía no podemos decírtelo"; R.porque = "Empieza por indicar qué eras de la persona que falleció."; return R; }
@@ -517,7 +517,7 @@
         if(S.esp.donaciones) cual.push("donaciones en vida a algún heredero");
         if(S.esp.repudio) cual.push("un heredero que repudió o cedió su parte");
         R.estado = "alto"; R.titulo = "Este caso necesita revisión";
-        R.porque = "Marcaste " + cual.join(", ") + ". Eso cambia el reparto o la base del impuesto, y la calculadora no lo modela.";
+        R.porque = "Marcaste " + cual.join(", ") + ". Eso cambia el reparto o la base del impuesto, y la calculadora no lo modela. Revísalo con un abogado o la Clínica Jurídica Derecho UC.";
         R.pasos.push({t:"Situaciones especiales", e:cual.join(", "), op:"", r:"La calculadora se detiene aquí", m:"Las donaciones previas se suman a la asignación (art. 23), los bienes en el extranjero tienen reglas propias (art. 1) y el repudio o la cesión cambian quién recibe.", n:norma("Ley 16.271, arts. 1 y 23", LEY), alto:true});
         return R;
       }
@@ -622,7 +622,7 @@
       var p = R.plazos, t = '<div class="nota plazos"><b>Plazos según la fecha que indicaste.</b> ';
       t += p.vencido2 ? "El plazo de dos años para declarar y pagar sin intereses venció el " + fechaTxt(p.plazo2) + ": si hay impuesto, se adeudan intereses desde esa fecha (art. 50)."
                       : "Hay plazo para declarar y pagar sin intereses hasta el " + fechaTxt(p.plazo2) + " (art. 50).";
-      if(p.vencido8) t += " Además, pasaron más de ocho años: es posible que haya vencido el plazo del SII para revisar y cobrar. En ese caso, el F4412 emite un certificado de vencimiento de los plazos legales. Confírmalo con la clínica.";
+      if(p.vencido8) t += " Además, pasaron más de ocho años: es posible que haya vencido el plazo del SII para revisar y cobrar. En ese caso, el F4412 emite un certificado de vencimiento de los plazos legales. Confírmalo con un abogado o la Clínica Jurídica Derecho UC.";
       return t + '</div>';
     }
 
