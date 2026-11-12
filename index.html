@@ -57,6 +57,7 @@
       </div>
       <ul class="menu-principal" id="menuPrincipal">
         <li><button type="button" data-ir="inicio" data-nav="inicio">Inicio</button></li>
+        <li><button type="button" data-ir="guia" data-nav="guia">Guía</button></li>
         <li><button type="button" data-ir="nosotros" data-nav="nosotros">Nosotros</button></li>
         <li><button type="button" data-ir="menu-usuario" data-nav="menu-usuario">Hago el trámite</button></li>
         <li><button type="button" data-ir="menu-estudiante" data-nav="menu-estudiante">Estudiantes</button></li>
@@ -280,6 +281,33 @@
 </section>
 
 
+<section class="pantalla" id="guia" hidden="">
+  <h1>Guía</h1>
+  <p class="bajada">Todo lo que necesitas para el trámite, en un solo lugar. Empieza por donde más te preocupe; puedes volver a este menú en cualquier momento.</p>
+  <button class="destacado" type="button" data-ir="calculadora">
+    <b>Calcular el impuesto</b>
+    <span>Responde unas preguntas y te decimos cuánto te tocaría pagar, si corresponde</span>
+  </button>
+  <div class="menu">
+    <button class="item" type="button" data-ir="viaje"><b>Etapas del trámite</b></button>
+    <button class="item" type="button" data-ir="conceptos"><b>Glosario</b></button>
+    <button class="item" type="button" data-ir="que-entra"><b>Qué entra a la herencia y cómo se valora</b></button>
+    <button class="item" type="button" data-ir="bienes"><b>¿Dónde declaro cada bien?</b></button>
+    <button class="item" type="button" data-ir="descuentos"><b>¿Qué gastos y deudas se descuentan?</b></button>
+    <button class="item" type="button" data-ir="ordenes"><b>Quién hereda y cuánto le toca</b></button>
+    <button class="item" type="button" data-ir="parentesco"><b>Parentesco y exenciones</b></button>
+    <button class="item" type="button" data-ir="tablas"><b>Tablas del impuesto</b></button>
+    <button class="item" type="button" data-ir="dos-utm"><b>UTM del fallecimiento y UTM de la declaración</b></button>
+    <button class="item" type="button" data-ir="cero"><b>Por qué ir al SII aunque no pagues impuesto</b></button>
+    <button class="item" type="button" data-ir="formulario"><b>Explicación del formulario en línea (F4412)</b></button>
+    <button class="item" type="button" data-ir="simulador"><b>Simulador de declaración</b></button>
+    <button class="item" type="button" data-ir="costos"><b>Costos del trámite</b></button>
+    <button class="item" type="button" data-ir="trampas"><b>Errores frecuentes</b></button>
+    <button class="item" type="button" data-ir="dudas-usuario"><b>Dudas frecuentes</b></button>
+    <button class="item" type="button" data-ir="guias"><b>Guías para descargar</b></button>
+  </div>
+</section>
+
 <section class="pantalla" id="menu-usuario" hidden="">
   <h1>Tengo que hacer el trámite</h1>
   <p class="bajada">Empieza por donde más te preocupe. Puedes volver a este menú en cualquier momento.</p>
@@ -324,7 +352,7 @@
 </section>
 
 <section class="pantalla" id="viaje" hidden="">
-  <h1>Las etapas del trámite</h1>
+  <h1>Etapas del trámite</h1>
   <p class="bajada">Una herencia sin testamento pasa por tres instituciones. Cada una entrega un documento que la siguiente pide, y el impuesto conviene estimarlo antes de la primera.</p>
 
   <ol class="mapa" aria-label="Mapa de las etapas del trámite">
@@ -441,7 +469,7 @@
 </section>
 
 <section class="pantalla" id="parentesco" hidden="">
-  <h1>¿Voy a tener que pagar impuesto?</h1>
+  <h1>Parentesco y exenciones</h1>
   <p class="bajada">Antes de la calculadora hay tres cosas que entender: qué parentesco tienes, qué es una exención y qué se descuenta antes de calcular.</p>
   <div class="ubicacion">Para llegar acá ya deberías tener el inventario valorizado a la fecha del fallecimiento y haberle restado los gastos y deudas.</div>
 
@@ -674,7 +702,7 @@
 </section>
 
 <section class="pantalla" id="costos" hidden="">
-  <h1>Cuánto me va a costar todo esto</h1>
+  <h1>Costos del trámite</h1>
   <p class="bajada">La asesoría de la clínica es gratuita. Los cobros vienen de los servicios del Estado y del impuesto, si corresponde, y varios dependen del valor total de los bienes.</p>
   <div class="tabla-scroll">
     <table>
@@ -1044,7 +1072,7 @@
 </section>
 
 <section class="pantalla" id="formulario" hidden="">
-  <h1>Explicación del formulario en línea</h1>
+  <h1>Explicación del formulario en línea (F4412)</h1>
   <p class="bajada">Recorrido del formulario de herencias intestadas del sitio del SII, con lo que pide cada panel y lo que hay que saber antes de tocarlo.</p>
   <button class="destacado" type="button" data-ir="simulador">
     <b>Practicar en el simulador</b>
