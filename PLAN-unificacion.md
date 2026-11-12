@@ -1,6 +1,6 @@
 # Plan: una sola guía para todo público
 
-Estado: **en curso**. Hecho: pasos 1 y 2 (11-11-2026).
+Estado: **en curso**. Hecho: pasos 1, 2 y 3 (11-11-2026).
 Objetivo: eliminar la separación entre «usuario que hace el trámite» y
 «estudiante», y dejar una sola ruta, en lenguaje simple, para cualquier persona.
 
@@ -157,8 +157,12 @@ etiqueta «Estudiante»; las demás las usa el botón nuevo.
 - Probar: portada en computador y celular; navegación con teclado (Tab).
 - Commit: «Unificación 2: portada sin rutas».
 
-### Paso 3. Menú superior: quitar «Hago el trámite» y «Estudiantes»
-- index.html, líneas 61 y 62: borrar esos dos ítems.
+### Paso 3. Menú superior: quitar «Hago el trámite» y «Estudiantes» — HECHO (11-11-2026)
+Aplicado: el menú superior queda Inicio, Guía, Nosotros, Glosario, Simulador
+y Calculadora. Las secciones menu-usuario y menu-estudiante siguen existiendo
+(se llega a ellas desde nosotros) hasta el paso 4; mientras estén abiertas,
+ningún ítem del menú superior aparece marcado.
+- index.html, líneas 61 y 62 (eran la 62 y la 63): borrar esos dos ítems.
 - Probar: menú del celular (botón «Menú») y del computador.
 - Commit: «Unificación 3: menú superior».
 
