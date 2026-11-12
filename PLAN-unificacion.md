@@ -1,6 +1,6 @@
 # Plan: una sola guía para todo público
 
-Estado: **borrador, nada aplicado todavía** (11-11-2026).
+Estado: **en curso**. Hecho: paso 1 (11-11-2026).
 Objetivo: eliminar la separación entre «usuario que hace el trámite» y
 «estudiante», y dejar una sola ruta, en lenguaje simple, para cualquier persona.
 
@@ -106,7 +106,7 @@ en los demás botones y enlaces que lleven a ella. El id no cambia (decisión 2)
 | 8 | tablas | Tablas del impuesto | (igual) |
 | 9 | dos-utm | UTM del fallecimiento y UTM de la declaración | (igual) |
 | 10 | cero | Por qué ir al SII aunque no pagues impuesto | (igual) |
-| 11 | formulario | El formulario F4412, panel por panel | Explicación del formulario en línea |
+| 11 | formulario | Explicación del formulario en línea (F4412) (cambiado a pedido del equipo, 11-11-2026) | Explicación del formulario en línea |
 | 12 | simulador | Simulador de declaración | (igual) |
 | 13 | costos | Costos del trámite | Cuánto me va a costar todo esto |
 | 14 | trampas | Errores frecuentes | (igual) |
@@ -124,7 +124,11 @@ Cada paso es un cambio pequeño, se prueba abriendo index.html en el navegador
 (computador y celular) y se guarda con su propio commit. Ningún paso deja un
 botón que lleve a una sección que no existe.
 
-### Paso 1. Crear el menú único (PENDIENTE: tabla de la V3.3)
+### Paso 1. Crear el menú único — HECHO (11-11-2026)
+Aplicado con el orden y los nombres de la tabla 0.3: sección `guia` antes de
+menu-usuario e ítem «Guía» en el menú superior, entre «Inicio» y «Nosotros».
+Mientras no se haga el paso 4, la barra de arriba dice «Haciendo el trámite»
+al entrar desde «Guía».
 - index.html: nueva sección `<section class="pantalla" id="guia">` (o donde
   decida la pregunta 1) con los ítems en el orden de la V3.3, usando el mismo
   diseño de los menús actuales (`.destacado` para la calculadora, `.menu` e
