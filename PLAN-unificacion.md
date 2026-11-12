@@ -1,6 +1,6 @@
 # Plan: una sola guía para todo público
 
-Estado: **en curso**. Hecho: pasos 1, 2 y 3 (11-11-2026) y 4, 5 y 6 (12-11-2026).
+Estado: **en curso**. Hecho: pasos 1, 2 y 3 (11-11-2026) y 4, 5, 6 y 7 (12-11-2026).
 Objetivo: eliminar la separación entre «usuario que hace el trámite» y
 «estudiante», y dejar una sola ruta, en lenguaje simple, para cualquier persona.
 
@@ -241,7 +241,20 @@ Se divide en tres commits para poder revisar el texto jurídico solo.
 - Probar: cada enlace abre que-entra; preguntar al chat «¿qué pasa si estaba
   casado en sociedad conyugal?» y revisar el enlace; calculadora casos A y C.
 
-### Paso 7. «Cómo se encadenan» dentro de «Etapas del trámite»
+### Paso 7. «Cómo se encadenan» dentro de «Etapas del trámite» — HECHO (12-11-2026)
+Aplicado en dos commits. 7a: al final de cada Paso de viaje, un `<details>`
+con el texto de cadena sin cambios: «Más detalle: el formulario y su
+inventario» (Paso 1), «Más detalle: cómo se construye el F4412» (Paso 2, sin
+la nota «Ojo», según la decisión 11) y «Más detalle: las tres inscripciones
+del art. 688» (Paso 3, con la caja de normas completa, que suma el art. 30
+bis). La tabla «Resumen del encadenamiento» va después del aviso «Si te
+quedaste en el paso 1», con `id="resumen-encadenamiento"` en su h2. 7b: se
+borró el botón a cadena del Paso 3 (el contenido ya está en la misma página);
+en el chat, `[Ver la cadena de trámites](#cadena)` pasó a
+`[Ver las etapas del trámite](#viaje)` y en la respuesta de etapas se quitó
+`[Cómo se encadenan](#cadena)` (ya tenía `[Ver etapas](#viaje)`). Se borró la
+sección y `#cadena` abre viaje (`pantallaDeLaDireccion`, codigo.js). El
+carrusel no enlazaba a cadena ni a viaje.
 - **7a.** viaje: agregar, en cada Paso, un desplegable «Más detalle» (el mismo
   `<details>` que ya usan dudas frecuentes y errores frecuentes) con lo que
   solo está en cadena (ver análisis). Al final, la tabla «Resumen del
