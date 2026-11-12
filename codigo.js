@@ -105,6 +105,8 @@
     // Los dos menús viejos (usuario y estudiante) ya no existen: quien tenga
     // guardada esa dirección llega al menú único «Guía».
     if(id === "menu-usuario" || id === "menu-estudiante") id = "guia";
+    // La sección «Cómo se encadenan» (cadena) se fusionó con «Etapas del trámite».
+    if(id === "cadena") id = "viaje";
     var existe = pantallas.some(function(p){ return p.id === id; });
     return existe ? id : "inicio";
   }
