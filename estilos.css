@@ -390,7 +390,8 @@ body[data-pantalla="inicio"] .flotante-calc{display:none}
   .franja,.menu-principal,.topbar,.carrusel,.fila-azul,button.accion,.buscador,.filtros,.flotante-calc,.tamano-texto{display:none !important}
   .pantalla{display:block !important;page-break-after:always}
   details{border:none}
-  details p,details .norma{display:block !important}
+  details p,details .norma,details ol,details ul{display:block !important}
+  details::details-content{content-visibility:visible;display:block}
   .pie-sitio{background:none;color:#000}
 }
 
