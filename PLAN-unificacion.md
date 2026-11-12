@@ -1,6 +1,6 @@
 # Plan: una sola guía para todo público
 
-Estado: **en curso**. Hecho: pasos 1, 2 y 3 (11-11-2026) y 4, 5, 6, 7, 8 y 9 (12-11-2026).
+Estado: **en curso**. Hecho: pasos 1, 2 y 3 (11-11-2026) y 4, 5, 6, 7, 8, 9 y 10 (12-11-2026).
 Objetivo: eliminar la separación entre «usuario que hace el trámite» y
 «estudiante», y dejar una sola ruta, en lenguaje simple, para cualquier persona.
 
@@ -300,7 +300,19 @@ diapositiva (decisión 5).
 - ordenes, «Nota para el estudiante» (línea 980). Propuesta: «Nota técnica».
 - Commit: «Unificación 9: textos sin rutas».
 
-### Paso 10. Revisión final de enlaces (chat y carrusel)
+### Paso 10. Revisión final de enlaces (chat y carrusel) — HECHO (12-11-2026)
+Revisado sin cambios en el sitio (no hubo commit de corrección). Todos los
+`data-ir` de index.html, codigo.js, asistente.js y simulador.js y todos los
+`(#id)` del chat apuntan a secciones que existen; el único apartado
+enlazado (`regimen-matrimonial`, 4 botones y 1 enlace del chat) tiene su id.
+No queda ningún enlace a cadena, menu-usuario, menu-estudiante ni documentos
+(solo las redirecciones de `pantallaDeLaDireccion`, codigo.js). siaInfoExtra
+y siaDictamenes no tienen enlaces a secciones. El carrusel enlaza a
+nosotros, calculadora y simulador (y abre el chat); sus textos no nombran
+títulos viejos. Queda como observación, sin cambiar: algunos enlaces de
+acción del chat usan otras palabras que el título («Ver todas las trampas»
+lleva a «Errores frecuentes»; «Ver órdenes sucesorios», a «Quién hereda y
+cuánto le toca»).
 - Buscar en index.html, codigo.js, asistente.js y simulador.js todos los
   `data-ir` y los `(#id)` del chat, y comprobar que cada uno corresponde a una
   sección que existe. Ojo: si un enlace del chat apunta a una sección que no
