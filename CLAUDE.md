@@ -78,6 +78,12 @@ Somos estudiantes de Derecho y no programamos. Por eso:
   calculadora o el simulador, hay que cambiarlo ahí también) y
   nosotros (qué es el proyecto, herramientas y equipo; se llega desde la
   primera diapositiva del carrusel).
+- Los id de las secciones (por ejemplo dudas-usuario o viaje) no se cambian
+  aunque cambie el título visible de la sección (decisión del equipo,
+  11-11-2026): los usan los enlaces data-ir, los enlaces del chat en
+  asistente.js y las direcciones que las personas guardan
+  (index.html#calculadora). Para renombrar una sección, cambiar solo su <h1>
+  y el texto de los botones que llevan a ella.
 - pdf/: las cuatro guías en PDF que enlaza la sección guias. Las hizo Antonio
   (29-10-2026) y traen sus propios montos con la UTM de octubre de 2026: no se
   actualizan solas.
@@ -237,5 +243,12 @@ Revisar también que en el celular la ventana ocupe toda la pantalla.
   - En tablas, la rebaja por discapacidad no dice desde cuándo rige
     (1-3-2020) ni su tope de 8.000 UF, que la calculadora sí indica.
   - Contenido de las guías 1, 2 y 4 en PDF.
+- Régimen matrimonial: está explicado con distinto detalle en Etapas del
+  trámite (Paso 1), Parentesco («Cuarto») y Quién hereda (órdenes, «Antes de
+  repartir»). El equipo decidió (11-11-2026) mantener las tres, porque cada
+  una da lo que esa sección necesita. La versión de órdenes es la más
+  completa. Revisar con comentarios de usuarios si conviene dejar una sola.
+  Si cambia algo de fondo, cambiarlo en las tres (y en la respuesta regimen
+  de asistente.js).
 - Definir identidad visual propia (hoy se parece al portal del SII).
 - Autorización de la UC para usar su marca.
