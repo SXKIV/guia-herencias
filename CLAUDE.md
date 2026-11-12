@@ -12,19 +12,24 @@ el celular, por eso se escribe en lenguaje simple. El detalle técnico
 estorbar a quien no.
 
 ## Hacia dónde va el proyecto (decidido por el equipo)
-Hecho: una sola ruta para todos (12-11-2026). Ya no existe la separación
-entre "usuario que hace el trámite" y "estudiante": hay un solo menú, «Guía».
+Hecho:
+- Una sola ruta para todos (12-11-2026). Ya no existe la separación entre
+  "usuario que hace el trámite" y "estudiante": hay un solo menú, «Guía».
+- Abierto a todas las personas (12-11-2026, Tarea 9). El sitio ya no se
+  presenta como material de la Clínica Jurídica ni para sus usuarios. La
+  Clínica sigue como una opción de ayuda gratuita: cuando la guía, la
+  calculadora o el chat derivan un caso, dicen «Revísalo con un abogado o la
+  Clínica Jurídica Derecho UC» (adaptando el verbo) y enlazan a la sección
+  «Dónde pedir ayuda» (ayuda), que reúne a todas las instituciones.
 
 Pendiente (se hará más adelante):
-- Abrirlo a todas las personas: se eliminarán las menciones a que el sitio
-  está hecho para la Clínica Jurídica.
 - SIIMPLE abarcará todos los trámites tributarios, ante el SII o en otros
   ámbitos, no solo el impuesto a las herencias.
 Mientras tanto:
-- No hagas estos cambios por tu cuenta: se harán cuando el equipo los pida.
-- No inviertas en lo que se va a eliminar. Antes de agregar contenido nuevo
-  que dependa de la Clínica, avisa y propón una versión que sirva para
-  todos. Lo nuevo, escríbelo para cualquier persona, en lenguaje simple.
+- No hagas este cambio por tu cuenta: se hará cuando el equipo lo pida.
+- Lo nuevo, escríbelo para cualquier persona, en lenguaje simple. No
+  presentes el sitio como hecho para la Clínica: nómbrala solo como opción
+  de ayuda, con la frase de arriba.
 - Los textos de la presentación del carrusel (primera diapositiva) y de la
   sección nosotros son temporales hasta que se haga este cambio.
 
@@ -51,12 +56,13 @@ Somos estudiantes de Derecho y no programamos. Por eso:
   Responde en el navegador, sin IA ni servidores. Su configuración está en
   ASISTENTE_CONFIG, al comienzo de asistente.js. Sus respuestas fijas repiten
   datos de la guía (exenciones, tramos, recargos, costos, descuentos, plazos,
-  la línea de Etapas sobre documentos y su propia lista de bienes): si cambian en la guía, hay que
-  cambiarlos también ahí. El chat calcula con una sola UTM (la de la línea
+  la línea de Etapas sobre documentos, su propia lista de bienes y, en
+  contactoMd y la respuesta sin-abogado, a quién recurrir según el caso):
+  si cambian en la guía, hay que cambiarlos también ahí. El chat calcula con una sola UTM (la de la línea
   `var UTM`); la calculadora, con la del mes del fallecimiento: para un mismo
   caso pueden dar montos algo distintos.
 - En index.html, después del pie de página: la burbuja del chat y dos bloques
-  ocultos que solo lee el chat: siaInfoExtra (respuestas que la Clínica agrega
+  ocultos que solo lee el chat: siaInfoExtra (respuestas que el equipo agrega
   a mano; se ve en el código fuente, no poner datos personales) y
   siaDictamenes (dictámenes del SII sobre la Ley 16.271; no editar a mano).
 - .github/: la tarea automática de GitHub que cada día (5:00 UTC) busca
@@ -74,8 +80,8 @@ Somos estudiantes de Derecho y no programamos. Por eso:
   o renombra una sección, revisar este menú), viaje,
   parentesco, calculadora, cero, costos, descuentos, dudas-usuario, dos-utm,
   tablas, ordenes, bienes, formulario, conceptos, trampas,
-  que-entra (con ilustraciones), guias (descarga los PDF de pdf/) y
-  privacidad (qué guarda la página: si cambia lo que guarda el chat, la
+  que-entra (con ilustraciones), guias (descarga los PDF de pdf/),
+  ayuda (ver más abajo) y privacidad (qué guarda la página: si cambia lo que guarda el chat, la
   calculadora o el simulador, hay que cambiarlo ahí también) y
   nosotros (qué es el proyecto, herramientas y equipo; se llega desde la
   primera diapositiva del carrusel).
@@ -91,6 +97,19 @@ Somos estudiantes de Derecho y no programamos. Por eso:
     enlazan ahí (ver «Pendientes conocidos»).
   - Tabla de exenciones por parentesco: solo en parentesco. Tablas la
     enlaza con el botón «Ver la tabla de exenciones».
+- «Dónde pedir ayuda» (sección ayuda, 12-11-2026): tabla «Según lo que te
+  pasa» (qué caso va a qué institución) y una tarjeta por institución: SII,
+  Registro Civil, Corporación de Asistencia Judicial, Defensoría del
+  Contribuyente, clínicas jurídicas y Clínica Jurídica Derecho UC.
+  - Solo enlaces a sitios oficiales (sii.cl, registrocivil.cl y fichas de
+    ChileAtiende), sin teléfonos: los números del SII no coinciden entre sus
+    propias páginas. El único teléfono es el de la Clínica.
+  - Se llega desde el menú «Guía», el pie («¿Necesitas ayuda?»), el botón
+    «Hablar con una persona» del chat y los enlaces «Ver dónde pedir ayuda»
+    de las derivaciones (en la guía, en la calculadora con VER_AYUDA de
+    codigo.js y en el chat).
+  - Los datos de la Clínica (formulario y correo) están también en
+    ASISTENTE_CONFIG.contacto (asistente.js): si cambian, cambiarlos en ambos.
 - Los id de las secciones (por ejemplo dudas-usuario o viaje) no se cambian
   aunque cambie el título visible de la sección (decisión del equipo,
   11-11-2026): los usan los enlaces data-ir, los enlaces del chat en
@@ -147,10 +166,13 @@ Somos estudiantes de Derecho y no programamos. Por eso:
   casilla del Registro Civil y plazos), para que no puedan diferir.
 - Calcula a toda la familia (Código Civil, arts. 988 a 992) y dice qué casilla
   marcar: exentas todas, afectas algunas o afectas todas.
-- Se detiene y deriva a la Clínica con testamento, representación,
-  transmisión, sobrinos sin hermanos vivos, bienes en el extranjero,
-  donaciones previas, repudio o cesión, y avisa cuando el parentesco elegido
-  no hereda.
+- Se detiene con testamento, representación, transmisión, sobrinos sin
+  hermanos vivos, bienes en el extranjero, donaciones previas, repudio o
+  cesión, y deriva con «Revísalo con un abogado o la Clínica Jurídica
+  Derecho UC» y el enlace «Ver dónde pedir ayuda» (VER_AYUDA). Hace lo mismo
+  en el aviso de más de ocho años. Avisa cuando el parentesco elegido no
+  hereda. El enlace va solo en el veredicto, no en el esquema de pasos (que
+  muestra el mensaje como texto simple).
 - window.SIIMPLE_CALC expone la misma lógica para pruebas.
 - Después de cambiarla, probar (testamento = No en todos):
 | Caso | Datos | Debe decir |
@@ -160,21 +182,24 @@ Somos estudiantes de Derecho y no programamos. Por eso:
 | C | Hijo · 15-03-2025 · cónyuge Sí · 3 hijos · $200.000.000 | Tu parte no paga, el cónyuge paga 5,76 UTM; Afectas algunas, con aviso "Ojo" |
 | D | Hermano · 01-06-2024 · nadie antes · 1 hermano carnal (tú) y 1 medio hermano · $30.000.000 | Tú 2,93 UTM; medio hermano 1,10 UTM |
 | E | Padre, madre o abuelo · dejó hijos: Sí | No eres heredero |
-| F | Testamento: Sí | La guía no cubre herencias con testamento |
-| G | Hijo · 01-05-2016 · UTM manual 45.000 · cónyuge No · 1 hijo · $100.000.000 | 26,16 UTM y aviso de más de ocho años |
-| H | "Heredo en lugar de mi padre o madre…" | Este caso necesita revisión |
+| F | Testamento: Sí | La guía no cubre herencias con testamento; abogado o Clínica Jurídica Derecho UC y «Ver dónde pedir ayuda» |
+| G | Hijo · 01-05-2016 · UTM manual 45.000 · cónyuge No · 1 hijo · $100.000.000 | 26,16 UTM y aviso de más de ocho años con «Ver dónde pedir ayuda» |
+| H | "Heredo en lugar de mi padre o madre…" | Este caso necesita revisión; abogado o Clínica Jurídica Derecho UC y «Ver dónde pedir ayuda» |
 
 ## Asistente SIILV-I.A: cómo responde y cómo probarlo
 Orden en que busca la respuesta (en asistente.js, función responder):
 1. Botones y conversaciones guiadas ("Revisar mi caso", "Guiar Formulario 4412").
-2. siaInfoExtra: lo que agrega la Clínica a mano (formato explicado en el propio bloque).
+2. siaInfoExtra: lo que agrega el equipo a mano (formato explicado en el propio bloque).
 3. Preguntas por dictámenes ("¿hay dictámenes sobre…?").
 4. Cálculos de impuesto y repartos (art. 988) con montos.
 5. Dónde se declara cada bien (lista BIENES).
-6. Temas frecuentes (lista TEMAS).
+6. Temas frecuentes (lista TEMAS). Gana el que más coincide; si empatan,
+   el que está primero. Por eso sin-abogado («¿puedo hacerlo sin
+   abogado?») va antes de persona («Hablar con una persona»), que también
+   se activa con la palabra «abogado».
 7. Texto de la guía y diccionario (los <details> de la sección conceptos).
 8. Dictámenes que calcen con la pregunta.
-9. Si nada calza, lo dice y ofrece la Clínica (no inventa).
+9. Si nada calza, lo dice y ofrece el botón «Hablar con una persona» (no inventa).
 Los enlaces [texto](#id) del chat abren secciones de la guía: si se cambia el
 id de una sección, hay que cambiarlo también en asistente.js.
 Para llevar a un apartado dentro de una sección (no solo a su comienzo):
@@ -201,7 +226,10 @@ Después de cambiar el asistente, abrir la burbuja y probar:
 | ¿Hay dictámenes sobre sepulturas? | Oficio 1126 de 2026 |
 | ¿se paga impuesto por el seguro de vida? | Oficios 1229 y 186 de 2023 |
 | Mi RUT es 12.345.678-9 | Advertencia de no compartir datos |
-| ¿qué tiempo hará mañana? | Que no puede ayudar y ofrece la Clínica |
+| ¿qué tiempo hará mañana? | Que no puede ayudar y ofrece el botón «Hablar con una persona» |
+| Botón "Hablar con una persona" | A quién recurrir (SII, Registro Civil, Corporación de Asistencia Judicial y clínicas jurídicas, Defensoría del Contribuyente), formulario de la Clínica y «Ver dónde pedir ayuda» |
+| ¿puedo hacerlo sin abogado? | Sin testamento, sí; con testamento, se necesita abogado; enlaces a Etapas del trámite y a Dónde pedir ayuda (texto revisado por un profesor, 12-11-2026) |
+| tengo testamento | La guía no sirve para ese caso; abogado o Clínica Jurídica Derecho UC y «Ver dónde pedir ayuda» |
 | ¿tengo que declarar si no pago? | Art. 60 (se da por cumplida si todas son exentas) y certificado del SII |
 | ¿qué gastos puedo descontar? | Art. 4 de la Ley 16.271 (no el art. 959 del Código Civil) |
 | ¿dónde declaro las cañerías? | Instalaciones fijas, dentro del bien raíz |
@@ -279,5 +307,7 @@ Revisar también que en el celular la ventana ocupe toda la pantalla.
   necesita. Revisar con comentarios de usuarios si conviene dejar una sola.
   Si cambia algo de fondo, cambiarlo en que-entra, en las tres, en el
   glosario y en la respuesta regimen de asistente.js.
+- Usar en el chat la información de ChileAtiende (idea del equipo,
+  12-11-2026; por ver más adelante).
 - Definir identidad visual propia (hoy se parece al portal del SII).
 - Autorización de la UC para usar su marca.
