@@ -357,6 +357,9 @@
     function grupo(clave, nombre, rel, n, num, den, yo){ return {clave:clave, nombre:nombre, rel:rel, n:n, num:num, den:den, yo:!!yo}; }
     function noHeredas(m, n){ return {estado:"no_heredas", motivo:m, norma:n}; }
     function derivar(m, n){ return {estado:"derivar", motivo:m, norma:n}; }
+    // Enlace a la sección «Dónde pedir ayuda» (id="ayuda"), que se agrega
+    // al veredicto cuando la calculadora se detiene o deriva.
+    var VER_AYUDA = ' <button type="button" class="enlace-txt" data-ir="ayuda">Ver dónde pedir ayuda</button>';
     function falta(m){ return {estado:"incompleto", motivo:m}; }
     function entero(x, min){ return x !== null && Math.floor(x) === x && x >= min; }
 
@@ -464,7 +467,7 @@
       var R = {estado:"inicial", titulo:"", porque:"", monto:"", pasos:[], avisos:[], familia:null, yo:null, casilla:null, plazos:null, utmF:null};
       if(S.test === 1){
         R.estado = "alto"; R.titulo = "Esta guía no cubre herencias con testamento";
-        R.porque = "Si la persona dejó testamento, la posesión efectiva se pide ante un tribunal, con abogado, y la declaración del impuesto sigue otro camino. Pide orientación a un abogado o a la Clínica Jurídica Derecho UC.";
+        R.porque = "Si la persona dejó testamento, la posesión efectiva se pide ante un tribunal, con abogado, y la declaración del impuesto sigue otro camino. Pide orientación a un abogado o a la Clínica Jurídica Derecho UC." + VER_AYUDA;
         return R;
       }
       if(!S.rel){ R.titulo = "Todavía no podemos decírtelo"; R.porque = "Empieza por indicar qué eras de la persona que falleció."; return R; }
@@ -481,7 +484,7 @@
       }
       if(fam.estado === "derivar"){
         R.estado = "alto"; R.titulo = "Este caso necesita revisión";
-        R.porque = fam.motivo;
+        R.porque = fam.motivo + VER_AYUDA;
         R.pasos.push({t:"Quién hereda", e:"Tu situación", op:"", r:"La calculadora se detiene aquí", m:fam.motivo, n:norma(fam.norma, CC), alto:true});
         return R;
       }
@@ -517,7 +520,7 @@
         if(S.esp.donaciones) cual.push("donaciones en vida a algún heredero");
         if(S.esp.repudio) cual.push("un heredero que repudió o cedió su parte");
         R.estado = "alto"; R.titulo = "Este caso necesita revisión";
-        R.porque = "Marcaste " + cual.join(", ") + ". Eso cambia el reparto o la base del impuesto, y la calculadora no lo modela. Revísalo con un abogado o la Clínica Jurídica Derecho UC.";
+        R.porque = "Marcaste " + cual.join(", ") + ". Eso cambia el reparto o la base del impuesto, y la calculadora no lo modela. Revísalo con un abogado o la Clínica Jurídica Derecho UC." + VER_AYUDA;
         R.pasos.push({t:"Situaciones especiales", e:cual.join(", "), op:"", r:"La calculadora se detiene aquí", m:"Las donaciones previas se suman a la asignación (art. 23), los bienes en el extranjero tienen reglas propias (art. 1) y el repudio o la cesión cambian quién recibe.", n:norma("Ley 16.271, arts. 1 y 23", LEY), alto:true});
         return R;
       }
@@ -622,7 +625,7 @@
       var p = R.plazos, t = '<div class="nota plazos"><b>Plazos según la fecha que indicaste.</b> ';
       t += p.vencido2 ? "El plazo de dos años para declarar y pagar sin intereses venció el " + fechaTxt(p.plazo2) + ": si hay impuesto, se adeudan intereses desde esa fecha (art. 50)."
                       : "Hay plazo para declarar y pagar sin intereses hasta el " + fechaTxt(p.plazo2) + " (art. 50).";
-      if(p.vencido8) t += " Además, pasaron más de ocho años: es posible que haya vencido el plazo del SII para revisar y cobrar. En ese caso, el F4412 emite un certificado de vencimiento de los plazos legales. Confírmalo con un abogado o la Clínica Jurídica Derecho UC.";
+      if(p.vencido8) t += " Además, pasaron más de ocho años: es posible que haya vencido el plazo del SII para revisar y cobrar. En ese caso, el F4412 emite un certificado de vencimiento de los plazos legales. Confírmalo con un abogado o la Clínica Jurídica Derecho UC." + VER_AYUDA;
       return t + '</div>';
     }
 
