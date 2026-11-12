@@ -421,7 +421,12 @@ var ASISTENTE_CONFIG = {
       var titulo = (sec.querySelector("h1") || {}).textContent || "";
       Array.prototype.forEach.call(sec.querySelectorAll("p, li, details"), function(el){
         if(el.closest(".sia-panel")) return;
-        var txt = el.tagName === "DETAILS" ? el.textContent : el.textContent;
+        // El desplegable «Ver norma y detalle técnico» no es una entrada propia:
+        // su contenido ya va dentro de la entrada o del párrafo que lo rodea
+        if(el.matches("details.detalle-tecnico")) return;
+        var copia = el.cloneNode(true);
+        Array.prototype.forEach.call(copia.querySelectorAll("details.detalle-tecnico > summary"), function(s){ s.remove(); });
+        var txt = copia.textContent;
         txt = txt.replace(/\s+/g, " ").trim();
         if(txt.length < 40) return;
         var sum = el.tagName === "DETAILS" ? ((el.querySelector("summary") || {}).textContent || "") : "";

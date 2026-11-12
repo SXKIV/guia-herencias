@@ -292,6 +292,16 @@ Revisar también que en el celular la ventana ocupe toda la pantalla.
   regla: lenguaje simple arriba y el detalle técnico (normas, artículos,
   fórmulas) más abajo, en desplegables «Más detalle», cajas de normas o
   notas técnicas, para que quien no lo necesite pueda saltárselo.
+- Normas y detalle técnico (12-11-2026): van plegados en
+  `<details class="detalle-tecnico"><summary>Ver norma y detalle técnico</summary>…</details>`,
+  cerrado por defecto (al imprimir se abre). A la vista queda la explicación
+  simple con su ejemplo. Las citas cortas dentro de una frase, como
+  «(art. 44)», se dejan donde están. Recuadro rojo (.aviso) solo para
+  advertencias importantes (por ejemplo «Guarda esas boletas»). Ya aplicado
+  en descuentos, cero, costos, dos-utm, tablas, bienes, viaje, ordenes,
+  que-entra y conceptos (en el glosario, la norma va al final de cada
+  entrada). El chat no trata ese desplegable como una entrada propia
+  (asistente.js, construirIndice).
 - Debe verse bien en celular.
 - Cuida la accesibilidad: contraste, textos alternativos y navegación con teclado.
 
