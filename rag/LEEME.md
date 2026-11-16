@@ -13,7 +13,7 @@ conectarlo a SIILV-I.A (etapas 3 y 4).
 
 | Archivo | Equivale en el kit a | Qué hace | ¿Usa la API? |
 |---|---|---|---|
-| `paso1_corpus.py` | la carpeta `txt/sentencias` | Baja el texto completo de los oficios del SII que ya conoce el chat, más la Ley 16.271 | No (gratis) |
+| `paso1_corpus.py` | la carpeta `txt/sentencias` | Baja el texto completo de los oficios del SII que ya conoce el chat, más la Ley 16.271, la Ley 19.903 y el DS 237 de 2004 | No (gratis) |
 | `paso2_indexar.py` | `paso3_indexar.py` | Corta las normas **por artículo** y los oficios **por sección**, y los convierte en vectores | Sí, solo lo nuevo |
 | `paso3_responder.py` | `paso4_responder.py` | Chat de prueba en la Terminal, con las instrucciones de SIILV-I.A | Sí |
 | `modelo.py` | `modelo.py` | Habla con Gemini. Lee la clave de `GEMINI_API_KEY` o de `rag/clave.txt` | — |
@@ -81,9 +81,18 @@ Art. 959. ...
 El paso 2 corta por "Artículo N.-". Si la norma usa "Art. N." en vez de "Artículo", el
 paso 2 lo avisa y la corta por párrafos.
 
-**Ojo con la Ley 16.271:** se baja del PDF del SII, que dice estar actualizado a la
-Ley 21.210 (2020). Antes de usarla en el sitio, hay que confirmar con un profesor que
-no haya cambios posteriores (comparar con leychile.cl).
+**Las tres normas vienen del mismo PDF del SII.** Ese PDF trae la Ley 16.271, sus NOTAS
+y cinco anexos. El paso 1 lo separa en tres archivos: `ley_16271.txt` (solo la ley),
+`ley_19903.txt` (Anexo 4) y `ds_237_2004.txt` (Anexo 5). Las NOTAS y los anexos 1 a 3
+quedan fuera (índice, exenciones de otras leyes y una tabla de cálculo que puede estar
+desactualizada).
+
+**Ojo con la Ley 16.271:** el PDF del SII está actualizado solo a la Ley 21.210 (2020),
+pero el equipo revisó que la Ley 21.420 (4 de febrero de 2022) también la modificó.
+Hay que reemplazarla por la versión vigente de BCN (leychile.cl), que viene dentro del
+DFL 1 de 2000. Hasta entonces, el texto de `ley_16271.txt` está **desactualizado**. La
+Ley 19.903 y el DS 237 no tienen cambios posteriores a 2020, así que la versión del SII
+sirve.
 
 ## Qué falta (etapas 3 y 4)
 

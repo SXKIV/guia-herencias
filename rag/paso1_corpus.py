@@ -10,7 +10,8 @@ Que hace:
      de index.html). Esa lista es la "tabla" del curso: dice QUE HAY.
   2. Baja del sitio del SII el texto completo de cada oficio y lo guarda
      en rag/txt/oficios/, con una ficha arriba (numero, fecha, materia).
-  3. Baja la Ley 16.271 y la guarda en rag/txt/normas/.
+  3. Baja la Ley 16.271 (con la Ley 19.903 y el DS 237, que vienen en el
+     mismo PDF del SII) y las guarda por separado en rag/txt/normas/.
 No usa Gemini ni la clave: no cuesta nada.
 Lo que ya esta bajado no se vuelve a bajar.
 
@@ -27,11 +28,36 @@ Opciones (en la Terminal):
 # Normas que se bajan solas. Cada una: nombre de archivo, como se cita y
 # de donde se baja (PDF o pagina web). Otras normas (por ejemplo los
 # articulos del Codigo Civil) se pegan a mano: ver rag/LEEME.md.
+#
+# Si un mismo PDF trae varias normas, "partes" lo separa en un archivo por
+# norma. "desde": la linea donde empieza esa norma (se incluye). "hasta":
+# la linea donde termina (no se incluye); None = hasta el final del PDF.
+# El PDF del SII de la Ley 16.271 trae ademas sus NOTAS y cinco anexos:
+# solo se guardan la ley, la Ley 19.903 (Anexo 4) y el DS 237 (Anexo 5).
+# Quedan fuera las NOTAS y los anexos 1 a 3 (indice, exenciones de otras
+# leyes y una tabla de calculo que puede estar desactualizada).
 NORMAS = [
     {"archivo": "ley_16271",
-     "cita": "Ley 16.271",
-     "nombre": "Ley N° 16.271, sobre Impuesto a las Herencias, Asignaciones y Donaciones",
-     "url": "https://www.sii.cl/normativa_legislacion/ley16271.pdf"},
+     "url": "https://www.sii.cl/normativa_legislacion/ley16271.pdf",
+     "partes": [
+         {"archivo": "ley_16271",
+          "cita": "Ley 16.271",
+          "nombre": "Ley N° 16.271, sobre Impuesto a las Herencias, Asignaciones y Donaciones",
+          "desde": r"^Artículo 1º\.-",
+          "hasta": r"^NOTAS\s*$"},
+         {"archivo": "ley_19903",
+          "cita": "Ley 19.903",
+          "nombre": "Ley N° 19.903, sobre procedimiento para el otorgamiento de la posesión efectiva de la herencia",
+          "ubicacion": "Anexo N° 4 del PDF de la Ley 16.271",
+          "desde": r"^ANEXO Nº\s*4\s*$",
+          "hasta": r"^TRIBUNAL CONSTITUCIONAL"},
+         {"archivo": "ds_237_2004",
+          "cita": "DS 237 de 2004",
+          "nombre": "Decreto Supremo N° 237, de 2004, del Ministerio de Justicia: Reglamento sobre tramitación de posesiones efectivas intestadas, Registro Nacional de Posesiones Efectivas y Registro Nacional de Testamentos",
+          "ubicacion": "Anexo N° 5 del PDF de la Ley 16.271",
+          "desde": r"^ANEXO Nº\s*5\s*$",
+          "hasta": None},
+     ]},
 ]
 
 SEGUNDOS_ENTRE_DESCARGAS = 1     # para no cargar al sitio del SII
@@ -283,6 +309,23 @@ def bajar_norma(n):
     return texto, n["url"]
 
 
+def recortar(texto, desde, hasta):
+    """Devuelve el trozo del texto entre las lineas 'desde' y 'hasta', o None si no las encuentra."""
+    if not desde:
+        return texto
+    inicio = re.search(desde, texto, re.M)
+    if not inicio:
+        return None
+    fin = len(texto)
+    if hasta:
+        m = re.compile(hasta, re.M).search(texto, inicio.end())
+        if not m:
+            return None
+        fin = m.start()
+    trozo = re.sub(r"\s*\[pag\. \d+\]\s*$", "", texto[inicio.start():fin].strip())
+    return trozo.strip()
+
+
 def ficha_norma(n, fuente):
     return ("=" * 70 + "\n"
             "NORMA   : %s\n"
@@ -325,17 +368,25 @@ def main():
     # --- normas ---
     print("\nNORMAS")
     for n in NORMAS:
-        destino = os.path.join(CARPETA_NORMAS, n["archivo"] + ".txt")
-        if os.path.exists(destino) and not rehacer:
-            print("   ya estaba: %s" % n["cita"])
+        partes = n.get("partes") or [n]
+        destinos = [os.path.join(CARPETA_NORMAS, p["archivo"] + ".txt") for p in partes]
+        if all(os.path.exists(d) for d in destinos) and not rehacer:
+            print("   ya estaba: %s" % ", ".join(p["cita"] for p in partes))
             continue
         texto, fuente = bajar_norma(n)
         if texto is None:
-            print("   FALTA %s: %s" % (n["cita"], fuente))
+            print("   FALTA %s: %s" % (", ".join(p["cita"] for p in partes), fuente))
             continue
-        with open(destino, "w", encoding="utf-8") as f:
-            f.write(ficha_norma(n, fuente) + texto + "\n")
-        print("   bajada: %s (%d caracteres)" % (n["cita"], len(texto)))
+        for p, destino in zip(partes, destinos):
+            trozo = recortar(texto, p.get("desde"), p.get("hasta"))
+            if trozo is None:
+                print("   FALTA %s: no encontre donde empieza o termina en %s (¿cambio el documento?)"
+                      % (p["cita"], n["url"]))
+                continue
+            fuente_parte = fuente + (" (%s)" % p["ubicacion"] if p.get("ubicacion") else "")
+            with open(destino, "w", encoding="utf-8") as f:
+                f.write(ficha_norma(p, fuente_parte) + trozo + "\n")
+            print("   bajada: %s (%d caracteres)" % (p["cita"], len(trozo)))
 
     # --- oficios ---
     tabla = leer_tabla()

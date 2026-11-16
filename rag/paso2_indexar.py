@@ -43,8 +43,11 @@ VERSION_CORTE = "siimple-1"
 
 RE_SECCION = re.compile(
     r"(?im)^\s*(?:[IVX]{1,4}\s*[.\-–)]?\s*)?(ANTECEDENTES|AN[ÁA]LISIS|CONCLUSI[ÓO]N(?:ES)?)\s*[.:]?\s*$")
+# Solo cuenta como comienzo de articulo una linea "Artículo 5º.-", "Artículo 10.-"
+# o "Artículo 46 bis.-" (con mayuscula y con el guion). Asi una frase como
+# "artículo 1.386 del Código Civil" no se confunde con un articulo nuevo.
 RE_ARTICULO = re.compile(
-    r"(?im)^\s*Art[íi]culo\s+(\d+)\s*[°ºo]?\s*(bis|ter|qu[áa]ter)?\s*[.\-–]")
+    r"(?m)^\s*(?:Art[íi]culo|ART[ÍI]CULO)\s+(\d+)\s*[°ºo]?\s*((?i:bis|ter|qu[áa]ter))?\s*\.?\s*[-–]")
 
 
 # ---------- Leer los archivos del paso 1 ----------
@@ -126,12 +129,12 @@ def cortar_oficio(nombre, texto):
     partes.append((seccion, cuerpo[ultimo:]))
     salida = []
     for seccion, texto_seccion in partes:
-        for pedazo in empacar(texto_seccion):
-            if len(pedazo) < 60:
-                continue
-            salida.append({"tipo": "oficio", "archivo": nombre, "cita": cita, "seccion": seccion,
+        pedazos = [p for p in empacar(texto_seccion) if len(p) >= 60]
+        for n, pedazo in enumerate(pedazos, start=1):
+            parte = " (parte %d de %d)" % (n, len(pedazos)) if len(pedazos) > 1 else ""
+            salida.append({"tipo": "oficio", "archivo": nombre, "cita": cita, "seccion": seccion + parte,
                            "fuente": ficha.get("fuente", ""),
-                           "texto": "%s. Sección: %s.\n%s" % (encabezado, seccion, pedazo)})
+                           "texto": "%s. Sección: %s%s.\n%s" % (encabezado, seccion, parte, pedazo)})
     return salida
 
 
