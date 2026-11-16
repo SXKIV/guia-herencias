@@ -200,7 +200,22 @@ def cargar_indice():
     if (guardado.get("modelo") != modelo.MODELO_EMBEDDINGS
             or guardado.get("dimensiones") != modelo.DIMENSIONES):
         return None
+    if guardado.get("faltan"):
+        print("\n(Ojo: el indice esta incompleto, faltan %d pedazos. Corre paso2_indexar.py\n"
+              " para terminarlo; solo hara los que faltan.)" % guardado["faltan"])
     return guardado["fragmentos"]
+
+
+def guardar_indice(fragmentos, faltan):
+    """Guarda los pedazos que ya tienen vector. Se llama despues de cada tanda,
+    para que si la API corta no se pierda lo que ya se hizo."""
+    temporal = ARCHIVO_INDICE + ".tmp"
+    with open(temporal, "w", encoding="utf-8") as f:
+        json.dump({"modelo": modelo.MODELO_EMBEDDINGS, "dimensiones": modelo.DIMENSIONES,
+                   "version_corte": VERSION_CORTE, "creado": datetime.now().strftime("%d-%m-%Y %H:%M"),
+                   "faltan": faltan,
+                   "fragmentos": [f for f in fragmentos if "vector" in f]}, f, ensure_ascii=False)
+    os.replace(temporal, ARCHIVO_INDICE)   # se cambia de una vez: nunca queda un archivo a medias
 
 
 def main():
@@ -241,14 +256,19 @@ def main():
             f["vector"] = anteriores[f["id"]]
     print("\nYa tenian vector: %d | hay que vectorizar: %d" % (len(fragmentos) - len(nuevos), len(nuevos)))
     if nuevos:
-        print("Esto toma unos minutos con el plan gratis. Si dice que espera, espera.\n")
-        vectores = modelo.vectorizar([f["texto"] for f in nuevos])
-        for f, v in zip(nuevos, vectores):
-            f["vector"] = v
-    with open(ARCHIVO_INDICE, "w", encoding="utf-8") as f:
-        json.dump({"modelo": modelo.MODELO_EMBEDDINGS, "dimensiones": modelo.DIMENSIONES,
-                   "version_corte": VERSION_CORTE, "creado": datetime.now().strftime("%d-%m-%Y %H:%M"),
-                   "fragmentos": fragmentos}, f, ensure_ascii=False)
+        print("Esto toma unos minutos con el plan gratis. Si dice que espera, espera.")
+        print("El avance se guarda despues de cada tanda: si la API corta, vuelve a")
+        print("correrlo mas tarde y solo hara los que faltan.\n")
+        tanda = 32
+        for inicio in range(0, len(nuevos), tanda):
+            grupo = nuevos[inicio:inicio + tanda]
+            for f, v in zip(grupo, modelo.vectorizar([f["texto"] for f in grupo])):
+                f["vector"] = v
+            hechos = inicio + len(grupo)
+            guardar_indice(fragmentos, len(nuevos) - hechos)
+            print("   vectorizados %d de %d (guardado)" % (hechos, len(nuevos)), flush=True)
+    else:
+        guardar_indice(fragmentos, 0)
     tamano = os.path.getsize(ARCHIVO_INDICE) / 1e6
     print("\n" + "=" * 60)
     print("Listo: rag/indice_vectorial.json (%d pedazos, %.1f MB)." % (len(fragmentos), tamano))
