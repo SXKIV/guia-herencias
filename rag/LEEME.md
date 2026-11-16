@@ -13,7 +13,7 @@ conectarlo a SIILV-I.A (etapas 3 y 4).
 
 | Archivo | Equivale en el kit a | Qué hace | ¿Usa la API? |
 |---|---|---|---|
-| `paso1_corpus.py` | la carpeta `txt/sentencias` | Baja el texto completo de los oficios del SII que ya conoce el chat, más la Ley 16.271, la Ley 19.903 y el DS 237 de 2004 | No (gratis) |
+| `paso1_corpus.py` | la carpeta `txt/sentencias` | Baja el texto completo de los oficios del SII que ya conoce el chat, más la Ley 19.903 y el DS 237 de 2004; saca la Ley 16.271 vigente del PDF de BCN (que se baja a mano) | No (gratis) |
 | `paso2_indexar.py` | `paso3_indexar.py` | Corta las normas **por artículo** y los oficios **por sección**, y los convierte en vectores | Sí, solo lo nuevo |
 | `paso3_responder.py` | `paso4_responder.py` | Chat de prueba en la Terminal, con las instrucciones de SIILV-I.A | Sí |
 | `modelo.py` | `modelo.py` | Habla con Gemini. Lee la clave de `GEMINI_API_KEY` o de `rag/clave.txt` | — |
@@ -33,7 +33,7 @@ saben *qué dice* cada oficio. `paso3_responder.py` usa las dos.
    ```
    Ese archivo está en `.gitignore`: **no se sube a GitHub**. No pongas la clave en
    ningún otro archivo.
-4. Solo si el SII publica algún oficio o norma en PDF (la Ley 16.271 viene en PDF):
+4. Para leer los PDF (las normas y los oficios desde 2019 vienen en PDF):
    abre la Terminal (Ctrl + ñ, o menú **Terminal → Nueva terminal**) y escribe
    ```
    pip install pypdf
@@ -78,21 +78,41 @@ Fuente  : https://www.bcn.cl/leychile/navegar?idNorma=...
 Art. 959. ...
 ```
 
-El paso 2 corta por "Artículo N.-". Si la norma usa "Art. N." en vez de "Artículo", el
-paso 2 lo avisa y la corta por párrafos.
+El paso 2 corta por artículo. Reconoce "Artículo 5º.-" (formato del SII) y "Art. 5.º" o
+"Art. 959." (formato de BCN y del Código Civil), siempre al comienzo de una línea y con
+mayúscula. Si no encuentra ninguno, lo avisa y corta la norma por párrafos. Los artículos
+que solo dicen "DEROGADO" se saltan.
 
-**Las tres normas vienen del mismo PDF del SII.** Ese PDF trae la Ley 16.271, sus NOTAS
-y cinco anexos. El paso 1 lo separa en tres archivos: `ley_16271.txt` (solo la ley),
-`ley_19903.txt` (Anexo 4) y `ds_237_2004.txt` (Anexo 5). Las NOTAS y los anexos 1 a 3
-quedan fuera (índice, exenciones de otras leyes y una tabla de cálculo que puede estar
-desactualizada).
+### La Ley 16.271 viene de BCN
 
-**Ojo con la Ley 16.271:** el PDF del SII está actualizado solo a la Ley 21.210 (2020),
-pero el equipo revisó que la Ley 21.420 (4 de febrero de 2022) también la modificó.
-Hay que reemplazarla por la versión vigente de BCN (leychile.cl), que viene dentro del
-DFL 1 de 2000. Hasta entonces, el texto de `ley_16271.txt` está **desactualizado**. La
-Ley 19.903 y el DS 237 no tienen cambios posteriores a 2020, así que la versión del SII
-sirve.
+El PDF del SII de la Ley 16.271 está desactualizado: llega solo a la Ley 21.210 (2020),
+no incluye la Ley 21.420 (4 de febrero de 2022, que cambió los arts. 17, 20, 54 y 70) y
+mantiene la letra g) antigua del art. 46, que la Ley 19.903 reemplazó en 2003. Por eso
+la ley se saca del PDF de BCN, revisado por el equipo:
+
+1. En [leychile.cl](https://www.bcn.cl/leychile/navegar?idNorma=172986) abre el
+   **DFL 1 de 2000 del Ministerio de Justicia** (la Ley 16.271 está en su art. 8º, junto
+   con el Código Civil y otras leyes) y descarga el PDF de la versión vigente.
+2. Guárdalo como `rag/pdfs/normas/dfl1_2000_bcn.pdf`. Esa carpeta no se sube a GitHub;
+   el texto que se saca de él sí.
+3. Corre el paso 1. Saca solo la Ley 16.271, le quita los encabezados de página (con el
+   aviso de la firma electrónica), las notas al margen y las notas de BCN, y anota en la
+   ficha la versión y el código de validación de la firma. Si el PDF es más nuevo que
+   `ley_16271.txt`, lo vuelve a sacar solo.
+4. Antes de subirlo, compara el texto nuevo con el anterior (en VS Code, el panel de
+   control de código muestra qué cambió) y revisa los cambios con un profesor.
+
+El texto actual es la versión del DFL del 28-08-2025. Esa es la fecha de la última
+modificación del DFL completo (Ley 21.756); según BCN, la última que tocó la Ley 16.271
+es la 21.420.
+
+### La Ley 19.903 y el DS 237 vienen del SII
+
+Están como Anexos 4 y 5 en el mismo PDF del SII de la Ley 16.271. El paso 1 los guarda en
+`ley_19903.txt` y `ds_237_2004.txt`. Del resto de ese PDF no se guarda nada (su texto de
+la ley, las NOTAS y los anexos 1 a 3: índice, exenciones de otras leyes y una tabla de
+cálculo que puede estar desactualizada). No tienen cambios posteriores a 2020, así que la
+versión del SII sirve.
 
 ## Qué falta (etapas 3 y 4)
 

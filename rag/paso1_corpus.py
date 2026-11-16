@@ -10,8 +10,9 @@ Que hace:
      de index.html). Esa lista es la "tabla" del curso: dice QUE HAY.
   2. Baja del sitio del SII el texto completo de cada oficio y lo guarda
      en rag/txt/oficios/, con una ficha arriba (numero, fecha, materia).
-  3. Baja la Ley 16.271 (con la Ley 19.903 y el DS 237, que vienen en el
-     mismo PDF del SII) y las guarda por separado en rag/txt/normas/.
+  3. Saca la Ley 16.271 vigente del PDF de BCN (que se baja a mano, ver
+     LEEME) y baja del SII la Ley 19.903 y el DS 237. Las guarda por
+     separado en rag/txt/normas/.
 No usa Gemini ni la clave: no cuesta nada.
 Lo que ya esta bajado no se vuelve a bajar.
 
@@ -32,19 +33,30 @@ Opciones (en la Terminal):
 # Si un mismo PDF trae varias normas, "partes" lo separa en un archivo por
 # norma. "desde": la linea donde empieza esa norma (se incluye). "hasta":
 # la linea donde termina (no se incluye); None = hasta el final del PDF.
-# El PDF del SII de la Ley 16.271 trae ademas sus NOTAS y cinco anexos:
-# solo se guardan la ley, la Ley 19.903 (Anexo 4) y el DS 237 (Anexo 5).
-# Quedan fuera las NOTAS y los anexos 1 a 3 (indice, exenciones de otras
-# leyes y una tabla de calculo que puede estar desactualizada).
+#
+# La Ley 16.271 vigente se saca del PDF de BCN (leychile.cl), que hay que
+# bajar a mano: viene dentro del DFL 1 de 2000 (Justicia), en su art. 8.
+# Se guarda en rag/pdfs/normas/ con el nombre de "pdf_local" (ver LEEME).
+# "desde": el texto donde empieza la norma dentro del PDF; llega hasta el
+# final del PDF (la Ley 16.271 es lo ultimo del DFL).
+#
+# Del PDF del SII de la Ley 16.271 solo se guardan la Ley 19.903 (Anexo 4)
+# y el DS 237 (Anexo 5). Su texto de la Ley 16.271 no se usa: esta
+# desactualizado (le falta la Ley 21.420) y su art. 46 letra g) es la
+# antigua. Quedan fuera tambien las NOTAS y los anexos 1 a 3 (indice,
+# exenciones de otras leyes y una tabla de calculo que puede estar
+# desactualizada).
 NORMAS = [
     {"archivo": "ley_16271",
+     "cita": "Ley 16.271",
+     "nombre": "Ley N° 16.271, sobre Impuesto a las Herencias, Asignaciones y Donaciones",
+     "pdf_local": "dfl1_2000_bcn.pdf",
+     "url": "https://www.bcn.cl/leychile/navegar?idNorma=172986",
+     "en_bcn": "DFL 1 de 2000 del Ministerio de Justicia, art. 8º",
+     "desde": "ARTICULO 8º Fíjase el siguiente texto refundido"},
+    {"archivo": "sii_ley16271_anexos",
      "url": "https://www.sii.cl/normativa_legislacion/ley16271.pdf",
      "partes": [
-         {"archivo": "ley_16271",
-          "cita": "Ley 16.271",
-          "nombre": "Ley N° 16.271, sobre Impuesto a las Herencias, Asignaciones y Donaciones",
-          "desde": r"^Artículo 1º\.-",
-          "hasta": r"^NOTAS\s*$"},
          {"archivo": "ley_19903",
           "cita": "Ley 19.903",
           "nombre": "Ley N° 19.903, sobre procedimiento para el otorgamiento de la posesión efectiva de la herencia",
@@ -326,6 +338,85 @@ def recortar(texto, desde, hasta):
     return trozo.strip()
 
 
+def limpiar_bcn(texto, desde):
+    """Saca una norma del texto de un PDF de BCN (leychile.cl) y lo limpia:
+    quita el encabezado de cada pagina (con el aviso de la firma electronica),
+    las notas al margen ("Ley 21420 D.O. 04.02.2022"), los bloques "NOTA:" de
+    BCN y los cortes de linea dentro de cada parrafo."""
+    # 1. encabezados de pagina: desde "[pag. N]" hasta "página N de M"
+    texto = re.sub(r"\n\s*\[pag\. \d+\]\n(?:[^\n]*\n){0,6}?página \d+ de \d+\n", "\n", texto)
+    inicio = texto.find(desde)
+    if inicio < 0:
+        return None
+    lineas, en_nota, vio_texto = [], False, False
+    for linea in texto[inicio:].split("\n"):
+        # 2. bloques "NOTA:" de BCN: terminan en la siguiente linea en blanco o
+        #    donde empieza un articulo, titulo o capitulo nuevo
+        if re.match(r"^\s*NOTA(\s*\d+)?\s*:\s*$", linea):
+            en_nota, vio_texto = True, False
+            continue
+        if en_nota:
+            if re.match(r"^\s*(Art\.|Art[íi]culo|ART[ÍI]CULO|T[íi]tulo|Cap[íi]tulo)\s", linea):
+                en_nota = False
+            else:
+                if linea.strip():
+                    vio_texto = True
+                elif vio_texto:
+                    en_nota = False
+                continue
+        # 3. notas al margen: van en la columna 55 o mas a la derecha
+        if re.match(r"^\s{30,}\S", linea):
+            continue
+        for m in re.finditer(r"\s{2,}(?=\S)", linea):
+            if m.end() >= 55:
+                linea = linea[:m.start()]
+                break
+        lineas.append(linea.rstrip())
+    # 4. parrafos: en BCN cada parrafo empieza con 5 espacios
+    parrafos, actual = [], ""
+    for linea in lineas:
+        if not linea.strip():
+            if actual:
+                parrafos.append(actual)
+            actual = ""
+        elif linea.startswith("     ") and actual:
+            parrafos.append(actual)
+            actual = linea.strip()
+        else:
+            actual = (actual + " " + linea.strip()).strip()
+    if actual:
+        parrafos.append(actual)
+    # el primer parrafo es la frase del DFL que presenta la norma ("ARTICULO 8º
+    # Fíjase el siguiente texto..."): no es parte de la norma y se confundiria
+    # con su art. 8
+    if parrafos and parrafos[0].startswith(desde):
+        parrafos = parrafos[1:]
+    return "\n\n".join(parrafos)
+
+
+def norma_de_bcn(n):
+    """Devuelve (texto, fuente) o (None, motivo) para una norma bajada a mano desde BCN."""
+    ruta = os.path.join(CARPETA_PDF_NORMAS, n["pdf_local"])
+    if not os.path.exists(ruta):
+        return None, ("falta el PDF de BCN. Bajalo de %s y guardalo como rag/pdfs/normas/%s (ver LEEME)"
+                      % (n["url"], n["pdf_local"]))
+    with open(ruta, "rb") as f:
+        crudo = pdf_a_texto(f.read())
+    if crudo is None:
+        return None, "falta instalar pypdf (ver LEEME)"
+    texto = limpiar_bcn(crudo, n["desde"])
+    if texto is None:
+        return None, "no encontre '%s' en %s (¿es el PDF correcto?)" % (n["desde"], n["pdf_local"])
+    version = re.search(r"Versión:\s*(.+?)\s*De\s*:\s*(\d{1,2}-[A-Za-z]{3}-\d{4})", crudo)
+    codigo = re.search(r"ingrese código (\S+)", crudo)
+    fuente = "BCN (leychile.cl), %s. %s. %s" % (
+        n["en_bcn"],
+        "Versión: %s, de %s" % (version.group(1), version.group(2)) if version else "Versión: no indicada",
+        "PDF firmado electrónicamente, código de validación %s (www.leychile.cl/validar). %s"
+        % (codigo.group(1), n["url"]) if codigo else n["url"])
+    return texto, fuente
+
+
 def ficha_norma(n, fuente):
     return ("=" * 70 + "\n"
             "NORMA   : %s\n"
@@ -368,6 +459,22 @@ def main():
     # --- normas ---
     print("\nNORMAS")
     for n in NORMAS:
+        if n.get("pdf_local"):
+            # norma bajada a mano desde BCN: se rehace si el PDF es mas nuevo que el texto
+            destino = os.path.join(CARPETA_NORMAS, n["archivo"] + ".txt")
+            pdf = os.path.join(CARPETA_PDF_NORMAS, n["pdf_local"])
+            if (os.path.exists(destino) and not rehacer and
+                    (not os.path.exists(pdf) or os.path.getmtime(destino) >= os.path.getmtime(pdf))):
+                print("   ya estaba: %s" % n["cita"])
+                continue
+            texto, fuente = norma_de_bcn(n)
+            if texto is None:
+                print("   FALTA %s: %s" % (n["cita"], fuente))
+                continue
+            with open(destino, "w", encoding="utf-8") as f:
+                f.write(ficha_norma(n, fuente) + texto + "\n")
+            print("   lista: %s, desde el PDF de BCN (%d caracteres)" % (n["cita"], len(texto)))
+            continue
         partes = n.get("partes") or [n]
         destinos = [os.path.join(CARPETA_NORMAS, p["archivo"] + ".txt") for p in partes]
         if all(os.path.exists(d) for d in destinos) and not rehacer:

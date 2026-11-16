@@ -43,11 +43,15 @@ VERSION_CORTE = "siimple-1"
 
 RE_SECCION = re.compile(
     r"(?im)^\s*(?:[IVX]{1,4}\s*[.\-–)]?\s*)?(ANTECEDENTES|AN[ÁA]LISIS|CONCLUSI[ÓO]N(?:ES)?)\s*[.:]?\s*$")
-# Solo cuenta como comienzo de articulo una linea "Artículo 5º.-", "Artículo 10.-"
-# o "Artículo 46 bis.-" (con mayuscula y con el guion). Asi una frase como
-# "artículo 1.386 del Código Civil" no se confunde con un articulo nuevo.
+# Cuenta como comienzo de articulo una linea que empieza con mayuscula y:
+#   - "Artículo 5º.-", "Artículo 10.-" o "Artículo 46 bis.-" (formato del SII), o
+#   - "Art. 1.º", "Art. 10." o "Art. 959." (formato de BCN y del Codigo Civil).
+# Asi una frase como "artículo 1.386 del Código Civil" no se confunde con un
+# articulo nuevo.
 RE_ARTICULO = re.compile(
-    r"(?m)^\s*(?:Art[íi]culo|ART[ÍI]CULO)\s+(\d+)\s*[°ºo]?\s*((?i:bis|ter|qu[áa]ter))?\s*\.?\s*[-–]")
+    r"(?m)^\s*(?:Art[íi]culo|ART[ÍI]CULO|Art\.)\s+(\d+)\s*(?:\.\s*[°º]|[°º])?\s*((?i:bis|ter|qu[áa]ter))?"
+    r"(?:\s*\.?\s*[-–]|\.(?=\s)|(?<=[°º])(?=\s))")
+RE_SOLO_DEROGADO = re.compile(r"(?i)^\(?derogado\)?\.?$")
 
 
 # ---------- Leer los archivos del paso 1 ----------
@@ -152,6 +156,11 @@ def cortar_norma(nombre, texto):
         for i, m in enumerate(marcas):
             fin = marcas[i + 1].start() if i + 1 < len(marcas) else len(cuerpo)
             articulo = m.group(1) + (" " + m.group(2).lower() if m.group(2) else "")
+            # un articulo que solo dice "DEROGADO" no aporta nada: se salta
+            # (lo que venga despues en el mismo trozo son titulos de capitulo)
+            resto = cuerpo[m.end():fin].strip()
+            if RE_SOLO_DEROGADO.match(resto.split("\n")[0].strip()) and len(resto) < 200:
+                continue
             marcas_texto.append((articulo, cuerpo[m.start():fin]))
     vistos = {}
     for articulo, texto_articulo in marcas_texto:
