@@ -1,0 +1,20 @@
+# Claves de la API: NUNCA se suben (el repositorio es público)
+rag/clave.txt
+.env
+respaldo.txt
+
+# Pruebas del RAG: pueden traer preguntas de personas reales
+rag/sesiones/
+
+# Se genera con rag/paso2_indexar.py (pesa varios MB)
+rag/indice_vectorial.json
+
+# Copias de los PDF bajados (el texto queda en rag/txt/)
+rag/pdfs/normas/
+
+# Python y editores
+__pycache__/
+.venv/
+.idea/
+.vscode/
+.DS_Store

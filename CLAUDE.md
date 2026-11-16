@@ -89,6 +89,12 @@ Somos estudiantes de Derecho y no programamos. Por eso:
     si la persona pidió reducir las animaciones en su computador o celular.
   - Sus textos describen el simulador y el chat: si cambian, revisarlos.
   - Los botones con data-abrir-chat abren la burbuja del chat.
+- rag/: laboratorio para conectar SIILV-I.A con Gemini (RAG adaptado del
+  kit del optativo de IA). Son scripts de Python que se corren a mano en
+  VS Code y no tocan el sitio ni el chat publicado. Instrucciones en
+  rag/LEEME.md. La clave va en rag/clave.txt, que está en .gitignore, y
+  nunca se escribe en otro archivo. Las respuestas de prueba (rag/sesiones/)
+  no se suben.
 - img/: logos.
 - Secciones principales: inicio, guia (el menú único «Guía»: se llega desde
   el menú superior y el botón «Entrar a la guía» de la portada; si se agrega
