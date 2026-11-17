@@ -8,6 +8,7 @@ rag/sesiones/
 
 # Se genera con rag/paso2_indexar.py (pesa varios MB)
 rag/indice_vectorial.json
+rag/indice_vectorial.json.tmp
 
 # Copias de los PDF bajados (el texto queda en rag/txt/)
 rag/pdfs/normas/
