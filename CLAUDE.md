@@ -70,15 +70,17 @@ Somos estudiantes de Derecho y no programamos. Por eso:
   Se puede correr a mano en la pestaña Actions del repositorio.
 - Portada (12-11-2026): el banner de arriba es un carrusel de 5
   diapositivas, cada una con su color:
-  1. «Alguien falleció sin dejar testamento: ¿por dónde empiezo?» (azul
-     oscuro, clases s-intro y s-empezar; «¿por dónde empiezo?» va en el
-     amarillo suave de la diapositiva 5): tarjeta con tres acciones numeradas
+  1. «Alguien falleció sin dejar testamento: ¿por dónde empiezo?» (negro,
+     clases s-intro y s-empezar; «¿por dónde empiezo?» va en durazno):
+     tarjeta con tres acciones numeradas
      (calcular si hay que pagar impuesto, ver las etapas del trámite y
      preguntarle al asistente) y la línea «¿Hay testamento u otro caso
      especial? Ver dónde pedir ayuda». Dura 10 segundos.
-  2. Calculadora (celeste). 3. Simulador (naranjo). 4. Chat SIILV-I.A
-     (verde). 5. Presentación de SIIMPLE (amarillo, clase s-nosotros).
-     Cada una dura 6 segundos.
+  2. Calculadora (crema a beige). 3. Simulador (crema claro a durazno).
+     4. Chat SIILV-I.A (naranjo con texto negro; su botón es negro con
+     texto blanco). 5. Presentación de SIIMPLE (crema claro, clase
+     s-nosotros). Cada una dura 6 segundos. Colores desde el 17-11-2026
+     (antes: azul, celeste, naranjo, verde y amarillo).
   - La duración general está en SEGUNDOS_POR_SLIDE (codigo.js, "Carrusel
     de la portada"); una diapositiva con data-segundos="N" en index.html
     dura N segundos.
@@ -308,6 +310,35 @@ Revisar también que en el celular la ventana ocupe toda la pantalla.
   que-entra y conceptos (en el glosario, la norma va al final de cada
   entrada). El chat no trata ese desplegable como una entrada propia
   (asistente.js, construirIndice).
+- Colores (17-11-2026): paleta negro, naranjo y crema, como el «Manual
+  para estudiantes» (V6). Se definen una sola vez, en :root de estilos.css;
+  asistente.css y simulador.css usan esas variables (sus colores entre
+  paréntesis son solo respaldo: si cambia la paleta, cambiarlos también).
+  Los nombres de las variables vienen de la paleta azul anterior y no se
+  cambiaron:
+  | Variable | Color | Uso |
+  |---|---|---|
+  | --primario-osc, --fondo-osc, --tinta | negro #111111 | franja, pie, títulos, texto |
+  | --acento | naranjo #D9541E | llamados a la acción, rellenos, bordes, títulos grandes |
+  | --primario, --acento-osc | naranjo oscuro #A63F17 | enlaces y botones con texto blanco |
+  | --papel, --banda | crema #F3EEE3 | fondo de la página |
+  | --tarjeta | crema claro #FBF8F1 | tarjetas, campos, cabecera, chat y simulador |
+  | --celeste, --marcador | durazno #F6D5C3 | recuadros destacados |
+  | --linea, --linea-suave | beige #E7DFCE | líneas decorativas |
+  | --tinta-suave | gris cálido #4A453D | texto secundario |
+  | --borde-campo | gris borde #8C8578 | bordes de campos y opciones |
+  | --ok, --alerta | verde y rojo | éxito y alerta (sin cambio) |
+  Se mantiene por ahora el ámbar #B7791F de los avisos «en revisión», para
+  ver cómo se ve con la paleta nueva. Reglas de contraste (WCAG AA: texto
+  4,5 a 1; bordes de campos 3 a 1):
+  - El naranjo #D9541E nunca lleva texto blanco: los botones naranjos llevan
+    texto negro. Tampoco se usa para texto normal, solo para títulos grandes.
+  - Sobre durazno no va naranjo (ni texto ni bordes), ni texto verde o rojo,
+    ni campos.
+  - El verde de éxito va sobre crema claro o su fondo verde pálido, no
+    sobre el crema del fondo.
+  - En la franja negra, «Herencias en sii.cl» es un botón solo con contorno,
+    para no competir con el botón principal de cada página.
 - Debe verse bien en celular.
 - Cuida la accesibilidad: contraste, textos alternativos y navegación con teclado.
 
@@ -340,5 +371,11 @@ Revisar también que en el celular la ventana ocupe toda la pantalla.
   glosario y en la respuesta regimen de asistente.js.
 - Usar en el chat la información de ChileAtiende (idea del equipo,
   12-11-2026; por ver más adelante).
-- Definir identidad visual propia (hoy se parece al portal del SII).
+- Identidad visual: desde el 17-11-2026 la paleta es negro, naranjo y crema
+  (ver «Estilo»). Falta:
+  - El logo de SiiMPLE sigue en azul marino, azul y amarillo, que no son
+    de la paleta. Pedir una versión negra y naranja. En el pie negro, el
+    cuadrado azul del logo blanco se ve apagado. Nunca poner el logo de
+    color sobre naranjo.
+  - Decidir si el ámbar de los avisos «en revisión» se queda.
 - Autorización de la UC para usar su marca.

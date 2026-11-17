@@ -59,7 +59,7 @@ var ASISTENTE_CONFIG = {
   var CLAVE_CONVERSACION = "siilvConversacion";
   var CLAVE_VISTO = "siilvVisto";
 
-  var AVATAR = '<svg viewBox="0 0 32 32" aria-hidden="true"><path d="M8.5 4.5h10.5l6.5 6.5v16.5h-17z" fill="#0B3A6E"/><path d="M19 4.5V11h6.5z" fill="#EB510D"/><path d="M12 16h9.5M12 20h9.5M12 24h5.5" stroke="#fff" stroke-width="1.9" stroke-linecap="round"/></svg>';
+  var AVATAR = '<svg viewBox="0 0 32 32" aria-hidden="true"><path d="M8.5 4.5h10.5l6.5 6.5v16.5h-17z" fill="#111111"/><path d="M19 4.5V11h6.5z" fill="#D9541E"/><path d="M12 16h9.5M12 20h9.5M12 24h5.5" stroke="#fff" stroke-width="1.9" stroke-linecap="round"/></svg>';
 
   /* Secciones de la guía a las que el asistente puede enlazar */
   var SECCIONES = {};
