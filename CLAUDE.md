@@ -308,6 +308,26 @@ Revisar también que en el celular la ventana ocupe toda la pantalla.
   que-entra y conceptos (en el glosario, la norma va al final de cada
   entrada). El chat no trata ese desplegable como una entrada propia
   (asistente.js, construirIndice).
+- Colores (17-11-2026): se definen en :root de estilos.css; asistente.css
+  y simulador.css usan esas variables (sus colores entre paréntesis son
+  solo respaldo: si cambia la paleta, cambiarlos también). Además de las
+  de siempre, hay dos variables:
+  - --tarjeta (blanco): fondo de tarjetas, campos, cabecera, chat y simulador.
+  - --borde-campo (#7A8594): bordes de campos y opciones. Debe tener
+    contraste de 3 a 1 con el fondo del campo.
+  Para probar otra paleta, cambiar los valores (no los nombres) y revisar
+  los colores que siguen escritos a mano: los fondos de cada diapositiva
+  del carrusel, los tintes claros (#C9DAEE, #D7E5F5, #FAFBFC, #FFF4EE,
+  #FFF8F4, #FDE8B4), las sombras y contornos azulados (rgba(11,58,110,…),
+  rgba(28,93,168,…)), las flechas de los desplegables y la lupa del
+  buscador (dibujos dentro de estilos.css), los números de las
+  ilustraciones (index.html) y el ícono del chat (index.html y asistente.js).
+  Revisar siempre el contraste WCAG AA (texto 4,5 a 1; bordes de campos 3 a 1).
+- Propuestas de paleta guardadas en ramas de GitHub (no se publican):
+  - «001» negro, naranjo y crema (rama paleta-negro-naranjo, commit
+    781f7d2). No convenció al equipo; queda como respaldo. Se puede ver en
+    raw.githack.com/SXKIV/guia-herencias/paleta-negro-naranjo/index.html.
+    Su CLAUDE.md trae la tabla de colores y las reglas de contraste.
 - Debe verse bien en celular.
 - Cuida la accesibilidad: contraste, textos alternativos y navegación con teclado.
 
@@ -340,5 +360,15 @@ Revisar también que en el celular la ventana ocupe toda la pantalla.
   glosario y en la respuesta regimen de asistente.js.
 - Usar en el chat la información de ChileAtiende (idea del equipo,
   12-11-2026; por ver más adelante).
-- Definir identidad visual propia (hoy se parece al portal del SII).
+- Definir identidad visual propia (hoy se parece al portal del SII). La
+  propuesta «001» (negro-naranjo) no convenció: ver «Estilo». Al elegir
+  una paleta, definir también los colores del logo y un ícono cuadrado
+  para la pestaña (hoy usa el logo completo).
+- Botones naranjos con texto blanco (#EB510D): no cumplen el contraste
+  AA (3,67 a 1). Los usan el botón principal de la portada, el botón
+  flotante de la calculadora, la etiqueta «tú» (tabla de la familia de la
+  calculadora), enviar del chat y el botón principal del simulador.
+  Decisión del equipo (17-11-2026): se mantienen así, como excepción a la
+  regla de contraste. No cambiarlos sin consultar; revisarlo si se cambia
+  la paleta.
 - Autorización de la UC para usar su marca.

@@ -1,5 +1,6 @@
-/* Estilos del asistente SIILV-I.A. Usa las variables de color de la guía (--primario, --acento, etc.)
-   y, si la página no las define, los colores entre paréntesis. */
+/* Estilos del asistente SIILV-I.A. Usa las variables de color de estilos.css (--primario, --acento, etc.)
+   y, si la página no las define, los colores entre paréntesis (respaldo).
+   Si cambia la paleta en estilos.css, cambiar también esos respaldos. */
 /* =========================================================
    Asistente SIILV-I.A: burbuja flotante y ventana de chat
    (todas las clases empiezan con "sia-" para no chocar con
@@ -21,7 +22,7 @@
 .flotante-calc{right:92px}
 
 /* Ventana */
-.sia-panel{position:fixed;right:20px;bottom:92px;z-index:60;width:390px;max-width:calc(100vw - 40px);height:620px;max-height:calc(100vh - 116px);display:flex;flex-direction:column;background:#fff;border:1px solid var(--linea,#D3D8DF);border-radius:3px;box-shadow:0 24px 48px -16px rgba(11,58,110,.55);overflow:hidden;font-size:15px;line-height:1.5;color:var(--tinta,#333A44)}
+.sia-panel{position:fixed;right:20px;bottom:92px;z-index:60;width:390px;max-width:calc(100vw - 40px);height:620px;max-height:calc(100vh - 116px);display:flex;flex-direction:column;background:var(--tarjeta,#fff);border:1px solid var(--linea,#D3D8DF);border-radius:3px;box-shadow:0 24px 48px -16px rgba(11,58,110,.55);overflow:hidden;font-size:15px;line-height:1.5;color:var(--tinta,#333A44)}
 .sia-cab{flex:none;display:flex;align-items:center;gap:12px;background:var(--primario-osc,#0B3A6E);color:#fff;padding:11px 10px 11px 14px;border-bottom:3px solid var(--acento,#EB510D)}
 .sia-avatar{flex:none;width:40px;height:40px;border-radius:50%;background:#fff;display:grid;place-items:center}
 .sia-avatar svg{width:30px;height:30px}
@@ -33,7 +34,7 @@
 .sia-cab button svg{width:20px;height:20px}
 
 /* Conversación */
-.sia-cuerpo{position:relative;flex:1;min-height:0;overflow-y:auto;padding:16px 14px 6px;background:#fff;overscroll-behavior:contain}
+.sia-cuerpo{position:relative;flex:1;min-height:0;overflow-y:auto;padding:16px 14px 6px;background:var(--tarjeta,#fff);overscroll-behavior:contain}
 .sia-previa{margin:-16px -14px 14px;padding:8px 14px;background:var(--marcador,#FFE9D6);color:#7A3410;font-size:13px;line-height:1.4;border-bottom:1px solid #F5CFB3}
 .sia-fila{display:flex;gap:8px;margin:0 0 12px;align-items:flex-end}
 .sia-fila.usuario{justify-content:flex-end}
@@ -49,9 +50,9 @@
 .sia-msg .sia-h{font-weight:700;color:var(--primario-osc,#0B3A6E);margin:12px 0 4px}
 .sia-msg .sia-h:first-child{margin-top:0}
 .sia-msg strong{color:inherit}
-.sia-msg code{font-size:13px;background:#fff;border:1px solid var(--linea-suave,#E5E8EC);border-radius:3px;padding:0 4px}
+.sia-msg code{font-size:13px;background:var(--tarjeta,#fff);border:1px solid var(--linea-suave,#E5E8EC);border-radius:3px;padding:0 4px}
 .sia-msg hr{border:none;border-top:1px solid var(--linea,#D3D8DF);margin:10px 0}
-.sia-tabla{overflow-x:auto;margin:6px 0 10px;border:1px solid var(--linea,#D3D8DF);border-radius:3px;background:#fff}
+.sia-tabla{overflow-x:auto;margin:6px 0 10px;border:1px solid var(--linea,#D3D8DF);border-radius:3px;background:var(--tarjeta,#fff)}
 .sia-msg table{min-width:100%;width:auto;font-size:13px}
 .sia-msg th,.sia-msg td{padding:6px 8px;min-width:84px;overflow-wrap:normal;word-break:normal;hyphens:auto}
 .sia-enlace{font:inherit;font-weight:600;color:var(--primario,#1C5DA8);background:none;border:none;padding:0;text-decoration:underline;cursor:pointer;text-align:left}
@@ -62,7 +63,7 @@
 
 /* Botones de respuesta rápida */
 .sia-rapidas{display:flex;flex-wrap:wrap;gap:7px;margin:0 0 14px 36px}
-.sia-rapida{font:inherit;font-size:13.5px;font-weight:600;color:var(--primario-osc,#0B3A6E);background:#fff;border:1px solid var(--primario-osc,#0B3A6E);border-radius:999px;padding:6px 13px;cursor:pointer;line-height:1.3}
+.sia-rapida{font:inherit;font-size:13.5px;font-weight:600;color:var(--primario-osc,#0B3A6E);background:var(--tarjeta,#fff);border:1px solid var(--primario-osc,#0B3A6E);border-radius:999px;padding:6px 13px;cursor:pointer;line-height:1.3}
 .sia-rapida:hover{background:var(--celeste,#E3EDF8)}
 .sia-rapida.sia-persona{border-color:var(--acento,#EB510D);color:var(--acento-osc,#C2410A)}
 .sia-rapida.sia-persona:hover{background:#FFF4EE}
@@ -83,9 +84,9 @@
 @keyframes sia-entra{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
 
 /* Caja para escribir */
-.sia-pie{flex:none;border-top:1px solid var(--linea-suave,#E5E8EC);padding:10px 12px 8px;background:#fff;margin:0}
+.sia-pie{flex:none;border-top:1px solid var(--linea-suave,#E5E8EC);padding:10px 12px 8px;background:var(--tarjeta,#fff);margin:0}
 .sia-form{display:flex;gap:8px;align-items:flex-end}
-.sia-form textarea{flex:1;min-width:0;font:inherit;font-size:15px;line-height:1.4;resize:none;border:1px solid var(--linea,#D3D8DF);border-radius:3px;padding:9px 11px;height:42px;max-height:120px;color:var(--tinta,#333A44);background:#fff}
+.sia-form textarea{flex:1;min-width:0;font:inherit;font-size:15px;line-height:1.4;resize:none;border:1px solid var(--borde-campo,#7A8594);border-radius:3px;padding:9px 11px;height:42px;max-height:120px;color:var(--tinta,#333A44);background:var(--tarjeta,#fff)}
 .sia-form textarea:focus{border-color:var(--primario,#1C5DA8);outline:2px solid rgba(28,93,168,.25);outline-offset:0}
 .sia-enviar{flex:none;width:42px;height:42px;border:none;border-radius:3px;background:var(--acento,#EB510D);color:#fff;display:grid;place-items:center;cursor:pointer;padding:0}
 .sia-enviar:hover{background:var(--acento-osc,#C2410A)}

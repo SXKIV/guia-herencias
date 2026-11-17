@@ -1,13 +1,14 @@
 /* =========================================================
    Simulador de declaración (F4412 herencias) para SIIMPLE.
    Usa las variables de color de estilos.css (con respaldo por si
-   se abre solo). Todas las clases empiezan con "sim-" para no
+   se abre solo; si cambia la paleta, cambiar también los respaldos). Todas las clases empiezan con "sim-" para no
    chocar con el resto de la guía. Tamaños en rem: respeta el
    botón de tamaño del texto de la guía.
    ========================================================= */
 .sim-root,.sim-modal-bg,.sim-toast{
   --s-pri:var(--primario,#1C5DA8); --s-osc:var(--primario-osc,#0B3A6E); --s-cel:var(--celeste,#E3EDF8);
   --s-acento:var(--acento,#EB510D); --s-acento-osc:var(--acento-osc,#C2410A);
+  --s-tarjeta:var(--tarjeta,#fff); --s-borde:var(--borde-campo,#7A8594);
   --s-banda:var(--banda,#F1F3F6); --s-tinta:var(--tinta,#333A44); --s-suave:var(--tinta-suave,#5E6672);
   --s-linea:var(--linea,#D3D8DF); --s-linea2:var(--linea-suave,#E5E8EC); --s-ok:var(--ok,#2E7D32); --s-mal:var(--alerta,#C62828);
   --s-radio:var(--radio,3px); --s-sombra:var(--sombra,0 1px 3px rgba(11,58,110,.12));
@@ -25,7 +26,7 @@ body[data-pantalla="simulador"] .flotante-calc{display:none}
 :is(.sim-root,.sim-modal-bg) table{min-width:0;font-size:.875rem}
 :is(.sim-root,.sim-modal-bg) th,:is(.sim-root,.sim-modal-bg) td{padding:7px 10px;vertical-align:middle}
 :is(.sim-root,.sim-modal-bg) th{background:var(--s-osc);color:#fff;font-weight:600;font-size:.8125rem;white-space:nowrap}
-:is(.sim-root,.sim-modal-bg) :is(input[type=text],input[type=email],input[type=date],select){width:100%;max-width:none;font:inherit;font-size:.9375rem;padding:8px 10px;min-height:2.5rem;background:#fff;color:var(--s-tinta);border:1px solid var(--s-linea);border-radius:var(--s-radio)}
+:is(.sim-root,.sim-modal-bg) :is(input[type=text],input[type=email],input[type=date],select){width:100%;max-width:none;font:inherit;font-size:.9375rem;padding:8px 10px;min-height:2.5rem;background:var(--s-tarjeta);color:var(--s-tinta);border:1px solid var(--s-borde);border-radius:var(--s-radio)}
 :is(.sim-root,.sim-modal-bg) :is(input,select):focus{border-color:var(--s-pri);outline:2px solid rgba(28,93,168,.25);outline-offset:0}
 :is(.sim-root,.sim-modal-bg) :is(input,select):disabled,:is(.sim-root,.sim-modal-bg) input[readonly]{background:var(--s-banda);color:var(--s-suave)}
 :is(.sim-root,.sim-modal-bg) input.sim-money,:is(.sim-root,.sim-modal-bg) input.sim-calc{font-variant-numeric:tabular-nums;text-align:right}
@@ -42,7 +43,7 @@ body[data-pantalla="simulador"] .flotante-calc{display:none}
 .sim-form-title h2{font-size:1.375rem;font-weight:600;color:var(--s-osc);flex:1}
 
 /* --- paneles (estilo acordeón de la guía) --- */
-.sim-panel{background:#fff;border:1px solid var(--s-linea2);border-radius:2px;box-shadow:var(--s-sombra);scroll-margin-top:64px}
+.sim-panel{background:var(--s-tarjeta);border:1px solid var(--s-linea2);border-radius:2px;box-shadow:var(--s-sombra);scroll-margin-top:64px}
 .sim-ph{display:flex;align-items:center;gap:12px;padding:10px 14px;background:var(--s-banda);border-bottom:1px solid var(--s-linea2);flex-wrap:wrap}
 .sim-ph h2{font-size:1.0625rem;font-weight:600;color:var(--s-osc);flex:1;min-width:12rem}
 .sim-step{display:grid;place-items:center;width:2rem;height:2rem;border-radius:50%;background:var(--s-osc);color:#fff;font-weight:700;font-size:.875rem;flex:none}
@@ -50,7 +51,7 @@ body[data-pantalla="simulador"] .flotante-calc{display:none}
 .sim-state.sim-ok{background:#EDF6EE;color:var(--s-ok)}
 .sim-state.sim-todo{background:#FFF4EE;color:var(--s-acento-osc)}
 .sim-help{font:inherit;font-size:.875rem;color:var(--s-pri);background:none;border:none;padding:0;text-decoration:underline;cursor:pointer}
-.sim-toggle{display:grid;place-items:center;width:26px;height:26px;border-radius:50%;border:none;background:#fff;color:var(--s-pri);font-weight:700;font-size:1.0625rem;cursor:pointer;box-shadow:inset 0 0 0 1px var(--s-linea)}
+.sim-toggle{display:grid;place-items:center;width:26px;height:26px;border-radius:50%;border:none;background:var(--s-tarjeta);color:var(--s-pri);font-weight:700;font-size:1.0625rem;cursor:pointer;box-shadow:inset 0 0 0 1px var(--s-borde)}
 .sim-pb{padding:16px}
 .sim-hint{border-left:5px solid var(--s-osc);background:var(--s-cel);padding:10px 14px;margin-bottom:14px;font-size:.9375rem;border-radius:0 var(--s-radio) var(--s-radio) 0}
 .sim-note{font-size:.875rem;color:var(--s-suave)}
@@ -66,7 +67,7 @@ body[data-pantalla="simulador"] .flotante-calc{display:none}
 /* --- botones (los de la guía) --- */
 .sim-btn{font:inherit;font-size:.9375rem;font-weight:700;cursor:pointer;background:var(--s-pri);color:#fff;border:1px solid var(--s-pri);border-radius:var(--s-radio);padding:9px 16px;white-space:nowrap}
 .sim-btn:hover{background:var(--s-osc);border-color:var(--s-osc)}
-.sim-btn.sim-ghost{background:#fff;color:var(--s-osc);border-color:var(--s-osc);font-weight:600}
+.sim-btn.sim-ghost{background:var(--s-tarjeta);color:var(--s-osc);border-color:var(--s-osc);font-weight:600}
 .sim-btn.sim-ghost:hover{background:var(--s-cel)}
 .sim-btn.sim-cta{background:var(--s-acento);border-color:var(--s-acento);box-shadow:0 3px 0 var(--s-acento-osc);font-size:1.0625rem;padding:12px 28px}
 .sim-btn.sim-cta:hover{background:var(--s-acento-osc)}
@@ -106,7 +107,7 @@ tr.sim-entry td.sim-narrow input{min-width:5rem}
 select[id^=leg_ref_]{min-width:16rem}
 
 /* --- categorías de bienes --- */
-.sim-acc{border:1px solid var(--s-linea2);border-radius:2px;background:#fff}
+.sim-acc{border:1px solid var(--s-linea2);border-radius:2px;background:var(--s-tarjeta)}
 .sim-acc + .sim-acc{margin-top:8px}
 .sim-acc-h{display:flex;align-items:center;gap:10px;width:100%;padding:11px 14px;border:none;background:var(--s-banda);cursor:pointer;text-align:left;font:inherit;color:var(--s-osc)}
 .sim-acc-h:hover{background:var(--s-cel)}
@@ -114,7 +115,7 @@ select[id^=leg_ref_]{min-width:16rem}
 .sim-acc-h .sim-v{font-variant-numeric:tabular-nums;font-weight:700}
 .sim-acc-h .sim-c{font-size:.75rem;font-weight:700;background:var(--s-pri);color:#fff;border-radius:999px;padding:0 8px}
 .sim-acc-h.sim-minus .sim-v{color:var(--s-mal)}
-.sim-acc-h .sim-arr{display:grid;place-items:center;width:24px;height:24px;border-radius:50%;background:#fff;color:var(--s-pri);font-size:.75rem}
+.sim-acc-h .sim-arr{display:grid;place-items:center;width:24px;height:24px;border-radius:50%;background:var(--s-tarjeta);color:var(--s-pri);font-size:.75rem}
 .sim-acc-b{padding:12px 14px;display:grid;gap:10px;border-top:1px solid var(--s-linea2)}
 .sim-sub{font-size:.8125rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--s-osc);margin:16px 0 8px;display:flex;align-items:center;gap:8px}
 .sim-sub::after{content:"";flex:1;border-top:1px solid var(--s-linea2)}
@@ -123,7 +124,7 @@ select[id^=leg_ref_]{min-width:16rem}
 
 /* --- tarjetas de asignatarios --- */
 .sim-cards{display:grid;gap:10px}
-.sim-card{border:1px solid var(--s-linea2);border-left:5px solid var(--s-osc);border-radius:2px;background:#fff;overflow:hidden}
+.sim-card{border:1px solid var(--s-linea2);border-left:5px solid var(--s-osc);border-radius:2px;background:var(--s-tarjeta);overflow:hidden}
 .sim-card-h{display:flex;align-items:center;gap:8px;padding:10px 12px;flex-wrap:wrap}
 .sim-card-h .sim-who{flex:1;min-width:12rem}
 .sim-card-h .sim-who b{display:block;color:var(--s-osc)}
@@ -148,7 +149,7 @@ select[id^=leg_ref_]{min-width:16rem}
 .sim-jurada{font-size:.8125rem;text-transform:uppercase;color:var(--s-suave);border-left:3px solid var(--s-pri);background:var(--s-banda);padding:10px 14px}
 
 /* --- columna lateral (como el resumen de la portada) --- */
-.sim-box{background:#fff;border:1px solid var(--s-linea);border-top:5px solid var(--s-osc);border-radius:2px;padding:14px 16px;display:grid;gap:8px;box-shadow:var(--s-sombra)}
+.sim-box{background:var(--s-tarjeta);border:1px solid var(--s-linea);border-top:5px solid var(--s-osc);border-radius:2px;padding:14px 16px;display:grid;gap:8px;box-shadow:var(--s-sombra)}
 .sim-box h3{font-size:.75rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--s-suave)}
 .sim-big{font-size:1.5rem;font-weight:700;color:var(--s-osc);font-variant-numeric:tabular-nums}
 .sim-line{display:flex;justify-content:space-between;gap:10px;font-size:.9375rem;padding:6px 0;border-bottom:1px dashed var(--s-linea)}
@@ -171,7 +172,7 @@ select[id^=leg_ref_]{min-width:16rem}
 
 /* --- ventanas --- */
 .sim-modal-bg{position:fixed;inset:0;background:rgba(11,28,52,.55);display:flex;align-items:flex-start;justify-content:center;z-index:1000;overflow-y:auto;padding:24px 12px}
-.sim-modal{background:#fff;border-top:5px solid var(--s-osc);border-radius:2px;width:min(860px,100%);box-shadow:0 24px 48px -16px rgba(11,58,110,.55)}
+.sim-modal{background:var(--s-tarjeta);border-top:5px solid var(--s-osc);border-radius:2px;width:min(860px,100%);box-shadow:0 24px 48px -16px rgba(11,58,110,.55)}
 .sim-modal.sim-sm{width:min(500px,100%)}
 .sim-modal .sim-ph h2{font-size:1.125rem}
 .sim-foot{display:flex;gap:10px;justify-content:flex-end;padding:12px 16px;border-top:1px solid var(--s-linea2);background:var(--s-banda);flex-wrap:wrap}
